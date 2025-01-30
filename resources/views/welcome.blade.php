@@ -36,7 +36,7 @@
                                        <div class="col-lg-12">
                                           <div class="floating-label form-group">
                                              <input class="floating-input form-control" type="email" name="email" placeholder=" ">
-                                             <label>Número de celular</label>
+                                             <label>Correo </label>
                                           </div>
                                        </div>
                                        <div class="col-lg-12">
