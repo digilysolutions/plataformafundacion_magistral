@@ -25,38 +25,42 @@
             margin-bottom: 40px;
             /* Espacio arriba y abajo de la línea */
         }
+
         .divider {
-    position: relative;
-    margin: 20px 0;
-    text-align: center;
-}
+            position: relative;
+            margin: 20px 0;
+            text-align: center;
+        }
 
-.divider::before, .divider::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 80%;
-    height: 1px;
-    background: #ccc;
-    z-index: 0;
-}
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 80%;
+            height: 1px;
+            background: #ccc;
+            z-index: 0;
+        }
 
-.divider::before {
-    right: 10%;
-    margin-right: 10px;
-}
+        .divider::before {
+            right: 10%;
+            margin-right: 10px;
+        }
 
-.divider::after {
-    left: 2%;
-    margin-left: 10px;
-}
+        .divider::after {
+            left: 2%;
+            margin-left: 10px;
+        }
 
-.divider span {
-    position: relative;
-    z-index: 1;
-    background: #fff; /* Color de fondo para ocultar la línea */
-    padding: 0 5px; /* Espaciado alrededor del texto */
-}
+        .divider span {
+            position: relative;
+            z-index: 1;
+            background: #fff;
+            /* Color de fondo para ocultar la línea */
+            padding: 0 5px;
+            /* Espaciado alrededor del texto */
+        }
     </style>
 </head>
 
@@ -71,9 +75,6 @@
                             <div class="card-body p-0">
                                 <div class="d-flex align-items-center auth-content">
                                     <div class="col-lg-7 align-self-center">
-
-
-
 
                                         <div class="p-3">
                                             <h2 class="mb-2">Iniciar Sesión</h2>
