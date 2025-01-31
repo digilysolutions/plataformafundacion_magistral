@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // Dashboard para el estudiante
     Route::get('/student/dashboard', function () {
         return view('student.dashboard'); // Vista para el dashboard del usuario
-    })->name('student.dashboard')->middleware('user.role');
+    })->name('student.dashboard');
 
     // Dashboard para el tutor
     Route::get('/tutor/dashboard', function () {
