@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -12,24 +13,15 @@ class GoogleController extends Controller
 {
     public function redirectToGoogle()
     {
-        try {
-            return Socialite::driver('google')->redirect();
-        } catch (\Exception $e) {
-            Log::error('Error durante la redirección a Google: ' . $e->getMessage());
-            return redirect()->route('login')->with('error', 'Hubo un problema al intentar autenticarse.');
-        }
+        return Socialite::driver('google')->redirect();
     }
 
     public function handleGoogleCallback()
     {
+
         try {
             // Intenta obtener el usuario de Google
             $user = Socialite::driver('google')->user();
-
-            // Verifica si el objeto usuario es nulo
-            if (!$user) {
-                return redirect()->route('login')->with('error', 'No se pudo obtener la información del usuario.');
-            }
 
             // Busca el usuario en la base de datos
             $finduser = User::where('google_id', $user->id)->first();
@@ -37,14 +29,30 @@ class GoogleController extends Controller
             if ($finduser) {
                 // Si el usuario ya existe, iniciar sesión
                 Auth::login($finduser);
-                return redirect()->intended('dashboard');
+                switch ($finduser->role) {
+                    case 'Centro Educativo':
+                        return redirect()->route('educationalcenter.dashboard');
+                    case 'Estudiante':
+                        return redirect()->route('student.dashboard');
+                    case "Tutor":
+                        return redirect()->route('tutor.dashboard');
+                    case "Validador":
+                        return redirect()->route('validator.dashboard');
+                    case 'Administrador':
+                        return redirect()->route('admin.dashboard');
+                    case "Usuario":
+                        return redirect()->route('user.dashboard');
+                }
+               // return redirect()->intended('dashboard');
             } else {
                 // Si no existe, crea un nuevo usuario
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
-                    'password' => encrypt('123456dummy'), // Considera usar una mejor manera de manejar contraseñas
+                    'role' => 'Usuario',
+                    'roleid' => 6,
+                    'password' => Hash::make('Password1234'), // Considera usar una mejor manera de manejar contraseñas
                 ]);
 
                 // Inicia sesión con el nuevo usuario

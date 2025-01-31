@@ -97,7 +97,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::get('login/google', [GoogleController::class, 'redirectToGoogle'])->name('login.google');
-Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('auth/google-callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
 /*
