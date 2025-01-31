@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
@@ -94,6 +95,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         return view('validator.dashboard'); // Vista para el dashboard del usuario
     })->name('validator.dashboard');
 });
+
+Route::get('login/google', [GoogleController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
 /*
 Route::middleware(['auth', 'verified','user.role'])->group(function () {
     // Dashboard para el centro educativo

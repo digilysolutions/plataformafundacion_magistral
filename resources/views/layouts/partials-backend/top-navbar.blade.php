@@ -135,9 +135,9 @@
                                         @endphp
                                         <div class="p-3">{{ $user->email }}
                                             <h5 class="mb-1"></h5>
-                                            <p class="mb-0">Since 10 march, 2020</p>
+                                            <p class="mb-0">{{ auth()->user()->role }}</p>
                                             <div class="d-flex align-items-center justify-content-center mt-3">
-                                                <a href="app/user-profile.html" class="btn border mr-2">Profile</a>
+                                                <a href="{{route('profile.edit')}}" class="btn border mr-2">Perfil</a>
 
                                                 <form method="POST" action="/logout">
                                                     @csrf

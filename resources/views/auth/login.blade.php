@@ -24,6 +24,9 @@
                         <div class="card-body p-0">
                             <div class="d-flex align-items-center auth-content">
                                 <div class="col-lg-7 align-self-center">
+                                    <a href="{{ route('login.google') }}" class="btn btn-danger">
+                                        Login with Google
+                                    </a>
                                     <div class="p-3">
                                         <h2 class="mb-2">Iniciar Sesión</h2>
                                         <p>Inicia sesión para mantenerte conectado.</p>
