@@ -6,32 +6,52 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
+
+
+
 
 class User extends Authenticatable
 {
+    use HasApiTokens;
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use  HasRoles, HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
+        'roleid',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = [
+        'profile_photo_url',
     ];
 
     /**
@@ -45,5 +65,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function role_user()
+    {
+        return $this->belongsTo(Role::class);
     }
 }
