@@ -12,7 +12,12 @@ class GoogleController extends Controller
 {
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        try {
+            return Socialite::driver('google')->redirect();
+        } catch (\Exception $e) {
+            Log::error('Error durante la redirección a Google: ' . $e->getMessage());
+            return redirect()->route('login')->with('error', 'Hubo un problema al intentar autenticarse.');
+        }
     }
 
     public function handleGoogleCallback()
