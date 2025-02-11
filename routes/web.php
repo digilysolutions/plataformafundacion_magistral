@@ -4,7 +4,18 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\LevelController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\MembershipPaymentStatusController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegionalController;
+use App\Http\Controllers\SpecialtyController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudyCenterController;
+use App\Http\Controllers\TutorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +26,8 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
+
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
 
@@ -63,6 +76,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //---------nuevas rutas
+    Route::resource('people', PersonController::class);
+    Route::resource('specialties', SpecialtyController::class);
+    Route::resource('countries', CountryController::class);
+    Route::resource('regionals', RegionalController::class);
+    Route::resource('districts', DistrictController::class);
+    Route::resource('levels', LevelController::class);
+    Route::resource('memberships', MembershipController::class);
+    Route::resource('tutors', TutorController::class);
+    Route::resource('membership-payment-statuses', MembershipPaymentStatusController::class);
+    Route::resource('study-centers', StudyCenterController::class);
+    Route::resource('students', StudentController::class);
+    ///--------End nuevas rutass
 });
 
 
@@ -132,4 +158,6 @@ Route::middleware(['auth', 'verified','user.role'])->group(function () {
     })->name('validator.dashboard');
 });
 */
+
+
 require __DIR__ . '/auth.php';
