@@ -31,7 +31,70 @@
                         <span class="ml-4">Escritorio</span>
                     </a>
                 </li>
+                <li class="{{ request()->is('admin/countries*') ? 'active' : '' }}">
+                    <a href="{{ route('countries.index') }}" ><i class=""></i>
+                    </svg>
+                        <span class="ml-4">País</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('admin/regionals*') ? 'active' : '' }}">
+                    <a href="{{ route('regionals.index') }}" ><i class=""></i>
+                    </svg>
+                        <span class="ml-4">Regional</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('admin/districts*') ? 'active' : '' }}">
+                    <a href="{{ route('districts.index') }}" ><i class=""></i>
+                    </svg>
+                        <span class="ml-4">Distritos</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('admin/levels*') ? 'active' : '' }}">
+                    <a href="{{ route('levels.index') }}" ><i class=""></i>
 
+                    </svg>
+                        <span class="ml-4">Niveles</span>
+                    </a>
+                </li>
+
+
+                <li class="{{ request()->is('admin/memberships*') ? 'active' : '' }}">
+                    <a href="{{ route('memberships.index') }}" ><i class=""></i>
+                    </svg>
+                        <span class="ml-4">Mewmebresia</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('admin/tutors*') ? 'active' : '' }}">
+                    <a href="{{ route('tutors.index') }}" ><i class=""></i>
+                    </svg>
+                        <span class="ml-4">Tutores</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('admin/study-centers*') ? 'active' : '' }}">
+                    <a href="{{ route('study-centers.index') }}" ><i class=""></i>
+                    </svg>
+                        <span class="ml-4">Centros de estudios</span>
+                    </a>
+
+                <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <li class="{{ request()->is('admin/people*') ? 'active' : '' }}">
+                        <a href="{{ route('people.index') }}" class="submenu-link">
+                            <i class="las la-minus"></i><span>Personas</span>
+                        </a>
+                    </li>
+
+
+
+                    @if( auth()->check() &&  auth()->user()->hasRole('Administrador'))
+                    <li class="{{ request()->is('admin/units*') ? 'active' : '' }}">
+                        <a href="{{ route('units.index') }}" class="submenu-link">
+                            <i class="las la-minus"></i><span>Unidades</span>
+                        </a>
+                    </li>
+                    @endif
+
+
+                </ul>
 
             </ul>
         </nav>

@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ $country->name ?? __('Show') . " " . __('Country') }}
+    {{ $country->name ?? __('Show') . ' ' . __('Country') }}
 @endsection
 
 @section('content-admin')
@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Mostrar') }} Country</span>
+                            <span class="card-title">{{ __('Mostrar') }} País</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('countries.index') }}"> {{ __('Atrás') }}</a>
@@ -19,15 +19,19 @@
                     </div>
 
                     <div class="card-body bg-white">
-                        
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Activado:</strong>
-                                    {{ $country->activated }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
-                                    {{ $country->name }}
-                                </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Nombre del País:</strong>
+                            {{ $country->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Activado:</strong>
+                            @if ($country->activated == 1)
+                                Si
+                            @else
+                                No
+                            @endif
+                        </div>
+
 
                     </div>
                 </div>

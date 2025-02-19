@@ -13,14 +13,15 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Districts') }}
+                                {{ __('Distritos') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('districts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Nuevo') }}
+                            <div class="float-right">
+                                <a href="{{ route('districts.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Nuevo') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,14 +36,14 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Activated</th>
-									<th >Name</th>
-									<th >Tracking Code</th>
-									<th >Address</th>
-									<th >Phone</th>
-									<th >Mail</th>
-									<th >Regional Id</th>
+
+                                        <th>Nombre</th>
+                                        <th>Código</th>
+                                        <th>Dirección</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo</th>
+                                        <th>Regional</th>
+                                        <th>Activado</th>
 
                                         <th></th>
                                     </tr>
@@ -51,22 +52,33 @@
                                     @foreach ($districts as $district)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $district->activated }}</td>
-										<td >{{ $district->name }}</td>
-										<td >{{ $district->tracking_code }}</td>
-										<td >{{ $district->address }}</td>
-										<td >{{ $district->phone }}</td>
-										<td >{{ $district->mail }}</td>
-										<td >{{ $district->regional_id }}</td>
-
+                                            <td>{{ $district->name }}</td>
+                                            <td>{{ $district->tracking_code }}</td>
+                                            <td>{{ $district->address }}</td>
+                                            <td>{{ $district->phone }}</td>
+                                            <td>{{ $district->mail }}</td>
+                                            <td>{{ $district->regional_id }}</td>
                                             <td>
-                                                <form action="{{ route('districts.destroy', $district->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('districts.show', $district->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('districts.edit', $district->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                @if ($district->activated == 1)
+                                                    Si
+                                                @else
+                                                    No
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('districts.destroy', $district->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('districts.show', $district->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('districts.edit', $district->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

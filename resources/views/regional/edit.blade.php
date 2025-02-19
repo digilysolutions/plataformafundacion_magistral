@@ -11,7 +11,10 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Regional</span>
+                        <span class="card-title">{{ __('Editar') }} Regional</span>
+                        <div class="float-right">
+                            <a class="btn btn-primary btn-sm" href="{{ route('regionals.index') }}"> {{ __('Atrás') }}</a>
+                        </div>
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('regionals.update', $regional->id) }}"  role="form" enctype="multipart/form-data">

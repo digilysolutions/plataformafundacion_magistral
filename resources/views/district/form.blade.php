@@ -1,40 +1,37 @@
 <div class="row padding-1 p-1">
     <div class="col-md-12">
-        
+
+
         <div class="form-group mb-2 mb20">
-            <label for="activated" class="form-label">{{ __('Activcado') }}</label>
-            <input type="text" name="activated" class="form-control @error('activated') is-invalid @enderror" value="{{ old('activated', $district?->activated) }}" id="activated" placeholder="Activated">
-            {!! $errors->first('activated', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
-        <div class="form-group mb-2 mb20">
-            <label for="name" class="form-label">{{ __('Name') }}</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $district?->name) }}" id="name" placeholder="Name">
+            <label for="name" class="form-label">{{ __('Nombre') }}</label>
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $district?->name) }}" id="name" placeholder="Nombre">
             {!! $errors->first('name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
+
         <div class="form-group mb-2 mb20">
-            <label for="tracking_code" class="form-label">{{ __('Tracking Code') }}</label>
-            <input type="text" name="tracking_code" class="form-control @error('tracking_code') is-invalid @enderror" value="{{ old('tracking_code', $district?->tracking_code) }}" id="tracking_code" placeholder="Tracking Code">
-            {!! $errors->first('tracking_code', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
-        <div class="form-group mb-2 mb20">
-            <label for="address" class="form-label">{{ __('Address') }}</label>
-            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address', $district?->address) }}" id="address" placeholder="Address">
+            <label for="address" class="form-label">{{ __('Dirección') }}</label>
+            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address', $district?->address) }}" id="address" placeholder="Dirección">
             {!! $errors->first('address', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="phone" class="form-label">{{ __('Phone') }}</label>
-            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $district?->phone) }}" id="phone" placeholder="Phone">
+            <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
+            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $district?->phone) }}" id="phone" placeholder="Teléfono">
             {!! $errors->first('phone', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="mail" class="form-label">{{ __('Mail') }}</label>
-            <input type="text" name="mail" class="form-control @error('mail') is-invalid @enderror" value="{{ old('mail', $district?->mail) }}" id="mail" placeholder="Mail">
+            <label for="mail" class="form-label">{{ __('Coreo') }}</label>
+            <input type="text" name="mail" class="form-control @error('mail') is-invalid @enderror" value="{{ old('mail', $district?->mail) }}" id="mail" placeholder="Correo">
             {!! $errors->first('mail', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="regional_id" class="form-label">{{ __('Regional Id') }}</label>
-            <input type="text" name="regional_id" class="form-control @error('regional_id') is-invalid @enderror" value="{{ old('regional_id', $district?->regional_id) }}" id="regional_id" placeholder="Regional Id">
+            <label for="regional_id" class="form-label">{{ __('Regional') }}</label>
+            <input type="text" name="regional_id" class="form-control @error('regional_id') is-invalid @enderror" value="{{ old('regional_id', $district?->regional_id) }}" id="regional_id" placeholder="Regional">
             {!! $errors->first('regional_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        <div class="form-group mb-2 mb20">
+            <label for="activated" class="form-label">{{ __('Activado') }}</label>
+            <input type="text" name="activated" class="form-control @error('activated') is-invalid @enderror" value="{{ old('activated', $district?->activated) }}" id="activated" placeholder="Activado">
+            {!! $errors->first('activated', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 
     </div>

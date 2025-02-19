@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} District</span>
+                        <span class="card-title">{{ __('Editar') }} Distrito</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('districts.index') }}"> {{ __('Atrás') }}</a>
                         </div>

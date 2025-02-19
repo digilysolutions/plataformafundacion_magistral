@@ -16,7 +16,7 @@
                             <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}"> {{ __('Atrás') }}</a>
                         </div>
                     </div>
-                     
+
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('students.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf

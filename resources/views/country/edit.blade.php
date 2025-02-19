@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Country</span>
+                        <span class="card-title">{{ __('Update') }} País</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('countries.index') }}"> {{ __('Atrás') }}</a>
                         </div>

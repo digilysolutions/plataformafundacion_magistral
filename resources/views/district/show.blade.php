@@ -19,35 +19,36 @@
                     </div>
 
                     <div class="card-body bg-white">
-                        
+
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Activado:</strong>
+
                                     {{ $district->activated }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
+                                    <strong>Nombre:</strong>
                                     {{ $district->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Tracking Code:</strong>
+                                    <strong>Código:</strong>
                                     {{ $district->tracking_code }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Address:</strong>
+                                    <strong>Dirección:</strong>
                                     {{ $district->address }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Phone:</strong>
+                                    <strong>Teléfono:</strong>
                                     {{ $district->phone }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Mail:</strong>
+                                    <strong>Correo:</strong>
                                     {{ $district->mail }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Regional Id:</strong>
+                                    <strong>Regional:</strong>
                                     {{ $district->regional_id }}
                                 </div>
+                                <strong>Activado:</strong>
 
                     </div>
                 </div>

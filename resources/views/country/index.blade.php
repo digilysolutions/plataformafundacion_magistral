@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Countries') }}
+                                {{ __('Paises') }}
                             </span>
 
                              <div class="float-right">
@@ -35,10 +35,10 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Activated</th>
-									<th >Name</th>
 
+
+									<th >Nombre del País</th>
+                                    <th >Activado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -46,10 +46,10 @@
                                     @foreach ($countries as $country)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $country->activated }}</td>
-										<td >{{ $country->name }}</td>
 
+
+										<td >{{ $country->name }}</td>
+                                        <td >@if($country->activated ==1) Si @else No @endif</td>
                                             <td>
                                                 <form action="{{ route('countries.destroy', $country->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('countries.show', $country->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>

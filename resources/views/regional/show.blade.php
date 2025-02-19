@@ -19,25 +19,25 @@
                     </div>
 
                     <div class="card-body bg-white">
-                        
+
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
+                                    <strong>Nombre:</strong>
                                     {{ $regional->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Address:</strong>
+                                    <strong>Dirección:</strong>
                                     {{ $regional->address }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Phone:</strong>
+                                    <strong>Teléfono:</strong>
                                     {{ $regional->phone }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Mail:</strong>
+                                    <strong>Correo:</strong>
                                     {{ $regional->mail }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Tracking Code:</strong>
+                                    <strong>Código de Segimiento:</strong>
                                     {{ $regional->tracking_code }}
                                 </div>
 

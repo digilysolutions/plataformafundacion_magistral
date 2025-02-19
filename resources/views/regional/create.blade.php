@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Regional</span>
+                        <span class="card-title">{{ __('Crear') }} Regional</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('regionals.index') }}"> {{ __('Atrás') }}</a>
                         </div>

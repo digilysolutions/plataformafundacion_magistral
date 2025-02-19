@@ -1,6 +1,6 @@
 <div class="row padding-1 p-1">
     <div class="col-md-12">
-        
+
         <div class="form-group mb-2 mb20">
             <label for="activated" class="form-label">{{ __('Activcado') }}</label>
             <input type="text" name="activated" class="form-control @error('activated') is-invalid @enderror" value="{{ old('activated', $membership?->activated) }}" id="activated" placeholder="Activated">

@@ -16,7 +16,7 @@
                             <a class="btn btn-primary btn-sm" href="{{ route('tutors.index') }}"> {{ __('Atrás') }}</a>
                         </div>
                     </div>
-                    
+
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('tutors.update', $tutor->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}

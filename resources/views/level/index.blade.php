@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Levels') }}
+                                {{ __('Niveles') }}
                             </span>
 
                              <div class="float-right">
@@ -35,12 +35,12 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Activated</th>
-									<th >Name</th>
-									<th >Description</th>
-									<th >Specialty Id</th>
 
+
+									<th >Nombre</th>
+									<th >Descripción</th>
+									<th >Especialidad</th>
+                                    <th >Activado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -48,12 +48,12 @@
                                     @foreach ($levels as $level)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $level->activated }}</td>
+
+
 										<td >{{ $level->name }}</td>
 										<td >{{ $level->description }}</td>
-										<td >{{ $level->specialty_id }}</td>
-
+										<td >{{ $level->specialty->name }}</td>
+                                        <td >{{ $level->activated }}</td>
                                             <td>
                                                 <form action="{{ route('levels.destroy', $level->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('levels.show', $level->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>

@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 									<th >Activated</th>
 									<th >Name</th>
 									<th >Address</th>
@@ -54,7 +54,7 @@
                                     @foreach ($studyCenters as $studyCenter)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $studyCenter->activated }}</td>
 										<td >{{ $studyCenter->name }}</td>
 										<td >{{ $studyCenter->address }}</td>

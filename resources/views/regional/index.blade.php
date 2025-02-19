@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    Regionals
+    Regionales
 @endsection
 
 @section('content-admin')
@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Regionals') }}
+                                {{ __('Regional') }}
                             </span>
 
                              <div class="float-right">
@@ -35,12 +35,13 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Name</th>
-									<th >Address</th>
-									<th >Phone</th>
-									<th >Mail</th>
-									<th >Tracking Code</th>
+
+									<th >Nombre</th>
+                                    <th >Código</th>
+									<th >Dirección</th>
+									<th >Teléfono</th>
+									<th >Correo</th>
+                                    <th >Activado</th>
 
                                         <th></th>
                                     </tr>
@@ -49,12 +50,13 @@
                                     @foreach ($regionals as $regional)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $regional->name }}</td>
+                                        <td >{{ $regional->tracking_code }}</td>
 										<td >{{ $regional->address }}</td>
 										<td >{{ $regional->phone }}</td>
 										<td >{{ $regional->mail }}</td>
-										<td >{{ $regional->tracking_code }}</td>
+                                        <td >@if($regional->activated ==1) Si @else No @endif</td>
 
                                             <td>
                                                 <form action="{{ route('regionals.destroy', $regional->id) }}" method="POST">

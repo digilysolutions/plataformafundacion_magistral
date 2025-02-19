@@ -41,7 +41,7 @@
                                     <tr>
                                         <th>No</th>
 
-									<th >Activated</th>
+									<th >Activado</th>
 									<th >Name</th>
 									<th >Lastname</th>
 									<th >Email</th>
