@@ -24,8 +24,7 @@ class LevelRequest extends FormRequest
         return [
 			'activated' => 'required',
 			'name' => 'required|string',
-			'description' => 'string',
-			'specialty_id' => 'required',
+			'description' => 'string'
         ];
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();
             $table->boolean('activated')->nullable()->default(false);
-            $table->integer('country_id')->unsigned()->default(1); // Cambiar para evitar error de default
+            $table->uuid('country_id'); // Cambiar para evitar error de default
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->timestamps();
         });

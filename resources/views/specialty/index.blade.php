@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    Specialties
+    Especialidades
 @endsection
 
 @section('content-admin')
@@ -13,14 +13,15 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Specialties') }}
+                                {{ __('Especialidades') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('specialties.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Nuevo') }}
+                            <div class="float-right">
+                                <a href="{{ route('specialties.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Nuevo') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,9 +36,16 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+                                        <td>
+                                            @if ($level->activated == 1)
+                                                Si
+                                            @else
+                                                No
+                                            @endif
+                                        </td>
 
-									<th >Activated</th>
-									<th >Name</th>
 
                                         <th></th>
                                     </tr>
@@ -47,16 +55,23 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-										<td >{{ $specialty->activated }}</td>
-										<td >{{ $specialty->name }}</td>
+                                            <td>{{ $specialty->activated }}</td>
+                                            <td>{{ $specialty->name }}</td>
 
                                             <td>
-                                                <form action="{{ route('specialties.destroy', $specialty->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('specialties.show', $specialty->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('specialties.edit', $specialty->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                <form action="{{ route('specialties.destroy', $specialty->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('specialties.show', $specialty->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('specialties.edit', $specialty->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

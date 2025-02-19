@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class Student
@@ -26,9 +27,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Student extends Model
 {
-    
-    protected $perPage = 20;
 
+    protected $perPage = 20;
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = (string) Uuid::uuid4();
+        });
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -44,7 +55,7 @@ class Student extends Model
     {
         return $this->belongsTo(\App\Models\Membership::class, 'membership_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -52,7 +63,7 @@ class Student extends Model
     {
         return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -60,7 +71,7 @@ class Student extends Model
     {
         return $this->belongsTo(\App\Models\StudyCenter::class, 'studycenters_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -68,5 +79,5 @@ class Student extends Model
     {
         return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
     }
-    
+
 }

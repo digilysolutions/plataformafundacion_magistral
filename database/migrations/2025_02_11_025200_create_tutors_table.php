@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tutors', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->boolean('activated')->default(false);
             $table->string('name');
             $table->integer('people_id')->unsigned()->default();
             $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');
-            $table->integer('specialty_id')->unsigned()->default();
+            $table->uuid('specialty_id');
             $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
             $table->timestamps();
         });

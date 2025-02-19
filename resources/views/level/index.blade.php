@@ -52,8 +52,14 @@
 
 										<td >{{ $level->name }}</td>
 										<td >{{ $level->description }}</td>
-										<td >{{ $level->specialty->name }}</td>
-                                        <td >{{ $level->activated }}</td>
+
+                                        <td>
+                                            @if ($level->activated == 1)
+                                                Si
+                                            @else
+                                                No
+                                            @endif
+                                        </td>
                                             <td>
                                                 <form action="{{ route('levels.destroy', $level->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('levels.show', $level->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>

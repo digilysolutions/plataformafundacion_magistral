@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class StudyCenter
@@ -30,9 +31,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class StudyCenter extends Model
 {
-    
-    protected $perPage = 20;
 
+    protected $perPage = 20;
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = (string) Uuid::uuid4();
+        });
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -48,7 +59,7 @@ class StudyCenter extends Model
     {
         return $this->belongsTo(\App\Models\District::class, 'district_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -56,7 +67,7 @@ class StudyCenter extends Model
     {
         return $this->belongsTo(\App\Models\Membership::class, 'membership_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -64,7 +75,7 @@ class StudyCenter extends Model
     {
         return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -72,5 +83,5 @@ class StudyCenter extends Model
     {
         return $this->belongsTo(\App\Models\Regional::class, 'regional_id', 'id');
     }
-    
+
 }
