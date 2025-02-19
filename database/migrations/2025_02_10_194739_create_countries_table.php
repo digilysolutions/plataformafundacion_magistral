@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->boolean('activated')->default(false);
+            $table->boolean('activated')->nullable()->default(false);
             $table->string('name');
             $table->timestamps();
         });

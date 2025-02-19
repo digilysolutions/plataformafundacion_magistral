@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();
-            $table->string('tracking_code')->nullable();
+            $table->string('tracking_code', 10)->change();
+            $table->boolean('activated')->nullable()->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('regionals', function (Blueprint $table) {
+            // Revertir el cambio
+            $table->integer('id')->change(); // Ajusta según el tipo original
+        });
         Schema::dropIfExists('regionals');
     }
 };

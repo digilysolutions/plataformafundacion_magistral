@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->boolean('activated')->default(false);
             $table->string('name');
-            $table->string('tracking_code')->nullable();
+            $table->string('tracking_code', 10)->change();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();
@@ -31,6 +31,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('districts', function (Blueprint $table) {
+            // Revertir el cambio
+            $table->integer('tracking_code')->change(); // Ajusta según el tipo original
+        });
         Schema::dropIfExists('districts');
     }
 };
