@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('regionals', function (Blueprint $table) {
-            $table->increments('id');
+
+            $table->uuid('id')->primary(); // Define `tracking_code` como UUID y clave primaria
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();
-            $table->string('tracking_code', 10)->change();
             $table->boolean('activated')->nullable()->default(false);
+            $table->integer('country_id')->unsigned()->default(1); // Cambiar para evitar error de default
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,10 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('regionals', function (Blueprint $table) {
-            // Revertir el cambio
-            $table->integer('id')->change(); // Ajusta según el tipo original
-        });
+
         Schema::dropIfExists('regionals');
     }
 };

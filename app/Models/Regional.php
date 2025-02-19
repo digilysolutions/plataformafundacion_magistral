@@ -25,24 +25,24 @@ class Regional extends Model
 {
 
     protected $perPage = 20;
-   // protected $keyType = 'string';
-  // public $incrementing = false;
+    protected $keyType = 'string';
+    public $incrementing = false;
 
-  /*  protected static function boot()
+    protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($model) {
             $model->{$model->getKeyName()} = (string) Uuid::uuid4();
         });
-    }*/
+    }
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'address', 'phone', 'mail', 'tracking_code','activated'];
+    protected $fillable = ['name', 'country_id','address', 'phone', 'mail', 'tracking_code', 'activated'];
 
 
     /**
@@ -51,5 +51,9 @@ class Regional extends Model
     public function districts()
     {
         return $this->hasMany(\App\Models\District::class, 'id', 'regional_id');
+    }
+    public function country()
+    {
+        return $this->belongsTo(\App\Models\Country::class, 'country_id', 'id');
     }
 }

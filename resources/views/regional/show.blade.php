@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ $regional->name ?? __('Show') . " " . __('Regional') }}
+    {{ $regional->name ?? __('Show') . ' ' . __('Regional') }}
 @endsection
 
 @section('content-admin')
@@ -20,26 +20,38 @@
 
                     <div class="card-body bg-white">
 
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Nombre:</strong>
-                                    {{ $regional->name }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Dirección:</strong>
-                                    {{ $regional->address }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Teléfono:</strong>
-                                    {{ $regional->phone }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Correo:</strong>
-                                    {{ $regional->mail }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Código de Segimiento:</strong>
-                                    {{ $regional->tracking_code }}
-                                </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Regional:</strong>
+                            {{ $regional->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Dirección:</strong>
+                            {{ $regional->address }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Teléfono:</strong>
+                            {{ $regional->phone }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Correo:</strong>
+                            {{ $regional->mail }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código de Segimiento:</strong>
+                            {{ $regional->id }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>País:</strong>
+                            {{ $regional->country->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Activado:</strong>
+                            @if ($regional->activated == 1)
+                                Si
+                            @else
+                                No
+                            @endif
+                        </div>
 
                     </div>
                 </div>

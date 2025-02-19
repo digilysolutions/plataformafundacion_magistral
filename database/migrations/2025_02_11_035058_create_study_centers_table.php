@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();
             $table->string('tracking_code')->nullable();
-            $table->integer('regional_id')->unsigned()->default();
-            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');
+            $table->uuid('regional_id'); // Asegúrate de que sea UUID
+            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade'); // Cambia `id` por `tracking_code` si es necesario
+
+
+
             $table->integer('district_id')->unsigned()->default();
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->integer('people_id')->unsigned()->default();

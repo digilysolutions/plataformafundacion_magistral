@@ -6,6 +6,7 @@ use App\Models\Regional;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegionalRequest;
+use App\Models\Country;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -28,8 +29,9 @@ class RegionalController extends Controller
     public function create(): View
     {
         $regional = new Regional();
+        $countries= Country::all();
 
-        return view('regional.create', compact('regional'));
+        return view('regional.create', compact('regional','countries'));
     }
 
     /**
@@ -39,6 +41,7 @@ class RegionalController extends Controller
     {
         $data =$request->all();
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+
         Regional::create($data);
 
         return Redirect::route('regionals.index')
@@ -61,8 +64,9 @@ class RegionalController extends Controller
     public function edit($id): View
     {
         $regional = Regional::find($id);
+        $countries= Country::all();
 
-        return view('regional.edit', compact('regional'));
+        return view('regional.edit', compact('regional','countries'));
     }
 
     /**

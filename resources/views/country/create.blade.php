@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Create') }} Country
+    {{ __('Crear') }} País
 @endsection
 
 @section('content-admin')
@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Country</span>
+                        <span class="card-title">{{ __('Crear') }} País</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('countries.index') }}"> {{ __('Atrás') }}</a>
                         </div>

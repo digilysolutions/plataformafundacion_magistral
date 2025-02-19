@@ -4,7 +4,7 @@
 
         <div class="form-group mb-2 mb20">
             <label for="name" class="form-label">{{ __('Nombre del Pís') }}</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $country?->name) }}" id="name" placeholder="Name">
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $country?->name) }}" id="name" placeholder="Nombre">
             {!! $errors->first('name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 

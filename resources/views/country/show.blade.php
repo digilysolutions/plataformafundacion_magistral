@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ $country->name ?? __('Show') . ' ' . __('Country') }}
+    {{ $country->name ?? __('Mostrar') . ' ' . __('País') }}
 @endsection
 
 @section('content-admin')

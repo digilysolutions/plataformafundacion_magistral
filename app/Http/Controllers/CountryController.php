@@ -42,7 +42,7 @@ class CountryController extends Controller
         Country::create($data);
 
         return Redirect::route('countries.index')
-            ->with('success', 'Country creado satisfactoriamente.');
+            ->with('success', 'País creado satisfactoriamente.');
     }
 
     /**
@@ -74,7 +74,7 @@ class CountryController extends Controller
         $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
         $country->update(  $data);
         return Redirect::route('countries.index')
-            ->with('success', 'Country actualizado satisfactoriamente');
+            ->with('success', 'País actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -82,6 +82,6 @@ class CountryController extends Controller
         Country::find($id)->delete();
 
         return Redirect::route('countries.index')
-            ->with('success', 'Country eliminado satisfactoriamente');
+            ->with('success', 'País eliminado satisfactoriamente');
     }
 }

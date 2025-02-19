@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Country extends Model
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -27,6 +27,9 @@ class Country extends Model
      * @var array<int, string>
      */
     protected $fillable = ['activated', 'name'];
-
+    public function regionals()
+    {
+        return $this->hasMany(\App\Models\Regional::class, 'id', 'country_id');
+    }
 
 }

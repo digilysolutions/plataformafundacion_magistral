@@ -16,11 +16,12 @@
                                 {{ __('Regional') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('regionals.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Nuevo') }}
+                            <div class="float-right">
+                                <a href="{{ route('regionals.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Nuevo') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,13 +36,14 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
+                                        <th>Código</th>
+                                        <th>País</th>
+                                        <th>Regional</th>
 
-									<th >Nombre</th>
-                                    <th >Código</th>
-									<th >Dirección</th>
-									<th >Teléfono</th>
-									<th >Correo</th>
-                                    <th >Activado</th>
+                                        <th>Dirección</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo</th>
+                                        <th>Activado</th>
 
                                         <th></th>
                                     </tr>
@@ -50,21 +52,34 @@
                                     @foreach ($regionals as $regional)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-										<td >{{ $regional->name }}</td>
-                                        <td >{{ $regional->tracking_code }}</td>
-										<td >{{ $regional->address }}</td>
-										<td >{{ $regional->phone }}</td>
-										<td >{{ $regional->mail }}</td>
-                                        <td >@if($regional->activated ==1) Si @else No @endif</td>
+                                            <td>{{ $regional->id }}</td>
+                                            <td>{{ $regional->country->name }}</td>
+                                            <td>{{ $regional->name }}</td>
+                                            <td>{{ $regional->address }}</td>
+                                            <td>{{ $regional->phone }}</td>
+                                            <td>{{ $regional->mail }}</td>
+                                            <td>
+                                                @if ($regional->activated == 1)
+                                                    Si
+                                                @else
+                                                    No
+                                                @endif
+                                            </td>
 
                                             <td>
-                                                <form action="{{ route('regionals.destroy', $regional->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('regionals.show', $regional->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('regionals.edit', $regional->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                <form action="{{ route('regionals.destroy', $regional->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('regionals.show', $regional->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('regionals.edit', $regional->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
