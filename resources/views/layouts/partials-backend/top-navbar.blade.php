@@ -15,14 +15,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-list align-items-center">
 
-                        <li class="nav-item nav-icon dropdown">
-                            <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ri-pie-chart-line"></i> Online: 3
-
-                            </a>
-
-                        </li>
+                      @include('layouts.partials-backend.nav-user-connect')
 
 
                         <li class="nav-item nav-icon search-content">

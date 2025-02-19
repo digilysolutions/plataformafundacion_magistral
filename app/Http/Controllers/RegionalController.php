@@ -39,7 +39,7 @@ class RegionalController extends Controller
      */
     public function store(RegionalRequest $request)
     {
-        $data =$request->all();
+        $data =$request->validated();
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
 
         Regional::create($data);

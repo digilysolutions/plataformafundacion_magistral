@@ -20,18 +20,16 @@
 
                     <div class="card-body bg-white">
 
-                                <div class="form-group mb-2 mb20">
 
-                                    {{ $district->activated }}
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Código:</strong>
+                                    {{ $district->id }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Nombre:</strong>
                                     {{ $district->name }}
                                 </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Código:</strong>
-                                    {{ $district->tracking_code }}
-                                </div>
+
                                 <div class="form-group mb-2 mb20">
                                     <strong>Dirección:</strong>
                                     {{ $district->address }}
@@ -46,10 +44,17 @@
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Regional:</strong>
-                                    {{ $district->regional_id }}
+                                    {{ $district->regional->name }}
                                 </div>
-                                <strong>Activado:</strong>
 
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Activado:</strong>
+                                    @if ($district->activated == 1)
+                                        Si
+                                    @else
+                                        No
+                                    @endif
+                                </div>
                     </div>
                 </div>
             </div>

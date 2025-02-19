@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\MembershipController;
@@ -88,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('membership-payment-statuses', MembershipPaymentStatusController::class);
     Route::resource('study-centers', StudyCenterController::class);
     Route::resource('students', StudentController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
     ///--------End nuevas rutass
 });
 

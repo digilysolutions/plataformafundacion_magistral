@@ -26,6 +26,7 @@ class RegionalRequest extends FormRequest
 			'address' => 'string',
 			'phone' => 'string',
 			'mail' => 'string',
+
 			'tracking_code_district' => 'string',
         ];
     }

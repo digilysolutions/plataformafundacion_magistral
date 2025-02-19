@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('districts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
             $table->boolean('activated')->default(false);
             $table->string('name');
-            $table->string('tracking_code', 10); // Define la longitud si es un string
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();

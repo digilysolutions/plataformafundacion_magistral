@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,8 +24,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class District extends Model
 {
-    
+
     protected $perPage = 20;
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = (string) Uuid::uuid4();
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -42,5 +53,5 @@ class District extends Model
     {
         return $this->belongsTo(\App\Models\Regional::class, 'regional_id', 'id');
     }
-    
+
 }

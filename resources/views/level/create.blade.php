@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Create') }} Level
+    {{ __('Crear') }} Level
 @endsection
 
 @section('content-admin')
@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Level</span>
+                        <span class="card-title">{{ __('Crear') }} </span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('levels.index') }}"> {{ __('Atrás') }}</a>
                         </div>

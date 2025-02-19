@@ -19,19 +19,29 @@
             {!! $errors->first('phone', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="mail" class="form-label">{{ __('Coreo') }}</label>
+            <label for="mail" class="form-label">{{ __('Correo') }}</label>
             <input type="text" name="mail" class="form-control @error('mail') is-invalid @enderror" value="{{ old('mail', $district?->mail) }}" id="mail" placeholder="Correo">
             {!! $errors->first('mail', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
+
         <div class="form-group mb-2 mb20">
-            <label for="regional_id" class="form-label">{{ __('Regional') }}</label>
-            <input type="text" name="regional_id" class="form-control @error('regional_id') is-invalid @enderror" value="{{ old('regional_id', $district?->regional_id) }}" id="regional_id" placeholder="Regional">
-            {!! $errors->first('regional_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="address" class="form-label">{{ __('Regionales') }}</label>
+            <select id="regional_id" name="regional_id" class="form-control">
+
+                @foreach ($regionals as $regional)
+                    <option value="{{ $regional->id }}" @if ($regional->id==$district->regional_id) select
+
+                    @endif>
+                        {{ $regional->name }}</option>
+                @endforeach
+
+            </select>
         </div>
-        <div class="form-group mb-2 mb20">
-            <label for="activated" class="form-label">{{ __('Activado') }}</label>
-            <input type="text" name="activated" class="form-control @error('activated') is-invalid @enderror" value="{{ old('activated', $district?->activated) }}" id="activated" placeholder="Activado">
-            {!! $errors->first('activated', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+
+        <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+            <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-1" name="activated"
+                checked="">
+            <label class="custom-control-label" for="customCheck-1"> Activado</label>
         </div>
 
     </div>

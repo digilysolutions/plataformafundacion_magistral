@@ -6,6 +6,7 @@ use App\Models\District;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\DistrictRequest;
+use App\Models\Regional;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -14,10 +15,8 @@ class DistrictController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
-    {
+    public function index(Request $request): View    {
         $districts = District::paginate();
-
         return view('district.index', compact('districts'))
             ->with('i', ($request->input('page', 1) - 1) * $districts->perPage());
     }
@@ -28,19 +27,21 @@ class DistrictController extends Controller
     public function create(): View
     {
         $district = new District();
-
-        return view('district.create', compact('district'));
+        $regionals = Regional::all();
+        return view('district.create', compact('district', 'regionals'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DistrictRequest $request): RedirectResponse
+    public function store(DistrictRequest $request)
     {
-        District::create($request->validated());
 
+        $data = $request->validated();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        District::create($data);
         return Redirect::route('districts.index')
-            ->with('success', 'District created successfully.');
+            ->with('success', 'Distrito creado satisfactoriamente.');
     }
 
     /**
@@ -59,8 +60,8 @@ class DistrictController extends Controller
     public function edit($id): View
     {
         $district = District::find($id);
-
-        return view('district.edit', compact('district'));
+        $regionals = Regional::all();
+        return view('district.edit', compact('district', 'regionals'));
     }
 
     /**
@@ -68,10 +69,11 @@ class DistrictController extends Controller
      */
     public function update(DistrictRequest $request, District $district): RedirectResponse
     {
-        $district->update($request->validated());
-
+        $data = $request->validated();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        $district->update($data);
         return Redirect::route('districts.index')
-            ->with('success', 'District actualizado satisfactoriamente');
+            ->with('success', 'Distrito actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +81,6 @@ class DistrictController extends Controller
         District::find($id)->delete();
 
         return Redirect::route('districts.index')
-            ->with('success', 'District eliminado satisfactoriamente');
+            ->with('success', 'Distrito eliminado satisfactoriamente');
     }
 }

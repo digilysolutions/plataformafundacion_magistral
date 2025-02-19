@@ -36,9 +36,8 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
-                                        <th>Distrito</th>
                                         <th>Código</th>
+                                        <th>Distrito</th>
                                         <th>Dirección</th>
                                         <th>Teléfono</th>
                                         <th>Correo</th>
@@ -52,12 +51,12 @@
                                     @foreach ($districts as $district)
                                         <tr>
                                             <td>{{ ++$i }}</td>
+                                            <td>{{ $district->id }}</td>
                                             <td>{{ $district->name }}</td>
-                                            <td>{{ $district->tracking_code }}</td>
                                             <td>{{ $district->address }}</td>
                                             <td>{{ $district->phone }}</td>
                                             <td>{{ $district->mail }}</td>
-                                            <td>{{ $district->regional_id }}</td>
+                                            <td>{{ $district->regional->name }}</td>
                                             <td>
                                                 @if ($district->activated == 1)
                                                     Si
