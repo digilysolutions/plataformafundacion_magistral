@@ -56,12 +56,19 @@
                         <span class="ml-4">Niveles</span>
                     </a>
                 </li>
+                <li class="{{ request()->is('admin/specialties*') ? 'active' : '' }}">
+                    <a href="{{ route('specialties.index') }}" ><i class=""></i>
+
+                    </svg>
+                        <span class="ml-4">Especialidad</span>
+                    </a>
+                </li>
 
 
                 <li class="{{ request()->is('admin/memberships*') ? 'active' : '' }}">
                     <a href="{{ route('memberships.index') }}" ><i class=""></i>
                     </svg>
-                        <span class="ml-4">Mewmebresia</span>
+                        <span class="ml-4">Memebresía</span>
                     </a>
                 </li>
                 <li class="{{ request()->is('admin/tutors*') ? 'active' : '' }}">
