@@ -35,12 +35,14 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CountryRequest $request): RedirectResponse
+    public function store(CountryRequest $request):RedirectResponse
     {
-        Country::create($request->validated());
+        $data =$request->all();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        Country::create($data);
 
         return Redirect::route('countries.index')
-            ->with('success', 'Country created successfully.');
+            ->with('success', 'Country creado satisfactoriamente.');
     }
 
     /**
@@ -66,12 +68,13 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CountryRequest $request, Country $country): RedirectResponse
+    public function update(CountryRequest $request, Country $country):RedirectResponse
     {
-        $country->update($request->validated());
-
+        $data =$request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        $country->update(  $data);
         return Redirect::route('countries.index')
-            ->with('success', 'Country updated successfully');
+            ->with('success', 'Country actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +82,6 @@ class CountryController extends Controller
         Country::find($id)->delete();
 
         return Redirect::route('countries.index')
-            ->with('success', 'Country deleted successfully');
+            ->with('success', 'Country eliminado satisfactoriamente');
     }
 }

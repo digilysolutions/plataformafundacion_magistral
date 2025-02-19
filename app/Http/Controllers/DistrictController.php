@@ -71,7 +71,7 @@ class DistrictController extends Controller
         $district->update($request->validated());
 
         return Redirect::route('districts.index')
-            ->with('success', 'District updated successfully');
+            ->with('success', 'District actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class DistrictController extends Controller
         District::find($id)->delete();
 
         return Redirect::route('districts.index')
-            ->with('success', 'District deleted successfully');
+            ->with('success', 'District eliminado satisfactoriamente');
     }
 }

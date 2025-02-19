@@ -40,7 +40,7 @@ class StudyCenterController extends Controller
         StudyCenter::create($request->validated());
 
         return Redirect::route('study-centers.index')
-            ->with('success', 'StudyCenter created successfully.');
+            ->with('success', 'StudyCenter creado satisfactoriamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class StudyCenterController extends Controller
         $studyCenter->update($request->validated());
 
         return Redirect::route('study-centers.index')
-            ->with('success', 'StudyCenter updated successfully');
+            ->with('success', 'StudyCenter actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class StudyCenterController extends Controller
         StudyCenter::find($id)->delete();
 
         return Redirect::route('study-centers.index')
-            ->with('success', 'StudyCenter deleted successfully');
+            ->with('success', 'StudyCenter eliminado satisfactoriamente');
     }
 }

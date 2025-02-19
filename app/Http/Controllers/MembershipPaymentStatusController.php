@@ -71,7 +71,7 @@ class MembershipPaymentStatusController extends Controller
         $membershipPaymentStatus->update($request->validated());
 
         return Redirect::route('membership-payment-statuses.index')
-            ->with('success', 'MembershipPaymentStatus updated successfully');
+            ->with('success', 'MembershipPaymentStatus actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class MembershipPaymentStatusController extends Controller
         MembershipPaymentStatus::find($id)->delete();
 
         return Redirect::route('membership-payment-statuses.index')
-            ->with('success', 'MembershipPaymentStatus deleted successfully');
+            ->with('success', 'MembershipPaymentStatus eliminado satisfactoriamente');
     }
 }

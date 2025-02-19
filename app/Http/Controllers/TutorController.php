@@ -40,7 +40,7 @@ class TutorController extends Controller
         Tutor::create($request->validated());
 
         return Redirect::route('tutors.index')
-            ->with('success', 'Tutor created successfully.');
+            ->with('success', 'Tutor creado satisfactoriamente.');
     }
 
     /**
@@ -71,7 +71,7 @@ class TutorController extends Controller
         $tutor->update($request->validated());
 
         return Redirect::route('tutors.index')
-            ->with('success', 'Tutor updated successfully');
+            ->with('success', 'Tutor actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class TutorController extends Controller
         Tutor::find($id)->delete();
 
         return Redirect::route('tutors.index')
-            ->with('success', 'Tutor deleted successfully');
+            ->with('success', 'Tutor eliminado satisfactoriamente');
     }
 }

@@ -71,7 +71,7 @@ class SpecialtyController extends Controller
         $specialty->update($request->validated());
 
         return Redirect::route('specialties.index')
-            ->with('success', 'Specialty updated successfully');
+            ->with('success', 'Specialty actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class SpecialtyController extends Controller
         Specialty::find($id)->delete();
 
         return Redirect::route('specialties.index')
-            ->with('success', 'Specialty deleted successfully');
+            ->with('success', 'Specialty eliminado satisfactoriamente');
     }
 }

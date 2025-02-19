@@ -35,12 +35,14 @@ class RegionalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegionalRequest $request): RedirectResponse
+    public function store(RegionalRequest $request)
     {
-        Regional::create($request->validated());
+        $data =$request->all();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        Regional::create($data);
 
         return Redirect::route('regionals.index')
-            ->with('success', 'Regional created successfully.');
+            ->with('success', 'Regional creado satisfactoriamente.');
     }
 
     /**
@@ -66,12 +68,15 @@ class RegionalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(RegionalRequest $request, Regional $regional): RedirectResponse
+    public function update(RegionalRequest $request, Regional $regional)
     {
-        $regional->update($request->validated());
+        $data =$request->validated();
+        $data["activated"] = $request->input('activated') === 'on' ? 1 : 0;
+
+        $regional->update($data);
 
         return Redirect::route('regionals.index')
-            ->with('success', 'Regional updated successfully');
+            ->with('success', 'Regional actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +84,6 @@ class RegionalController extends Controller
         Regional::find($id)->delete();
 
         return Redirect::route('regionals.index')
-            ->with('success', 'Regional deleted successfully');
+            ->with('success', 'Regional eliminado satisfactoriamente');
     }
 }

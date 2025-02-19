@@ -71,7 +71,7 @@ class MembershipController extends Controller
         $membership->update($request->validated());
 
         return Redirect::route('memberships.index')
-            ->with('success', 'Membership updated successfully');
+            ->with('success', 'Membership actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class MembershipController extends Controller
         Membership::find($id)->delete();
 
         return Redirect::route('memberships.index')
-            ->with('success', 'Membership deleted successfully');
+            ->with('success', 'Membership eliminado satisfactoriamente');
     }
 }

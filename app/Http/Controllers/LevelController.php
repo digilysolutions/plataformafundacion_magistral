@@ -71,7 +71,7 @@ class LevelController extends Controller
         $level->update($request->validated());
 
         return Redirect::route('levels.index')
-            ->with('success', 'Level updated successfully');
+            ->with('success', 'Level actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class LevelController extends Controller
         Level::find($id)->delete();
 
         return Redirect::route('levels.index')
-            ->with('success', 'Level deleted successfully');
+            ->with('success', 'Level eliminado satisfactoriamente');
     }
 }
