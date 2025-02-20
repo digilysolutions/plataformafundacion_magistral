@@ -24,7 +24,7 @@
                                 </div>
                                 <div>
                                     <p class="mb-2">Centros Educativos</p>
-                                    <h4>{{count($studyCenter)}}</h4>
+                                    <h4>@if(count($studyCenter)>0){{count($studyCenter)}} @else 0 @endif</h4>
                                 </div>
                             </div>                                
                             <div class="iq-progress-bar mt-2">
