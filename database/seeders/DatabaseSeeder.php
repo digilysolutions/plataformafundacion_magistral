@@ -75,6 +75,9 @@ class DatabaseSeeder extends Seeder
             'password'=>'1234',
             'roleid'=>6
         ]);
+        $this->call(CountrySeeder::class);
+        $this->call(RegionalsSeeder::class);
+        $this->call(DistrictsSeeder::class);
 
     }
 }
