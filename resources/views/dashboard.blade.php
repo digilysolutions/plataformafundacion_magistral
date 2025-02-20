@@ -20,7 +20,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
                                 <div class="icon iq-icon-box-2 bg-info-light">
-                                    <img src="{{ asset('admin/images/page-img/47.jpg') }}" class="img-fluid" alt="image">
+                                    <img src="{{ asset('img/47.jpg') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
                                     <p class="mb-2">Centros Educativos</p>
@@ -39,7 +39,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
                                 <div class="icon iq-icon-box-2 bg-danger-light">
-                                    <img src="{{ asset('admin/images/page-img/a4.png') }}" class="img-fluid" alt="image">
+                                    <img src="{{ asset('img/a4.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
                                     <p class="mb-2">Estudiantes</p>
@@ -58,7 +58,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
                                 <div class="icon iq-icon-box-2 bg-success-light">
-                                    <img src="{{ asset('admin/images/product/3.png') }}" class="img-fluid" alt="image">
+                                    <img src="{{ asset('img/3.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
                                     <p class="mb-2">Regionales</p>
@@ -77,7 +77,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
                                 <div class="icon iq-icon-box-2 bg-info">
-                                    <img src="{{ asset('admin/images/page-img/02.png') }}" class="img-fluid" alt="image">
+                                    <img src="{{ asset('img/02.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
                                     <p class="mb-2">Distritos</p>
@@ -113,7 +113,7 @@
                             <div class="card card-block card-stretch card-height mb-0">
                                 <div class="card-body">
                                     <div class="bg-warning-light rounded">
-                                        <img src="{{ asset('admin/images/page-img/42.png') }}" class="style-img img-fluid m-auto p-3" alt="image">
+                                        <img src="{{ asset('img/42.png') }}" class="style-img img-fluid m-auto p-3" alt="image">
                                     </div>
                                     <div class="style-text text-left mt-3">
                                         <h5 class="mb-1">{{$specialty->name}}</h5>
