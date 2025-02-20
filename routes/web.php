@@ -90,8 +90,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('study-centers', StudyCenterController::class);
     Route::resource('students', StudentController::class);
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
     Route::get('/distritos/{regional_id}', [StudyCenterController::class, 'getDistritos']);
-    ///--------End nuevas rutass
+    ///-------End nuevas rutass
 });
 
 
@@ -110,10 +111,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         return view('tutor.dashboard'); // Vista para el dashboard del usuario
     })->name('tutor.dashboard');
 
-    // Dashboard para el usuario normal
-    Route::get('/admin/dashboard', function () {
-        return view('dashboard'); // Vista para el dashboard del usuario
-    })->name('admin.dashboard');
+
 
     // Dashboard para el      // Dashboard para el validator
     Route::get('/user/dashboard', function () {

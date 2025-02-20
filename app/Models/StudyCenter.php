@@ -73,5 +73,9 @@ class StudyCenter extends ModelMain
     {
         return $this->belongsTo(\App\Models\Regional::class, 'regional_id', 'id');
     }
+    public function students()  
+    {  
+        return $this->hasMany(Student::class);  
+    }  
 
 }
