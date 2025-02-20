@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ $studyCenter->name ?? __('Show') . " " . __('Study Center') }}
+    {{ $studyCenter->name ?? __('Mostrar') . ' ' . __('Centro de estudio') }}
 @endsection
 
 @section('content-admin')
@@ -11,55 +11,55 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Mostrar') }} Study Center</span>
+                            <span class="card-title">{{ __('Mostrar') }} Centro de estudio</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('study-centers.index') }}"> {{ __('Atrás') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('study-centers.index') }}">
+                                {{ __('Atrás') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
 
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Activado:</strong>
-                                    {{ $studyCenter->activated }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
-                                    {{ $studyCenter->name }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Address:</strong>
-                                    {{ $studyCenter->address }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Phone:</strong>
-                                    {{ $studyCenter->phone }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Mail:</strong>
-                                    {{ $studyCenter->mail }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Tracking Code:</strong>
-                                    {{ $studyCenter->tracking_code }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Regional Id:</strong>
-                                    {{ $studyCenter->regional_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>District Id:</strong>
-                                    {{ $studyCenter->district_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Persona:</strong>
-                                    {{ $studyCenter->people_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Membership Id:</strong>
-                                    {{ $studyCenter->membership_id }}
-                                </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código:</strong>
+                            {{ $studyCenter->id }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Nombre:</strong>
+                            {{ $studyCenter->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Dirección:</strong>
+                            {{ $studyCenter->address }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Teléfono:</strong>
+                            {{ $studyCenter->phone }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Correo:</strong>
+                            {{ $studyCenter->mail }}
+                        </div>
+
+                        <div class="form-group mb-2 mb20">
+                            <strong>Regional:</strong>
+                            {{ $studyCenter->regional->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Distrito:</strong>
+                            {{ $studyCenter->district->name }}
+                        </div>
+                        @if ($studyCenter->person != null)
+                            <div class="form-group mb-2 mb20">
+                                <strong>Persona encargada:</strong>
+                                {{ $studyCenter->person->name }}
+                            </div>
+                        @endif
+                        <div class="form-group mb-2 mb20">
+                            <strong>Membresía:</strong>
+                            {{ $studyCenter->membership->name }}
+                        </div>
 
                     </div>
                 </div>

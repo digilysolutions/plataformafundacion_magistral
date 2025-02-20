@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->boolean('activated')->default(false);
             $table->string('name');
-            $table->integer('people_id')->unsigned()->default();
+            $table->uuid('people_id');
             $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');
             $table->uuid('specialty_id');
             $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');

@@ -21,13 +21,11 @@ return new class extends Migration
             $table->uuid('regional_id'); // Asegúrate de que sea UUID
             $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade'); // Cambia `id` por `tracking_code` si es necesario
 
-
-
             $table->uuid('district_id');
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
-            $table->integer('people_id')->unsigned()->default();
+            $table->uuid('people_id')->nullable();
             $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');
-            $table->integer('membership_id')->unsigned()->default();
+            $table->uuid('membership_id');
             $table->foreign('membership_id')->references('id')->on('memberships')->onDelete('cascade');
 
             $table->timestamps();

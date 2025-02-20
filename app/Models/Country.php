@@ -17,21 +17,11 @@ use Ramsey\Uuid\Uuid;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Country extends Model
+class Country extends ModelMain
 {
 
     protected $perPage = 20;
-    protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->{$model->getKeyName()} = (string) Uuid::uuid4();
-        });
-    }
     /**
      * The attributes that are mass assignable.
      *

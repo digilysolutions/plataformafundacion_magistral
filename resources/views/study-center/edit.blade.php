@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Update') }} Study Center
+    {{ __('Actualizar') }} Centro de Estudio
 @endsection
 
 @section('content-admin')
@@ -11,12 +11,12 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Study Center</span>
+                        <span class="card-title">{{ __('Actualizar') }} Centro de Estudio</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('study-centers.index') }}"> {{ __('Atrás') }}</a>
                         </div>
                     </div>
-                     
+
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('study-centers.update', $studyCenter->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}

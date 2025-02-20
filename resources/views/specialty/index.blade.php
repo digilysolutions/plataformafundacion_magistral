@@ -30,34 +30,38 @@
                         </div>
                     @endif
 
-                    <div class="card-body bg-white">
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
+                            <table id="datatable" class="table data-tables table-striped">
+                                <thead>
+                                    <tr class="ligth">
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Nombre</th>
-                                        <td>
-                                            @if ($level->activated == 1)
-                                                Si
-                                            @else
-                                                No
-                                            @endif
-                                        </td>
-
+                                        <th>Activado</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    @php
+                                    $i=0;
+                                @endphp
                                     @foreach ($specialties as $specialty)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-                                            <td>{{ $specialty->activated }}</td>
+                                            <td>{{ $specialty->id }}</td>
                                             <td>{{ $specialty->name }}</td>
 
+                                            <td>
+                                                @if ($specialty->activated == 1)
+                                                    Si
+                                                @else
+                                                    No
+                                                @endif
+                                            </td>
                                             <td>
                                                 <form action="{{ route('specialties.destroy', $specialty->id) }}"
                                                     method="POST">
@@ -77,12 +81,25 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+                                        <th>Activado</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
+
                 </div>
-                {!! $specialties->withQueryString()->links() !!}
+
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 @endsection

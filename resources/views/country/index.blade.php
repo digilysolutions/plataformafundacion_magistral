@@ -8,11 +8,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-
-
-
-
-
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -82,6 +77,8 @@
                         </div>
                      </div>
 
+
+
                 </div>
 
             </div>
@@ -90,38 +87,6 @@
 @endsection
 
 @section('js')
-<script>
-    if ($.fn.DataTable.isDataTable('#datatable')) {
-    // La tabla ya está inicializada
-    $('#datatable').DataTable().destroy(); // Destruir la instancia anterior si es necesario
-}
-
-    $(document).ready(function() {
-    $('#datatable').DataTable({
-        language: {
-            "sProcessing":   "Procesando...",
-            "sLengthMenu":   "Mostrar _MENU_ entradas",
-            "sZeroRecords":  "No se encontraron resultados",
-            "sInfo":         "Mostrando entradas _START_ a _END_ de _TOTAL_ entradas",
-            "sInfoEmpty":    "Mostrando 0 a 0 de 0 entradas",
-            "sInfoFiltered": "(filtrado de _MAX_ entradas totales)",
-            "sInfoPostFix":  "",
-            "sSearch":       "Buscar:",
-            "sUrl":          "",
-            "sInfoThousands":  ",",
-            "oPaginate": {
-                "sFirst":    "Primero",
-                "sLast":     "Último",
-                "sNext":     "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
-        }
-    });
-});
-</script>
+<script src="{{ asset('js/bootstrap-table.js') }}"></script>
 
 @endsection

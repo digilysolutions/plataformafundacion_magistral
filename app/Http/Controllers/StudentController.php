@@ -16,10 +16,9 @@ class StudentController extends Controller
      */
     public function index(Request $request): View
     {
-        $students = Student::paginate();
+        $students = Student::all();
 
-        return view('student.index', compact('students'))
-            ->with('i', ($request->input('page', 1) - 1) * $students->perPage());
+        return view('student.index', compact('students'));
     }
 
     /**
@@ -37,7 +36,9 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request): RedirectResponse
     {
-        Student::create($request->validated());
+        $data =$request->validated();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        Student::create($data);
 
         return Redirect::route('students.index')
             ->with('success', 'Student created successfully.');
@@ -68,7 +69,9 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student): RedirectResponse
     {
-        $student->update($request->validated());
+        $data =$request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        $student->update($data);
 
         return Redirect::route('students.index')
             ->with('success', 'Student actualizado satisfactoriamente');

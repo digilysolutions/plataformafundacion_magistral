@@ -17,7 +17,7 @@ class PersonController extends Controller
     public function index(Request $request)
     {
 
-        $people = Person::paginate();
+        $people = Person::all();
         return view('person.index', compact('people'))
             ->with('i', ($request->input('page', 1) - 1) * $people->perPage());
     }

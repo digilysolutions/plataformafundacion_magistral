@@ -30,12 +30,8 @@
                                     {{ $level->description }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Especialidad:</strong>
-                                    {{ $level->specialty->name }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
                                     <strong>Activado:</strong>
-                                    @if ($district->activated == 1)
+                                    @if ($level->activated == 1)
                                         Si
                                     @else
                                         No

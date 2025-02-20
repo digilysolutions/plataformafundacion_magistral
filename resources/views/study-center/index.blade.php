@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    Study Centers
+    Centros de Estudios
 @endsection
 
 @section('content-admin')
@@ -13,14 +13,15 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Study Centers') }}
+                                {{ __('Centros de Estudios') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('study-centers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Nuevo') }}
+                            <div class="float-right">
+                                <a href="{{ route('study-centers.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Nuevo') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -36,43 +37,56 @@
                                     <tr>
                                         <th>No</th>
 
-									<th >Activated</th>
-									<th >Name</th>
-									<th >Address</th>
-									<th >Phone</th>
-									<th >Mail</th>
-									<th >Tracking Code</th>
-									<th >Regional Id</th>
-									<th >District Id</th>
-									<th >Persona</th>
-									<th >Membership Id</th>
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+
+                                        <th>Teléfono</th>
+                                        <th>Correo</th>
+
+                                        <th>Regional</th>
+                                        <th>Distrito</th>
+                                        <th>Membresía</th>
+                                        <th>Activado</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i = 0;
+                                    @endphp
                                     @foreach ($studyCenters as $studyCenter)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-										<td >{{ $studyCenter->activated }}</td>
-										<td >{{ $studyCenter->name }}</td>
-										<td >{{ $studyCenter->address }}</td>
-										<td >{{ $studyCenter->phone }}</td>
-										<td >{{ $studyCenter->mail }}</td>
-										<td >{{ $studyCenter->tracking_code }}</td>
-										<td >{{ $studyCenter->regional_id }}</td>
-										<td >{{ $studyCenter->district_id }}</td>
-										<td >{{ $studyCenter->people_id }}</td>
-										<td >{{ $studyCenter->membership_id }}</td>
-
+                                            <td>{{ $studyCenter->id }}</td>
+                                            <td>{{ $studyCenter->name }}</td>
+                                            <td>{{ $studyCenter->phone }}</td>
+                                            <td>{{ $studyCenter->mail }}</td>
+                                           
+                                            <td>{{ $studyCenter->regional->name }}</td>
+                                            <td>{{ $studyCenter->district->name }}</td>
+                                            <td>{{ $studyCenter->membership->name }}</td>
                                             <td>
-                                                <form action="{{ route('study-centers.destroy', $studyCenter->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('study-centers.show', $studyCenter->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('study-centers.edit', $studyCenter->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                @if ($studyCenter->activated == 1)
+                                                    Si
+                                                @else
+                                                    No
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('study-centers.destroy', $studyCenter->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('study-centers.show', $studyCenter->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('study-centers.edit', $studyCenter->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -82,8 +96,11 @@
                         </div>
                     </div>
                 </div>
-                {!! $studyCenters->withQueryString()->links() !!}
+
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 @endsection

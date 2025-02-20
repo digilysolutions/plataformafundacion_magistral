@@ -30,15 +30,15 @@
                         </div>
                     @endif
 
-                    <div class="card-body bg-white">
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
+                           <table id="datatable" class="table data-tables table-striped">
+                              <thead>
+                                 <tr class="ligth">
+
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Distrito</th>
-                                        <th>Dirección</th>
                                         <th>Teléfono</th>
                                         <th>Correo</th>
                                         <th>Regional</th>
@@ -48,12 +48,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i=0;
+                                    @endphp
                                     @foreach ($districts as $district)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $district->id }}</td>
                                             <td>{{ $district->name }}</td>
-                                            <td>{{ $district->address }}</td>
                                             <td>{{ $district->phone }}</td>
                                             <td>{{ $district->mail }}</td>
                                             <td>{{ $district->regional->name }}</td>
@@ -83,12 +85,29 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Código</th>
+                                        <th>Distrito</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo</th>
+                                        <th>Regional</th>
+                                        <th>Activado</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
+
+
                 </div>
-                {!! $districts->withQueryString()->links() !!}
+
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+<script src="{{ asset('js/bootstrap-table.js') }}"></script>
+
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Update') }} Membership
+    {{ __('Actualizar') }} Membresía
 @endsection
 
 @section('content-admin')
@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Membership</span>
+                        <span class="card-title">{{ __('Actualizar') }} Membresía</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('memberships.index') }}"> {{ __('Atrás') }}</a>
                         </div>
@@ -30,4 +30,19 @@
             </div>
         </div>
     </section>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+        // Función para habilitar/deshabilitar el input de cantidad de estudiantes
+        $('#customCheck5').change(function() {
+            if ($(this).is(':checked')) {
+                $('#student_limit').prop('disabled', false); // Habilita el input
+            } else {
+                $('#student_limit').prop('disabled', true); // Deshabilita el input
+                $('#student_limit').val(''); // Opcional: Limpia el valor
+            }
+        });
+    });
+    </script>
 @endsection

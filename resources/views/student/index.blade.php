@@ -79,3 +79,7 @@
         </div>
     </div>
 @endsection
+@section('js')
+<script src="{{ asset('js/bootstrap-table.js') }}"></script>
+
+@endsection

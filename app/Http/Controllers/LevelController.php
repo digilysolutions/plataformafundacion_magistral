@@ -16,10 +16,8 @@ class LevelController extends Controller
      */
     public function index(Request $request): View
     {
-        $levels = Level::paginate();
-
-        return view('level.index', compact('levels'))
-            ->with('i', ($request->input('page', 1) - 1) * $levels->perPage());
+        $levels = Level::all();
+        return view('level.index', compact('levels'));
     }
 
     /**
@@ -37,10 +35,12 @@ class LevelController extends Controller
      */
     public function store(LevelRequest $request): RedirectResponse
     {
-        Level::create($request->validated());
+        $data =$request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        Level::create($data);
 
         return Redirect::route('levels.index')
-            ->with('success', 'Level created successfully.');
+            ->with('success', 'Nivel creado satisfactoriamentes.');
     }
 
     /**
@@ -68,10 +68,12 @@ class LevelController extends Controller
      */
     public function update(LevelRequest $request, Level $level): RedirectResponse
     {
-        $level->update($request->validated());
+        $data =$request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        $level->update($data);
 
         return Redirect::route('levels.index')
-            ->with('success', 'Level actualizado satisfactoriamente');
+            ->with('success', 'Nivel actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +81,6 @@ class LevelController extends Controller
         Level::find($id)->delete();
 
         return Redirect::route('levels.index')
-            ->with('success', 'Level eliminado satisfactoriamente');
+            ->with('success', 'Nivel eliminado satisfactoriamente');
     }
 }

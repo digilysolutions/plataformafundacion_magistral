@@ -17,10 +17,9 @@ class RegionalController extends Controller
      */
     public function index(Request $request): View
     {
-        $regionals = Regional::paginate();
+        $regionals = Regional::all();
 
-        return view('regional.index', compact('regionals'))
-            ->with('i', ($request->input('page', 1) - 1) * $regionals->perPage());
+        return view('regional.index', compact('regionals'));
     }
 
     /**
@@ -29,7 +28,7 @@ class RegionalController extends Controller
     public function create(): View
     {
         $regional = new Regional();
-        $countries= Country::all();
+        $countries = Country::where('activated', true)->get();
 
         return view('regional.create', compact('regional','countries'));
     }
@@ -64,7 +63,7 @@ class RegionalController extends Controller
     public function edit($id): View
     {
         $regional = Regional::find($id);
-        $countries= Country::all();
+        $countries = Country::where('activated', true)->get();
 
         return view('regional.edit', compact('regional','countries'));
     }

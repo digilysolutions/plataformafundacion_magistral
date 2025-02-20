@@ -90,6 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('study-centers', StudyCenterController::class);
     Route::resource('students', StudentController::class);
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/distritos/{regional_id}', [StudyCenterController::class, 'getDistritos']);
     ///--------End nuevas rutass
 });
 

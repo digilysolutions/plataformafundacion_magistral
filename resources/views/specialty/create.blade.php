@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Specialty</span>
+                        <span class="card-title">{{ __('Crear') }} Especialidad</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('specialties.index') }}"> {{ __('Atrás') }}</a>
                         </div>

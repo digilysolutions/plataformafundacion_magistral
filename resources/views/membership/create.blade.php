@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Create') }} Membership
+    {{ __('Crear') }} Membresía
 @endsection
 
 @section('content-admin')
@@ -11,12 +11,12 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Membership</span>
+                        <span class="card-title">{{ __('Crear') }} Membresía</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('memberships.index') }}"> {{ __('Atrás') }}</a>
                         </div>
                     </div>
-                    
+
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('memberships.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
@@ -29,4 +29,25 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#student_limit').prop('disabled', true); // Deshabilita el input
+        $('#student_limit_id').hide();
+        // Función para habilitar/deshabilitar el input de cantidad de estudiantes
+        $('#customCheck5').change(function() {
+
+            if ($(this).is(':checked')) {
+                $('#student_limit').prop('disabled', false); // Habilita el input
+                $('#student_limit_id').show();
+            } else {
+                $('#student_limit').prop('disabled', true); // Deshabilita el input
+                $('#student_limit_id').hide();
+                $('#student_limit').val(''); // Opcional: Limpia el valor
+            }
+        });
+    });
+    </script>
 @endsection

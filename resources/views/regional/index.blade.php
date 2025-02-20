@@ -30,32 +30,29 @@
                         </div>
                     @endif
 
-                    <div class="card-body bg-white">
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
+                           <table id="datatable" class="table data-tables table-striped">
+                              <thead>
+                                 <tr class="ligth">
                                         <th>No</th>
                                         <th>Código</th>
-                                        <th>País</th>
                                         <th>Regional</th>
-
-                                        <th>Dirección</th>
                                         <th>Teléfono</th>
                                         <th>Correo</th>
                                         <th>Activado</th>
-
                                         <th></th>
                                     </tr>
-                                </thead>
+                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i=0;
+                                    @endphp
                                     @foreach ($regionals as $regional)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $regional->id }}</td>
-                                            <td>{{ $regional->country->name }}</td>
                                             <td>{{ $regional->name }}</td>
-                                            <td>{{ $regional->address }}</td>
                                             <td>{{ $regional->phone }}</td>
                                             <td>{{ $regional->mail }}</td>
                                             <td>
@@ -85,12 +82,27 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Código</th>
+                                        <th>Regional</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo</th>
+                                        <th>Activado</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
-                {!! $regionals->withQueryString()->links() !!}
+
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+<script src="{{ asset('js/bootstrap-table.js') }}"></script>
+
 @endsection

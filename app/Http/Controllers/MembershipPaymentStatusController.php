@@ -16,10 +16,9 @@ class MembershipPaymentStatusController extends Controller
      */
     public function index(Request $request): View
     {
-        $membershipPaymentStatuses = MembershipPaymentStatus::paginate();
+        $membershipPaymentStatuses = MembershipPaymentStatus::all();
 
-        return view('membership-payment-status.index', compact('membershipPaymentStatuses'))
-            ->with('i', ($request->input('page', 1) - 1) * $membershipPaymentStatuses->perPage());
+        return view('membership-payment-status.index', compact('membershipPaymentStatuses'));
     }
 
     /**
@@ -37,7 +36,9 @@ class MembershipPaymentStatusController extends Controller
      */
     public function store(MembershipPaymentStatusRequest $request): RedirectResponse
     {
-        MembershipPaymentStatus::create($request->validated());
+        $data =$request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        MembershipPaymentStatus::create($data);
 
         return Redirect::route('membership-payment-statuses.index')
             ->with('success', 'MembershipPaymentStatus created successfully.');
@@ -68,7 +69,9 @@ class MembershipPaymentStatusController extends Controller
      */
     public function update(MembershipPaymentStatusRequest $request, MembershipPaymentStatus $membershipPaymentStatus): RedirectResponse
     {
-        $membershipPaymentStatus->update($request->validated());
+        $data =$request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        $membershipPaymentStatus->update($data);
 
         return Redirect::route('membership-payment-statuses.index')
             ->with('success', 'MembershipPaymentStatus actualizado satisfactoriamente');

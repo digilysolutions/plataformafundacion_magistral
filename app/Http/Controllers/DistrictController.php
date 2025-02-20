@@ -16,9 +16,8 @@ class DistrictController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request): View    {
-        $districts = District::paginate();
-        return view('district.index', compact('districts'))
-            ->with('i', ($request->input('page', 1) - 1) * $districts->perPage());
+        $districts = District::all();
+        return view('district.index', compact('districts'));
     }
 
     /**

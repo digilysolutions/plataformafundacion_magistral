@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->boolean('activated')->default(false);
-            $table->integer('people_id')->unsigned()->default();
+            $table->uuid('people_id');
             $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');
             $table->string('course')->nullable();
             $table->uuid('studycenters_id');
             $table->foreign('studycenters_id')->references('id')->on('study_centers')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->default();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('membership_id')->unsigned()->default();
+            $table->uuid('membership_id');
             $table->foreign('membership_id')->references('id')->on('memberships')->onDelete('cascade');
 
             $table->timestamps();

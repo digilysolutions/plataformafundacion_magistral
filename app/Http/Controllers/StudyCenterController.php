@@ -6,6 +6,9 @@ use App\Models\StudyCenter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudyCenterRequest;
+use App\Models\District;
+use App\Models\Membership;
+use App\Models\Regional;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -16,10 +19,9 @@ class StudyCenterController extends Controller
      */
     public function index(Request $request): View
     {
-        $studyCenters = StudyCenter::paginate();
+        $studyCenters = StudyCenter::all();
 
-        return view('study-center.index', compact('studyCenters'))
-            ->with('i', ($request->input('page', 1) - 1) * $studyCenters->perPage());
+        return view('study-center.index', compact('studyCenters'));
     }
 
     /**
@@ -28,8 +30,10 @@ class StudyCenterController extends Controller
     public function create(): View
     {
         $studyCenter = new StudyCenter();
-
-        return view('study-center.create', compact('studyCenter'));
+        $regionals = Regional::where('activated', true)->get();
+        $destritos = District::where('activated', true)->get();
+        $memberships = Membership::where('activated', true)->get();
+        return view('study-center.create', compact('studyCenter', 'memberships', 'regionals', 'destritos'));
     }
 
     /**
@@ -37,7 +41,9 @@ class StudyCenterController extends Controller
      */
     public function store(StudyCenterRequest $request): RedirectResponse
     {
-        StudyCenter::create($request->validated());
+        $data = $request->validated();      
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        StudyCenter::create($data);
 
         return Redirect::route('study-centers.index')
             ->with('success', 'StudyCenter creado satisfactoriamente.');
@@ -58,9 +64,13 @@ class StudyCenterController extends Controller
      */
     public function edit($id): View
     {
+        $studyCenter = new StudyCenter();
+        $regionals = Regional::where('activated', true)->get();
+        $destritos = District::where('activated', true)->get();
+        $memberships = Membership::where('activated', true)->get();
         $studyCenter = StudyCenter::find($id);
 
-        return view('study-center.edit', compact('studyCenter'));
+        return view('study-center.edit', compact('studyCenter', 'memberships', 'regionals', 'destritos'));
     }
 
     /**
@@ -68,7 +78,9 @@ class StudyCenterController extends Controller
      */
     public function update(StudyCenterRequest $request, StudyCenter $studyCenter): RedirectResponse
     {
-        $studyCenter->update($request->validated());
+        $data = $request->validated();
+        $data["activated"] = $request->input('activated') === 'on' ? 1 : 0;
+        $studyCenter->update($data);
 
         return Redirect::route('study-centers.index')
             ->with('success', 'StudyCenter actualizado satisfactoriamente');
@@ -80,5 +92,12 @@ class StudyCenterController extends Controller
 
         return Redirect::route('study-centers.index')
             ->with('success', 'StudyCenter eliminado satisfactoriamente');
+    }
+    public function getDistritos($regional_id)
+    {
+        // Obtén los distritos que pertenecen a la regional seleccionada
+        $distritos = District::where('regional_id', $regional_id)->get();
+
+        return response()->json($distritos);
     }
 }

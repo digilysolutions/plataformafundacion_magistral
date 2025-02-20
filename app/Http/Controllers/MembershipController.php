@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MembershipRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 class MembershipController extends Controller
 {
@@ -16,10 +17,8 @@ class MembershipController extends Controller
      */
     public function index(Request $request): View
     {
-        $memberships = Membership::paginate();
-
-        return view('membership.index', compact('memberships'))
-            ->with('i', ($request->input('page', 1) - 1) * $memberships->perPage());
+        $memberships = Membership::all();
+        return view('membership.index', compact('memberships'));
     }
 
     /**
@@ -37,10 +36,26 @@ class MembershipController extends Controller
      */
     public function store(MembershipRequest $request): RedirectResponse
     {
-        Membership::create($request->validated());
+        $data = $request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        $data["is_studio_center"] =  $request->input('is_studio_center') === 'on' ? 1 : 0;
+        // Establecer la fecha de inicio
+        $data['duration_days'] = (int)  $data['duration_days']; // Convierte a entero
+
+        // Luego configuras las fechas
+        $data['start_date'] = Carbon::now();
+
+        // Calcular la fecha final
+        if ($data['duration_days'] > 0) { // Verifica que duration_days sea mayor que cero
+            $data['end_date'] = Carbon::now()->addDays($data['duration_days']);
+        } else {
+            $data['end_date'] = null; // O establece otro valor si no es válido
+        }
+
+        Membership::create($data);
 
         return Redirect::route('memberships.index')
-            ->with('success', 'Membership created successfully.');
+            ->with('success', 'Membresía creada satisfactoriamente.');
     }
 
     /**
@@ -68,10 +83,25 @@ class MembershipController extends Controller
      */
     public function update(MembershipRequest $request, Membership $membership): RedirectResponse
     {
-        $membership->update($request->validated());
+        $data = $request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        $data["is_studio_center"] =  $request->input('is_studio_center') === 'on' ? 1 : 0;
+        // Establecer la fecha de inicio
+        $data['duration_days'] = (int)  $data['duration_days']; // Convierte a entero
+
+        // Luego configuras las fechas
+        $data['start_date'] = Carbon::now();
+
+        // Calcular la fecha final
+        if ($data['duration_days'] > 0) { // Verifica que duration_days sea mayor que cero
+            $data['end_date'] = Carbon::now()->addDays($data['duration_days']);
+        } else {
+            $data['end_date'] = null; // O establece otro valor si no es válido
+        }
+        $membership->update($data);
 
         return Redirect::route('memberships.index')
-            ->with('success', 'Membership actualizado satisfactoriamente');
+            ->with('success', 'Membresía actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +109,6 @@ class MembershipController extends Controller
         Membership::find($id)->delete();
 
         return Redirect::route('memberships.index')
-            ->with('success', 'Membership eliminado satisfactoriamente');
+            ->with('success', 'Membresía eliminado satisfactoriamente');
     }
 }

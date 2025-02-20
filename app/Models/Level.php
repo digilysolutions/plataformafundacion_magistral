@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Uuid\Uuid;
 
 /**
  * Class Level
@@ -20,21 +19,11 @@ use Ramsey\Uuid\Uuid;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Level extends Model
+class Level extends ModelMain
 {
 
     protected $perPage = 20;
-    protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->{$model->getKeyName()} = (string) Uuid::uuid4();
-        });
-    }
     /**
      * The attributes that are mass assignable.
      *

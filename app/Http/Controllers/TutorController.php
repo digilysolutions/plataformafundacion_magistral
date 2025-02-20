@@ -16,10 +16,9 @@ class TutorController extends Controller
      */
     public function index(Request $request): View
     {
-        $tutors = Tutor::paginate();
+        $tutors = Tutor::all();
 
-        return view('tutor.index', compact('tutors'))
-            ->with('i', ($request->input('page', 1) - 1) * $tutors->perPage());
+        return view('tutor.index', compact('tutors'));
     }
 
     /**
@@ -37,7 +36,9 @@ class TutorController extends Controller
      */
     public function store(TutorRequest $request): RedirectResponse
     {
-        Tutor::create($request->validated());
+        $data =$request->validated();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        Tutor::create($data);
 
         return Redirect::route('tutors.index')
             ->with('success', 'Tutor creado satisfactoriamente.');
@@ -68,7 +69,9 @@ class TutorController extends Controller
      */
     public function update(TutorRequest $request, Tutor $tutor): RedirectResponse
     {
-        $tutor->update($request->validated());
+        $data =$request->validated();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        $tutor->update($data);
 
         return Redirect::route('tutors.index')
             ->with('success', 'Tutor actualizado satisfactoriamente');

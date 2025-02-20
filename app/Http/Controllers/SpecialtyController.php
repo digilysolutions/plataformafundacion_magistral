@@ -16,10 +16,9 @@ class SpecialtyController extends Controller
      */
     public function index(Request $request): View
     {
-        $specialties = Specialty::paginate();
+        $specialties = Specialty::all();
 
-        return view('specialty.index', compact('specialties'))
-            ->with('i', ($request->input('page', 1) - 1) * $specialties->perPage());
+        return view('specialty.index', compact('specialties'));
     }
 
     /**
@@ -37,10 +36,12 @@ class SpecialtyController extends Controller
      */
     public function store(SpecialtyRequest $request): RedirectResponse
     {
-        Specialty::create($request->validated());
+        $data =$request->validated();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        Specialty::create($data);
 
         return Redirect::route('specialties.index')
-            ->with('success', 'Specialty created successfully.');
+            ->with('success', 'Especialidad creada satisfactoriamente.');
     }
 
     /**
@@ -68,10 +69,12 @@ class SpecialtyController extends Controller
      */
     public function update(SpecialtyRequest $request, Specialty $specialty): RedirectResponse
     {
-        $specialty->update($request->validated());
+        $data =$request->validated();
+        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        $specialty->update($data);
 
         return Redirect::route('specialties.index')
-            ->with('success', 'Specialty actualizado satisfactoriamente');
+            ->with('success', 'Especialidad actualizada satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +82,6 @@ class SpecialtyController extends Controller
         Specialty::find($id)->delete();
 
         return Redirect::route('specialties.index')
-            ->with('success', 'Specialty eliminado satisfactoriamente');
+            ->with('success', 'Especialidad eliminada satisfactoriamente');
     }
 }

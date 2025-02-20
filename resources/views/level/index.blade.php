@@ -16,11 +16,12 @@
                                 {{ __('Niveles') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('levels.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Nuevo') }}
+                            <div class="float-right">
+                                <a href="{{ route('levels.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Nuevo') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -28,56 +29,76 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-
-                    <div class="card-body bg-white">
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
+                            <table id="datatable" class="table data-tables table-striped">
+                                <thead>
+                                    <tr class="ligth">
                                         <th>No</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
 
-
-									<th >Nombre</th>
-									<th >Descripción</th>
-									<th >Especialidad</th>
-                                    <th >Activado</th>
+                                        <th>Activado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $i = 0;
+                                    @endphp
                                     @foreach ($levels as $level)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
 
-										<td >{{ $level->name }}</td>
-										<td >{{ $level->description }}</td>
+                                            <td>{{ $level->name }}</td>
+                                            <td>{{ $level->description }}</td>
 
-                                        <td>
-                                            @if ($level->activated == 1)
-                                                Si
-                                            @else
-                                                No
-                                            @endif
-                                        </td>
+                                            <td>
+                                                @if ($level->activated == 1)
+                                                    Si
+                                                @else
+                                                    No
+                                                @endif
+                                            </td>
                                             <td>
                                                 <form action="{{ route('levels.destroy', $level->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('levels.show', $level->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('levels.edit', $level->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('levels.show', $level->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('levels.edit', $level->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
+
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+
+                                        <th>Activado</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
-                {!! $levels->withQueryString()->links() !!}
+
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 @endsection

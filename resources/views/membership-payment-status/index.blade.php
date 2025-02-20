@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 									<th >Activated</th>
 									<th >Name</th>
 
@@ -46,7 +46,7 @@
                                     @foreach ($membershipPaymentStatuses as $membershipPaymentStatus)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $membershipPaymentStatus->activated }}</td>
 										<td >{{ $membershipPaymentStatus->name }}</td>
 
@@ -70,4 +70,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+<script src="{{ asset('js/bootstrap-table.js') }}"></script>
+
 @endsection
