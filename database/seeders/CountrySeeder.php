@@ -58,11 +58,11 @@ class CountrySeeder extends Seeder
         ];
 
         foreach ($countries as $country) {
-            DB::table('countries')->insert([
-                'id' => (string) Str::uuid(),
-                'activated' => ($country=='Dominica')?true:false,
-                'name' => $country
-            ]);
+
+           Country::create([           
+            'activated' => ($country=='Dominica')?true:false,
+            'name' => $country
+           ]);
         }
 
     }

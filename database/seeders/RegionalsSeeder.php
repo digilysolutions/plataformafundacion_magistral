@@ -19,7 +19,7 @@ class RegionalsSeeder extends Seeder
         $countryId = Country::where('name', 'República Dominicana')->pluck('id')->first();
         $regionals = [
             [
-                'id' => Str::uuid(),
+                
                 'name' => 'Santo Domingo',
                 'address' => 'Avenida John F. Kennedy',
                 'phone' => '809-555-1234',
@@ -28,7 +28,7 @@ class RegionalsSeeder extends Seeder
                 'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-                'id' => Str::uuid(),
+                
                 'name' => 'Santiago',
                 'address' => 'Calle 30 de Marzo',
                 'phone' => '809-555-5678',
@@ -37,7 +37,7 @@ class RegionalsSeeder extends Seeder
                 'country_id' =>  $countryId,
             ],
             [
-                'id' => Str::uuid(),
+               
                 'name' => 'La Altagracia',
                 'address' => 'Calle 1, Punta Cana',
                 'phone' => '809-555-8765',
@@ -46,7 +46,7 @@ class RegionalsSeeder extends Seeder
                 'country_id' =>  $countryId,
             ],
             [
-                'id' => Str::uuid(),
+                
                 'name' => 'San Cristóbal',
                 'address' => 'Calle Independencia',
                 'phone' => '809-555-3210',
@@ -55,7 +55,7 @@ class RegionalsSeeder extends Seeder
                 'country_id' =>  $countryId,
             ],
             [
-                'id' => Str::uuid(),
+               
                 'name' => 'San Pedro de Macorís',
                 'address' => 'Avenida Francisco Alberto Caamaño',
                 'phone' => '809-555-9624',
@@ -64,7 +64,7 @@ class RegionalsSeeder extends Seeder
                 'country_id' =>  $countryId,
             ],
             [
-                'id' => Str::uuid(),
+              
                 'name' => 'Puerto Plata',
                 'address' => 'Calle José Francisco Peña Gómez',
                 'phone' => '809-555-6543',
@@ -73,7 +73,7 @@ class RegionalsSeeder extends Seeder
                 'country_id' =>  $countryId,
             ],
             [
-                'id' => Str::uuid(),
+               
                 'name' => 'La Vega',
                 'address' => 'Avenida Pedro A. Rivera',
                 'phone' => '809-555-4411',
@@ -82,7 +82,7 @@ class RegionalsSeeder extends Seeder
                 'country_id' =>  $countryId,
             ],
             [
-                'id' => Str::uuid(),
+                
                 'name' => 'Mahó',
                 'address' => 'Calle Maximo Gomez',
                 'phone' => '809-555-2345',
@@ -93,6 +93,8 @@ class RegionalsSeeder extends Seeder
             // Agrega más regionales según sea necesario
         ];
 
-        DB::table('regionals')->insert($regionals);
+        foreach ($regionals as $regional) {
+            Regional::create($regional);
+        }
     }
 }
