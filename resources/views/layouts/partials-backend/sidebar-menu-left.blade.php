@@ -86,8 +86,8 @@
                                 <i class="las la-minus"></i><span>Encargado</span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="">
+                        <li class="{{ request()->is('students*') ? 'active' : '' }}">
+                            <a href="{{ route('students.index')}}">
                                 <i class="las la-minus"></i><span>Estudiantes</span>
                             </a>
                         </li>
@@ -157,9 +157,9 @@
                     <ul id="reports" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                 </li>
-               
 
-               
+
+
             </ul>
         </nav>
         <div id="sidebar-bottom" class="position-relative sidebar-bottom">
