@@ -41,14 +41,14 @@ class StudyCenterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StudyCenterRequest $request): RedirectResponse
+    public function store(StudyCenterRequest $request)
     {
-        $data = $request->validated();      
+        $data = $request->validated();
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
         StudyCenter::create($data);
 
         return Redirect::route('study-centers.index')
-            ->with('success', 'StudyCenter creado satisfactoriamente.');
+            ->with('success', 'Centro de estudio creado satisfactoriamente.');
     }
 
     /**
@@ -85,7 +85,7 @@ class StudyCenterController extends Controller
         $studyCenter->update($data);
 
         return Redirect::route('study-centers.index')
-            ->with('success', 'StudyCenter actualizado satisfactoriamente');
+            ->with('success', 'Centro de estudio actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -93,7 +93,7 @@ class StudyCenterController extends Controller
         StudyCenter::find($id)->delete();
 
         return Redirect::route('study-centers.index')
-            ->with('success', 'StudyCenter eliminado satisfactoriamente');
+            ->with('success', 'Centro de estudio eliminado satisfactoriamente');
     }
     public function getDistritos($regional_id)
     {
@@ -102,14 +102,5 @@ class StudyCenterController extends Controller
 
         return response()->json($distritos);
     }
-    public function user()  
-    {  
-        return $this->belongsTo(User::class);  
-    }  
 
-    
-    public function person()  
-    {  
-        return $this->belongsTo(Person::class);  
-    }  
 }
