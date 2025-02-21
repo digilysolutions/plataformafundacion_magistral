@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ $tutor->name ?? __('Show') . " " . __('Tutor') }}
+    {{ $tutor->name ?? __('Mostrar') . ' ' . __('Tutor') }}
 @endsection
 
 @section('content-admin')
@@ -20,22 +20,28 @@
 
                     <div class="card-body bg-white">
 
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Activado:</strong>
-                                    {{ $tutor->activated }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
-                                    {{ $tutor->name }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Persona:</strong>
-                                    {{ $tutor->people_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Specialty Id:</strong>
-                                    {{ $tutor->specialty_id }}
-                                </div>
+
+
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código:</strong>
+                            {{ $tutor->id }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Nombre y Apellidos:</strong>
+                            {{ $tutor->person->name }} {{ $student->person->lastname }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Centro de estudio:</strong>
+                            {{ $tutor->specialty->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Activado:</strong>
+                            @if ($regional->activated == 1)
+                                Si
+                            @else
+                                No
+                            @endif
+                        </div>
 
                     </div>
                 </div>

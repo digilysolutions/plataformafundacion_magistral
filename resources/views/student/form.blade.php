@@ -22,7 +22,7 @@
             {!! $errors->first('phone', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="address" class="form-label">{{ __('Centro de Estudio') }}</label>
+            <label for="address" class="form-label">{{ __('Curso') }}</label>
             <select id="course" name="course" class="form-control">
 
                     <option value="Curso 1"> Curso 1</option>

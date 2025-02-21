@@ -81,12 +81,12 @@
                                 <i class="las la-minus"></i><span>Ver Centros de Estudios</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('students   *') ? 'active' : '' }}">
+                        <li class="{{ request()->is('students*') ? 'active' : '' }}">
                             <a href="{{ route('students.index')}}">
                                 <i class="las la-minus"></i><span>Estudiantes</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('tutors   *') ? 'active' : '' }}">
+                        <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
                             <a href="{{ route('tutors.index')}}">
                                 <i class="las la-minus"></i><span>Tutores</span>
                             </a>

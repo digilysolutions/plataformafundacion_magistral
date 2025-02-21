@@ -22,10 +22,7 @@ class TutorRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'activated' => 'required',
-			'name' => 'required|string',
-			'people_id' => 'required',
-			'specialty_id' => 'required',
+
         ];
     }
 }

@@ -6,6 +6,8 @@ use App\Models\Tutor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\TutorRequest;
+use App\Models\Specialty;
+use App\Models\StudyCenter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -27,8 +29,16 @@ class TutorController extends Controller
     public function create(): View
     {
         $tutor = new Tutor();
-
-        return view('tutor.create', compact('tutor'));
+        $studyCenters = StudyCenter::where('activated', true)->get();
+        if (count($studyCenters) == 0) {
+            $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
+                . 'Si quieres crear un centro de estudio, puedes hacerlo '
+                . '<a href="' . route('study-centers.create') . '"> aquí</a>.';
+                $tutors = Tutor::all();
+            return view('tutor.index', compact('tutors'))->with('error', $error);
+        }
+        $specialties = Specialty::where('activated', true)->get();
+        return view('tutor.create', compact('tutor','studyCenters','specialties'));
     }
 
     /**
