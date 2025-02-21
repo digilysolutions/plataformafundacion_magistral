@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $tutors->withQueryString()->links() !!}
+
             </div>
         </div>
     </div>
