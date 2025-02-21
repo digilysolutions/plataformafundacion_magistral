@@ -15,10 +15,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->boolean('activated')->default(false);
             $table->string('name');
-            $table->string('lastname');
-            $table->string('email')->unique();
+            $table->string('lastname')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('phone')->nullable();
-            $table->string('tracking_code')->nullable();
             $table->timestamps();
         });
     }

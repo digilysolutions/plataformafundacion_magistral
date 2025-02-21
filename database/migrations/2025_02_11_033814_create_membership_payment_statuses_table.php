@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('membership_payment_statuses', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->boolean('activated')->default(false);
             $table->string('name');
             $table->timestamps();

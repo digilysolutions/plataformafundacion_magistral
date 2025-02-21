@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StudyCenterRequest;
 use App\Models\District;
 use App\Models\Membership;
+use App\Models\Person;
 use App\Models\Regional;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -100,4 +102,14 @@ class StudyCenterController extends Controller
 
         return response()->json($distritos);
     }
+    public function user()  
+    {  
+        return $this->belongsTo(User::class);  
+    }  
+
+    
+    public function person()  
+    {  
+        return $this->belongsTo(Person::class);  
+    }  
 }

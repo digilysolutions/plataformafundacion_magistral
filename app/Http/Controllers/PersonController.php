@@ -18,8 +18,7 @@ class PersonController extends Controller
     {
 
         $people = Person::all();
-        return view('person.index', compact('people'))
-            ->with('i', ($request->input('page', 1) - 1) * $people->perPage());
+        return view('person.index', compact('people'));
     }
 
     /**
@@ -37,7 +36,9 @@ class PersonController extends Controller
      */
     public function store(PersonRequest $request): RedirectResponse
     {
-        Person::create($request->validated());
+        $data =$request->all();
+        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
+        Person::create($data);
 
         return Redirect::route('people.index')
             ->with('success', 'Person creado satisfactoriamente.');

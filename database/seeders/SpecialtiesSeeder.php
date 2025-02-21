@@ -32,6 +32,13 @@ class SpecialtiesSeeder extends Seeder
                 'activated' => true,
 
             ]
+            ,
+            [
+                'id' => Str::uuid(),
+                'name' => 'Historia',
+                'activated' => true,
+
+            ]
         ];
             DB::table('specialties')->insert($specialties);
     }

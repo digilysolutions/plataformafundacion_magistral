@@ -22,12 +22,11 @@ class PersonRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'activated' => 'required',
+
 			'name' => 'required|string',
-			'lastname' => 'required|string',
-			'email' => 'required|string',
-			'phone' => 'string',
-			'tracking_code' => 'string',
+			'lastname' => 'string',
+			'email' => 'string',
+			'phone' => 'string'
         ];
     }
 }

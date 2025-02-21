@@ -22,12 +22,15 @@ class StudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'activated' => 'required',
-			'people_id' => 'required',
+
+
 			'course' => 'string',
 			'studycenters_id' => 'required',
-			'user_id' => 'required',
-			'membership_id' => 'required',
+            //Person
+            'name' => 'required|string',
+			'lastname' => 'string',
+			'email' => 'string',
+			'phone' => 'string'
         ];
     }
 }

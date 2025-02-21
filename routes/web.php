@@ -89,6 +89,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('membership-payment-statuses', MembershipPaymentStatusController::class);
     Route::resource('study-centers', StudyCenterController::class);
     Route::resource('students', StudentController::class);
+    Route::get('/students/activate/{tracking_code}', [StudentController::class, 'activate'])->name('students.activate');  
+    Route::post('/students/updatePassword', [StudentController::class, 'updatePassword'])->name('students.update_password');  
+
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
     Route::get('/distritos/{regional_id}', [StudyCenterController::class, 'getDistritos']);
