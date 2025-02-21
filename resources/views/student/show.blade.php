@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ $student->name ?? __('Show') . " " . __('Student') }}
+    {{ $student->name ?? __('Mostrar') . ' ' . __('Estudiante') }}
 @endsection
 
 @section('content-admin')
@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Mostrar') }} Student</span>
+                            <span class="card-title">{{ __('Mostrar') }} Estudiante</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}"> {{ __('Atrás') }}</a>
@@ -20,30 +20,39 @@
 
                     <div class="card-body bg-white">
 
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Activado:</strong>
-                                    {{ $student->activated }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Persona:</strong>
-                                    {{ $student->people_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Course:</strong>
-                                    {{ $student->course }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Studycenters Id:</strong>
-                                    {{ $student->studycenters_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>User Id:</strong>
-                                    {{ $student->user_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Membership Id:</strong>
-                                    {{ $student->membership_id }}
-                                </div>
+
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código:</strong>
+                            {{ $student->id }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Nombre y Apellidos:</strong>
+                            {{ $student->person->name }} {{ $student->person->lastname }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Curso:</strong>
+                            {{ $student->course }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Centro de estudio:</strong>
+                            {{ $student->studyCenter->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Usuario:</strong>
+                            {{ $student->user->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Membresía:</strong>
+                            {{ $student->membership->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Activado:</strong>
+                            @if ($regional->activated == 1)
+                                Si
+                            @else
+                                No
+                            @endif
+                        </div>
 
                     </div>
                 </div>

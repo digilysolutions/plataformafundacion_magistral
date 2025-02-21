@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Crear') }} Student</span>
+                        <span class="card-title">{{ __('Crear') }} Estudiante</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}"> {{ __('Atrás') }}</a>
                         </div>
