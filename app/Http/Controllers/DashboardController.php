@@ -25,11 +25,10 @@ class DashboardController extends Controller
     {
         $studyCenter = StudyCenter::where('activated', true)->get();
         $students = Student::where('activated', true)->get();
-        
         $regionals = Regional::where('activated', true)->get();
         $districts= District::where('activated', true)->get();
         $specialties= Specialty::where('activated', true)->get();
-        
+
         return view('dashboard', compact('studyCenter','students','regionals','districts','specialties'));
     }
 }
