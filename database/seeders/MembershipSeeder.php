@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Membership;
+use App\Models\Regional;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +18,7 @@ class MembershipSeeder extends Seeder
     {
         $memberships = [
             [
-                'id' => (string) Str::uuid(),
+
                 'activated' => true,
                 'name' => 'Membresía Básica',
                 'price' => 19.99,
@@ -31,7 +33,7 @@ class MembershipSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => (string) Str::uuid(),
+
                 'activated' => true,
                 'name' => 'Membresía Estudio',
                 'price' => 49.99,
@@ -46,7 +48,7 @@ class MembershipSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => (string) Str::uuid(),
+
                 'activated' => false,
                 'name' => 'Membresía Premium',
                 'price' => 99.99,
@@ -61,7 +63,9 @@ class MembershipSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ];
+        foreach ($memberships as $membership) {
+            Membership::create($membership);
+        }
 
-        DB::table('memberships')->insert($memberships);
     }
 }

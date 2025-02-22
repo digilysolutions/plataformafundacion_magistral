@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\District;
 use App\Models\Regional;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -159,7 +160,9 @@ class DistrictsSeeder extends Seeder
             ],
             // Agrega más distritos según sea necesario
         ];
+        foreach ($districts as $district) {
+            District::create($district);
+        }
 
-        DB::table('districts')->insert($districts);
     }
 }
