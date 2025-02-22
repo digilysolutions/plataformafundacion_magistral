@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();
-            $table->boolean('activated')->nullable()->default(false);
+            $table->boolean('activated')->nullable()->default(true);
             $table->uuid('country_id'); // Cambiar para evitar error de default
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MembershipFeature;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -80,5 +81,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DistrictsSeeder::class);
         $this->call(SpecialtiesSeeder::class);
         $this->call(MembershipSeeder::class);
+        $this->call(FeatureSeeder::class);
     }
 }

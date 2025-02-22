@@ -1,11 +1,12 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    Levels
+Características de la Membresía
 @endsection
 
 @section('content-admin')
     <div class="container-fluid">
+        <a href="/pricing"> <small>Cambiar Vista</small></a>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -13,11 +14,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Niveles') }}
+                                {{ __('Características de la Membresía') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('levels.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('membership-features.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
                                     {{ __('Nuevo') }}
                                 </a>
@@ -29,6 +30,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="datatable" class="table data-tables table-striped">
@@ -38,8 +40,8 @@
                                         <th>Código</th>
                                         <th>Nombre</th>
                                         <th>Descripción</th>
-
                                         <th>Activado</th>
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -47,28 +49,32 @@
                                     @php
                                         $i = 0;
                                     @endphp
-                                    @foreach ($levels as $level)
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                    @foreach ($membershipFeatures as $membershipFeature)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-                                            <td>{{ $level->id }}</td>
-                                            <td>{{ $level->name }}</td>
-                                            <td>{{ $level->description }}</td>
+                                            <td>{{ $membershipFeature->id }}</td>
+                                            <td>{{ $membershipFeature->name }}</td>
+                                            <td>{{ $membershipFeature->description }}</td>
 
                                             <td>
-                                                @if ($level->activated == 1)
+                                                @if ($membershipFeature->activated == 1)
                                                     Si
                                                 @else
                                                     No
                                                 @endif
                                             </td>
                                             <td>
-                                                <form action="{{ route('levels.destroy', $level->id) }}" method="POST">
+                                                <form
+                                                    action="{{ route('membership-features.destroy', $membershipFeature->id) }}"
+                                                    method="POST">
                                                     <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('levels.show', $level->id) }}"><i
+                                                        href="{{ route('membership-features.show', $membershipFeature->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
                                                     <a class="btn btn-sm btn-success"
-                                                        href="{{ route('levels.edit', $level->id) }}"><i
+                                                        href="{{ route('membership-features.edit', $membershipFeature->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
@@ -79,7 +85,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -87,8 +92,8 @@
                                         <th>Código</th>
                                         <th>Nombre</th>
                                         <th>Descripción</th>
-
                                         <th>Activado</th>
+
                                         <th></th>
                                     </tr>
                                 </tfoot>

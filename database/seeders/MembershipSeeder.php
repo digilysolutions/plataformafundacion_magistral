@@ -20,7 +20,7 @@ class MembershipSeeder extends Seeder
             [
 
                 'activated' => true,
-                'name' => 'Membresía Básica',
+                'name' => 'Basica',
                 'price' => 19.99,
                 'duration_days' => 30,
                 'start_date' => now(),
@@ -35,7 +35,7 @@ class MembershipSeeder extends Seeder
             [
 
                 'activated' => true,
-                'name' => 'Membresía Estudio',
+                'name' => 'Estudio',
                 'price' => 49.99,
                 'duration_days' => 365,
                 'start_date' => now(),
@@ -50,7 +50,7 @@ class MembershipSeeder extends Seeder
             [
 
                 'activated' => false,
-                'name' => 'Membresía Premium',
+                'name' => 'Premium',
                 'price' => 99.99,
                 'duration_days' => null, // Ilimitado
                 'start_date' => now(),

@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('levels.update', $level->id) }}" role="form"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" data-toggle="validator">
                             {{ method_field('PATCH') }}
                             @csrf
 

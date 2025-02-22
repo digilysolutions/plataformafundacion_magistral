@@ -20,7 +20,7 @@
 
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('study-centers.store') }}" role="form"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" data-toggle="validator">
                             @csrf
 
                             @include('study-center.form')

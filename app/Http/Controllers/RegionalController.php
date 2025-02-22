@@ -36,7 +36,7 @@ class RegionalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegionalRequest $request)
+    public function store(RegionalRequest $request): RedirectResponse
     {
         $data =$request->validated();
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;

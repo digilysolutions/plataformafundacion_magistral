@@ -20,6 +20,10 @@
 
                     <div class="card-body bg-white">
                         <div class="form-group mb-2 mb20">
+                            <strong>Código:</strong>
+                            {{ $country->id }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
                             <strong>Nombre del País:</strong>
                             {{ $country->name }}
                         </div>

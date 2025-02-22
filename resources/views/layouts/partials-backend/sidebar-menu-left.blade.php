@@ -45,10 +45,10 @@
                     </ul>
                 </li>
                 <li class="{{ request()->is('specialties*') ? 'active' : '' }}">
-                    <a href="{{ route('specialties.index') }}" >
+                    <a href="{{ route('specialties.index') }}">
                         <svg class="svg-icon" id="p-dash3" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                         </svg>
@@ -69,8 +69,8 @@
                         </svg>
                         <span class="ml-1">Centros de estudios</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline>
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -82,21 +82,21 @@
                             </a>
                         </li>
                         <li class="{{ request()->is('students*') ? 'active' : '' }}">
-                            <a href="{{ route('students.index')}}">
+                            <a href="{{ route('students.index') }}">
                                 <i class="las la-minus"></i><span>Estudiantes</span>
                             </a>
                         </li>
                         <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
-                            <a href="{{ route('tutors.index')}}">
+                            <a href="{{ route('tutors.index') }}">
                                 <i class="las la-minus"></i><span>Tutores</span>
                             </a>
-                    </li>
+                        </li>
 
                     </ul>
                 </li>
 
                 <li class=" ">
-                    <a href="#product" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                    <a href="#membership" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" id="p-dash14" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -113,7 +113,7 @@
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <ul id="membership" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
                         <li class="{{ request()->is('countries*') ? 'active' : '' }}">
                             <a href="{{ route('countries.index') }}">
@@ -135,8 +135,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
-                    <a href="{{ route('memberships.index') }}" class="">
+
+                <li class=" ">
+                    <a href="#feature" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" id="p-dash5" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -144,11 +145,29 @@
                             <line x1="1" y1="10" x2="23" y2="10"></line>
                         </svg>
                         <span class="ml-1">Membresía</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline>
+                            <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
                     </a>
-                    <ul id="reports" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <ul id="feature" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+
+                        <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
+                            <a href="{{ route('memberships.index') }}">
+                                <i class="las la-minus"></i>
+                                <span>Ver Membresías</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('membership-features*') ? 'active' : '' }}">
+                            <a href="{{ route('membership-features.index') }}"><i class="las la-minus"></i>
+                                <span>Características</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
-
 
 
             </ul>
@@ -157,10 +176,12 @@
             <div class="card border-none">
                 <div class="card-body p-0">
                     <div class="sidebarbottom-content">
-                        <div class="image"><a href="https://fundacionmagistral.org/"> <img src="{{ asset('admin/images/page-img/42.png') }}" class="img-fluid"
-                                alt="side-bkg"></a></div>
+                        <div class="image"><a href="https://fundacionmagistral.org/"> <img
+                                    src="{{ asset('admin/images/page-img/42.png') }}" class="img-fluid"
+                                    alt="side-bkg"></a></div>
                         <h6 class="mt-4 px-4 body-title">Educación de calidad para un futuro brillante</h6>
-                        <a href="https://fundacionmagistral.org/" type="button" class="btn sidebar-bottom-btn mt-4">Fundación Magistral</a>
+                        <a href="https://fundacionmagistral.org/" type="button"
+                            class="btn sidebar-bottom-btn mt-4">Fundación Magistral</a>
                     </div>
                 </div>
             </div>
@@ -217,6 +238,8 @@
                         <span class="ml-4">Memebresía</span>
                     </a>
                 </li>
+
+
                 <li class="{{ request()->is('admin/tutors*') ? 'active' : '' }}">
                     <a href="{{ route('tutors.index') }}"><i class=""></i>
                         </svg>

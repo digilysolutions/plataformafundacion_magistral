@@ -39,10 +39,7 @@
                             <strong>Correo:</strong>
                             {{ $regional->mail }}
                         </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Código de Segimiento:</strong>
-                            {{ $regional->id }}
-                        </div>
+
                         <div class="form-group mb-2 mb20">
                             <strong>País:</strong>
                             {{ $regional->country->name }}

@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Actualizar') }} Centro de Estudio
+    {{ __('Actulizar') }} Característica de la Membresía
 @endsection
 
 @section('content-admin')
@@ -11,18 +11,18 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Actualizar') }} Centro de Estudio</span>
+                        <span class="card-title">{{ __('Actualizar') }} Característica de la Membresía</span>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('study-centers.index') }}"> {{ __('Atrás') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('membership-features.index') }}"> {{ __('Atrás') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('study-centers.update', $studyCenter->id) }}"  role="form" enctype="multipart/form-data" data-toggle="validator">
+                        <form method="POST" action="{{ route('membership-features.update', $membershipFeature->id) }}"  role="form" enctype="multipart/form-data" data-toggle="validator">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('study-center.form')
+                            @include('membership-feature.form')
 
                         </form>
                     </div>

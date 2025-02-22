@@ -29,10 +29,11 @@ use Ramsey\Uuid\Uuid;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class StudyCenter extends ModelMain
+class StudyCenter extends Model
 {
 
     protected $perPage = 20;
+
 
     /**
      * The attributes that are mass assignable.
@@ -73,9 +74,9 @@ class StudyCenter extends ModelMain
     {
         return $this->belongsTo(\App\Models\Regional::class, 'regional_id', 'id');
     }
-    public function students()  
-    {  
-        return $this->hasMany(Student::class);  
-    }  
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 
 }

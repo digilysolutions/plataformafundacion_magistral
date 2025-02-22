@@ -51,6 +51,7 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $data = $request->validated();
+
         $data['activated'] = true;
         // Iniciar una transacción para asegurar la consistencia
 

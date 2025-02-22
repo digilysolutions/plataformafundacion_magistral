@@ -17,7 +17,7 @@
                         <a class="btn btn-primary btn-sm" href="{{ route('membership-payment-statuses.index') }}"> {{ __('Atrás') }}</a>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('membership-payment-statuses.update', $membershipPaymentStatus->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('membership-payment-statuses.update', $membershipPaymentStatus->id) }}"  role="form" enctype="multipart/form-data" data-toggle="validator">
                             {{ method_field('PATCH') }}
                             @csrf
 

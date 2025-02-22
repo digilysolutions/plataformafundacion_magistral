@@ -6,6 +6,7 @@ use App\Models\Membership;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\MembershipRequest;
+use App\Models\MembershipFeature;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Carbon\Carbon;
@@ -34,7 +35,7 @@ class MembershipController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MembershipRequest $request): RedirectResponse
+    public function store(MembershipRequest $request)
     {
         $data = $request->all();
         $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
@@ -110,5 +111,10 @@ class MembershipController extends Controller
 
         return Redirect::route('memberships.index')
             ->with('success', 'Membresía eliminado satisfactoriamente');
+    }
+    public function pricing(){
+        $memberships = Membership::where('activated', true)->get();
+        $features = MembershipFeature::where('activated', true)->get();
+        return view('membership.pricing', compact('memberships','features'));
     }
 }

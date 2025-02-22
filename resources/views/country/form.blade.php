@@ -3,9 +3,9 @@
 
 
         <div class="form-group mb-2 mb20">
-            <label for="name" class="form-label">{{ __('Nombre del Pís') }}</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $country?->name) }}" id="name" placeholder="Nombre">
-            {!! $errors->first('name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="name" class="form-label">{{ __('Nombre del País') }} *</label>
+            <input type="text" name="name" class="form-control" value="{{ old('name', $country?->name) }}" id="name" placeholder="Nombre" required>
+            <div class="help-block with-errors"></div>
         </div>
 
         <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
