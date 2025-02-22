@@ -16,11 +16,12 @@
                                 {{ __('Paises') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('countries.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Nuevo') }}
+                            <div class="float-right">
+                                <a href="{{ route('countries.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Nuevo') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -32,50 +33,65 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                           <table id="datatable" class="table data-tables table-striped">
-                              <thead>
-                                 <tr class="ligth">
-                                    <th>No</th>
-                                    <th >Nombre del País</th>
-                                    <th >Activado</th>
-                                    <th></th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                @php
-                                    $i=0;
-                                @endphp
-                                @foreach ($countries as $country)
-                                <tr>
-                                    <td>{{ ++$i }}</td>
+                            <table id="datatable" class="table data-tables table-striped">
+                                <thead>
+                                    <tr class="ligth">
+                                        <th>No</th>
+                                        <th>Código</th>
+                                        <th>Nombre del País</th>
+                                        <th>Activado</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                    @foreach ($countries as $country)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $country->id }}</td>
 
+                                            <td>{{ $country->name }}</td>
+                                            <td>
+                                                @if ($country->activated == 1)
+                                                    Si
+                                                @else
+                                                    No
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('countries.destroy', $country->id) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('countries.show', $country->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('countries.edit', $country->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                                <td >{{ $country->name }}</td>
-                                <td >@if($country->activated ==1) Si @else No @endif</td>
-                                    <td>
-                                        <form action="{{ route('countries.destroy', $country->id) }}" method="POST">
-                                            <a class="btn btn-sm btn-primary " href="{{ route('countries.show', $country->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                            <a class="btn btn-sm btn-success" href="{{ route('countries.edit', $country->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-
-                              </tbody>
-                              <tfoot>
-                                 <tr>
-                                    <th>No</th>
-                                    <th >Nombre del País</th>
-                                    <th >Activado</th>
-                                    <th></th>
-                                 </tr>
-                              </tfoot>
-                           </table>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Código</th>
+                                        <th>Nombre del País</th>
+                                        <th>Activado</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
-                     </div>
+                    </div>
 
 
 
@@ -87,6 +103,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/bootstrap-table.js') }}"></script>
-
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 @endsection
