@@ -10,6 +10,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MembershipFeatureController;
+use App\Http\Controllers\MembershipFeaturesMembershipController;
 use App\Http\Controllers\MembershipPaymentStatusController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
@@ -86,8 +87,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('districts', DistrictController::class);
     Route::resource('levels', LevelController::class);
     Route::resource('memberships', MembershipController::class);
-    Route::get('/pricing', [MembershipController::class,'pricing']);
+    Route::get('/pricing', [MembershipController::class,'pricing'])->name('membership.pricing');
     Route::resource('membership-features', MembershipFeatureController::class);
+    Route::resource('membership-features-memberships', MembershipFeaturesMembershipController::class);
 
 
     Route::resource('tutors', TutorController::class);

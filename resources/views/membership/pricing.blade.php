@@ -28,7 +28,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($features as $feature)
-                                    @foreach ($memberships as $membership)
+
                                         <tr>
 
                                                 <th class="text-center" scope="row">{{$feature->name}}</th>
@@ -42,7 +42,7 @@
                                                 </td>
 
                                         </tr>
-                                        @endforeach
+
                                     @endforeach
                                 </tbody>
                             </table>
