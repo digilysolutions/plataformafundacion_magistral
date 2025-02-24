@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Update') }} Regional
+    {{ __('Actualizar') }} Regional
 @endsection
 
 @section('content-admin')

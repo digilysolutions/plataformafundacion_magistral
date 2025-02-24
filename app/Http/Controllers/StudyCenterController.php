@@ -32,9 +32,9 @@ class StudyCenterController extends Controller
     public function create(): View
     {
         $studyCenter = new StudyCenter();
-        $regionals = Regional::where('activated', true)->get();
-        $destritos = District::where('activated', true)->get();
-        $memberships = Membership::where('activated', true)->get();
+        $regionals = Regional::allActivated();
+        $destritos = District::allActivated();
+        $memberships = Membership::allActivated();
         return view('study-center.create', compact('studyCenter', 'memberships', 'regionals', 'destritos'));
     }
 
@@ -67,9 +67,9 @@ class StudyCenterController extends Controller
     public function edit($id): View
     {
         $studyCenter = new StudyCenter();
-        $regionals = Regional::where('activated', true)->get();
-        $destritos = District::where('activated', true)->get();
-        $memberships = Membership::where('activated', true)->get();
+        $regionals = Regional::allActivated();
+        $destritos = District::allActivated();
+        $memberships = Membership::allActivated();
         $studyCenter = StudyCenter::find($id);
 
         return view('study-center.edit', compact('studyCenter', 'memberships', 'regionals', 'destritos'));

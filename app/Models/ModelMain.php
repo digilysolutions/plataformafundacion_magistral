@@ -34,4 +34,12 @@ class ModelMain extends Model
         // Cuenta los registros existentes que comienzan con el prefijo
         return self::where('id', 'LIKE', "$prefix%")->count() + 1; // Suponiendo que tu clave primaria es 'id'
     }
+
+     // Devuelve todos los modelos que esten activos
+     public static function allActivated($columns = ['*'])
+     {
+         return static::query()
+             ->where('activated', true)
+             ->get(is_array($columns) ? $columns : func_get_args());
+     }
 }

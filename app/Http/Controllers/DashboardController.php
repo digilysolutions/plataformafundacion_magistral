@@ -23,11 +23,11 @@ class DashboardController extends Controller
     }
     public function dashboardAmdin()
     {
-        $studyCenter = StudyCenter::where('activated', true)->get();
-        $students = Student::where('activated', true)->get();
-        $regionals = Regional::where('activated', true)->get();
-        $districts= District::where('activated', true)->get();
-        $specialties= Specialty::where('activated', true)->get();
+        $studyCenter = StudyCenter::allActivated();
+        $students = Student::allActivated();
+        $regionals = Regional::allActivated();
+        $districts= District::allActivated();
+        $specialties= Specialty::allActivated();
 
         return view('dashboard', compact('studyCenter','students','regionals','districts','specialties'));
     }

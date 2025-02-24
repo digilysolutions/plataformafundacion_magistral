@@ -49,7 +49,6 @@ class CountryController extends Controller
     public function show($id): View
     {
         $country = Country::find($id);
-
         return view('country.show', compact('country'));
     }
 
@@ -59,7 +58,6 @@ class CountryController extends Controller
     public function edit($id): View
     {
         $country = Country::find($id);
-
         return view('country.edit', compact('country'));
     }
 

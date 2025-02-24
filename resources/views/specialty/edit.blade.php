@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Update') }} Specialty
+    {{ __('Actualizar') }} Especialidad
 @endsection
 
 @section('content-admin')
@@ -11,7 +11,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Specialty</span>
+                        <span class="card-title">{{ __('Actualizar') }} Especialidad</span>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('specialties.index') }}"> {{ __('Atrás') }}</a>
                         </div>

@@ -28,7 +28,7 @@ class RegionalController extends Controller
     public function create(): View
     {
         $regional = new Regional();
-        $countries = Country::where('activated', true)->get();
+        $countries = Country::allActivated();
 
         return view('regional.create', compact('regional','countries'));
     }
@@ -63,7 +63,7 @@ class RegionalController extends Controller
     public function edit($id): View
     {
         $regional = Regional::find($id);
-        $countries = Country::where('activated', true)->get();
+        $countries = Country::allActivated();
 
         return view('regional.edit', compact('regional','countries'));
     }

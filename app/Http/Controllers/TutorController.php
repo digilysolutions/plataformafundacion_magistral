@@ -32,7 +32,7 @@ class TutorController extends Controller
     public function create(): View
     {
         $tutor = new Tutor();
-        $studyCenters = StudyCenter::where('activated', true)->get();
+        $studyCenters = StudyCenter::allActivated();
         if (count($studyCenters) == 0) {
             $error = 'No podemos crear tutores, no hay centros de estudios activos o creados. '
                 . 'Si quieres crear un centro de estudio, puedes hacerlo '
@@ -40,7 +40,7 @@ class TutorController extends Controller
             $tutors = Tutor::all();
             return view('tutor.index', compact('tutors'))->with('error', $error);
         }
-        $specialties = Specialty::where('activated', true)->get();
+        $specialties = Specialty::allActivated();
         return view('tutor.create', compact('tutor', 'studyCenters', 'specialties'));
     }
 

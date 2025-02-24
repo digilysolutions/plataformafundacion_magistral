@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('header-title')
-    {{ __('Create') }} Specialty
+    {{ __('Crear') }} Especialidad
 @endsection
 
 @section('content-admin')

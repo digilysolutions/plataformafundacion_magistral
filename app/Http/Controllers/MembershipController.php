@@ -28,8 +28,9 @@ class MembershipController extends Controller
     public function create(): View
     {
         $membership = new Membership();
+        $membershipFeatures = MembershipFeature::allActivated();
 
-        return view('membership.create', compact('membership'));
+        return view('membership.create', compact('membership','membershipFeatures'));
     }
 
     /**
@@ -113,8 +114,8 @@ class MembershipController extends Controller
             ->with('success', 'Membresía eliminado satisfactoriamente');
     }
     public function pricing(){
-        $memberships = Membership::where('activated', true)->get();
-        $features = MembershipFeature::where('activated', true)->get();
+        $memberships = Membership::allActivated();
+        $features = MembershipFeature::allActivated();
         return view('membership.pricing', compact('memberships','features'));
     }
 }

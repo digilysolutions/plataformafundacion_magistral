@@ -3,23 +3,23 @@
 
         <div class="form-group mb-2 mb20">
             <label for="name" class="form-label">{{ __('Nombre') }}</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $student?->name) }}" id="name" placeholder="Nombre">
-            {!! $errors->first('name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <input type="text" name="name" class="form-control " value="{{ old('name', $student?->name) }}" id="name" placeholder="Nombre" required>
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group mb-2 mb20">
             <label for="lastname" class="form-label">{{ __('Apellidos') }}</label>
             <input type="text" name="lastname" class="form-control @error('lastname') is-invalid @enderror" value="{{ old('lastname', $student?->lastname) }}" id="lastname" placeholder="Apellidos">
-            {!! $errors->first('lastname', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group mb-2 mb20">
             <label for="email" class="form-label">{{ __('Correo') }}</label>
             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $student?->email) }}" id="email" placeholder="Correo">
-            {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group mb-2 mb20">
             <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
             <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $student?->phone) }}" id="phone" placeholder="Teléfono">
-            {!! $errors->first('phone', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group mb-2 mb20">
             <label for="address" class="form-label">{{ __('Curso') }}</label>
@@ -31,7 +31,7 @@
                     <option value="Curso 4"> Curso 4</option>
 
             </select>
-            {!! $errors->first('course', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+
         </div>
         <div class="form-group mb-2 mb20">
             <label for="address" class="form-label">{{ __('Centro de Estudio') }}</label>
@@ -44,6 +44,7 @@
                 @endforeach
 
             </select>
+            <div class="help-block with-errors"></div>
         </div>
 
 

@@ -33,7 +33,7 @@ class StudentController extends Controller
     public function create(): View
     {
         $student = new Student();
-        $studyCenters = StudyCenter::where('activated', true)->get();
+        $studyCenters = StudyCenter::allActivated();
 
         if (count($studyCenters) == 0) {
             $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
