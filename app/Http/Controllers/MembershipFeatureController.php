@@ -42,7 +42,7 @@ class MembershipFeatureController extends Controller
         MembershipFeature::create($data);
 
         return Redirect::route('membership-features.index')
-            ->with('success', 'MembershipFeature creado satisfactoriamente.');
+            ->with('success', 'Característica de la Membresía creado satisfactoriamente.');
     }
 
     /**
@@ -75,7 +75,7 @@ class MembershipFeatureController extends Controller
         $membershipFeature->update($data);
 
         return Redirect::route('membership-features.index')
-            ->with('success', 'MembershipFeature actualizado satisfactoriamente');
+            ->with('success', 'Característica de la Membresía  actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -83,6 +83,6 @@ class MembershipFeatureController extends Controller
         MembershipFeature::find($id)->delete();
 
         return Redirect::route('membership-features.index')
-            ->with('success', 'MembershipFeature eliminado satisfactoriamente');
+            ->with('success', 'Característica de la Membresía  eliminado satisfactoriamente');
     }
 }
