@@ -12,10 +12,10 @@
             <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" value="{{ old('description', $membershipFeature?->description) }}" id="description" placeholder="Descripción">
             {!! $errors->first('description', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
-        <div class="form-group mb-2 mb20">
-            <label for="activated" class="form-label">{{ __('Activated') }}</label>
-            <input type="text" name="activated" class="form-control @error('activated') is-invalid @enderror" value="{{ old('activated', $membershipFeature?->activated) }}" id="activated" placeholder="Activated">
-            {!! $errors->first('activated', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+            <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-1" name="activated"
+                checked="">
+            <label class="custom-control-label" for="customCheck-1"> Activado</label>
         </div>
 
     </div>

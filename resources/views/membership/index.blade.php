@@ -6,6 +6,7 @@
 
 @section('content-admin')
     <div class="container-fluid">
+        <a href="/pricing"> <small>Cambiar Vista</small></a>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
