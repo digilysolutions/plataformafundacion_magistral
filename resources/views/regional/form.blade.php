@@ -17,7 +17,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="mail" class="form-label">{{ __('Correo') }}</label>
-            <input type="text" name="mail" class="form-control @error('mail') is-invalid @enderror"
+            <input type="text"  id="mail"  name="mail" class="form-control @error('mail') is-invalid @enderror"
                 value="{{ old('mail', $regional?->mail) }}" id="mail" placeholder="Correo">
                 <div class="help-block with-errors"></div>
         </div>

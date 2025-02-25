@@ -13,7 +13,7 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="email" class="form-label">{{ __('Correo') }}</label>
-            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $student?->email) }}" id="email" placeholder="Correo">
+            <input type="text"  id="mail"  name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $student?->email) }}" id="email" placeholder="Correo">
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group mb-2 mb20">
