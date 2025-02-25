@@ -28,9 +28,9 @@ class StudentRequest extends FormRequest
 			'studycenters_id' => 'required',
             //Person
             'name' => 'required|string',
-			'lastname' => 'string',
-			'email' => 'string',
-			'phone' => 'string'
+			'lastname' => 'nullable|string',
+			'email' => 'nullable|string',
+			'phone' => 'nullable|string'
         ];
     }
 }

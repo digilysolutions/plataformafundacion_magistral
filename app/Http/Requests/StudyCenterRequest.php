@@ -22,13 +22,13 @@ class StudyCenterRequest extends FormRequest
     public function rules(): array
     {
         return [
-			
+
 			'name' => 'required|string',
-			'address' => 'string',
-			'phone' => 'string',
-			'mail' => 'string',		
+			'address' => 'nullable|string',
+			'phone' => 'nullable|string',
+			'mail' => 'nullable|string',
 			'regional_id' => 'required',
-			'district_id' => 'required',			
+			'district_id' => 'required',
 			'membership_id' => 'required',
         ];
     }

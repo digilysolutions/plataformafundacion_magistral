@@ -24,9 +24,9 @@ class TutorRequest extends FormRequest
         return [
             'name' => 'required|string',
             'studycenters_id' => 'required',
-            'lastname' => 'string',
-            'email' => 'string',
-            'phone' => 'string',
+            'lastname' => 'nullable|string',
+            'email' => 'nullable|string',
+            'phone' => 'nullable|string',
             'specialty_id' => 'required'
         ];
     }

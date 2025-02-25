@@ -22,7 +22,6 @@ class MembershipRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'activated' => 'required',
 			'name' => 'required|string',
 			'price' => 'required',
         ];
