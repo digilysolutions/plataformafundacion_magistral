@@ -22,13 +22,11 @@ class DistrictRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'activated' => 'required',
-			'name' => 'required|string',
-			'tracking_code' => 'string',
-			'address' => 'string',
-			'phone' => 'string',
-			'mail' => 'string',
-			'regional_id' => 'required',
+            'name' => 'required|string|max:255',
+            'address' => 'nullable|string|max:500',
+            'phone' => 'nullable|string|max:15',
+            'mail' => 'nullable|email|max:255',
+            'regional_id' => 'required|exists:regionals,id'
         ];
     }
 }
