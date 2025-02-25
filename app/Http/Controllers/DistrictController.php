@@ -38,7 +38,10 @@ class DistrictController extends Controller
 
         $data = $request->validated();
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+
         District::create($data);
+
+
         return Redirect::route('districts.index')
             ->with('success', 'Distrito creado satisfactoriamente.');
     }
