@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->boolean('activated')->default(false);
+            $table->boolean('activated')->nullable()->default(false);
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
