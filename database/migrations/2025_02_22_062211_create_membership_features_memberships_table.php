@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('membership_id');
             $table->foreign('membership_id')->references('id')->on('memberships')->onDelete('cascade');
             $table->uuid('membership_feature_id');
-            $table->foreign('membership_feature_id')->references('id')->on('membership_features')->onDelete('cascade');
+            $table->foreign('membership_id')->references('id')->on('membership_features')->onDelete('cascade');
             $table->string('value');
             $table->timestamps();
         });

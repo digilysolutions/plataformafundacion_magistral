@@ -29,7 +29,7 @@ use Ramsey\Uuid\Uuid;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class StudyCenter extends Model
+class StudyCenter extends ModelMain
 {
 
     protected $perPage = 20;

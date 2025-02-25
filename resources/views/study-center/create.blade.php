@@ -33,6 +33,8 @@
     </section>
 @endsection
 @section('js')
+<!-- Validated Mail JavaScript -->
+<script src="{{ asset('js/mail-validate.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#regional_id').change(function() {

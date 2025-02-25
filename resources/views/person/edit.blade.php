@@ -30,3 +30,8 @@
         </div>
     </section>
 @endsection
+@section('js')
+
+<!-- Validated Mail JavaScript -->
+<script src="{{ asset('js/mail-validate.js') }}"></script>
+@endsection

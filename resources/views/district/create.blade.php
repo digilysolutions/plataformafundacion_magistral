@@ -17,7 +17,8 @@
                         </div>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('districts.store') }}"  role="form" enctype="multipart/form-data" data-toggle="validator">
+                        <form method="POST" action="{{ route('districts.store') }}" role="form"
+                            enctype="multipart/form-data" data-toggle="validator">
                             @csrf
 
                             @include('district.form')
@@ -28,4 +29,9 @@
             </div>
         </div>
     </section>
+@endsection
+@section('js')
+
+<!-- Validated Mail JavaScript -->
+<script src="{{ asset('js/mail-validate.js') }}"></script>
 @endsection
