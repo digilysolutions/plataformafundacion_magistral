@@ -11,6 +11,9 @@
             <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
                 value="{{ old('phone', $regional?->phone) }}" id="phone" placeholder="Teléfono">
                 <div class="help-block with-errors"></div>
+                @error('phone')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group col-md-6">
             <label for="mail" class="form-label">{{ __('Correo') }}</label>
