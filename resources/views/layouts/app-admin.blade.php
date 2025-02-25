@@ -42,7 +42,6 @@
             </div>
         </div>
     </div>
-   
     <div class="content-page">
 
      @yield('content-admin')
