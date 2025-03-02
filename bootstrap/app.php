@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
        $middleware->use(
         [
            // \App\Http\Middleware\RoleMiddleware::class,
+           \App\Http\Middleware\RedirectIfNotFound::class,
         ]
        );
        $middleware->alias([
