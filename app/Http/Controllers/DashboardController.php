@@ -10,6 +10,7 @@ use App\Models\StudyCenter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,11 @@ class DashboardController extends Controller
     }
     public function dashboardAmdin()
     {
+        if (!Auth::check() || Auth::user()->role!="Administrador") {
+
+            return redirect('/'); // Redirigir a la página de inicio u otra página si no tiene acceso
+        }
+
         $studyCenter = StudyCenter::allActivated();
         $students = Student::allActivated();
         $regionals = Regional::allActivated();

@@ -103,4 +103,8 @@ class StudyCenterController extends Controller
         return response()->json($distritos);
     }
 
+    public function dashboard()   {
+        return view('study-center.dashboard');}
+
+
 }
