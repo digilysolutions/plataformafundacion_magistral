@@ -27,8 +27,7 @@ class RoleMiddleware
        // $role = Auth::user()->role;
 
         if ($request->user()->role != $role) {
-            Log::info('Usuario no role, redirigiendo a /login');
-            return redirect('/login')->with('error', 'No tienes permiso para acceder a esta página.');
+            return redirect('/notaccess');
         }
         return $next($request);
     }

@@ -18,8 +18,8 @@ class RedirectIfNotFound
         $response = $next($request);
 
         // Verificar si la respuesta es 404
-        if ($response->status() === 404) {
-            return redirect('/pagina-no-encontrada');  // Cambia '/pagina-no-encontrada' por tu ruta deseada
+        if ($response->getStatusCode() === 404) {
+            return redirect('/error404');  // Cambia '/pagina-no-encontrada' por tu ruta deseada
         }
 
         return $response;
