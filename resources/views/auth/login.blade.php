@@ -75,7 +75,11 @@
                             <div class="card-body p-0">
                                 <div class="d-flex align-items-center auth-content">
                                     <div class="col-lg-7 align-self-center">
-
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
                                         <div class="p-3">
                                             <h2 class="mb-2">Iniciar Sesión</h2>
                                             <p>Inicia sesión para mantenerte conectado con:</p>
@@ -152,11 +156,11 @@
             </div>
         </section>
     </div>
-    @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <!-- Backend Bundle JavaScript -->
     <script src="{{ asset('js/backend-bundle.min.js') }}"></script>
     <!-- Table Treeview JavaScript -->
