@@ -33,7 +33,12 @@ Route::get('/', function () {
 */
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
-
+Route::get('/error404', function () {
+    return view('error404'); // Asegúrate de tener este view creado
+});
+Route::get('/notaccess', function () {
+    return view('not-access'); // Asegúrate de tener este view creado
+});
 //Registro (register):
 Route::get('register', function () {
     return view('auth.register');
