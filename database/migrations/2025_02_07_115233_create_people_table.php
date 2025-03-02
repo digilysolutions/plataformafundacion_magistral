@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('lastname')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('phone')->nullable();
+            $table->integer('user_id')->unsigned()->default();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

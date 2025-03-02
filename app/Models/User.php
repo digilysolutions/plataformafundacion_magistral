@@ -71,4 +71,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function person()
+    {
+        return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
+    }
+    public function hasRole($role): bool
+    {
+        return $this->role === $role; // Comparar directamente con el valor del campo
+    }
 }

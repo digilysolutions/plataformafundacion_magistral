@@ -33,5 +33,18 @@ class Person extends ModelMain
      */
     protected $fillable = ['activated', 'name', 'lastname', 'email', 'phone', 'tracking_code'];
 
+    public function student()
+    {
+        return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
+    }
+
 
 }

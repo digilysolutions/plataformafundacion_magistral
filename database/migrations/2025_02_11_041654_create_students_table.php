@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('course')->nullable();
             $table->uuid('studycenters_id');
             $table->foreign('studycenters_id')->references('id')->on('study_centers')->onDelete('cascade');
-            $table->integer('user_id')->unsigned()->default();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->uuid('membership_id');
             $table->foreign('membership_id')->references('id')->on('memberships')->onDelete('cascade');
 
