@@ -20,8 +20,7 @@ class AuthenticatedSessionController extends Controller
         Log::info("Authen ..controller create");
         if (!Auth::check())
             return view('auth.login');
-
-            else
+        else
             $roleid = Auth::user()->roleid;
 
             // Redirigir al dashboard correspondiente
