@@ -1,17 +1,16 @@
+
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
-        <a href="backend/index.html" class="header-logo">
+        <a href="/" class="header-logo">
             <img src="{{ asset('img/23.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
             <h5 class="logo-title light-logo ml-3">Plataforma</h5>
 
         </a>
 
-
         <div class="iq-menu-bt-sidebar ml-0">
             <i class="las la-bars wrapper-menu"></i>
 
         </div>
-
     </div>
     <div class="data-scrollbar" data-scroll="1">
         <nav class="iq-sidebar-menu">
@@ -136,40 +135,60 @@
                     </ul>
                 </li>
 
-                <li class=" ">
-                    <a href="#feature" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash5" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                        </svg>
-                        <span class="ml-1">Membresía</span>
-                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="10 15 15 20 20 15"></polyline>
-                            <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                        </svg>
-                    </a>
-                    <ul id="feature" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
-                        <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
-                            <a href="{{ route('memberships.index') }}">
-                                <i class="las la-minus"></i>
-                                <span>Ver Membresías</span>
-                            </a>
-                        </li>
-                        <li class="{{ request()->is('membership-features*') ? 'active' : '' }}">
-                            <a href="{{ route('membership-features.index') }}"><i class="las la-minus"></i>
-                                <span>Características</span>
-                            </a>
-                        </li>
+                @if (Auth::check() && ( $user->role == 'Administrador' ||  $user->role == 'Centro Educativo'))
+                    <li class=" ">
+                        <a href="#feature" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                            <svg class="svg-icon" id="p-dash5" width="20" height="20"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2">
+                                </rect>
+                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                            </svg>
+                            <span class="ml-1">Membresía</span>
+                            <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polyline points="10 15 15 20 20 15"></polyline>
+                                <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                            </svg>
+                        </a>
+                        <ul id="feature" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                            @if ( $user->role == 'Centro Educativo')
+                                <!--Solo para los centros educativos y los estudiantes que no pertenencen a un centro--->
+                                <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
+                                    <a >
+                                        <i class="las la-minus"></i>
+                                        <span>Detalles de Membresía</span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
+                                    <a href="{{ route('memberships.index') }}">
+                                        <i class="las la-minus"></i>
+                                        <span>Renovar Membresía</span>
+                                    </a>
+                                </li>
 
-                    </ul>
-                </li>
-
-
+                            @endif
+                            @if ( $user->role == 'Administrador')
+                            <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
+                                <a href="{{ route('memberships.index') }}">
+                                    <i class="las la-minus"></i>
+                                    <span>Ver Membresías</span>
+                                </a>
+                            </li>
+                            <li class="{{ request()->is('membership-features*') ? 'active' : '' }}">
+                                <a href="{{ route('membership-features.index') }}"><i class="las la-minus"></i>
+                                    <span>Características</span>
+                                </a>
+                            </li>
+@endif
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </nav>
         <div id="sidebar-bottom" class="position-relative sidebar-bottom">
