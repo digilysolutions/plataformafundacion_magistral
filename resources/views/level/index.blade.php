@@ -37,7 +37,7 @@
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
+                                    <th>Descripción</th>
 
                                         <th>Activado</th>
                                         <th></th>
@@ -53,7 +53,7 @@
 
                                             <td>{{ $level->id }}</td>
                                             <td>{{ $level->name }}</td>
-                                            <td>{{ $level->description }}</td>
+                                             <td>@if(!empty( $level->description) ){{ $level->description }} @else ----- @endif</td>
 
                                             <td>
                                                 @if ($level->activated == 1)
@@ -86,7 +86,7 @@
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
+                                       <th>Descripción</th>
 
                                         <th>Activado</th>
                                         <th></th>

@@ -152,7 +152,11 @@
             </div>
         </section>
     </div>
-
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <!-- Backend Bundle JavaScript -->
     <script src="{{ asset('js/backend-bundle.min.js') }}"></script>
     <!-- Table Treeview JavaScript -->

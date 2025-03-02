@@ -36,6 +36,7 @@
 <!-- Validated Mail JavaScript -->
 <script src="{{ asset('js/mail-validate.js') }}"></script>
     <script>
+         $('#district_id').prop('disabled', true);
         $(document).ready(function() {
             $('#regional_id').change(function() {
                 var regionalId = $(this).val();
@@ -51,6 +52,7 @@
                         success: function(data) {
                             // Limpia las opciones previas
                             $('#district_id').empty();
+                            $('#district_id').prop('disabled', false);
                             $('#district_id').append(
                                 '<option value="">Selecciona un distrito</option>');
 
@@ -71,9 +73,10 @@
                 } else {
                     // Si no hay regional seleccionada, oculta el select de distritos
                     $('#district_id').empty();
-                    $('#districtGroup').hide();
+                    $('#district_id').prop('disabled', true);
                 }
             });
         });
     </script>
 @endsection
+
