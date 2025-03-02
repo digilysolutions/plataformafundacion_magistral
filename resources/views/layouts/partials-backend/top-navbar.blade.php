@@ -6,6 +6,7 @@
                 <a href="" class="header-logo">
                     <img src="{{asset('img/23.png')}}" class="img-fluid rounded-normal" alt="logo">
                     <h5 class="logo-title ml-3">Plataforma</h5>
+                    <small>Administrador</small>
 
                 </a>
             </div>
