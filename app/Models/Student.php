@@ -49,10 +49,7 @@ class Student extends ModelMain
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function person()
-    {
-        return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
-    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -60,14 +57,6 @@ class Student extends ModelMain
     public function studyCenter()
     {
         return $this->belongsTo(\App\Models\StudyCenter::class, 'studycenters_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
     }
 
 }
