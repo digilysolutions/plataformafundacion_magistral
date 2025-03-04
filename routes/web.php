@@ -105,7 +105,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //---------nuevas rutas
     Route::resource('people', PersonController::class);
+
     Route::resource('levels', LevelController::class)->middleware('role:Administrador');
+
     Route::resource('memberships', MembershipController::class);
     Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
     Route::resource('membership-features', MembershipFeatureController::class);
@@ -115,7 +117,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('tutors', TutorController::class);
     Route::resource('membership-payment-statuses', MembershipPaymentStatusController::class);
 
-    Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
+    Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador,Centro Educativo');
     Route::resource('students', StudentController::class);
     Route::get('/students/activate/{tracking_code}', [StudentController::class, 'activate'])->name('students.activate');
     Route::post('/students/updatePassword', [StudentController::class, 'updatePassword'])->name('students.update_password');

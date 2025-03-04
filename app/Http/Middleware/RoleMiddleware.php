@@ -13,22 +13,24 @@ class RoleMiddleware
 
 
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next, string $role): Response
+    public function handle(Request $request, Closure $next, string ...$roles): Response
     {
         if (!Auth::check()) {
             Log::info('Usuario no autenticado, redirigiendo a /login');
             return redirect('/login')->with('error', 'Debes iniciar sesión para acceder a esta página.');
         }
-       // $role = Auth::user()->role;
 
-        if ($request->user()->role != $role) {
+        // Obtener el rol del usuario autenticado
+        $userRole = $request->user()->role;
+        Log::info('Rol del usuario autenticado: ' . $userRole);
+        Log::info('Roles permitidos: ' . json_encode($roles)); // Convertimos el arreglo de roles a JSON para mejor lectura en el log
+
+        // Verificar si el rol del usuario está en el arreglo de roles permitidos
+        if (!in_array($userRole, $roles)) {
+            Log::info('Acceso denegado para el rol: ' . $userRole);
             return redirect('/notaccess');
         }
+
         return $next($request);
     }
 }

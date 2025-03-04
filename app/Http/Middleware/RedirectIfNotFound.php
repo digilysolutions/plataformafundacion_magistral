@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfNotFound
@@ -16,7 +17,7 @@ class RedirectIfNotFound
     public function handle(Request $request, Closure $next): Response
     {
         $response = $next($request);
-
+        Log::info('redirectif not found');
         // Verificar si la respuesta es 404
         if ($response->getStatusCode() === 404) {
             return redirect('/error404');  // Cambia '/pagina-no-encontrada' por tu ruta deseada
