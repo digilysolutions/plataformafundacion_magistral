@@ -6,7 +6,7 @@
                 <a href="" class="header-logo">
                     <img src="{{asset('img/23.png')}}" class="img-fluid rounded-normal" alt="logo">
                     <h5 class="logo-title ml-3">Plataforma</h5>
-                    <small>Administrador</small>
+
 
                 </a>
             </div>
@@ -124,9 +124,7 @@
                                             <img src="{{ asset('admin/images/user/1.png') }}" alt="profile-img"
                                                 class="rounded profile-img img-fluid avatar-70">
                                         </div>
-                                        @php
-                                            $user = auth()->user(); // O simplemente $user que pasaste desde el controlador
-                                        @endphp
+
                                         <div class="p-3">{{ $user->email }}
                                             <h5 class="mb-1"></h5>
                                             <p class="mb-0">{{ auth()->user()->role }}</p>

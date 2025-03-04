@@ -29,6 +29,7 @@
                         <span class="ml-1">Escritorio</span>
                     </a>
                 </li>
+                @if ( $user->role == 'Administrador')
                 <li class="">
                     <a href="{{ route('levels.index') }}" class="{{ request()->is('levels*') ? 'active' : '' }}">
                         <svg class="svg-icon" id="p-dash9" width="20" height="20"
@@ -43,6 +44,7 @@
                     <ul id="reports" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                 </li>
+                @endif
                 <li class="{{ request()->is('specialties*') ? 'active' : '' }}">
                     <a href="{{ route('specialties.index') }}">
                         <svg class="svg-icon" id="p-dash3" width="20" height="20"
@@ -273,18 +275,6 @@
                             <i class="las la-minus"></i><span>Personas</span>
                         </a>
                     </li>
-
-
-
-                    @if (auth()->check() && auth()->user()->hasRole('Administrador'))
-                        <li class="{{ request()->is('admin/units*') ? 'active' : '' }}">
-                            <a href="{{ route('units.index') }}" class="submenu-link">
-                                <i class="las la-minus"></i><span>Unidades</span>
-                            </a>
-                        </li>
-                    @endif
-
-
                 </ul>
 
             </ul>
