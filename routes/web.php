@@ -100,6 +100,12 @@ Route::middleware('roles:Administrator')->group(function () {
 });*/
 Route::middleware('auth')->group(function () {
 
+//memberships
+// Mostrar un membership específico (show)
+Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo');
+
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -108,7 +114,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('levels', LevelController::class)->middleware('role:Administrador');
 
-    Route::resource('memberships', MembershipController::class);
+    //Route::resource('memberships', MembershipController::class);
     Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
     Route::resource('membership-features', MembershipFeatureController::class);
     Route::resource('membership-features-memberships', MembershipFeaturesMembershipController::class);
