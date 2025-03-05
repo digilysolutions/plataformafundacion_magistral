@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 /**
  * Class Membership
  *
@@ -24,6 +25,7 @@ use Ramsey\Uuid\Uuid;
  */
 class Membership extends ModelMain
 {
+    use  HasUuids;
 
     protected $perPage = 20;
 
@@ -33,6 +35,9 @@ class Membership extends ModelMain
      * @var array<int, string>
      */
     protected $fillable = ['activated', 'name','type','start_date','end_date', 'price', 'duration_days', 'is_studio_center', 'student_limit', 'limite_items'];
-
+    public function studyCenters()
+    {
+        return $this->hasMany(StudyCenter::class);
+    }
 
 }

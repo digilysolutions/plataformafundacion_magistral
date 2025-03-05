@@ -10,12 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
@@ -71,9 +71,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
-    public function person()
+    public function person(): HasOne
     {
-        return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
+        return $this->hasOne(Person::class);
     }
     public function hasRole($role): bool
     {
