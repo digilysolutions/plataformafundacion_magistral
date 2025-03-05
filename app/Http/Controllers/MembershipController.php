@@ -30,7 +30,7 @@ class MembershipController extends Controller
         $membership = new Membership();
         $membershipFeatures = MembershipFeature::allActivated();
 
-        return view('membership.create', compact('membership','membershipFeatures'));
+        return view('membership.create', compact('membership', 'membershipFeatures'));
     }
 
     /**
@@ -67,7 +67,28 @@ class MembershipController extends Controller
     {
         $membership = Membership::find($id);
 
-        return view('membership.show', compact('membership'));
+
+
+        $now = now(); // Obtiene la fecha y hora actual
+        $messageActivate = " Esta membresía no está activa. ";
+        $startDate = \Carbon\Carbon::parse($membership->start_date); // Convierte a objeto Carbon
+        $endDate = \Carbon\Carbon::parse($membership->end_date);     // Convierte a objeto Carbon
+
+
+        if ($membership->activated == 1 && $startDate > $now && $endDate > $now) {
+            // Condición: Activada, fecha de inicio en el futuro y fecha de fin en el futuro
+            $messageActivate = " Esta membresía está activada y aún no ha comenzado.";
+        } elseif ($membership->activated == 1 && $startDate <= $now && $endDate >= $now) {
+            // Condición: Activada, fecha de inicio en el pasado o presente, y fecha de fin en el futuro o presente
+            $messageActivate = "Esta membresía está actualmente activa.";
+        } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) <= 7) {
+            //Condición: Activada, fecha de fin en el pasado, pero dentro de los últimos 7 días desde el inicio
+            $messageActivate = "El tiempo para activar esta membresía ha pasado recientemente. Contacte con soporte.";
+        } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) > 7) {
+            // {{-- Condición: Activada, fecha de fin en el pasado, y hace más de 7 días desde el inicio
+            $messageActivate = "Esta membresía está desactivada debido a que el tiempo para activarla ha expirado.";
+        }
+        return view('membership.show', compact('membership',  'messageActivate'));
     }
 
     /**
@@ -113,9 +134,10 @@ class MembershipController extends Controller
         return Redirect::route('memberships.index')
             ->with('success', 'Membresía eliminado satisfactoriamente');
     }
-    public function pricing(){
+    public function pricing()
+    {
         $memberships = Membership::allActivated();
         $features = MembershipFeature::allActivated();
-        return view('membership.pricing', compact('memberships','features'));
+        return view('membership.pricing', compact('memberships', 'features'));
     }
 }
