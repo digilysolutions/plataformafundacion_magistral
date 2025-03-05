@@ -7,6 +7,12 @@
 <body class=" color-light ">
     @php
         $user = auth()->user(); // O simplemente $user que pasaste desde el controlador
+        $user->load('person.studyCenter.membership');
+     /*   dd([
+        'user_id' => $user->id,
+        'membership' => $user->person?->studyCenter?->membership,
+    ]);*/
+
     @endphp
     <!-- loader Start -->
     <div id="loading">
@@ -19,7 +25,11 @@
     <!-- Wrapper Start -->
     <div class="wrapper">
 
-        @include('layouts.partials-backend.sidebar-menu-left')
+        @if ($user->role == 'Centro Educativo')
+            @include('layouts.partials-backend.sidebar-menu-study-center-left')
+        @else
+            @include('layouts.partials-backend.sidebar-menu-left')
+        @endif
         @include('layouts.partials-backend.top-navbar')
 
         <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
