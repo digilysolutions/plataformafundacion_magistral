@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 /**
  * Class StudyCenter
  *
@@ -31,7 +33,7 @@ use Ramsey\Uuid\Uuid;
  */
 class StudyCenter extends ModelMain
 {
-
+    use  HasUuids;
     protected $perPage = 20;
 
 
@@ -54,17 +56,14 @@ class StudyCenter extends ModelMain
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function membership()
+    public function person(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Membership::class, 'membership_id', 'id');
+        return $this->belongsTo(Person::class, 'people_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function person()
+    public function membership(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
+        return $this->belongsTo(Membership::class);
     }
 
     /**
