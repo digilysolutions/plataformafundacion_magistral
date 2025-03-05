@@ -17,36 +17,34 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        Log::info("Authen ..controller create");
         if (!Auth::check())
             return view('auth.login');
         else
             $roleid = Auth::user()->roleid;
 
-            // Redirigir al dashboard correspondiente
-            switch ($roleid) {
-                case 1:
-                    Log::info("Cao 1");
-                    return redirect()->route('study-center.dashboard');
-                case 2:
-                    Log::info("Cao 2");
-                    return redirect()->route('student.dashboard');
-                case 3:
-                    Log::info("Cao 3");
-                    return redirect()->route('tutor.dashboard');
-                case 4:
-                    Log::info("Cao 4");
-                    return redirect()->route('validator.dashboard');
-                case 5:
-                    Log::info("Cao 5");
-                    return redirect()->route('admin.dashboard');
-                    Log::info("Cao 6");
-                case 6:
-                    return redirect()->route('user.dashboard');
-                default:
-                    return redirect('/');
-            }
-
+        // Redirigir al dashboard correspondiente
+        switch ($roleid) {
+            case 1:
+                Log::info("Cao 1");
+                return redirect()->route('study-center.dashboard');
+            case 2:
+                Log::info("Cao 2");
+                return redirect()->route('student.dashboard');
+            case 3:
+                Log::info("Cao 3");
+                return redirect()->route('tutor.dashboard');
+            case 4:
+                Log::info("Cao 4");
+                return redirect()->route('validator.dashboard');
+            case 5:
+                Log::info("Cao 5");
+                return redirect()->route('admin.dashboard');
+                Log::info("Cao 6");
+            case 6:
+                return redirect()->route('user.dashboard');
+            default:
+                return redirect('/');
+        }
     }
 
     /**
@@ -63,7 +61,7 @@ class AuthenticatedSessionController extends Controller
 
     public function store(Request $request)
     {
-        Log::info("Authen ..controller store");
+
 
         $request->validate([
             'email' => 'required|email',
@@ -72,29 +70,38 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::attempt($request->only('email', 'password'));
 
-        if ($user) {
-            // Obtener el rol del usuario
 
-            $roleid = Auth::user()->roleid;
+        if ($user) {
+            $user = Auth::user();
+
+
+            // Obtener el rol del usuario
+            $roleid = $user->roleid;
 
             // Redirigir al dashboard correspondiente
             switch ($roleid) {
                 case 1:
-                    Log::info("Cao 1");
+                    if (
+                        !$user->person ||
+                        !$user->person->studyCenter
+                    ) {
+                        Auth::logout();
+                        return redirect('/login')->with('error', 'Este usuario no está asignado a un centro de estudio o no tiene los permisos necesarios.');
+                    }
                     return redirect()->route('study-center.dashboard');
                 case 2:
-                    Log::info("Cao 2");
+
                     return redirect()->route('student.dashboard');
                 case 3:
-                    Log::info("Cao 3");
+
                     return redirect()->route('tutor.dashboard');
                 case 4:
-                    Log::info("Cao 4");
+
                     return redirect()->route('validator.dashboard');
                 case 5:
-                    Log::info("Cao 5");
+
                     return redirect()->route('admin.dashboard');
-                    Log::info("Cao 6");
+
                 case 6:
                     return redirect()->route('user.dashboard');
                 default:
