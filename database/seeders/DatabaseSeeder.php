@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\MembershipFeature;
+use App\Models\StudyCenter;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,15 +30,25 @@ class DatabaseSeeder extends Seeder
             Role::create(['name' => $role]);
         }
 
-        User::factory()->create([
+
+       User::factory()->create([
             'name' => 'Centro educativo',
             'email' => 'centroeducativo@gmail.com',
             'password'=>'1234',
             'role'=>'Centro Educativo',
             'roleid'=>1
         ]);
+        $person_studyCenter = [
+            [
+                'name' => 'Responsable Center',
+                'lastname' => 'ytrpiloto@gmail.com',
+                'email' => 'Centro educativo',
+                'user_id' => 1,
+                'activated' => true,
+            ]
+        ];
 
-        User::factory()->create([
+      User::factory()->create([
             'name' => 'Test User',
             'email' => 'estudiante@gmail.com',
             'password'=>'1234',
@@ -76,11 +87,13 @@ class DatabaseSeeder extends Seeder
             'password'=>'1234',
             'roleid'=>6
         ]);
+
         $this->call(CountrySeeder::class);
         $this->call(RegionalsSeeder::class);
         $this->call(DistrictsSeeder::class);
         $this->call(SpecialtiesSeeder::class);
         $this->call(MembershipSeeder::class);
         $this->call(FeatureSeeder::class);
+        $this->call(StyCenterSeeder::class);
     }
 }
