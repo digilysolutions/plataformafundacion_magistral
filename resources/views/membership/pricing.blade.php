@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 
-@section('header-title')
+@section('title-header-admin')
     Membresía
 @endsection
 @section('content-admin')
@@ -30,7 +30,6 @@
                                     @foreach ($features as $feature)
 
                                         <tr>
-
                                                 <th class="text-center" scope="row">{{$feature->name}}</th>
                                                 <td class="text-center child-cell"><i class="ri-check-line ri-2x">{{$membership->name}}</i>
                                                 </td>
