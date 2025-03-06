@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 
-@section('header-title')
+@section('title-header-admin')
     {{ $membership->name ?? __('Mostrar') . ' ' . __('Membresía') }}
 @endsection
 
@@ -24,15 +24,29 @@
                         <h3 class="mb-3"> {{ $membership->name }}</h3>
                         <ul class="list-unstyled mb-0">
                             <li><strong>Fecha Inicio:</strong> {{ $membership->start_date }}</li>
-                            <li><strong>Fecha Final: </strong>{{ $membership->end_date }}</li>
-                            <li>Cantidad Estudiantes: {{ $membership->student_limit }}</li>
+                            <li><strong>Fecha Final: </strong>@if ($membership->end_date!=null)
+                                {{ $membership->end_date }}
+                                @else
+                                Ilimitado
+                            @endif</li>
+                            <li>Cantidad Estudiantes:
+                                @if ( $membership->student_limit !=null)
+                                {{ $membership->student_limit }}
+                                @else
+                                Ilimitado
+                            @endif
+                            </li>
                             <li>Cantidad de Items: {{ $membership->limite_items }}</li>
                             <li>Tipo: {{ $membership->type }}</li>
                         </ul>
-                        <span class="badge badge-primary"> {{ $messageActivate }}</span>
+                        <strong class="  mt-3 text-center text-primary" style="max-width: 100%; word-wrap: break-word;">
+                            {{ $messageActivate }}
+                        </strong>
 
                     </div>
+
                 </div>
+
             </div>
 
 
