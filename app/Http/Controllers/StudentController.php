@@ -27,6 +27,12 @@ class StudentController extends Controller
         return view('student.index', compact('students'));
     }
 
+    public function indexToStudyCenter($studycenters_id): View
+    {
+        $students = Student::allActivated()->where('studycenters_id',$studycenters_id);
+        return view('student.index', compact('students'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
