@@ -49,7 +49,7 @@
 
 
                     <ul id="membresia" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="{{ request()->is('students*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
                             <a href="{{ route('memberships.show',$user->person->studyCenter->membership->id) }}">
                                 <i class="las la-minus"></i><span>Detalles de Membresía</span>
                             </a>
@@ -60,8 +60,8 @@
                                 <i class="las la-minus"></i><span>Renovar Membresía</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('students*') ? 'active' : '' }}">
-                            <a href="{{ route('students.index') }}">
+                        <li class="{{ request()->is('membership-histories*') ? 'active' : '' }}">
+                            <a href="{{ route('membership_histories_user',$user->id) }}">
                                 <i class="las la-minus"></i><span>Histórico de membresía</span>
                             </a>
                         </li>

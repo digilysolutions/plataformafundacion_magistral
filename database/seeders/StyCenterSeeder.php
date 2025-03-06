@@ -2,11 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\MembershipHistory;
+use App\Models\MembershipStatus;
 use App\Models\Person;
 use App\Models\StudyCenter;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 class StyCenterSeeder extends Seeder
 {
     /**
@@ -38,8 +41,21 @@ class StyCenterSeeder extends Seeder
                 'membership_id'=>'BA0001'
             ]
         ];
+
+        $membershipStatusId = MembershipStatus::where('name', 'Activo')->value('id');
+
         foreach ($studiesCenter as $studyCenter) {
             StudyCenter::create($studyCenter);
+            MembershipHistory::create(
+                [
+                    'id' => Str::uuid(),
+                    'user_id'=>1,
+                    'membership_id'=>'BA0001',
+                    'start_date' => Carbon::now(),
+                    'membership_statuses_id'=>  $membershipStatusId,
+                ]
+            );
+
         }
     }
 }

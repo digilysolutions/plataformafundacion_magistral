@@ -92,6 +92,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RegionalsSeeder::class);
         $this->call(DistrictsSeeder::class);
         $this->call(SpecialtiesSeeder::class);
+        $this->call(MembershipStatusSeeder::class);
         $this->call(MembershipSeeder::class);
         $this->call(FeatureSeeder::class);
         $this->call(StyCenterSeeder::class);

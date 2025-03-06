@@ -7,9 +7,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\MembershipRequest;
 use App\Models\MembershipFeature;
+use App\Models\MembershipHistory;
+use App\Models\MembershipStatus;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class MembershipController extends Controller
 {
@@ -65,30 +68,70 @@ class MembershipController extends Controller
      */
     public function show($id): View
     {
-        $membership = Membership::find($id);
+        $membership = Membership::findOrFail($id);
 
+        $now = now();
+        $messageActivate = "Esta membresía no está activa.";
+        $startDate = \Carbon\Carbon::parse($membership->start_date);
+        $endDate = \Carbon\Carbon::parse($membership->end_date);
 
+        // Obtener los IDs de los estados de la base de datos
+        $estadoPendienteId = MembershipStatus::where('name', 'Pendiente')->value('id');
+        $estadoActivoId = MembershipStatus::where('name', 'Activo')->value('id');
+        $estadoVencidaRecienteId = MembershipStatus::where('name', 'Expirado')->value('id'); // Ajusta el nombre si es diferente
+        $estadoDesactivadaId = MembershipStatus::where('name', 'Expirado')->value('id'); // Ajusta el nombre si es diferente
+        $estadoInactivaId = MembershipStatus::where('name', 'Inactivo')->value('id');
 
-        $now = now(); // Obtiene la fecha y hora actual
-        $messageActivate = " Esta membresía no está activa. ";
-        $startDate = \Carbon\Carbon::parse($membership->start_date); // Convierte a objeto Carbon
-        $endDate = \Carbon\Carbon::parse($membership->end_date);     // Convierte a objeto Carbon
-
-
+        // Determinar el estado actual y el mensaje
+        $estadoActualId = null; // Inicializar con null
         if ($membership->activated == 1 && $startDate > $now && $endDate > $now) {
-            // Condición: Activada, fecha de inicio en el futuro y fecha de fin en el futuro
-            $messageActivate = " Esta membresía está activada y aún no ha comenzado.";
+            $messageActivate = "Esta membresía está activada y aún no ha comenzado.";
+            $estadoActualId = $estadoPendienteId;
         } elseif ($membership->activated == 1 && $startDate <= $now && $endDate >= $now) {
-            // Condición: Activada, fecha de inicio en el pasado o presente, y fecha de fin en el futuro o presente
             $messageActivate = "Esta membresía está actualmente activa.";
+            $estadoActualId = $estadoActivoId;
         } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) <= 7) {
-            //Condición: Activada, fecha de fin en el pasado, pero dentro de los últimos 7 días desde el inicio
             $messageActivate = "El tiempo para activar esta membresía ha pasado recientemente. Contacte con soporte.";
+            $estadoActualId = $estadoVencidaRecienteId;
         } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) > 7) {
-            // {{-- Condición: Activada, fecha de fin en el pasado, y hace más de 7 días desde el inicio
             $messageActivate = "Esta membresía está desactivada debido a que el tiempo para activarla ha expirado.";
+            $estadoActualId = $estadoDesactivadaId;
+        } else {
+            $estadoActualId = $estadoInactivaId;
         }
-        return view('membership.show', compact('membership',  'messageActivate'));
+
+        // Obtener el último historial de la membresía
+        $ultimoHistorial = MembershipHistory::where('membership_id', $membership->id)
+            ->latest('created_at')
+            ->first();
+
+        // Determinar si se necesita crear un nuevo registro
+        $debeCrearRegistro = false;
+
+        if (!$ultimoHistorial) {
+            // Si no hay historial, se crea el primero
+            $debeCrearRegistro = true;
+        } else {
+            // Comparar el estado actual con el último estado registrado
+            if ($ultimoHistorial->membership_statuses_id != $estadoActualId) {
+                $debeCrearRegistro = true;
+            }
+        }
+
+        // Crear el nuevo registro si es necesario
+        if ($debeCrearRegistro) {
+            MembershipHistory::create([
+                'id' => Str::uuid(), // No necesitas esto si usas HasUuids en el modelo MembershipHistory
+                'user_id' => auth()->user()->id, // Asumiendo que tienes autenticación
+                'membership_id' => $membership->id,
+                'start_date' => $now->toDateString(), // Usar la fecha actual
+                'membership_statuses_id' => $estadoActualId,
+            ]);
+        }
+
+        $features = MembershipFeature::allActivated();
+
+        return view('membership.show', compact('membership', 'messageActivate', 'features'));
     }
 
     /**

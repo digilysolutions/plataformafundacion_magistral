@@ -11,6 +11,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MembershipFeatureController;
 use App\Http\Controllers\MembershipFeaturesMembershipController;
+use App\Http\Controllers\MembershipHistoryController;
 use App\Http\Controllers\MembershipPaymentStatusController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudyCenterController;
 use App\Http\Controllers\TutorController;
 use App\Http\Middleware\RoleMiddleware;
+use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
 /*
 Route::get('/', function () {
@@ -104,6 +106,10 @@ Route::middleware('auth')->group(function () {
 // Mostrar un membership específico (show)
 Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo');
 
+
+//memberships History
+Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->middleware('role:Administrador,Centro Educativo');
+Route::get('membership-histories/{iduser}/show-membership-user', [MembershipHistoryController::class, 'showToUser'])->name('membership_histories_user')->middleware('role:Administrador,Centro Educativo');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
