@@ -105,10 +105,10 @@ Route::middleware('auth')->group(function () {
 //memberships
 // Mostrar un membership específico (show)
 Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo');
-
+Route::get('memberships', [MembershipController::class, 'index'])->middleware('role:Administrador,Centro Educativo');
 
 //memberships History
-Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->middleware('role:Administrador,Centro Educativo');
+Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->name('memberships.index')->middleware('role:Administrador,Centro Educativo');
 Route::get('membership-histories/{iduser}/show-membership-user', [MembershipHistoryController::class, 'showToUser'])->name('membership_histories_user')->middleware('role:Administrador,Centro Educativo');
 
 
