@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 
-@section('header-title')
+@section('title-header-admin')
     {{ __('Update') }} Membership Payment Status
 @endsection
 

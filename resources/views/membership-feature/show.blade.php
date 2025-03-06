@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 
-@section('header-title')
+@section('title-header-admin')
     {{ $membershipFeature->name ?? __('Mostrar') . " " . __('Características de la Membresía') }}
 @endsection
 

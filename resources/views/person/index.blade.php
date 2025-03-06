@@ -5,7 +5,7 @@
 @extends('layouts.app-admin')
 
 
-@section('header-title')
+@section('title-header-admin')
     People
 @endsection
 

@@ -1,5 +1,5 @@
 @extends('layouts.app-admin')
-@section('header-title')
+@section('title-header-admin')
    PLataforma Fundación Magistral
 @endsection
 @section('content-admin')

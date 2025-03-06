@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 
-@section('header-title')
+@section('title-header-admin')
     {{ $studyCenter->name ?? __('Mostrar') . ' ' . __('Centro de estudio') }}
 @endsection
 
