@@ -55,8 +55,8 @@
                             </a>
 
                         </li>
-                        <li class="{{ request()->is('students*') ? 'active' : '' }}">
-                            <a href="{{ route('students.index') }}">
+                        <li class="{{ request()->is('study-centers/*') ? 'active' : '' }}">
+                            <a href="{{ route('study_centers.remembership',$user->person->studyCenter->id) }}">
                                 <i class="las la-minus"></i><span>Renovar Membresía</span>
                             </a>
                         </li>
@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li class="{{ request()->is('students*') ? 'active' : '' }}">
-                            <a href="{{ route('students.index') }}">
+                            <a href="{{ route('students.indexToStudyCenter',$user->person->studyCenter->id) }}">
                                 <i class="las la-minus"></i><span>Listar Estudiantes</span>
                             </a>
                         </li>
