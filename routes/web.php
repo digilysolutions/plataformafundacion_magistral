@@ -106,11 +106,24 @@ Route::middleware('auth')->group(function () {
 // Mostrar un membership específico (show)
 Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo');
 Route::get('memberships', [MembershipController::class, 'index'])->middleware('role:Administrador,Centro Educativo');
+Route::post('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'renew'])->name('study_centers.renew_membership')->middleware('role:Administrador,Centro Educativo');
+Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
+
 
 //memberships History
 Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->name('memberships.index')->middleware('role:Administrador,Centro Educativo');
 Route::get('membership-histories/{iduser}/show-membership-user', [MembershipHistoryController::class, 'showToUser'])->name('membership_histories_user')->middleware('role:Administrador,Centro Educativo');
 
+
+//Students
+// Rutas individuales para el recurso students
+Route::get('students/studyCenter/{idstudyCenter}', [StudentController::class, 'indexToStudyCenter'])->name('students.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
+Route::get('students/create', [StudentController::class, 'create'])->name('students.create'); // Para mostrar el formulario de crear estudiante
+Route::post('students', [StudentController::class, 'store'])->name('students.store'); // Para almacenar el nuevo estudiante
+Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show'); // Para mostrar un estudiante específico
+Route::get('students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit'); // Para mostrar el formulario de edición
+Route::put('students/{student}', [StudentController::class, 'update'])->name('students.update'); // Para actualizar el estudiante
+Route::delete('students/{student}', [StudentController::class, 'destroy'])->name('students.destroy'); // Para eliminar un estudiante
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
