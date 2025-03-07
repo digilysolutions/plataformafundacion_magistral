@@ -8,11 +8,12 @@
     @php
         $user = auth()->user(); // O simplemente $user que pasaste desde el controlador
         $user->load('person.studyCenter.membership');
-     /*   dd([
+        $user->load('person.student.membership');
+        //dd(['user_id' => $user->id, 'membership' => $user->person?->student?->membership->id]);
+        /*   dd([
         'user_id' => $user->id,
         'membership' => $user->person?->studyCenter?->membership,
     ]);*/
-
     @endphp
     <!-- loader Start -->
     <div id="loading">
@@ -27,6 +28,8 @@
 
         @if ($user->role == 'Centro Educativo')
             @include('layouts.partials-backend.sidebar-menu-study-center-left')
+        @elseif ($user->role == 'Usuario')
+            @include('layouts.partials-backend.sidebar-menu-user-left')
         @else
             @include('layouts.partials-backend.sidebar-menu-left')
         @endif
