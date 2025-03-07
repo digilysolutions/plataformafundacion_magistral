@@ -68,7 +68,6 @@ class AuthenticatedSessionController extends Controller
         'codigo_seguimiento' => 'required|string', // Agrega la validación del código
     ]);
 
-
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
         // Autenticación exitosa: el usuario existe y las credenciales son correctas
         // **********************************************************************
@@ -99,6 +98,7 @@ class AuthenticatedSessionController extends Controller
             case 4:
                 return redirect()->route('validator.dashboard');
             case 5:
+
                 return redirect()->route('admin.dashboard');
             case 6:
                 if(!$user->person->student->where('id',$request->codigo_seguimiento)->first())
@@ -116,7 +116,6 @@ class AuthenticatedSessionController extends Controller
         // La autenticación falló
         // Verifica si el usuario existe con el email y código de seguimiento
         $userExists = User::where('email', $request->email)
-                           ->where('codigo_seguimiento', $request->codigo_seguimiento)
                            ->exists();
         // **********************************************************************
 
