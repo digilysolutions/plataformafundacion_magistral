@@ -128,7 +128,7 @@
                             </a>
                         </li>
                         <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
-                            <a href="{{ route('students.index') }}">
+                            <a href="{{ route('tutors.indexToStudyCenter', $user->person->studyCenter->id) }}">
                                 <i class="las la-minus"></i><span>Tutores registrados </span>
                             </a>
                         </li>
