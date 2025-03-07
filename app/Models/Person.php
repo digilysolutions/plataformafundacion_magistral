@@ -35,9 +35,9 @@ class Person extends ModelMain
      */
     protected $fillable = ['activated', 'name', 'lastname', 'email', 'phone', 'tracking_code','user_id'];
 
-    public function student()
+    public function student(): HasOne
     {
-        return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
+        return $this->hasOne(Student::class,'people_id');
     }
 
     /**
