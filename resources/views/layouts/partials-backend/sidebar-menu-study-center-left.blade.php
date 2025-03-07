@@ -177,7 +177,7 @@
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                                     <a href="{{ route('study-centers.index') }}">
-                                        <i class="las la-minus"></i><span>Exámenes Pruebas Diagnóstico </span>
+                                        <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>
                             </ul>
@@ -208,7 +208,7 @@
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                                     <a href="{{ route('study-centers.index') }}">
-                                        <i class="las la-minus"></i><span>Exámenes Pruebas Diagnóstico</span>
+                                        <i class="las la-minus"></i><span>Pruebas Diagnóstico</span>
                                     </a>
                                 </li>
                             </ul>
@@ -255,7 +255,7 @@
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                                     <a href="{{ route('study-centers.index') }}">
-                                        <i class="las la-minus"></i><span>Exámenes Pruebas Diagnóstico </span>
+                                        <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>
                             </ul>
@@ -286,7 +286,7 @@
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                                     <a href="{{ route('study-centers.index') }}">
-                                        <i class="las la-minus"></i><span>Exámenes Pruebas Diagnóstico</span>
+                                        <i class="las la-minus"></i><span> Pruebas Diagnóstico</span>
                                     </a>
                                 </li>
                             </ul>
