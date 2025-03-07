@@ -311,12 +311,12 @@
 
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                             <a href="{{ route('study-centers.index') }}">
-                                <i class="las la-minus"></i><span>Reporte General</span>
+                                <i class="las la-minus"></i><span>Reporte Centro</span>
                             </a>
                         </li>
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                             <a href="{{ route('study-centers.index') }}">
-                                <i class="las la-minus"></i><span>Reporte Individual</span>
+                                <i class="las la-minus"></i><span>Reporte Estudiante</span>
                             </a>
                         </li>
                         <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
