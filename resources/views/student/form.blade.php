@@ -19,6 +19,9 @@
                 class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $student?->email) }}"
                 id="email" placeholder="Correo">
             <div class="help-block with-errors"></div>
+            @error('password')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         </div>
         <div class="form-group mb-2 mb20">
             <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
