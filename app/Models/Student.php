@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
-
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 /**
  * Class Student
  *
@@ -27,7 +27,7 @@ use Ramsey\Uuid\Uuid;
  */
 class Student extends ModelMain
 {
-
+    use HasUuids;
     protected $perPage = 20;
 
     /**
@@ -35,7 +35,7 @@ class Student extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated', 'people_id', 'course', 'studycenters_id', 'user_id', 'membership_id'];
+    protected $fillable = ['activated', 'people_id', 'course', 'studycenters_id','membership_id'];
 
 
     /**
@@ -58,5 +58,10 @@ class Student extends ModelMain
     {
         return $this->belongsTo(\App\Models\StudyCenter::class, 'studycenters_id', 'id');
     }
+    public function person()
+    {
+        return $this->belongsTo(\App\Models\Person::class,'people_id', 'id');
+    }
+
 
 }

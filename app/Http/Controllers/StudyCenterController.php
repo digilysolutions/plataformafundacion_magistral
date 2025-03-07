@@ -38,6 +38,7 @@ class StudyCenterController extends Controller
         return view('study-center.create', compact('studyCenter', 'memberships', 'regionals', 'destritos'));
     }
 
+
     /**
      * Store a newly created resource in storage.
      */

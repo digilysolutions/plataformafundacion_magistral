@@ -33,7 +33,7 @@ class Person extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated', 'name', 'lastname', 'email', 'phone', 'tracking_code'];
+    protected $fillable = ['activated', 'name', 'lastname', 'email', 'phone', 'tracking_code','user_id'];
 
     public function student()
     {

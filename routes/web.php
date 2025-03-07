@@ -118,12 +118,13 @@ Route::get('membership-histories/{iduser}/show-membership-user', [MembershipHist
 //Students
 // Rutas individuales para el recurso students
 Route::get('students/studyCenter/{idstudyCenter}', [StudentController::class, 'indexToStudyCenter'])->name('students.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
-Route::get('students/create', [StudentController::class, 'create'])->name('students.create'); // Para mostrar el formulario de crear estudiante
-Route::post('students', [StudentController::class, 'store'])->name('students.store'); // Para almacenar el nuevo estudiante
-Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show'); // Para mostrar un estudiante específico
-Route::get('students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit'); // Para mostrar el formulario de edición
-Route::put('students/{student}', [StudentController::class, 'update'])->name('students.update'); // Para actualizar el estudiante
-Route::delete('students/{student}', [StudentController::class, 'destroy'])->name('students.destroy'); // Para eliminar un estudiante
+Route::get('students/create', [StudentController::class, 'create'])->name('students.create')->middleware('role:Administrador'); // Para mostrar el formulario de crear estudiante
+Route::post('students', [StudentController::class, 'store'])->name('students.store')->middleware('role:Administrador'); // Para almacenar el nuevo estudiante
+Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show')->middleware('role:Administrador');  // Para mostrar un estudiante específico
+Route::get('students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit')->middleware('role:Administrador');  // Para mostrar el formulario de edición
+Route::put('students/{student}', [StudentController::class, 'update'])->name('students.update')->middleware('role:Administrador');  // Para actualizar el estudiante
+Route::delete('students/{student}', [StudentController::class, 'destroy'])->name('students.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
+Route::get('students/create/{idStudyCenter}', [StudentController::class, 'createStudentToStudyCenter'])->name('students.createStudentToStudyCenter')->middleware('role:Centro Educativo');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -142,7 +143,7 @@ Route::delete('students/{student}', [StudentController::class, 'destroy'])->name
     Route::resource('tutors', TutorController::class);
     Route::resource('membership-payment-statuses', MembershipPaymentStatusController::class);
 
-    Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador,Centro Educativo');
+    Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
     Route::resource('students', StudentController::class);
     Route::get('/students/activate/{tracking_code}', [StudentController::class, 'activate'])->name('students.activate');
     Route::post('/students/updatePassword', [StudentController::class, 'updatePassword'])->name('students.update_password');

@@ -88,8 +88,8 @@
                     </a>
                     <ul id="estudiantes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="{{ route('study-centers.index') }}">
+                        <li class="{{ request()->is('students*') ? 'active' : '' }}">
+                            <a href="{{ route('students.createStudentToStudyCenter',$user->person->studyCenter->id) }}">
                                 <i class="las la-minus"></i><span>Registrar estudiantes</span>
                             </a>
                         </li>

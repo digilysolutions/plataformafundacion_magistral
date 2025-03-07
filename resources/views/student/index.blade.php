@@ -62,7 +62,7 @@
                                             <td>{{ $student->person->name }} {{ $student->person->lastname }}</td>
                                             <td>{{ $student->course }}</td>
                                             <td>{{ $student->studyCenter->name }}</td>
-                                            <td>{{ $student->user->name }}</td>
+                                            <td>{{ $student->person->user->name }}</td>
                                             <td>{{ $student->membership->name }}</td>
 
                                             <td>

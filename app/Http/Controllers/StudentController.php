@@ -45,37 +45,58 @@ class StudentController extends Controller
             $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
                 . 'Si quieres crear un centro de estudio, puedes hacerlo '
                 . '<a href="' . route('study-centers.create') . '"> aquí</a>.';
-            $students = Student::all();
+            $students = Student::allActivated();
             return view('student.index', compact('students'))->with('error', $error);
         }
         return view('student.create', compact('student', 'studyCenters'));
     }
+    public function createStudentToStudyCenter($idStudyCenter): View
+    {
+        $student = new Student();
+        $studyCenters = StudyCenter::allActivated();
 
+        if (count($studyCenters) == 0) {
+            $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
+                . 'Si quieres crear un centro de estudio, puedes hacerlo '
+
+                . '<a href="' . route('study-centers.create') . '"> aquí</a>.';
+            $students = $this->indexToStudyCenter($idStudyCenter);
+            return view('student.index', compact('students'))->with('error', $error);
+        }
+        return view('student.create', compact('student', 'studyCenters','idStudyCenter'));
+
+
+
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(StudentRequest $request)
     {
         $data = $request->validated();
-
+        $data['username']= (isset($request->username) && !empty($request->username))? $request->username: $request->name;
         $data['activated'] = true;
+        $data['password']=$request->password;
+        $data['studycenters_id']=$request->studycenters_id;
         // Iniciar una transacción para asegurar la consistencia
 
         DB::transaction(function () use ($data) {
             // Crear la persona
-            $person = Person::create($data);
 
-            $data['people_id'] = $person->id;
             // Crear el usuario
             $user = User::create([
-                'name' => $person->name,
-                'email' => $person->email,
-                'password' => bcrypt($person->email), // Contraseña inicial
+                'name' => $data['username'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']), // Contraseña inicial
                 'activated' => true,
                 'role' => 'Estudiante',
                 'roleid' => 2
             ]);
+
             $data['user_id'] = $user->id;
+            $person = Person::create($data);
+
+            $data['people_id'] = $person->id;
             // Crear el estudiante
             $studyCenter = StudyCenter::find($data['studycenters_id']);
             $data['membership_id'] = $studyCenter->membership_id;
@@ -145,7 +166,6 @@ class StudentController extends Controller
         $data = $request->all();
         $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
         $student->update($data);
-
         return Redirect::route('students.index')
             ->with('success', 'Student actualizado satisfactoriamente');
     }
