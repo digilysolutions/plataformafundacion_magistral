@@ -104,7 +104,7 @@ Route::middleware('auth')->group(function () {
 
 //memberships
 // Mostrar un membership específico (show)
-Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo');
+Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo,Usuario');
 Route::get('memberships', [MembershipController::class, 'index'])->middleware('role:Administrador,Centro Educativo');
 Route::post('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'renew'])->name('study_centers.renew_membership')->middleware('role:Administrador,Centro Educativo');
 Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
