@@ -122,6 +122,16 @@
                                                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="floating-label form-group">
+                                                            <input class="floating-input form-control" name="codigo_seguimiento"
+                                                                type="text" placeholder=" " required
+                                                                 />
+                                                            <label>Código</label>
+                                                            <x-input-error :messages="$errors->get('codigo_seguimiento')" class="mt-2" />
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-lg-6">
                                                         <div class="custom-control custom-checkbox mb-3">
                                                             <input type="checkbox" class="custom-control-input"

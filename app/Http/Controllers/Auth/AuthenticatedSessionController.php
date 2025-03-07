@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,59 +61,74 @@ class AuthenticatedSessionController extends Controller
     }*/
 
     public function store(Request $request)
-    {
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+        'codigo_seguimiento' => 'required|string', // Agrega la validación del código
+    ]);
 
 
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Autenticación exitosa: el usuario existe y las credenciales son correctas
+        // **********************************************************************
+        // Obtener el rol del usuario
+        $user = Auth::user();
+        $roleid = $user->roleid;
 
-        $user = Auth::attempt($request->only('email', 'password'));
-
-
-        if ($user) {
-            $user = Auth::user();
-
-
-            // Obtener el rol del usuario
-            $roleid = $user->roleid;
-
-            // Redirigir al dashboard correspondiente
-            switch ($roleid) {
-                case 1:
-                    if (
-                        !$user->person ||
-                        !$user->person->studyCenter
-                    ) {
-                        Auth::logout();
-                        return redirect('/login')->with('error', 'Este usuario no está asignado a un centro de estudio o no tiene los permisos necesarios.');
-                    }
-                    return redirect()->route('study-center.dashboard');
-                case 2:
-
-                    return redirect()->route('student.dashboard');
-                case 3:
-
-                    return redirect()->route('tutor.dashboard');
-                case 4:
-
-                    return redirect()->route('validator.dashboard');
-                case 5:
-
-                    return redirect()->route('admin.dashboard');
-
-                case 6:
-                    return redirect()->route('user.dashboard');
-                default:
-                    return redirect('/');
-            }
+        // Redirigir al dashboard correspondiente
+        switch ($roleid) {
+            case 1:
+                if (
+                    !$user->person ||
+                    !$user->person->studyCenter
+                ) {
+                    Auth::logout();
+                    return redirect('/login')->with('error', 'Este usuario no está asignado a un centro de estudio o no tiene los permisos necesarios.');
+                }
+                if(!$user->person->where('id',$request->codigo_seguimiento)->first())
+                {
+                    Auth::logout();
+                    return redirect('/login')->with('error', 'Este usuario no tiene los permisos necesarios.Error de código');
+                }
+                return redirect()->route('study-center.dashboard');
+            case 2:
+                return redirect()->route('student.dashboard');
+            case 3:
+                return redirect()->route('tutor.dashboard');
+            case 4:
+                return redirect()->route('validator.dashboard');
+            case 5:
+                return redirect()->route('admin.dashboard');
+            case 6:
+                return redirect()->route('user.dashboard');
+            default:
+                return redirect('/');
         }
 
-        return back()->withErrors([
-            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
-        ]);
+    } else {
+        // **********************************************************************
+        // La autenticación falló
+        // Verifica si el usuario existe con el email y código de seguimiento
+        $userExists = User::where('email', $request->email)
+                           ->where('codigo_seguimiento', $request->codigo_seguimiento)
+                           ->exists();
+        // **********************************************************************
+
+        if ($userExists) {
+            // El usuario existe con el email y código de seguimiento, pero la contraseña es incorrecta
+            return back()->withErrors([
+                'password' => 'Contraseña incorrecta.',
+            ]);
+        } else {
+            // El usuario no existe con las credenciales proporcionadas (email y/o código incorrectos)
+            return back()->withErrors([
+                'email' => 'Las credenciales (email y/o código de seguimiento) proporcionadas no coinciden con nuestros registros.',
+            ]);
+        }
+
     }
+}
 
     /**
      * Destroy an authenticated session.
