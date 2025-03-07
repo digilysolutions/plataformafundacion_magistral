@@ -115,6 +115,10 @@ Route::get('membership-histories', [MembershipHistoryController::class, 'index']
 Route::get('membership-histories/{iduser}/show-membership-user', [MembershipHistoryController::class, 'showToUser'])->name('membership_histories_user')->middleware('role:Administrador,Centro Educativo');
 
 
+//Tutors
+Route::resource('tutors', TutorController::class)->middleware('role:Administrador');
+Route::get('tutors/studyCenter/{idstudyCenter}', [TutorController::class, 'indexToStudyCenter'])->name('tutors.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
+
 //Students
 // Rutas individuales para el recurso students
 Route::get('students/studyCenter/{idstudyCenter}', [StudentController::class, 'indexToStudyCenter'])->name('students.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
@@ -140,7 +144,7 @@ Route::get('students/create/{idStudyCenter}', [StudentController::class, 'create
     Route::resource('membership-features-memberships', MembershipFeaturesMembershipController::class);
 
 
-    Route::resource('tutors', TutorController::class);
+
     Route::resource('membership-payment-statuses', MembershipPaymentStatusController::class);
 
     Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
