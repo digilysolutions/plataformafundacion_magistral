@@ -18,26 +18,19 @@
 
                 <li class="">
                     <a href="{{ route('admin.dashboard') }}" class="svg-icon">
-                        <svg class="svg-icon" id="p-dash1" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                            </path>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                        </svg>
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                          </svg>
                         <span class="ml-4">Escritorio</span>
                     </a>
                 </li>
                 <li class=" ">
                     <a href="#membresia" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash5" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                        </svg>
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                          </svg>
                         <span class="ml-4">Membresía</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -71,14 +64,10 @@
 
                 <li class=" ">
                     <a href="#tutores" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash8" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                          </svg>
                         <span class="ml-4">Tutores</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -106,9 +95,13 @@
 
                 <li class="">
                     <a href="#items" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash14" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
-                        </svg>
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                          </svg>
                         <span class="ml-4">Resolver Items</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -137,9 +130,11 @@
                 </li>
                 <li class="">
                     <a href="#examenes" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash13" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                        </svg>
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
+                            <path d="M16 2v4a2 2 0 0 0 2 2H22"></path>
+                            <line x1="13" y1="11" x2="22" y2="11"></line>
+                          </svg>
                         <span class="ml-4">Realizar Exámenes</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -169,9 +164,11 @@
 
                 <li class=" ">
                     <a href="#progreso" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash9" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="9"></rect><rect x="14" y="7" width="3" height="5"></rect>
-                        </svg>
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a10 10 0 0 1 0 20"></path>
+                            <path d="M12 6v6l4 2"></path>
+                          </svg>
                         <span class="ml-4">Progreso en Plataforma</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -183,9 +180,9 @@
                     <ul id="progreso" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li>
                             <a href="#items_resueltos" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <svg class="svg-icon" id="p-dash07" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
+                                <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                  </svg>
                                 <span class="ml-4">ITEMS Resueltos</span>
                                 <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -194,7 +191,7 @@
                                     <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                                 </svg>
                             </a>
-                            <ul id="items_resueltos" class="iq-submenu collapse" data-parent="#items">
+                            <ul id="items_resueltos" class="iq-submenu collapse" data-parent="#progreso">
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                                     <a href="{{ route('study-centers.index') }}">
                                         <i class="las la-minus"></i><span>Prueba PISA</span>
@@ -214,9 +211,10 @@
                         </li>
                         <li>
                             <a href="#items_noresueltos" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <svg class="svg-icon" id="p-dash18" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
-                                </svg>
+                                <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                  </svg>
                                 <span class="ml-4">ITEMS No Resueltos</span>
                                 <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -225,7 +223,72 @@
                                     <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                                 </svg>
                             </a>
-                            <ul id="items_noresueltos" class="iq-submenu collapse" data-parent="#items">
+                            <ul id="items_noresueltos" class="iq-submenu collapse" data-parent="#progreso">
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Pruebas PISA</span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Pruebas Nacionales</span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Pruebas Diagnóstico</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#examenes_resueltos" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                  </svg>
+                                <span class="ml-4">Exámenes Resueltos</span>
+                                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="10 15 15 20 20 15"></polyline>
+                                    <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                                </svg>
+                            </a>
+                            <ul id="examenes_resueltos" class="iq-submenu collapse" data-parent="#items">
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Prueba PISA</span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Pruebas Nacionales </span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#examenes_noresueltos" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                                  </svg>
+                                <span class="ml-4">Exámenes No Resueltos</span>
+                                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="10 15 15 20 20 15"></polyline>
+                                    <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                                </svg>
+                            </a>
+                            <ul id="examenes_noresueltos" class="iq-submenu collapse" data-parent="#progreso">
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                                     <a href="{{ route('study-centers.index') }}">
                                         <i class="las la-minus"></i><span>Pruebas PISA</span>
@@ -245,21 +308,36 @@
                         </li>
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                             <a href="{{ route('study-centers.index') }}">
-                                <i class="las la-minus"></i><span>Tiempo en Plataforma </span>
+                                <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2 L12 22 M4 12 L20 12" />
+                                    <circle cx="12" cy="12" r="8"></circle>
+                                  </svg>
+                               <span  class="ml-4">Tiempo en Plataforma </span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="{{ route('study-centers.index') }}">
-                                <i class="las la-minus"></i><span>Imprimir Reporte </span>
-                            </a>
-                        </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="{{ route('study-centers.index') }}">
-                                <i class="las la-minus"></i><span>Solicitar Certificado
-                                </span>
-                            </a>
-                        </li>
+
                     </ul>
+                </li>
+                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                    <a href="{{ route('study-centers.index') }}">
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                          </svg>
+                        <span class="ml-4">Imprimir Reporte</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                    <a href="{{ route('study-centers.index') }}">
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="3" x2="16" y2="7"></line>
+                            <line x1="8" y1="3" x2="8" y2="7"></line>
+                            <line x1="3" y1="11" x2="21" y2="11"></line>
+                          </svg>
+                        <span class="ml-4">Solicitar Certificado</span>
+                    </a>
                 </li>
 
             </ul>
