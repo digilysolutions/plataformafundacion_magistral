@@ -86,7 +86,7 @@ class AuthenticatedSessionController extends Controller
                     Auth::logout();
                     return redirect('/login')->with('error', 'Este usuario no está asignado a un centro de estudio o no tiene los permisos necesarios.');
                 }
-                if(!$user->person->where('id',$request->codigo_seguimiento)->first())
+                if(!$user->person->studyCenter->where('id',$request->codigo_seguimiento)->first())
                 {
                     Auth::logout();
                     return redirect('/login')->with('error', 'Este usuario no tiene los permisos necesarios.Error de código');
