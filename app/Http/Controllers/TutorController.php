@@ -25,6 +25,12 @@ class TutorController extends Controller
 
         return view('tutor.index', compact('tutors'));
     }
+    public function indexToStudyCenter($studycenters_id): View
+    {
+        $tutors = Tutor::allActivated()->where('studycenters_id',$studycenters_id);
+        return view('tutor.index', compact('tutors'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
