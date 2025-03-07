@@ -69,8 +69,6 @@ class MembershipController extends Controller
      */
     public function show($id): View
     {
-     $resultado =$this->SumarDosNumros(1526,256);
-     dd($resultado);
 
         $membership = Membership::findOrFail($id);
 
@@ -259,8 +257,5 @@ class MembershipController extends Controller
     }
 
 
-    public function SumarDosNumros($numero1, $numero2) {
-        $resultado =$numero1 - $numero2;
-        return $resultado ." Excelente calcula. Gracias Hellen";
-    }
+
 }
