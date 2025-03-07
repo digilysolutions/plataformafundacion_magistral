@@ -19,7 +19,7 @@
                 class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $student?->email) }}"
                 id="email" placeholder="Correo">
             <div class="help-block with-errors"></div>
-            @error('password')
+            @error('email')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         </div>
