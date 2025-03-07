@@ -69,6 +69,9 @@ class MembershipController extends Controller
      */
     public function show($id): View
     {
+     $resultado =$this->SumarDosNumros(1526,256);
+     dd($resultado);
+
         $membership = Membership::findOrFail($id);
 
         $now = now();
@@ -253,5 +256,11 @@ class MembershipController extends Controller
             $messageActivate = 'Centro de estudio no tiene una membresía activa.';
             return view('membership.show', compact('membership', 'messageActivate', 'features'));
         }
+    }
+
+
+    public function SumarDosNumros($numero1, $numero2) {
+        $resultado =$numero1 - $numero2;
+        return $resultado ." Excelente calcula. Gracias Hellen";
     }
 }

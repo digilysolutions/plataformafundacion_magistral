@@ -46,6 +46,9 @@
                         {{ $specialty->name }}</option>
                 @endforeach
                 </select>
+                @error('password')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
                 <div class="help-block with-errors"></div>
         </div>
     <div class="col-md-12 mt20 mt-2">

@@ -10,11 +10,12 @@ use App\Mail\StudentConfirmationMail;
 use App\Models\Person;
 use App\Models\StudyCenter;
 use App\Models\User;
+use App\Validators\PasswordValidator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
     /**
@@ -79,15 +80,18 @@ class StudentController extends Controller
         $data['password']=$request->password;
         $data['studycenters_id']=$request->studycenters_id;
         // Iniciar una transacción para asegurar la consistencia
-
+        $validator = PasswordValidator::validate($data);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
         DB::transaction(function () use ($data) {
-            // Crear la persona
+
 
             // Crear el usuario
             $user = User::create([
                 'name' => $data['username'],
                 'email' => $data['email'],
-                'password' => bcrypt($data['password']), // Contraseña inicial
+                'password' => Hash::make($data['password']), // Contraseña inicial
                 'activated' => true,
                 'role' => 'Estudiante',
                 'roleid' => 2

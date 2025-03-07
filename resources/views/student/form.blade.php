@@ -65,6 +65,9 @@
             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                  id="password" placeholder="Contraseña">
             <div class="help-block with-errors"></div>
+            @error('password')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         </div>
 
     </div>
