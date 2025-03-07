@@ -157,6 +157,9 @@ Route::get('students/create/{idStudyCenter}', [StudentController::class, 'create
 
     Route::get('/distritos/{regional_id}', [StudyCenterController::class, 'getDistritos']);
 
+    Route::get('/user/dashboard', function () {
+        return view('user.dashboard'); // Vista para el dashboard del usuario
+    })->name('user.dashboard');
 
     //Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
