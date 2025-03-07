@@ -213,7 +213,13 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
+                            <a href="{{ route('tutors.indexToStudyCenter', $user->person->studyCenter->id) }}">
+                                <i class="las la-minus"></i><span>ITEMS Validados</span>
+                            </a>
+                        </li>
                     </ul>
+
                 </li>
                 <li class="">
                     <a href="#examenes" class="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -319,11 +325,7 @@
                                 <i class="las la-minus"></i><span>Reporte Estudiante</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
-                            <a href="{{ route('tutors.indexToStudyCenter', $user->person->studyCenter->id) }}">
-                                <i class="las la-minus"></i><span>ITEMS Validados</span>
-                            </a>
-                        </li>
+
 
 
                     </ul>
