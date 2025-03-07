@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+
 class StudentController extends Controller
 {
     /**
@@ -30,7 +31,7 @@ class StudentController extends Controller
 
     public function indexToStudyCenter($studycenters_id): View
     {
-        $students = Student::allActivated()->where('studycenters_id',$studycenters_id);
+        $students = Student::allActivated()->where('studycenters_id', $studycenters_id);
         return view('student.index', compact('students'));
     }
 
@@ -64,10 +65,7 @@ class StudentController extends Controller
             $students = $this->indexToStudyCenter($idStudyCenter);
             return view('student.index', compact('students'))->with('error', $error);
         }
-        return view('student.create', compact('student', 'studyCenters','idStudyCenter'));
-
-
-
+        return view('student.create', compact('student', 'studyCenters', 'idStudyCenter'));
     }
     /**
      * Store a newly created resource in storage.
@@ -75,43 +73,54 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $data = $request->validated();
-        $data['username']= (isset($request->username) && !empty($request->username))? $request->username: $request->name;
+
+        $data['username'] = (isset($request->username) && !empty($request->username)) ? $request->username : $request->name;
         $data['activated'] = true;
-        $data['password']=$request->password;
-        $data['studycenters_id']=$request->studycenters_id;
+        $data['password'] = $request->password;
+        $data['studycenters_id'] = $request->studycenters_id;
         // Iniciar una transacción para asegurar la consistencia
         $validator = PasswordValidator::validate($data);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-        DB::transaction(function () use ($data) {
+        $students = Student::allActivated()->count();
+        $studyCenter = StudyCenter::find($data['studycenters_id']);
+
+        //Obtener la membresía del centro de estudio
+        $membership = $studyCenter->membership;
+        $studentLimit = $membership->student_limit;
+        if ($studentLimit === null || $students < $studentLimit) {
+            DB::transaction(function () use ($data) {
 
 
-            // Crear el usuario
-            $user = User::create([
-                'name' => $data['username'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']), // Contraseña inicial
-                'activated' => true,
-                'role' => 'Estudiante',
-                'roleid' => 2
-            ]);
+                // Crear el usuario
+                $user = User::create([
+                    'name' => $data['username'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']), // Contraseña inicial
+                    'activated' => true,
+                    'role' => 'Estudiante',
+                    'roleid' => 2
+                ]);
 
-            $data['user_id'] = $user->id;
-            $person = Person::create($data);
+                $data['user_id'] = $user->id;
+                $person = Person::create($data);
 
-            $data['people_id'] = $person->id;
-            // Crear el estudiante
-            $studyCenter = StudyCenter::find($data['studycenters_id']);
-            $data['membership_id'] = $studyCenter->membership_id;
-            $student = Student::create($data);
+                $data['people_id'] = $person->id;
+                // Crear el estudiante
 
-            // Enviar correo de confirmación
-            //  Mail::to($person->email)->send(new StudentConfirmationMail($student->id));
-        });
+                $data['membership_id'] = $studyCenter->membership_id;
+                $student = Student::create($data);
 
+                // Enviar correo de confirmación
+                //  Mail::to($person->email)->send(new StudentConfirmationMail($student->id));
+            });
+
+            return Redirect::route('students.index')
+                ->with('success', 'Estudiante creado satisfactoriamente.');
+        }
         return Redirect::route('students.index')
-            ->with('success', 'Estudiante creado satisfactoriamente.');
+            ->with('error', 'No puede agregar más estudiantes.');
     }
     public function updatePassword(Request $request, $studentId)
     {
@@ -159,7 +168,7 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $studyCenters = StudyCenter::allActivated();
-        return view('student.edit', compact('student','studyCenters'));
+        return view('student.edit', compact('student', 'studyCenters'));
     }
 
     /**
