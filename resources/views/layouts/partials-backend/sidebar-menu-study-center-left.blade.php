@@ -218,6 +218,11 @@
                                 <i class="las la-minus"></i><span>ITEMS Validados</span>
                             </a>
                         </li>
+                        <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
+                            <a href="{{ route('tutors.indexToStudyCenter', $user->person->studyCenter->id) }}">
+                                <i class="las la-minus"></i><span>Enviar ITEMS</span>
+                            </a>
+                        </li>
                     </ul>
 
                 </li>
