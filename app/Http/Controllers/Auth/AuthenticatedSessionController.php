@@ -101,6 +101,11 @@ class AuthenticatedSessionController extends Controller
             case 5:
                 return redirect()->route('admin.dashboard');
             case 6:
+                if(!$user->person->student->where('id',$request->codigo_seguimiento)->first())
+                {
+                    Auth::logout();
+                    return redirect('/login')->with('error', 'Este usuario no tiene los permisos necesarios.Error de código');
+                }
                 return redirect()->route('user.dashboard');
             default:
                 return redirect('/');
