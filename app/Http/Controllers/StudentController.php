@@ -154,8 +154,8 @@ class StudentController extends Controller
     public function edit($id): View
     {
         $student = Student::find($id);
-
-        return view('student.edit', compact('student'));
+        $studyCenters = StudyCenter::allActivated();
+        return view('student.edit', compact('student','studyCenters'));
     }
 
     /**

@@ -63,7 +63,7 @@
         <div class="form-group mb-2 mb20">
             <label for="password" class="form-label">{{ __('Contraseña') }}</label>
             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                value="{{ old('password', $student?->person?->user->password) }}" id="password" placeholder="Contraseña">
+                 id="password" placeholder="Contraseña">
             <div class="help-block with-errors"></div>
         </div>
 

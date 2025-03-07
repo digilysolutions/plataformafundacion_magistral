@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Usuario:</strong>
-                            {{ $student->user->name }}
+                            {{ $student->person->user->name }}
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Membresía:</strong>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>
-                            @if ($regional->activated == 1)
+                            @if ($student->activated == 1)
                                 Si
                             @else
                                 No
