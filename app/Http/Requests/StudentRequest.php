@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentRequest extends FormRequest
 {
@@ -22,15 +23,26 @@ class StudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-
-			'course' => 'string',
-			'studycenters_id' => 'required',
+            'course' => 'string',
+            'studycenters_id' => 'required',
             //Person
             'name' => 'required|string',
-			'lastname' => 'nullable|string',
-			'email' => 'nullable|string',
-			'phone' => 'nullable|string'
+            'lastname' => 'nullable|string',
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($this->user ? $this->user->id : null),
+            ],
+            'phone' => 'nullable|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => 'Este correo electrónico ya está registrado.',
+            // Otros mensajes personalizados...
         ];
     }
 }
