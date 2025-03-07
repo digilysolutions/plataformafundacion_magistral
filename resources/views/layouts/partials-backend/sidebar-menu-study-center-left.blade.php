@@ -311,7 +311,7 @@
 
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                             <a href="{{ route('study-centers.index') }}">
-                                <i class="las la-minus"></i><span>Tiempo en Plataforma</span>
+                                <i class="las la-minus"></i><span>Reporte General</span>
                             </a>
                         </li>
                         <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
