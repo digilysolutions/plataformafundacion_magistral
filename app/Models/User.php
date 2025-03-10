@@ -34,7 +34,8 @@ class User extends Authenticatable
         'password',
         'roleid',
         'google_id',
-        'verification_token'
+        'verification_token',
+        'verification_code'
     ];
 
     /**

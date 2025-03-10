@@ -24,12 +24,13 @@ class VerificationEmail extends Mailable
     }
     public function build()
     {
-        return $this
-        ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Verifica tu correo')
+        return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Verifica tu correo')
             ->view('emails.verification')
             ->with([
                 'url' => route('verify', $this->user->verification_token),
-            ]);
+                'verificationCode' => $this->user->verification_code,
+            ])
+            ->with('user', $this->user); ;
     }
     /**
      * Get the message envelope.

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('verification_token')->nullable();
+            $table->integer('verification_code')->nullable(); // Cambiar a integer
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
         });

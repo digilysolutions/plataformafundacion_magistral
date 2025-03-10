@@ -101,6 +101,9 @@ Route::middleware('roles:Administrator')->group(function () {
 
 });*/
 Route::get('/verify/{token}', [RegisteredUserController::class, 'verify'])->name('verify');
+Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->name('thankYou');
+// Ruta para procesar el código de verificación
+Route::post('/verify-email', [RegisteredUserController::class, 'verifyEmail'])->name('verifyEmail');
 Route::middleware('auth')->group(function () {
 
 //memberships
