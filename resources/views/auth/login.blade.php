@@ -140,13 +140,13 @@
                                                                 for="customCheck1">Recuérdame</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <!--- <div class="col-lg-6">
                                                         @if (Route::has('password.request'))
                                                             <a href="{{ route('password.request') }}"
                                                                 class="text-primary float-right">¿Olvidaste tu
                                                                 Contraseña?</a>
                                                         @endif
-                                                    </div>
+                                                    </div> --->
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                                                 <p class="mt-3">
