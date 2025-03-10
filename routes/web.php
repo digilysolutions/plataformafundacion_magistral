@@ -100,6 +100,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
 Route::middleware('roles:Administrator')->group(function () {
 
 });*/
+Route::get('/verify/{token}', [RegisteredUserController::class, 'verify'])->name('verify');
 Route::middleware('auth')->group(function () {
 
 //memberships

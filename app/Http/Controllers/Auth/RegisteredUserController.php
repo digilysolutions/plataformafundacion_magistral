@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
+use App\Mail\VerificationEmail;
+use App\Models\Person;
+use App\Models\Student;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -31,20 +36,50 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'lastname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'activated' => true,
             'password' => Hash::make($request->password),
+            'verification_token' => Str::random(40),
+            'role' => 'Usuario',
+            'roleid' => 6
         ]);
 
+        $person = Person::create(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'lastname' => $request->lastname,
+                'phone' => $request->lastname,
+                'activated' => true,
+                'user_id' => $user->id
+            ]
+        );
+
+        $student = Student::create(
+            [
+                'name' => $request->name,
+                'activated' => true,
+                'course' => $request->course,
+                'people_id' =>$person->id,
+                'membership_id' =>null,
+
+
+            ]
+        );
+
+
         event(new Registered($user));
-
         Auth::login($user);
+        Mail::to($user->email)->send(new VerificationEmail($user));
+        return redirect()->route('user.dashboard');
 
-        return redirect(route('dashboard', absolute: false));
+      //  return redirect(route('dashboard', absolute: false));
     }
 }
