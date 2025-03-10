@@ -41,6 +41,7 @@
         </div>
 
         <!-- Confirm Password -->
+
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
 
