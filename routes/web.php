@@ -43,7 +43,7 @@ Route::get('/notaccess', function () {
 });
 //Registro (register):
 Route::get('register', function () {
-    return view('auth.register');
+    return view('register');
 })->name('register');
 
 //Recuperación de contraseña (forgot-password):
