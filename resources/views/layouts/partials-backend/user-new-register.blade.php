@@ -57,7 +57,7 @@
                     </a>
                 </div>
                 <a class="right-ic btn btn-primary btn-block position-relative p-2"
-                    href="{{route('students.index'),[$studycenter=>id]}}" role="button">
+                    href="" role="button">
                     Ver todos
                 </a>
             </div>
