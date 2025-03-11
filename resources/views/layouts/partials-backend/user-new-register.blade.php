@@ -3,7 +3,7 @@
     <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="ri-user-line"></i>
-        <span class="badge badge-primary badge-card">3</span>
+        <span class="badge badge-primary badge-card"></span>
     </a>
     <div class="iq-sub-dropdown dropdown-menu position-left"
         aria-labelledby="dropdownMenuButton2">
@@ -12,7 +12,7 @@
                 <div class="cust-title p-3">
                     <div class="d-flex align-items-center justify-content-between">
                         <h5 class="mb-0">Nuevos Estudiates</h5>
-                        <a class="badge badge-primary badge-card" href="#"></a>
+                        <a class="badge badge-primary badge-card" href="#">3</a>
                     </div>
                 </div>
                 <div class="px-3 pt-0 pb-0 sub-card">
