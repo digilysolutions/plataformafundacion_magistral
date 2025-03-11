@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Centro de estudio:</strong>
-                            {{ $student->studyCenter->name }}
+                            @if($student->studyCenter) {{ $student->studyCenter->name }} @else No pertenece @endif
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Usuario:</strong>
@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Membresía:</strong>
-                            {{ $student->membership->name }}
+                            @if($student->membership){{ $student->membership->name }} @else Sin membresía @endif
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StudentRequest extends FormRequest
+class StudentUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,6 +22,17 @@ class StudentRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Obtén el estudiante (esto solo funcionará si el request es para actualizar)
+        $student = $this->route('student');
+
+        // Asegúrate de que el estudiante no sea nulo (puedes manejarlo como desees)
+        if (is_null($student)) {
+            abort(404, 'Estudiante no encontrado.');
+        }
+
+        // Aquí obtienes el user_id del estudiante
+        $personId = $student?->people_id;
+
         return [
             'course' => 'string',
             'studycenters_id' => 'required',
@@ -31,17 +42,10 @@ class StudentRequest extends FormRequest
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('users'), // Cambiado para no necesitar el studentId
+                // Esto revisará si el correo es único, pero ignorará el correo actual si no ha cambiado
+                Rule::unique('people')->ignore($personId),
             ],
             'phone' => 'nullable|string',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'email.unique' => 'Este correo electrónico ya está registrado.',
-            // Otros mensajes personalizados...
         ];
     }
 }

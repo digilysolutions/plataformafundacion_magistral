@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 /**
  * Class Tutor
@@ -31,7 +32,7 @@ class Tutor extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated','studycenters_id', 'people_id', 'specialty_id'];
+    protected $fillable = ['name', 'activated', 'studycenters_id', 'people_id'];
 
 
     /**
@@ -45,14 +46,12 @@ class Tutor extends ModelMain
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function specialty()
+    public function specialties()
     {
-        return $this->belongsTo(\App\Models\Specialty::class, 'specialty_id', 'id');
+        return $this->belongsToMany(Specialty::class, 'specialty_tutor', 'tutor_id', 'specialty_id');
     }
     public function studyCenter()
     {
         return $this->belongsTo(\App\Models\StudyCenter::class, 'studycenters_id', 'id');
     }
-
-
 }

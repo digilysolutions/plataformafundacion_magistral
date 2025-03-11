@@ -6,7 +6,9 @@ use App\Models\Student;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\StudentUpdateRequest;
 use App\Mail\StudentConfirmationMail;
+use App\Models\Membership;
 use App\Models\Person;
 use App\Models\StudyCenter;
 use App\Models\User;
@@ -42,7 +44,7 @@ class StudentController extends Controller
     {
         $student = new Student();
         $studyCenters = StudyCenter::allActivated();
-
+        $memberships = Membership::allActivated();
         if (count($studyCenters) == 0) {
             $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
                 . 'Si quieres crear un centro de estudio, puedes hacerlo '
@@ -50,7 +52,7 @@ class StudentController extends Controller
             $students = Student::allActivated();
             return view('student.index', compact('students'))->with('error', $error);
         }
-        return view('student.create', compact('student', 'studyCenters'));
+        return view('student.create', compact('student', 'studyCenters', 'memberships'));
     }
     public function createStudentToStudyCenter($idStudyCenter): View
     {
@@ -77,6 +79,8 @@ class StudentController extends Controller
         $data['username'] = (isset($request->username) && !empty($request->username)) ? $request->username : $request->name;
         $data['activated'] = true;
         $data['password'] = $request->password;
+        $data['name'] = $request->name;
+        $data['lastname'] = $request->lastname;
         $data['studycenters_id'] = $request->studycenters_id;
         // Iniciar una transacción para asegurar la consistencia
         $validator = PasswordValidator::validate($data);
@@ -89,6 +93,8 @@ class StudentController extends Controller
         //Obtener la membresía del centro de estudio
         $membership = $studyCenter->membership;
         $studentLimit = $membership->student_limit;
+        $data['membership_id'] = $membership->id;
+
         if ($studentLimit === null || $students < $studentLimit) {
             DB::transaction(function () use ($data) {
 
@@ -109,7 +115,7 @@ class StudentController extends Controller
                 $data['people_id'] = $person->id;
                 // Crear el estudiante
 
-                $data['membership_id'] = $studyCenter->membership_id;
+
                 $student = Student::create($data);
 
                 // Enviar correo de confirmación
@@ -119,6 +125,7 @@ class StudentController extends Controller
             return Redirect::route('students.index')
                 ->with('success', 'Estudiante creado satisfactoriamente.');
         }
+
         return Redirect::route('students.index')
             ->with('error', 'No puede agregar más estudiantes.');
     }
@@ -166,7 +173,7 @@ class StudentController extends Controller
      */
     public function edit($id): View
     {
-        $student = Student::find($id);
+        $student = Student::with('person')->findOrFail($id);
         $studyCenters = StudyCenter::allActivated();
         return view('student.edit', compact('student', 'studyCenters'));
     }
@@ -174,13 +181,64 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StudentRequest $request, Student $student): RedirectResponse
+    public function update(StudentUpdateRequest $request, Student $student): RedirectResponse
     {
-        $data = $request->all();
-        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
-        $student->update($data);
+
+        // Validamos los datos del request
+        $data = $request->validated();
+
+        // Establecemos el username
+        $data['username'] = !empty($request->username) ? $request->username : $request->name;
+        $data['activated'] = true;
+
+        // Solo asignar la nueva contraseña si se proporciona
+        if (!empty($request->password)) {
+            $data['password'] = Hash::make($request->password);
+        } else {
+            unset($data['password']); // Si no hay contraseña nueva, removemos la clave
+        }
+
+        // Obtenemos el centro de estudio y su membresía
+        $studyCenter = StudyCenter::find($data['studycenters_id']);
+        $membership = $studyCenter ? $studyCenter->membership : null;
+
+        if ($membership) {
+            $data['membership_id'] = $membership->id;
+        } else {
+            return back()->withErrors(['studycenters_id' => 'El centro de estudio no es válido.'])->withInput();
+        }
+
+        // Iniciar una transacción para asegurar la consistencia
+        DB::transaction(function () use ($data, $student) {
+            // Actualizamos el usuario relacionado con el estudiante
+            $studentUser = User::find($student->person->user_id);
+            if ($studentUser) {
+                $studentUser->update([
+                    'name' => $data['username'],
+                    'email' => $data['email'], // El correo será validado en StudentRequest
+                    'password' => $data['password'] ?? $studentUser->password, // Solo actualiza si hay una nueva contraseña
+                    'activated' => true,
+                    'role' => 'Estudiante',
+                    'roleid' => 2
+                ]);
+            }
+
+            // Actualizar datos de la persona
+
+            $student->person->update($data);
+            // Actualizar los datos del estudiante
+            $student->update($data);
+
+            // Enviar correo de confirmación (opcional)
+            // Mail::to($person->email)->send(new StudentConfirmationMail($student->id));
+
+            return Redirect::route('students.index')
+                ->with('success', 'Estudiante actualizado satisfactoriamente');
+        });
+
+        // En caso de que la transacción falle, se puede manejar mejor el mensaje de error
         return Redirect::route('students.index')
-            ->with('success', 'Student actualizado satisfactoriamente');
+            ->with('error', 'No se pudo actualizar el estudiante.');
     }
 
     public function destroy($id): RedirectResponse

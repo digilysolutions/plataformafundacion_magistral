@@ -84,9 +84,9 @@ class StudyCenterController extends Controller
         $data = $request->validated();
         $data["activated"] = $request->input('activated') === 'on' ? 1 : 0;
         $studyCenter->update($data);
-
         return Redirect::route('study-centers.index')
-            ->with('success', 'Centro de estudio actualizado satisfactoriamente');
+        ->with('success', 'Centro de estudio actualizado satisfactoriamente');
+
     }
 
     public function destroy($id): RedirectResponse

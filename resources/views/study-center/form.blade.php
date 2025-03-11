@@ -16,19 +16,7 @@
             <input type="text"  id="mail"  name="mail" class="form-control @error('mail') is-invalid @enderror" value="{{ old('mail', $studyCenter?->mail) }}" id="mail" placeholder="Correo">
             <div class="help-block with-errors"></div>
         </div>
-        <div class="form-group col-md-6">
-            <label for="membership_id" class="form-label">{{ __('Membresía') }}</label>
-            <select id="membership_id" name="membership_id" class="form-control">
 
-                @foreach ($memberships as $membership)
-                    <option value="{{ $membership->id }}" @if ($membership->id==$studyCenter->membership_id) select
-
-                    @endif>
-                        {{ $membership->name }}</option>
-                @endforeach
-
-            </select>
-        </div>
 
 
         <div class="form-group col-md-6">

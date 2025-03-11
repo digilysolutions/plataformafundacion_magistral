@@ -16,10 +16,12 @@ class RedirectIfNotFound
      */
     public function handle(Request $request, Closure $next): Response
     {
+
         $response = $next($request);
         Log::info('redirectif not found');
         // Verificar si la respuesta es 404
         if ($response->getStatusCode() === 404) {
+
             return redirect('/error404');  // Cambia '/pagina-no-encontrada' por tu ruta deseada
         }
 

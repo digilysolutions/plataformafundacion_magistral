@@ -28,16 +28,14 @@
 
                 <li class=" ">
                     <a href="#registro" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash3" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="svg-icon" id="p-dash3" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                         </svg>
                         <span class="ml-1">Registro</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline>
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
@@ -53,8 +51,8 @@
                                 <i class="las la-minus"></i><span>Estudiantes</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('') ? 'active' : '' }}">
-                            <a href="">
+                        <li class="{{ request()->is('users*') ? 'active' : '' }}">
+                            <a href="{{ route('users.index') }}">
                                 <i class="las la-minus"></i><span>Usuario General</span>
                             </a>
                         </li>
@@ -108,9 +106,7 @@
                 </li>
                 <li class=" ">
                     <a href="#reportes" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash9" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="svg-icon" id="p-dash9" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2">
                             </rect>
                             <rect x="7" y="7" width="3" height="9"></rect>
@@ -184,11 +180,8 @@
                 </li>
                 <li class=" ">
                     <a href="#certificados" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M2 8c0-1.1 1.34-2 3-2h14c1.66 0 3 0.9 3 2v10c0 1.1-1.34 2-3 2H5c-1.66 0-3-0.9-3-2V8z">
-                            </path>
+                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 8c0-1.1 1.34-2 3-2h14c1.66 0 3 0.9 3 2v10c0 1.1-1.34 2-3 2H5c-1.66 0-3-0.9-3-2V8z"></path>
                             <path d="M9 11l-3 4h6l-3-4z"></path>
                             <path d="M2 6l2 2h14l2-2"></path>
                         </svg>
@@ -218,5 +211,8 @@
             </ul>
         </nav>
 
-
+    <div class="p-3"></div>
     </div>
+
+
+</div>

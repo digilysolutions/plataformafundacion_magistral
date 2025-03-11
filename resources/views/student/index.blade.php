@@ -46,6 +46,7 @@
                                         <th>Curso</th>
                                         <th>Centro de Estudio</th>
                                         <th>Usuario</th>
+                                        <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>
                                     </tr>
@@ -61,10 +62,16 @@
                                             <td>{{ $student->id }}</td>
                                             <td>{{ $student->person->name }} {{ $student->person->lastname }}</td>
                                             <td>{{ $student->course }}</td>
-                                            <td>{{ $student->studyCenter->name }}</td>
+                                            <td>@if($student->studyCenter) {{ $student->studyCenter->name }} @else No pertenece @endif</td>
                                             <td>{{ $student->person->user->name }}</td>
-                                            <td>{{ $student->membership->name }}</td>
-
+                                            <td>@if($student->membership){{ $student->membership->name }} @else Sin membresía @endif</td>
+                                            <td>
+                                                @if ($student->activated == 1)
+                                                    Si
+                                                @else
+                                                    No
+                                                @endif
+                                            </td>
                                             <td>
                                                 <form action="{{ route('students.destroy', $student->id) }}"
                                                     method="POST">

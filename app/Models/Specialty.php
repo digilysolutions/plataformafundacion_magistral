@@ -30,4 +30,8 @@ class Specialty extends ModelMain
     protected $fillable = ['activated', 'name'];
 
 
+    public function specialties()
+    {
+        return $this->belongsToMany(Specialty::class, 'specialty_tutor', 'tutor_id', 'specialty_id');
+    }
 }

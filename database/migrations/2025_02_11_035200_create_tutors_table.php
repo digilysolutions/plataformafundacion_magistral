@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('tutors', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('name')->nullable();
             $table->boolean('activated')->default(false);
             $table->uuid('people_id');
             $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');
-            $table->uuid('specialty_id');
-            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
+
             $table->uuid('studycenters_id');
             $table->foreign('studycenters_id')->references('id')->on('study_centers')->onDelete('cascade');
             $table->timestamps();

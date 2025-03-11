@@ -20,6 +20,7 @@ use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudyCenterController;
 use App\Http\Controllers\TutorController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
@@ -59,7 +60,7 @@ Route::get('reset-password/{token}', function () {
 // Rutas de inicio de sesión
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
-    Route::get('/', [AuthenticatedSessionController::class, 'create']);
+Route::get('/', [AuthenticatedSessionController::class, 'create']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 // Rutas de registro
@@ -106,33 +107,56 @@ Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->nam
 Route::post('/verify-email', [RegisteredUserController::class, 'verifyEmail'])->name('verifyEmail');
 Route::middleware('auth')->group(function () {
 
-//memberships
-// Mostrar un membership específico (show)
-Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo,Usuario');
-Route::get('memberships', [MembershipController::class, 'index'])->middleware('role:Administrador,Centro Educativo');
-Route::post('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'renew'])->name('study_centers.renew_membership')->middleware('role:Administrador,Centro Educativo');
-Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
+    //memberships
+    //Route::resource('memberships', MembershipController::class)->middleware('role:Administrador');
+    // Mostrar un membership específico (show)
+    Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo,Usuario');
+    Route::get('memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador,Centro Educativo');
+    Route::post('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'renew'])->name('study_centers.renew_membership')->middleware('role:Administrador,Centro Educativo');
+    Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
+    Route::get('memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador'); // Para mostrar el formulario de crear estudiante
+    Route::delete('memberships/{membership}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
+    Route::get('memberships/{membership}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');  // Para mostrar el formulario de edición
+
+    //memberships History
+    Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->name('memberships_histories.index')->middleware('role:Administrador,Centro Educativo');
+    Route::get('membership-histories/{iduser}/show-membership-user', [MembershipHistoryController::class, 'showToUser'])->name('membership_histories_user')->middleware('role:Administrador,Centro Educativo');
 
 
-//memberships History
-Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->name('memberships.index')->middleware('role:Administrador,Centro Educativo');
-Route::get('membership-histories/{iduser}/show-membership-user', [MembershipHistoryController::class, 'showToUser'])->name('membership_histories_user')->middleware('role:Administrador,Centro Educativo');
+    //Tutors
+    Route::resource('tutors', TutorController::class)->middleware('role:Administrador');
+    Route::get('tutors/studyCenter/{idstudyCenter}', [TutorController::class, 'indexToStudyCenter'])->name('tutors.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
+
+    //Students
+    //Route::resource('students', StudentController::class);
+    // Rutas individuales para el recurso students
+    Route::get('students/studyCenter/{idstudyCenter}', [StudentController::class, 'indexToStudyCenter'])->name('students.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
+    Route::get('students/create', [StudentController::class, 'create'])->name('students.create')->middleware('role:Administrador'); // Para mostrar el formulario de crear estudiante
+    Route::get('students', [StudentController::class, 'index'])->name('students.index')->middleware('role:Administrador,Centro Educativo');
+    Route::post('students', [StudentController::class, 'store'])->name('students.store')->middleware('role:Administrador'); // Para almacenar el nuevo estudiante
+    Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show')->middleware('role:Administrador');  // Para mostrar un estudiante específico
+    Route::get('students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit')->middleware('role:Administrador');  // Para mostrar el formulario de edición
+    Route::patch('students/{student}', [StudentController::class, 'update'])->name('students.update')->middleware('role:Administrador');  // Para actualizar el estudiante
+    Route::delete('students/{student}', [StudentController::class, 'destroy'])->name('students.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
+    Route::get('students/create/{idStudyCenter}', [StudentController::class, 'createStudentToStudyCenter'])->name('students.createStudentToStudyCenter')->middleware('role:Centro Educativo');
 
 
-//Tutors
-Route::resource('tutors', TutorController::class)->middleware('role:Administrador');
-Route::get('tutors/studyCenter/{idstudyCenter}', [TutorController::class, 'indexToStudyCenter'])->name('tutors.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
+   //Study Center
+   // Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
+   Route::middleware('role:Administrador')->group(function () {
+    Route::get('/study-centers', [StudyCenterController::class, 'index'])->name('study-centers.index');
+    Route::get('/study-centers/create', [StudyCenterController::class, 'create'])->name('study-centers.create');
+    Route::post('/study-centers', [StudyCenterController::class, 'store'])->name('study-centers.store');
+    Route::get('/study-centers/{study_center}', [StudyCenterController::class, 'show'])->name('study-centers.show');
+    Route::get('/study-centers/{study_center}/edit', [StudyCenterController::class, 'edit'])->name('study-centers.edit');
+    Route::patch('/study-centers/{study_center}', [StudyCenterController::class, 'update'])->name('study-centers.update');
+    Route::delete('/study-centers/{study_center}', [StudyCenterController::class, 'destroy'])->name('study-centers.destroy');
+});
 
-//Students
-// Rutas individuales para el recurso students
-Route::get('students/studyCenter/{idstudyCenter}', [StudentController::class, 'indexToStudyCenter'])->name('students.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
-Route::get('students/create', [StudentController::class, 'create'])->name('students.create')->middleware('role:Administrador'); // Para mostrar el formulario de crear estudiante
-Route::post('students', [StudentController::class, 'store'])->name('students.store')->middleware('role:Administrador'); // Para almacenar el nuevo estudiante
-Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show')->middleware('role:Administrador');  // Para mostrar un estudiante específico
-Route::get('students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit')->middleware('role:Administrador');  // Para mostrar el formulario de edición
-Route::put('students/{student}', [StudentController::class, 'update'])->name('students.update')->middleware('role:Administrador');  // Para actualizar el estudiante
-Route::delete('students/{student}', [StudentController::class, 'destroy'])->name('students.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
-Route::get('students/create/{idStudyCenter}', [StudentController::class, 'createStudentToStudyCenter'])->name('students.createStudentToStudyCenter')->middleware('role:Centro Educativo');
+   //users
+   Route::resource('users', UserController::class)->middleware('role:Administrador');
+
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -142,7 +166,7 @@ Route::get('students/create/{idStudyCenter}', [StudentController::class, 'create
 
     Route::resource('levels', LevelController::class)->middleware('role:Administrador');
 
-    //Route::resource('memberships', MembershipController::class);
+
     Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
     Route::resource('membership-features', MembershipFeatureController::class);
     Route::resource('membership-features-memberships', MembershipFeaturesMembershipController::class);
@@ -151,8 +175,8 @@ Route::get('students/create/{idStudyCenter}', [StudentController::class, 'create
 
     Route::resource('membership-payment-statuses', MembershipPaymentStatusController::class);
 
-    Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
-    Route::resource('students', StudentController::class);
+
+
     Route::get('/students/activate/{tracking_code}', [StudentController::class, 'activate'])->name('students.activate');
     Route::post('/students/updatePassword', [StudentController::class, 'updatePassword'])->name('students.update_password');
 

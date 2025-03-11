@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>
-                            @if ($regional->activated == 1)
+                            @if ($studyCenter->activated == 1)
                                 Si
                             @else
                                 No

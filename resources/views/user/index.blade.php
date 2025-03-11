@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    Tutors
+    usuario General
 @endsection
 
 @section('content-admin')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Tutors') }}
+                                {{ __('Usuario General') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('tutors.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
                                     {{ __('Nuevo') }}
                                 </a>
@@ -29,6 +29,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
                     @if (isset($error))
                         <div class="alert alert-danger">
                             {!! $error !!}
@@ -41,64 +42,69 @@
                                     <tr class="ligth">
                                         <th>No</th>
                                         <th>Código</th>
-                                        <th>Nombre </th>
-                                        <th>Especialidad</th>
-                                        <th>Centro de estudio</th>
+                                        <th>Nombre y Apellidos</th>
+                                        <th>Curso</th>
+                                        <th>Usuario</th>
+                                        <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
-                                        $i=0;
+                                        $i = 0;
                                     @endphp
-                                    @foreach ($tutors as $tutor)
+                                    @foreach ($users as $user)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $tutor->id }}</td>
-                                            <td>{{ $tutor->person->name }}</td>
-                                            <td> @foreach ($tutor->specialties as $speciality)
 
-                                                {{ $speciality->name }},
-                                                @endforeach
-
-
-
-
-                                            </td>
-                                            <td>{{ $tutor->studyCenter->name }}</td>
+                                            <td>{{ $user->id }}</td>
+                                            <td>@if($user->person){{ $user->person->name }} {{ $user->person->lastname }} @else ------ @endif</td>
                                             <td>
-                                                @if ($tutor->activated == 1)
+                                                @if($user->person && $user->person->student && $user->person->student->course)
+                                                    {{ $user->person->student->course }} @else ------
+                                                @endif
+                                            </td>
+
+                                            <td>{{ $user->name }}</td>
+                                            <td>
+                                                @if($user->person && $user->person->student && $user->person->student->membership)
+                                                    {{ $user->person->student->membership->name }} @else ------
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($user->activated == 1)
                                                     Si
                                                 @else
                                                     No
                                                 @endif
                                             </td>
                                             <td>
-                                                <form action="{{ route('tutors.destroy', $tutor->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('tutors.show', $tutor->id) }}"><i
-                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success"
-                                                        href="{{ route('tutors.edit', $tutor->id) }}"><i
-                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('users.show', $user->id) }}">
+                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}
+                                                    </a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit', $user->id) }}">
+                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
+                                                    </a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
-                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;">
+                                                        <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
-                                    <tr class="ligth">
+                                    <tr>
                                         <th>No</th>
                                         <th>Código</th>
-                                        <th>Nombre </th>
-                                        <th>Especialidad</th>
-                                        <th>Centro de estudio</th>
+                                        <th>Nombre y Apellidos</th>
+                                        <th>Curso</th>
+                                        <th>Usuario</th>
+                                        <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>
                                     </tr>
@@ -106,6 +112,7 @@
                             </table>
                         </div>
                     </div>
+
                 </div>
 
             </div>

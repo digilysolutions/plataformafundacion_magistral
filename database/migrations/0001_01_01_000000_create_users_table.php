@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('verification_token')->nullable();
             $table->integer('verification_code')->nullable(); // Cambiar a integer
             $table->boolean('is_verified')->default(false);
+            $table->boolean('activated')->default(true);
             $table->timestamps();
         });
 

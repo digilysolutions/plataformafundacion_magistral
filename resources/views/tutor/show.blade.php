@@ -28,15 +28,31 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Nombre y Apellidos:</strong>
-                            {{ $tutor->person->name }} {{ $student->person->lastname }}
+                            {{ $tutor->person->name }} {{ $tutor->person->lastname }}
                         </div>
                         <div class="form-group mb-2 mb20">
-                            <strong>Centro de estudio:</strong>
-                            {{ $tutor->specialty->name }}
+                            <strong>Teléfono:</strong>
+                          {{$tutor->person->phone}}
+
                         </div>
+                        
+                        <div class="form-group mb-2 mb20">
+                            <strong>Correo:</strong>
+                          {{$tutor->person->email}}
+
+                        </div>
+
+                        <div class="form-group mb-2 mb20">
+                            <strong>Especialidades:</strong>
+                            @foreach ($tutor->specialties as $speciality)
+
+                            {{ $speciality->name }},
+                            @endforeach
+                        </div>
+                       
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>
-                            @if ($regional->activated == 1)
+                            @if ($tutor->activated == 1)
                                 Si
                             @else
                                 No
