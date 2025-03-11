@@ -8,7 +8,7 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="description" class="form-label">{{ __('Descripción') }}</label>
-            <input type="text" name="description" class="form-control <div class="help-block with-errors"></div>" value="{{ old('description', $membershipFeature?->description) }}" id="description" placeholder="Descripción">
+            <input type="text" name="description" class="form-control"  value="{{ old('description', $membershipFeature?->description) }}" id="description" placeholder="Descripción">
             <div class="help-block with-errors"></div>
         </div>
         <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
