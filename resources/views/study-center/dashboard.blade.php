@@ -126,7 +126,7 @@
                                 <h6 class="mb-2">Yasniel Reyes</h6>
                                 <small class="text-dark mr-5"><b>11 : 30 pm</b></small>
                             </div>
-                            <small class="mb-0">Curso: Nombre del curso / Tiempo: 25 min </small>
+                            <small class="mb-0"> Tiempo: 25 min </small>
                         </div>
 
                     </div>
@@ -144,7 +144,7 @@
                                 <h6 class="mb-2">Jorge Barrameda</h6>
                                 <small class="text-dark mr-5"><b>2:45 am</b></small>
                             </div>
-                            <small class="mb-0">Curso: Curso 3 / Tiempo: 60 min </small>
+                            <small class="mb-0"> Tiempo: 60 min </small>
                         </div>
 
                     </div>
