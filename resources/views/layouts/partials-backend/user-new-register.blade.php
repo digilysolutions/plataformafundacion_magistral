@@ -12,7 +12,7 @@
                 <div class="cust-title p-3">
                     <div class="d-flex align-items-center justify-content-between">
                         <h5 class="mb-0">Nuevos Estudiates</h5>
-                        <a class="badge badge-primary badge-card" href="#">3</a>
+                        <a class="badge badge-primary badge-card" href="#"></a>
                     </div>
                 </div>
                 <div class="px-3 pt-0 pb-0 sub-card">
