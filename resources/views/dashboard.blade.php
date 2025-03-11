@@ -100,7 +100,7 @@
                                     <img src="{{ asset('img/02.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
-                                    <p class="mb-2">Examenes Resueltos</p>
+                                    <p class="mb-2">Exámenes Resueltos</p>
                                     <h4>12</h4>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                                     <img src="{{ asset('img/02.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
-                                    <p class="mb-2">Examenes No Resueltos</p>
+                                    <p class="mb-2">Exámenes No Resueltos</p>
                                     <h4>3</h4>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
             <div class="card card-block card-stretch card-height">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Especialidades</h4>
+                        <h4 class="card-title">Items Validados</h4>
                     </div>
 
                 </div>
@@ -172,38 +172,47 @@
             <div class="card card-transparent card-block card-stretch mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between p-0">
                     <div class="header-title">
-                        <h4 class="card-title mb-0">Mejores Centros Educativos</h4>
+                        <h4 class="card-title mb-0">Estudiantes Conectados</h4>
+                    </div>
+                    <div class="card-header-toolbar d-flex align-items-center">
+                        <div><a href="#" class="btn btn-primary view-btn font-size-14">Ver todos</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-block card-stretch card-height-hel ">
+                <a href="#" class="iq-sub-card">
+                    <div class="media align-items-center cust-card py-3 border-bottom">
+
+                        <div class="media-body ml-3">
+                            <div
+                                class="d-flex align-items-center justify-content-between style-text">
+                                <h6 class="mb-2">Yasniel Reyes</h6>
+                                <small class="text-dark mr-5"><b>11 : 30 pm</b></small>
+                            </div>
+                            <small class="mb-0"> Tiempo: 25 min </small>
+                        </div>
+
                     </div>
 
-                </div>
+                </a>
+
             </div>
             <div class="card card-block card-stretch card-height-helf">
-                <div class="card-body card-item-right">
-                    <div class="d-flex align-items-top">
-                        <div class="bg-warning-light rounded">
-                            <img src="../assets/images/product/04.png" class="style-img img-fluid m-auto" alt="image">
+                <a href="#" class="iq-sub-card">
+                    <div class="media align-items-center cust-card py-3 border-bottom">
+
+                        <div class="media-body ml-3">
+                            <div
+                                class="d-flex align-items-center justify-content-between style-text">
+                                <h6 class="mb-2">Jorge Barrameda</h6>
+                                <small class="text-dark mr-5"><b>2:45 am</b></small>
+                            </div>
+                            <small class="mb-0"> Tiempo: 60 min </small>
                         </div>
-                        <div class="style-text text-left">
-                            <h5 class="mb-2">Coffee Beans Packet</h5>
-                            <p class="mb-2">Total Sell : 45897</p>
-                            <p class="mb-0">Total Earned : $45,89 M</p>
-                        </div>
+
                     </div>
-                </div>
-            </div>
-            <div class="card card-block card-stretch card-height-helf">
-                <div class="card-body card-item-right">
-                    <div class="d-flex align-items-top">
-                        <div class="bg-danger-light rounded">
-                            <img src="../assets/images/product/05.png" class="style-img img-fluid m-auto" alt="image">
-                        </div>
-                        <div class="style-text text-left">
-                            <h5 class="mb-2">Bottle Cup Set</h5>
-                            <p class="mb-2">Total Sell : 44359</p>
-                            <p class="mb-0">Total Earned : $45,50 M</p>
-                        </div>
-                    </div>
-                </div>
+
+                </a>
             </div>
         </div>
 
