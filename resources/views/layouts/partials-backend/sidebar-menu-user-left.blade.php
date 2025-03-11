@@ -260,18 +260,18 @@
                                 </svg>
                             </a>
                             <ul id="examenes_resueltos" class="iq-submenu collapse" data-parent="#items">
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('examens*') ? 'active' : '' }}">
+                                    <a href="{{ route('examens.index', ['name' => 'Examenes Resueltos: Pruebas PISA']) }}">
                                         <i class="las la-minus"></i><span>Prueba PISA</span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('examens*') ? 'active' : '' }}">
+                                    <a href="{{ route('examens.index', ['name' => 'Examenes Resueltos: Pruebas Nacionales']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('examens*') ? 'active' : '' }}">
+                                    <a href="{{ route('examens.index', ['name' => 'Examenes Resueltos: Pruebas Diagnóstico']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>
@@ -293,18 +293,18 @@
                                 </svg>
                             </a>
                             <ul id="examenes_noresueltos" class="iq-submenu collapse" data-parent="#progreso">
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('examens*') ? 'active' : '' }}">
+                                    <a href="{{ route('examens.index', ['name' => 'Examenes No Resueltos: Pruebas PISA']) }}">
                                         <i class="las la-minus"></i><span>Pruebas PISA</span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('examens*') ? 'active' : '' }}">
+                                    <a href="{{ route('examens.index', ['name' => 'Examenes No Resueltos: Pruebas Nacionales']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('examens*') ? 'active' : '' }}">
+                                    <a href="{{ route('examens.index', ['name' => 'Examenes No Resueltos: Pruebas Diagnóstico']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico</span>
                                     </a>
                                 </li>

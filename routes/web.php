@@ -272,5 +272,7 @@ Route::get('items/{name}', function ($name) {
     return view('items.index', compact('name')); // Pasamos el valor de $name a la vista
 })->name('items.index');
 
-
+Route::get('examens/{name}', function ($name) {
+    return view('examens.index', compact('name')); // Pasamos el valor de $name a la vista
+})->name('examens.index');
 require __DIR__ . '/auth.php';
