@@ -11,7 +11,7 @@
             <div class="card-body p-0 ">
                 <div class="cust-title p-3">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Nuevos Clientes</h5>
+                        <h5 class="mb-0">Nuevos Estudiates</h5>
                         <a class="badge badge-primary badge-card" href="#">3</a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     </a>
                 </div>
                 <a class="right-ic btn btn-primary btn-block position-relative p-2"
-                    href="#" role="button">
+                    href="{{route('students.index'),[$studycenter=>id]}}" role="button">
                     Ver todos
                 </a>
             </div>
