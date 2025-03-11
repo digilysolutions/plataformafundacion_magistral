@@ -29,14 +29,14 @@ class SpecialtiesSeeder extends Seeder
             ],
             [
 
-                'name' => 'Ciencias',
+                'name' => 'Ciencias Sociales',
                 'activated' => true,
 
             ]
             ,
             [
 
-                'name' => 'Historia',
+                'name' => 'Ciencias Naturales',
                 'activated' => true,
 
             ]
