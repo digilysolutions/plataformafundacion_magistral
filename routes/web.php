@@ -140,6 +140,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('students/{student}', [StudentController::class, 'destroy'])->name('students.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
     Route::get('students/create/{idStudyCenter}', [StudentController::class, 'createStudentToStudyCenter'])->name('students.createStudentToStudyCenter')->middleware('role:Centro Educativo');
 
+    //Sopecialties
+    Route::resource('specialties', SpecialtyController::class)->middleware('role:Administrador');
 
    //Study Center
    // Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
@@ -191,7 +193,7 @@ Route::middleware('auth')->group(function () {
 
     //Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
-    Route::resource('specialties', SpecialtyController::class);
+   
     Route::resource('countries', CountryController::class);
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);

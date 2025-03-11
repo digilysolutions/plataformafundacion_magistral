@@ -57,6 +57,18 @@
                             </a>
                         </li>
 
+                        <li class="{{ request()->is('levels*') ? 'active' : '' }}">
+                            <a href="{{ route('levels.index') }}">
+                                <i class="las la-minus"></i>
+                                <span>Niveles</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('specialties*') ? 'active' : '' }}">
+                            <a href="{{ route('specialties.index') }}">
+                                <i class="las la-minus"></i>
+                                <span>Especialidades</span>
+                            </a>
+                        </li>
                         <li class="{{ request()->is('countries*') ? 'active' : '' }}">
                             <a href="{{ route('countries.index') }}">
                                 <i class="las la-minus"></i>
