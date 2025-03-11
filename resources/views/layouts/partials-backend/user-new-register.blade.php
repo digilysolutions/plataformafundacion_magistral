@@ -1,9 +1,9 @@
-@if ($user->role != 'Usuario')
+@if ($user->role == 'Administrador')
 <li class="nav-item nav-icon dropdown">
     <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="ri-user-line"></i>
-        <span class="badge badge-primary badge-card"></span>
+        <span class="badge badge-primary badge-card">3</span>
     </a>
     <div class="iq-sub-dropdown dropdown-menu position-left"
         aria-labelledby="dropdownMenuButton2">
