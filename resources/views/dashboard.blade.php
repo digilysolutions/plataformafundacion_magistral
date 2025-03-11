@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
-                        <div class="col-lg-12 col-md-6 mb-3">
+                        <div class="col-lg-12 col-md-4 mb-3">
                             <div class="card card-block card-stretch card-height">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-6 mb-3">
+                        <div class="col-lg-12 col-md-4 mb-3">
                             <div class="card card-block card-stretch card-height">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-6 mb-3">
+                        <div class="col-lg-12 col-md-4 mb-3">
                             <div class="card card-block card-stretch card-height">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-lg-12 col-md-6 mb-3">
@@ -98,8 +98,8 @@
                                 </div>
                             </div>
                         </div>
-        
-                        <div class="col-lg-12 col-md-6 mb-3">
+
+                        <div class="col-lg-12 col-md-4 mb-3">
                             <div class="card card-block card-stretch card-height">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -118,8 +118,8 @@
                                 </div>
                             </div>
                         </div>
-        
-                        <div class="col-lg-12 col-md-6 mb-3">
+
+                        <div class="col-lg-12 col-md-4 mb-3">
                             <div class="card card-block card-stretch card-height">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -155,8 +155,6 @@
                 <div class="card-body">
                     <ul class="list-unstyled row top-product mb-0">
                        @foreach ($specialties as $specialty)
-
-
 
                         <li class="col-lg-3">
                             <div class="card card-block card-stretch card-height mb-0">
