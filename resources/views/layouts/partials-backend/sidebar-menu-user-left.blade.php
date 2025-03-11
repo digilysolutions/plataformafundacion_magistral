@@ -310,8 +310,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="{{ route('study-centers.index') }}">
+                        <li class="{{ request()->is('user*') ? 'active' : '' }}">
+                            <a href="{{ route('user.time') }}">
                                 <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M12 2 L12 22 M4 12 L20 12" />
                                     <circle cx="12" cy="12" r="8"></circle>
