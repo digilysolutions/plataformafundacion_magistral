@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="card card-transparent card-block card-stretch card-height border-none">
                 <div class="card-body p-0 mt-lg-2 mt-0">
-                    <h3 class="mb-3">¡Bienvenido  al Dashboard de Administración!</h3>
+                    <h3 class="mb-3">¡Bienvenido al Dashboard de Administración!</h3>
                     <p class="mb-0 mr-4">Aquí podrás visualizar el rendimiento clave de nuestros procesos y tomar decisiones informadas para potenciar nuestro negocio. ¡Explora y optimiza!</p>
                 </div>
             </div>
@@ -132,7 +132,7 @@
             <div class="card card-transparent card-block card-stretch mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between p-0">
                     <div class="header-title">
-                        <h4 class="card-title mb-0">@section('title-header-admin')</h4>
+                        <h4 class="card-title mb-0">Mejores Centros Educativos</h4>
                     </div>
 
                 </div>
