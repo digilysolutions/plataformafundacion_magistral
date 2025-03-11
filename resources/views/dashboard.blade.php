@@ -9,13 +9,13 @@
             <div class="card card-transparent card-block card-stretch card-height border-none">
                 <div class="card-body p-0 mt-lg-2 mt-0">
                     <h3 class="mb-3">¡Bienvenido al Dashboard de Administración!</h3>
-                    <p class="mb-0 mr-4">Aquí podrás visualizar el rendimiento clave de nuestros procesos y tomar decisiones informadas para potenciar nuestro negocio. ¡Explora y optimiza!</p>
+                    <p class="mb-0 mr-4">Aquí podrás visualizar el rendimiento clave de nuestros procesos y tomar decisiones. ¡Explora y optimiza!</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="row">
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-2 col-md-3">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-2 col-md-3">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-2 col-md-3">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -62,7 +62,7 @@
                                 </div>
                                 <div>
                                     <p class="mb-2">Items Resueltos</p>
-                                    <h4>@if (count($regionals)>0){{count($regionals)}} @else 0 @endif</h4>
+                                    <h4>25</h4>
                                 </div>
                             </div>
                             <div class="iq-progress-bar mt-2">
@@ -72,7 +72,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-2 col-md-3">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-4 card-total-sale">
+                                <div class="icon iq-icon-box-2 bg-success-light">
+                                    <img src="{{ asset('img/3.png') }}" class="img-fluid" alt="image">
+                                </div>
+                                <div>
+                                    <p class="mb-2">Items No Resueltos</p>
+                                    <h4>10</h4>
+                                </div>
+                            </div>
+                            <div class="iq-progress-bar mt-2">
+                                <span class="bg-success iq-progress progress-1" data-percent="75">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -81,7 +101,7 @@
                                 </div>
                                 <div>
                                     <p class="mb-2">Examenes Resueltos</p>
-                                    <h4>{{count($districts)}}</h4>
+                                    <h4>12</h4>
                                 </div>
                             </div>
                             <div class="iq-progress-bar mt-2">
@@ -91,6 +111,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-2 col-md-3">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-4 card-total-sale">
+                                <div class="icon iq-icon-box-2 bg-info">
+                                    <img src="{{ asset('img/02.png') }}" class="img-fluid" alt="image">
+                                </div>
+                                <div>
+                                    <p class="mb-2">Examenes No Resueltos</p>
+                                    <h4>3</h4>
+                                </div>
+                            </div>
+                            <div class="iq-progress-bar mt-2">
+                                <span class="bg-success iq-progress progress-1" data-percent="75">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
