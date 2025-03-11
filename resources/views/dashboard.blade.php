@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <div class="iq-progress-bar mt-2">
-                                <span class="bg-info iq-progress progress-1" data-percent="85">
+                                <span class="bg-warning iq-progress progress-1" data-percent="85">
                                 </span>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="iq-progress-bar mt-2">
-                                <span class="bg-success iq-progress progress-1" data-percent="75">
+                                <span class="bg-info iq-progress progress-1" data-percent="75">
                                 </span>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                             <div class="iq-progress-bar mt-2">
-                                <span class="bg-success iq-progress progress-1" data-percent="75">
+                                <span class="bg-info  iq-progress progress-1" data-percent="75">
                                 </span>
                             </div>
                         </div>
