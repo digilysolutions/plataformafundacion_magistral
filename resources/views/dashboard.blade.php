@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="card card-transparent card-block card-stretch card-height border-none">
                 <div class="card-body p-0 mt-lg-2 mt-0">
-                    <h3 class="mb-3">¡Bienvenido al Dashboard de Administración!</h3>
+                    <h3 class="mb-3">¡Bienvenido  al Dashboard de Administración!</h3>
                     <p class="mb-0 mr-4">Aquí podrás visualizar el rendimiento clave de nuestros procesos y tomar decisiones informadas para potenciar nuestro negocio. ¡Explora y optimiza!</p>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                                     <img src="{{ asset('img/47.jpg') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
-                                    <p class="mb-2">Centros Educativos</p>
+                                    <p class="mb-2">Centros Educativos Registrados</p>
                                     <h4>@if($studyCenter!=null){{count($studyCenter)}} @else 0 @endif</h4>
                                 </div>
-                            </div>                                
+                            </div>
                             <div class="iq-progress-bar mt-2">
                                 <span class="bg-info iq-progress progress-1" data-percent="85">
                                 </span>
@@ -42,7 +42,7 @@
                                     <img src="{{ asset('img/a4.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
-                                    <p class="mb-2">Estudiantes</p>
+                                    <p class="mb-2">Estudiantes Registrados</p>
                                     <h4>{{count($students)}}</h4>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                     <img src="{{ asset('img/3.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
-                                    <p class="mb-2">Regionales</p>
+                                    <p class="mb-2">Items Resueltos</p>
                                     <h4>@if (count($regionals)>0){{count($regionals)}} @else 0 @endif</h4>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                     <img src="{{ asset('img/02.png') }}" class="img-fluid" alt="image">
                                 </div>
                                 <div>
-                                    <p class="mb-2">Distritos</p>
+                                    <p class="mb-2">Examenes Resueltos</p>
                                     <h4>{{count($districts)}}</h4>
                                 </div>
                             </div>
@@ -93,22 +93,22 @@
                 </div>
             </div>
         </div>
-        
-      
+
+
         <div class="col-lg-8">
             <div class="card card-block card-stretch card-height">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title">Especialidades</h4>
                     </div>
-                    
+
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled row top-product mb-0">
                        @foreach ($specialties as $specialty)
-                           
-                      
-                       
+
+
+
                         <li class="col-lg-3">
                             <div class="card card-block card-stretch card-height mb-0">
                                 <div class="card-body">
@@ -123,18 +123,18 @@
                             </div>
                         </li>
                         @endforeach
-                        
+
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">  
+        <div class="col-lg-4">
             <div class="card card-transparent card-block card-stretch mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between p-0">
                     <div class="header-title">
-                        <h4 class="card-title mb-0">Mejores Centros Educativos</h4>
+                        <h4 class="card-title mb-0">@section('title-header-admin')</h4>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="card card-block card-stretch card-height-helf">
@@ -165,9 +165,9 @@
                     </div>
                 </div>
             </div>
-        </div>            
-      
-        
+        </div>
+
+
     </div>
     <!-- Page end  -->
 </div>
