@@ -11,7 +11,7 @@
             <div class="card-body p-0 ">
                 <div class="cust-title p-3">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Nuevos Estudiates</h5>
+                        <h5 class="mb-0">Usuarios registrados.</h5>
                         <a class="badge badge-primary badge-card" href="#">3</a>
                     </div>
                 </div>
