@@ -196,18 +196,18 @@
                                 </svg>
                             </a>
                             <ul id="items_resueltos" class="iq-submenu collapse" data-parent="#progreso">
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('items*') ? 'active' : '' }}">
+                                    <a href="{{ route('items.index', ['name' => 'Resueltos: Prueba PISa']) }}">
                                         <i class="las la-minus"></i><span>Prueba PISA</span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('items*') ? 'active' : '' }}">
+                                    <a href="{{ route('items.index', ['name' => 'Resueltos: Prueba Nacionales']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('items*') ? 'active' : '' }}">
+                                    <a href="{{ route('items.index', ['name' => 'Resueltos: Pruebas Diagnóstico']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>
@@ -228,18 +228,18 @@
                                 </svg>
                             </a>
                             <ul id="items_noresueltos" class="iq-submenu collapse" data-parent="#progreso">
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('items/No*') ? 'active' : '' }}">
+                                    <a href="{{ route('items.index', ['name' => 'No Resueltos: Prueba PISA']) }}}">
                                         <i class="las la-minus"></i><span>Pruebas PISA</span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('items/No*') ? 'active' : '' }}">
+                                    <a href="{{ route('items.index', ['name' => 'No Resueltos: Pruebas Nacionales']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                <li class="{{ request()->is('items/No*') ? 'active' : '' }}">
+                                    <a href="{{ route('items.index', ['name' => 'No Resueltos: Prueba Diagnóstico']) }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico</span>
                                     </a>
                                 </li>

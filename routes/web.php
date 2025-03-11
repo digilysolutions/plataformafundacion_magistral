@@ -193,7 +193,7 @@ Route::middleware('auth')->group(function () {
 
     //Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
-   
+
     Route::resource('countries', CountryController::class);
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);
@@ -265,6 +265,12 @@ Route::middleware(['auth', 'verified','user.role'])->group(function () {
     })->name('validator.dashboard');
 });
 */
+
+
+///-----Para los items de prueba
+Route::get('items/{name}', function ($name) {
+    return view('items.index', compact('name')); // Pasamos el valor de $name a la vista
+})->name('items.index');
 
 
 require __DIR__ . '/auth.php';
