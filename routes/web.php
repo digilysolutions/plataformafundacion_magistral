@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MembershipFeatureController;
@@ -107,6 +108,10 @@ Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->nam
 Route::post('/verify-email', [RegisteredUserController::class, 'verifyEmail'])->name('verifyEmail');
 Route::middleware('auth')->group(function () {
 
+    //Carga inicial con excel
+    Route::get('/import', [ExcelController::class, 'importView'])->name('import.view')->middleware('role:Administrador');
+    Route::post('/import', [ExcelController::class, 'import'])->name('import')->middleware('role:Administrador');
+
     //memberships
     //Route::resource('memberships', MembershipController::class)->middleware('role:Administrador');
     // Mostrar un membership específico (show)
@@ -143,20 +148,20 @@ Route::middleware('auth')->group(function () {
     //Sopecialties
     Route::resource('specialties', SpecialtyController::class)->middleware('role:Administrador');
 
-   //Study Center
-   // Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
-   Route::middleware('role:Administrador')->group(function () {
-    Route::get('/study-centers', [StudyCenterController::class, 'index'])->name('study-centers.index');
-    Route::get('/study-centers/create', [StudyCenterController::class, 'create'])->name('study-centers.create');
-    Route::post('/study-centers', [StudyCenterController::class, 'store'])->name('study-centers.store');
-    Route::get('/study-centers/{study_center}', [StudyCenterController::class, 'show'])->name('study-centers.show');
-    Route::get('/study-centers/{study_center}/edit', [StudyCenterController::class, 'edit'])->name('study-centers.edit');
-    Route::patch('/study-centers/{study_center}', [StudyCenterController::class, 'update'])->name('study-centers.update');
-    Route::delete('/study-centers/{study_center}', [StudyCenterController::class, 'destroy'])->name('study-centers.destroy');
-});
+    //Study Center
+    // Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
+    Route::middleware('role:Administrador')->group(function () {
+        Route::get('/study-centers', [StudyCenterController::class, 'index'])->name('study-centers.index');
+        Route::get('/study-centers/create', [StudyCenterController::class, 'create'])->name('study-centers.create');
+        Route::post('/study-centers', [StudyCenterController::class, 'store'])->name('study-centers.store');
+        Route::get('/study-centers/{study_center}', [StudyCenterController::class, 'show'])->name('study-centers.show');
+        Route::get('/study-centers/{study_center}/edit', [StudyCenterController::class, 'edit'])->name('study-centers.edit');
+        Route::patch('/study-centers/{study_center}', [StudyCenterController::class, 'update'])->name('study-centers.update');
+        Route::delete('/study-centers/{study_center}', [StudyCenterController::class, 'destroy'])->name('study-centers.destroy');
+    });
 
-   //users
-   Route::resource('users', UserController::class)->middleware('role:Administrador');
+    //users
+    Route::resource('users', UserController::class)->middleware('role:Administrador');
 
 
 
