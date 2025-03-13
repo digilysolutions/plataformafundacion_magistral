@@ -1,12 +1,17 @@
 <div class="row padding-1 p-1">
-
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
+        <label for="name" class="form-label">{{ __('No') }} *</label>
+        <input type="text" name="code" class="form-control " value="{{ old('code', $studyCenter?->code) }}"
+            id="name" placeholder="No" required>
+        <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group col-md-4">
         <label for="name" class="form-label">{{ __('Nombre') }} *</label>
         <input type="text" name="name" class="form-control " value="{{ old('name', $studyCenter?->name) }}"
             id="name" placeholder="Nombre" required>
         <div class="help-block with-errors"></div>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
         <label for="membership_id" class="form-label">{{ __('Membresía') }} *</label>
         <select id="membership_id" name="membership_id" class="form-control" required>
             @foreach ($memberships as $membership)

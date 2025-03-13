@@ -42,7 +42,7 @@ class StudyCenter extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated', 'name', 'address', 'phone', 'mail',  'regional_id', 'district_id', 'people_id', 'membership_id'];
+    protected $fillable = ['activated','code', 'name', 'address', 'phone', 'mail',  'regional_id', 'district_id', 'people_id', 'membership_id'];
 
 
     /**

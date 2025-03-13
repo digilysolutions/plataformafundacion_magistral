@@ -25,6 +25,7 @@ class StudyCenterRequest extends FormRequest
 
 			'name' => 'required|string',
 			'address' => 'nullable|string',
+            'code' => 'required|string|max:255',
 			'phone' => 'nullable|string',
 			'mail' => 'nullable|string',
 			'regional_id' => 'required',
