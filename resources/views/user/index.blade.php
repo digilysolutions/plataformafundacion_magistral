@@ -57,18 +57,28 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $user->person?->email }}</td>
-                                            <td>{{ $user->person?->id }}</td>
-                                            <td>{{ $user->role}}</td>
+                                            <td>{{ $user->email }}</td>
                                             <td>
-                                                @if($user->person &&  $user->person->studyCenter)
-                                                    {{ $user->person->studyCenter->name}} @else ------
+                                                @if ($user->roleid == 1)
+                                                    {{ $user->person?->studyCenter->id }}
+                                                @else
+                                                    {{ $user->person?->id }}
+                                                @endif
+                                            </td>
+                                            <td>{{ $user->role }}</td>
+                                            <td>
+                                                @if ($user->person && $user->person->studyCenter)
+                                                    {{ $user->person->studyCenter->name }}
+                                                @else
+                                                    ------
                                                 @endif
                                             </td>
 
                                             <td>
-                                                @if($user->person && $user->person->student && $user->person->student->membership)
-                                                    {{ $user->person->student->membership->name }} @else ------
+                                                @if ($user->person && $user->person->student && $user->person->student->membership)
+                                                    {{ $user->person->student->membership->name }}
+                                                @else
+                                                    ------
                                                 @endif
                                             </td>
                                             <td>
@@ -80,15 +90,18 @@
                                             </td>
                                             <td>
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('users.show', $user->id) }}">
+                                                    <a class="btn btn-sm btn-primary"
+                                                        href="{{ route('users.show', $user->id) }}">
                                                         <i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}
                                                     </a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit', $user->id) }}">
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('users.edit', $user->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                                                     </a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;">
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;">
                                                         <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
                                                     </button>
                                                 </form>
@@ -102,7 +115,8 @@
                                         <th>Usuario</th>
                                         <th>Código</th>
                                         <th>Rol</th>
-                                        <th>Centro Educativo</th>    <th>Membresía</th>
+                                        <th>Centro Educativo</th>
+                                        <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>
                                     </tr>
