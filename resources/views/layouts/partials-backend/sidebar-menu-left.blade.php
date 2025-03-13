@@ -1,7 +1,7 @@
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="/" class="header-logo">
-            <img src="{{ asset('img/icono/fm-icono (7).jpg') }}" class="img-fluid rounded-normal light-logo" alt="logo">
+            <img src="{{ asset('img/icono/fm-plataforma.jpg') }}" class="img-fluid rounded-normal light-logo" alt="logo">
             <h5 class="logo-title light-logo ml-3">Plataforma</h5>
 
         </a>
@@ -16,14 +16,14 @@
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="">
                     <a href="{{ route('admin.dashboard') }}" class="svg-icon">
-                        <img src="{{ asset('img/icono/fm-icono (8).jpg') }}" width="30px">
+                        <img src="{{ asset('img/icono/fm-escritorio.jpg') }}" width="30px">
                         <span class="ml-1">Escritorio</span>
                     </a>
                 </li>
 
                 <li class=" ">
                     <a href="#registro" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <img src="{{ asset('img/icono/fm-icono (3).jpg') }}" width="30px">
+                        <img src="{{ asset('img/icono/fm-registro.jpg') }}" width="30px">
                         <span class="ml-1">Registro</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -110,7 +110,7 @@
                 </li>
                 <li class=" ">
                     <a href="#reportes" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <img src="{{ asset('img/icono/fm-icono (2).jpg') }}" width="30px">
+                        <img src="{{ asset('img/icono/fm-reporte.jpg') }}" width="30px">
                         <span class="ml-1">Reportes</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -179,7 +179,7 @@
                 </li>
                 <li class=" ">
                     <a href="#certificados" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <img src="{{ asset('img/icono/fm-icono (6).jpg') }}" width="30px">
+                        <img src="{{ asset('img/icono/fm-certificado.jpg') }}" width="30px">
                         <span class="ml-1">Certificados</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
