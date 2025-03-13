@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
  */
 class StudyCenter extends ModelMain
 {
-    use  HasUuids;
+
     protected $perPage = 20;
 
 
@@ -42,7 +42,7 @@ class StudyCenter extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated', 'name', 'address', 'phone', 'mail', 'tracking_code', 'regional_id', 'district_id', 'people_id', 'membership_id'];
+    protected $fillable = ['activated', 'name', 'address', 'phone', 'mail',  'regional_id', 'district_id', 'people_id', 'membership_id'];
 
 
     /**

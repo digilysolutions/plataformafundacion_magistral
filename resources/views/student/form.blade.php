@@ -49,7 +49,7 @@
                 <label for="address" class="form-label">{{ __('Centro de Estudio') }}</label>
                 <select id="studycenters_id" name="studycenters_id" class="form-control">
                     @foreach ($studyCenters as $studyCenter)
-                        <option value="{{ $studyCenter->id }}" @if ($studyCenter->id == $student->studycenters_id) select @endif>
+                        <option value="{{ $studyCenter->id }}" @if ($studyCenter->id == $student->studycenters_id) selected @endif>
                             {{ $studyCenter->name }}</option>
                     @endforeach
 

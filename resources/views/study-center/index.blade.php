@@ -31,10 +31,10 @@
                     @endif
 
                     <div class="card-body bg-white">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
+                       <div class="table-responsive">
+                            <table id="datatable" class="table data-tables table-striped">
+                                <thead>
+                                    <tr class="ligth">
                                         <th>No</th>
 
                                         <th>Código</th>
@@ -62,7 +62,7 @@
                                             <td>{{ $studyCenter->name }}</td>
                                             <td>{{ $studyCenter->phone }}</td>
                                             <td>{{ $studyCenter->mail }}</td>
-                                           
+
                                             <td>{{ $studyCenter->regional->name }}</td>
                                             <td>{{ $studyCenter->district->name }}</td>
                                             <td>{{ $studyCenter->membership->name }}</td>
@@ -92,6 +92,22 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+
+                                        <th>Teléfono</th>
+                                        <th>Correo</th>
+
+                                        <th>Regional</th>
+                                        <th>Distrito</th>
+                                        <th>Membresía</th>
+                                        <th>Activado</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

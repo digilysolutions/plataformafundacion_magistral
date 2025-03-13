@@ -26,7 +26,7 @@
                             {{ $studyCenter->id }}
                         </div>
                         <div class="form-group mb-2 mb20">
-                            <strong>Nombre:</strong>
+                            <strong>Centro:</strong>
                             {{ $studyCenter->name }}
                         </div>
                         <div class="form-group mb-2 mb20">
@@ -53,13 +53,23 @@
                         @if ($studyCenter->person != null)
                             <div class="form-group mb-2 mb20">
                                 <strong>Persona encargada:</strong>
-                                {{ $studyCenter->person->name }}
+                                {{ $studyCenter->person?->name }} {{ $studyCenter->person->lastname }}
                             </div>
                         @endif
                         <div class="form-group mb-2 mb20">
                             <strong>Membresía:</strong>
                             {{ $studyCenter->membership->name }}
                         </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Usuario:</strong>
+                            {{ $studyCenter->person?->user->name }}
+                        </div>
+                        @if(isset($password) && $password!=null)
+                        <div class="form-group mb-2 mb20">
+                            <strong>Contraseña:</strong>
+                            {{ $password }}
+                        </div>
+                        @endif
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>
                             @if ($studyCenter->activated == 1)

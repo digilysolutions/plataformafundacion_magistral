@@ -88,10 +88,11 @@ class UserController extends Controller
 
                 // Enviar correo de confirmación
                 //  Mail::to($person->email)->send(new StudentConfirmationMail($student->id));
+                return Redirect::route('users.index')
+                ->with('success', 'Usuario  creado satisfactoriamente.');
             });
 
-            return Redirect::route('users.index')
-                ->with('success', 'Usuario  creado satisfactoriamente.');
+
 
         return Redirect::route('users.index');
     }

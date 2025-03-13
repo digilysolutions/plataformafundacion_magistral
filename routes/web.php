@@ -149,16 +149,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('specialties', SpecialtyController::class)->middleware('role:Administrador');
 
     //Study Center
-    // Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
-    Route::middleware('role:Administrador')->group(function () {
+     Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
+   /* Route::middleware('role:Administrador')->group(function () {
         Route::get('/study-centers', [StudyCenterController::class, 'index'])->name('study-centers.index');
         Route::get('/study-centers/create', [StudyCenterController::class, 'create'])->name('study-centers.create');
         Route::post('/study-centers', [StudyCenterController::class, 'store'])->name('study-centers.store');
         Route::get('/study-centers/{study_center}', [StudyCenterController::class, 'show'])->name('study-centers.show');
         Route::get('/study-centers/{study_center}/edit', [StudyCenterController::class, 'edit'])->name('study-centers.edit');
-        Route::patch('/study-centers/{study_center}', [StudyCenterController::class, 'update'])->name('study-centers.update');
+        Route::patch( 'study-centers/{study_center}', [StudyCenterController::class, 'update'])->name('study-centers.update');
         Route::delete('/study-centers/{study_center}', [StudyCenterController::class, 'destroy'])->name('study-centers.destroy');
-    });
+    });*/
 
     //users
     Route::resource('users', UserController::class)->middleware('role:Administrador');

@@ -19,8 +19,8 @@
 
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('study-centers.update', $studyCenter->id) }}"  role="form" enctype="multipart/form-data" data-toggle="validator">
-                            {{ method_field('PATCH') }}
                             @csrf
+                            @method('PATCH')
 
                             @include('study-center.form')
 

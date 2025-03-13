@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\UserHelper;
 use App\Models\StudyCenter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,8 +12,11 @@ use App\Models\Membership;
 use App\Models\Person;
 use App\Models\Regional;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StudyCenterController extends Controller
 {
@@ -44,12 +48,39 @@ class StudyCenterController extends Controller
      */
     public function store(StudyCenterRequest $request)
     {
+
+
         $data = $request->validated();
+        $data['name_people'] = $request['name_people'];
+        $data['lastname'] = $request['lastname'];
+
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
-        StudyCenter::create($data);
+        DB::transaction(function () use ($data) {
+
+            $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
+
+            $data['user_id'] = $user['user']->id;
+            $data['email'] = $user['user']->email;
+            $person = Person::create($data);
+
+            $data['people_id'] = $person->id;
+            // Crear el estudiante
+            $password = $user['password'];
+            $studyCenter = StudyCenter::create($data);
+
+            /*   return Redirect::route('study-center.show', compact('studyCenter', 'password'))
+                ->with('success', 'Centro de estudio creado satisfactoriamente.');*/
+            return view('study-center.show', compact('studyCenter'))
+                ->with('password', $password);
+        });
 
         return Redirect::route('study-centers.index')
-            ->with('success', 'Centro de estudio creado satisfactoriamente.');
+            ->with('error', 'Error. No se pudo insertar el Centro de estudio.');
+
+
+
+        //Crear el usurio y la persona
+
     }
 
     /**
@@ -81,14 +112,33 @@ class StudyCenterController extends Controller
      */
     public function update(StudyCenterRequest $request, StudyCenter $studyCenter): RedirectResponse
     {
+
         $data = $request->validated();
         $data["activated"] = $request->input('activated') === 'on' ? 1 : 0;
-        $studyCenter->update($data);
+        $data['name_people'] = $request['name_people'];
+        $data['lastname'] = $request['lastname'];
+
+        DB::transaction(function () use ($data,$studyCenter) {
+
+            $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
+
+            $data['user_id'] = $user['user']->id;
+            $data['email'] = $user['user']->email;
+            $person = Person::create($data);
+
+            $data['people_id'] = $person->id;
+            // Crear el estudiante
+            $password = $user['password'];
+            $studyCenter->update($data);
+
+            /*   return Redirect::route('study-center.show', compact('studyCenter', 'password'))
+                ->with('success', 'Centro de estudio creado satisfactoriamente.');*/
+            return view('study-center.show', compact('studyCenter'))
+                ->with('password', $password);
+        });
         return Redirect::route('study-centers.index')
-        ->with('success', 'Centro de estudio actualizado satisfactoriamente');
-
+            ->with('success', 'Centro de estudio actualizado satisfactoriamente');
     }
-
     public function destroy($id): RedirectResponse
     {
         StudyCenter::find($id)->delete();
@@ -104,8 +154,8 @@ class StudyCenterController extends Controller
         return response()->json($distritos);
     }
 
-    public function dashboard()   {
-        return view('study-center.dashboard');}
-
-
+    public function dashboard()
+    {
+        return view('study-center.dashboard');
+    }
 }
