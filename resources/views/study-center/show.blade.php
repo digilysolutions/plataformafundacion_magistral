@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Usuario:</strong>
-                            {{ $studyCenter->person?->user->name }}
+                            {{ $studyCenter->person?->user->email }}
                         </div>
                         @if(isset($password) && $password!=null)
                         <div class="form-group mb-2 mb20">

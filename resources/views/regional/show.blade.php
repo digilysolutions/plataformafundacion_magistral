@@ -20,7 +20,11 @@
 
                     <div class="card-body bg-white">
                         <div class="form-group mb-2 mb20">
-                            <strong>Código:</strong>
+                            <strong>No:</strong>
+                            {{ $regional->code }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código de seguimiento:</strong>
                             {{ $regional->id }}
                         </div>
                         <div class="form-group mb-2 mb20">

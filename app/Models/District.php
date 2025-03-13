@@ -33,7 +33,7 @@ class District extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated', 'name', 'tracking_code', 'address', 'phone', 'mail', 'regional_id'];
+    protected $fillable = ['activated','code', 'name', 'tracking_code', 'address', 'phone', 'mail', 'regional_id'];
 
 
     /**

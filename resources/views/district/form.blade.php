@@ -38,7 +38,7 @@
         <div class="form-group col-md-12">
             <label for="address" class="form-label">{{ __('Dirección') }}</label>
             <textarea type="text" name="address" class="form-control @error('address') is-invalid @enderror"
-               id="address" placeholder="Dirección">{{ old('address', $regional?->address) }}</textarea>
+               id="address" placeholder="Dirección">{{ old('address', $district?->address) }}</textarea>
             {!! $errors->first('address', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">

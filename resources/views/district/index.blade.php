@@ -53,7 +53,7 @@
                                     @endphp
                                     @foreach ($districts as $district)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $district->code }}</td>
                                             <td>{{ $district->id }}</td>
                                             <td>{{ $district->name }}</td>
                                             <td>{{ $district->phone }}</td>

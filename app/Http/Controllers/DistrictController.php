@@ -26,7 +26,7 @@ class DistrictController extends Controller
     public function create(): View
     {
         $district = new District();
-        $regionals = Regional::all();
+        $regionals = Regional::allActivated();
         return view('district.create', compact('district', 'regionals'));
     }
 
