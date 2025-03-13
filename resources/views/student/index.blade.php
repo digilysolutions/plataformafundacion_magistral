@@ -5,23 +5,43 @@
 @endsection
 
 @section('content-admin')
-    <div class="container-fluid">
+@if(count($students)==0 || $students==null)
+    <div class="row">
+        <div class="container-fluid">
+            <h3>Carga Inicial de Datos</h3>
+            @if (session('success'))
+                <div>{{ session('success') }}</div>
+            @endif
+
+            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <label for="file">Selecciona un archivo Excel:</label>
+                <input type="file" name="import_file" required>
+                <button type="submit" class="btn btn-primary btn-sm ">Cargar Datos</button>
+            </form>
+        </div>
+@endif
         <div class="row">
+
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        
+                        <div class="float-right mr-5">
+                            <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm float-right"
+                                data-placement="left">
+                                {{ __('Nuevo') }}
+                            </a>
+                        </div>
+                        <div style="display: flex;  align-items: center;">
 
                             <span id="card_title">
                                 {{ __('Estudiantes') }}
                             </span>
 
-                            <div class="float-right">
-                                <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm float-right"
-                                    data-placement="left">
-                                    {{ __('Nuevo') }}
-                                </a>
-                            </div>
+
+
+
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -62,9 +82,21 @@
                                             <td>{{ $student->id }}</td>
                                             <td>{{ $student->person->name }} {{ $student->person->lastname }}</td>
                                             <td>{{ $student->course }}</td>
-                                            <td>@if($student->studyCenter) {{ $student->studyCenter->name }} @else No pertenece @endif</td>
+                                            <td>
+                                                @if ($student->studyCenter)
+                                                    {{ $student->studyCenter->name }}
+                                                @else
+                                                    No pertenece
+                                                @endif
+                                            </td>
                                             <td>{{ $student->person->user->name }}</td>
-                                            <td>@if($student->membership){{ $student->membership->name }} @else Sin membresía @endif</td>
+                                            <td>
+                                                @if ($student->membership)
+                                                    {{ $student->membership->name }}
+                                                @else
+                                                    Sin membresía
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if ($student->activated == 1)
                                                     Si
