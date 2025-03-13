@@ -1,12 +1,19 @@
 <div class="row padding-1 p-1">
 
+    <div class="form-group col-md-6">
+        <label for="name" class="form-label">{{ __('No') }} *   </label>
+        <input type="text" name="code" class="form-control " required
+            value="{{ old('code', $regional?->code) }}" id="name" placeholder="No" required>
+                   <div class="help-block with-errors"></div>
+    </div>
+
         <div class="form-group col-md-6">
             <label for="name" class="form-label">{{ __('Nombre') }} *   </label>
             <input type="text" name="name" class="form-control " required
                 value="{{ old('name', $regional?->name) }}" id="name" placeholder="Nombre" required>
                        <div class="help-block with-errors"></div>
         </div>
-        <div class="form-group col-md-6 ">
+        <div class="form-group col-md-4 ">
             <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
             <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
                 value="{{ old('phone', $regional?->phone) }}" id="phone" placeholder="Teléfono">
@@ -15,7 +22,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="mail" class="form-label">{{ __('Correo') }}</label>
             <input type="text"  id="mail"  name="mail" class="form-control @error('mail') is-invalid @enderror"
                 value="{{ old('mail', $regional?->mail) }}" id="mail" placeholder="Correo">
@@ -23,7 +30,7 @@
         </div>
 
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="address" class="form-label">{{ __('Paises') }}</label>
             <select id="country_id" name="country_id" class="form-control">
 
