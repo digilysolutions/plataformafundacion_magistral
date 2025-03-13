@@ -32,7 +32,7 @@ class Regional extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'country_id','address', 'phone', 'mail', 'activated'];
+    protected $fillable = ['name','code', 'country_id','address', 'phone', 'mail', 'activated'];
 
 
     /**

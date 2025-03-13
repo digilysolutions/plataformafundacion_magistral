@@ -15,6 +15,7 @@ return new class extends Migration
 
             $table->uuid('id')->primary(); // Define `tracking_code` como UUID y clave primaria
             $table->string('name');
+            $table->string('code')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('mail')->nullable();

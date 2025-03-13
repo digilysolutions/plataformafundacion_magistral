@@ -50,7 +50,7 @@
                                     @endphp
                                     @foreach ($regionals as $regional)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $regional->code }}</td>
                                             <td>{{ $regional->id }}</td>
                                             <td>{{ $regional->name }}</td>
                                             <td>{{ $regional->phone }}</td>
