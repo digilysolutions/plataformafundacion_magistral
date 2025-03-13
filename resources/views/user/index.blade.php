@@ -41,10 +41,10 @@
                                 <thead>
                                     <tr class="ligth">
                                         <th>No</th>
-                                        <th>Código</th>
-                                        <th>Nombre y Apellidos</th>
-                                        <th>Curso</th>
                                         <th>Usuario</th>
+                                        <th>Código</th>
+                                        <th>Rol</th>
+                                        <th>Centro Educativo</th>
                                         <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>
@@ -57,16 +57,15 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-                                            <td>{{ $user->id }}</td>
-                                            <td>@if($user->person){{ $user->person->name }} {{ $user->person->lastname }} @else ------ @endif</td>
+                                            <td>{{ $user->person?->email }}</td>
+                                            <td>{{ $user->person?->id }}</td>
+                                            <td>{{ $user->role}}</td>
                                             <td>
-                                                @if($user->person && $user->person->student && $user->person->student->course)
-                                                    {{ $user->person->student->course }} @else ------
+                                                @if($user->person &&  $user->person->studyCenter)
+                                                    {{ $user->person->studyCenter->name}} @else ------
                                                 @endif
                                             </td>
 
-                                            <td>{{ $user->name }}</td>
                                             <td>
                                                 @if($user->person && $user->person->student && $user->person->student->membership)
                                                     {{ $user->person->student->membership->name }} @else ------
@@ -100,11 +99,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Código</th>
-                                        <th>Nombre y Apellidos</th>
-                                        <th>Curso</th>
                                         <th>Usuario</th>
-                                        <th>Membresía</th>
+                                        <th>Código</th>
+                                        <th>Rol</th>
+                                        <th>Centro Educativo</th>    <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>
                                     </tr>

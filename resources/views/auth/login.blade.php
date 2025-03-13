@@ -78,6 +78,11 @@
                                                 {{ session('error') }}
                                             </div>
                                         @endif
+                                        @if (session('errors'))
+                                         <div class="alert alert-danger">
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        </div>
+                                        @endif
                             <div class="card-body p-0">
                                 <div class="d-flex align-items-center auth-content">
                                     <div class="col-lg-7 align-self-center">
@@ -115,7 +120,7 @@
                                                         <div class="floating-label form-group">
                                                             <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="current-password" />
                                                             <label>Contraseña</label>
-                                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
 
                                                             <!-- Ojo para mostrar/ocultar contraseña -->
                                                             <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">

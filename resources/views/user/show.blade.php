@@ -23,20 +23,20 @@
 
                         <div class="form-group mb-2 mb20">
                             <strong>Código:</strong>
-                            {{ $user->id }}
+                            {{ $user->person->id }}
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Nombre y Apellidos:</strong>
-                            {{ $user->person->name }} {{ $user->person->lastname }}
+                            {{ $user->person?->name }} {{ $user->person?->lastname }}
                         </div>
-                        @if ($user->person && $user->person->student && $user->person->student->course)
+                        @if ($user->person && $user->person?->student && $user->person?->student->course)
                             {{ $user->person->student->course }}
                         @else
                             <p>No hay información de curso disponible.</p>
                         @endif
                         <div class="form-group mb-2 mb20">
                             <strong>Centro de estudio:</strong>
-                            @if ($user->person && $user->person->student && $user->person->student->studyCenter)
+                            @if ($user->person && $user->person?->student && $user->person?->student->studyCenter)
                                 {{ $user->person->student->studyCenter->name }}
                             @else
                                 <p>No hay información del centro de estudio disponible.</p>
@@ -44,11 +44,11 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Teléfono:</strong>
-                            {{ $user->person->phone }}
+                            {{ $user->person?->phone }}
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Teléfono:</strong>
-                            {{ $user->person->email }}
+                            {{ $user->person?->email }}
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Usuario:</strong>
