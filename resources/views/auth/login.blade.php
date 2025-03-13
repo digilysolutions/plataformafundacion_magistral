@@ -106,27 +106,24 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="floating-label form-group">
-                                                            <input class="floating-input form-control" type="email"
-                                                                name="email" placeholder=" " required autofocus
-                                                                autocomplete="username" />
+                                                            <input class="floating-input form-control" type="email" name="email" placeholder=" " required autofocus autocomplete="username" />
                                                             <label>Correo</label>
                                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <div class="floating-label form-group">
-                                                            <input class="floating-input form-control" name="password"
-                                                                type="password" placeholder=" " required
-                                                                autocomplete="current-password" />
+                                                        <div class="floating-label form-group position-relative">
+                                                            <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="current-password" />
                                                             <label>Contraseña</label>
                                                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+                                                            <!-- Ojo para mostrar/ocultar contraseña -->
+                                                            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" style="cursor: pointer;"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="floating-label form-group">
-                                                            <input class="floating-input form-control" name="codigo_seguimiento"
-                                                                type="text" placeholder=" " required
-                                                                 />
+                                                            <input class="floating-input form-control" name="codigo_seguimiento" type="text" placeholder=" " required />
                                                             <label>Código</label>
                                                             <x-input-error :messages="$errors->get('codigo_seguimiento')" class="mt-2" />
                                                         </div>
@@ -134,24 +131,15 @@
 
                                                     <div class="col-lg-6">
                                                         <div class="custom-control custom-checkbox mb-3">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                name="remember" id="customCheck1">
-                                                            <label class="custom-control-label control-label-1"
-                                                                for="customCheck1">Recuérdame</label>
+                                                            <input type="checkbox" class="custom-control-input" name="remember" id="customCheck1">
+                                                            <label class="custom-control-label control-label-1" for="customCheck1">Recuérdame</label>
                                                         </div>
                                                     </div>
-                                                    <!--- <div class="col-lg-6">
-                                                        @if (Route::has('password.request'))
-                                                            <a href="{{ route('password.request') }}"
-                                                                class="text-primary float-right">¿Olvidaste tu
-                                                                Contraseña?</a>
-                                                        @endif
-                                                    </div> --->
+
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                                                 <p class="mt-3">
-                                                    Crear una Cuenta <a href="{{ route('register') }}"
-                                                        class="text-primary">Regístrate</a>
+                                                    Crear una Cuenta <a href="{{ route('register') }}" class="text-primary">Regístrate</a>
                                                 </p>
                                             </form>
                                         </div>
@@ -183,6 +171,20 @@
     <script async src="{{ asset('admin/js/chart-custom.js') }}"></script>
     <!-- app JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+   <script>
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function (e) {
+            // Alternar el tipo de entrada
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Cambiar el icono
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
 
 </html>
