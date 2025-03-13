@@ -18,13 +18,34 @@
                                 {{ __('Atrás') }}</a>
                         </div>
                     </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success m-4">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
 
                     <div class="card-body bg-white">
 
                         <div class="form-group mb-2 mb20">
-                            <strong>Código:</strong>
+                            <strong>Usuario:</strong>
+                            {{ $studyCenter->person?->user->email }}
+                        </div>
+                        @if (isset($password) && $password != null)
+                            <div class="form-group mb-2 mb20">
+                                <strong>Contraseña:</strong>
+                                {{ $password }}
+                                <p class="mb-0">  <small>La contraseña solo se le mostrará una vez.</small></p>
+
+                            </div>
+
+                        @endif
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código de seguimiento:</strong>
                             {{ $studyCenter->id }}
                         </div>
+                        <hr>
+
+
                         <div class="form-group mb-2 mb20">
                             <strong>Centro:</strong>
                             {{ $studyCenter->name }}
@@ -60,16 +81,7 @@
                             <strong>Membresía:</strong>
                             {{ $studyCenter->membership->name }}
                         </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Usuario:</strong>
-                            {{ $studyCenter->person?->user->email }}
-                        </div>
-                        @if(isset($password) && $password!=null)
-                        <div class="form-group mb-2 mb20">
-                            <strong>Contraseña:</strong>
-                            {{ $password }}
-                        </div>
-                        @endif
+
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>
                             @if ($studyCenter->activated == 1)
