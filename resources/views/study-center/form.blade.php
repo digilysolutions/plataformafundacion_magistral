@@ -1,30 +1,24 @@
 <div class="row padding-1 p-1">
 
-    <div class="form-group col-md-4">
-        <label for="name" class="form-label">{{ __('Nombre') }}</label>
+    <div class="form-group col-md-6">
+        <label for="name" class="form-label">{{ __('Nombre') }} *</label>
         <input type="text" name="name" class="form-control " value="{{ old('name', $studyCenter?->name) }}"
             id="name" placeholder="Nombre" required>
         <div class="help-block with-errors"></div>
     </div>
-
-    <div class="form-group col-md-4">
-        <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
-        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
-            value="{{ old('phone', $studyCenter?->phone) }}" id="phone" placeholder="Teléfono">
+    <div class="form-group col-md-6">
+        <label for="membership_id" class="form-label">{{ __('Membresía') }} *</label>
+        <select id="membership_id" name="membership_id" class="form-control" required>
+            @foreach ($memberships as $membership)
+                <option value="{{ $membership->id }}" @if ($membership->id == $studyCenter->membership_id) selected @endif>
+                    {{ $membership->name }}</option>
+            @endforeach
+        </select>
         <div class="help-block with-errors"></div>
     </div>
-    <div class="form-group col-md-4">
-        <label for="mail" class="form-label">{{ __('Correo') }}</label>
-        <input type="text" id="mail" name="mail" class="form-control @error('mail') is-invalid @enderror"
-            value="{{ old('mail', $studyCenter?->mail) }}" id="mail" placeholder="Correo">
-        <div class="help-block with-errors"></div>
-    </div>
-
-
-
-    <div class="form-group col-md-4">
-        <label for="regional_id" class="form-label">{{ __('Regional') }}</label>
-        <select id="regional_id" name="regional_id" class="form-control">
+    <div class="form-group col-md-6">
+        <label for="regional_id" class="form-label">{{ __('Regional') }} *</label>
+        <select id="regional_id" name="regional_id" class="form-control" required>
             <option value="">Selecciona una regional</option>
             @foreach ($regionals as $regional)
                 <option value="{{ $regional->id }}" @if ($regional->id == $studyCenter->regional_id) selected @endif>
@@ -35,24 +29,28 @@
         <div class="help-block with-errors"></div>
     </div>
 
-    <div class="form-group col-md-4" id="districtGroup">
-        <label for="district_id" class="form-label">{{ __('Distrito') }}</label>
-        <select id="district_id" name="district_id" class="form-control">
+    <div class="form-group col-md-6" id="districtGroup">
+        <label for="district_id" class="form-label">{{ __('Distrito') }} *</label>
+        <select id="district_id" name="district_id" class="form-control" required>
             <option value="">Selecciona un distrito</option>
             <!-- Las opciones de distrito se llenarán aquí dinámicamente -->
         </select>
         <div class="help-block with-errors"></div>
     </div>
-    <div class="form-group col-md-4">
-        <label for="membership_id" class="form-label">{{ __('Membresía') }}</label>
-        <select id="membership_id" name="membership_id" class="form-control">
-            @foreach ($memberships as $membership)
-                <option value="{{ $membership->id }}" @if ($membership->id == $studyCenter->membership_id) selected @endif>
-                    {{ $membership->name }}</option>
-            @endforeach
-        </select>
+    <div class="form-group col-md-6">
+        <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
+        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
+            value="{{ old('phone', $studyCenter?->phone) }}" id="phone" placeholder="Teléfono">
         <div class="help-block with-errors"></div>
     </div>
+    <div class="form-group col-md-6">
+        <label for="mail" class="form-label">{{ __('Correo') }}</label>
+        <input type="text" id="mail" name="mail" class="form-control @error('mail') is-invalid @enderror"
+            value="{{ old('mail', $studyCenter?->mail) }}" id="mail" placeholder="Correo">
+        <div class="help-block with-errors"></div>
+    </div>
+    
+    
     <div class="form-group col-md-12">
         <label for="address" class="form-label">{{ __('Dirección') }}</label>
         <textarea name="address" class="form-control @error('address') is-invalid @enderror" id="address"
