@@ -33,7 +33,7 @@
                         <div class="d-flex align-items-center auth-content">
                            <div class="col-lg-7 align-self-center">
                               <div class="p-3">
-                                 <img src="{{ asset('images/login/mail.png') }}  " class="img-fluid" width="80" alt="">
+                                 <img src="{{ asset('img/login/mail.png') }}  " class="img-fluid" width="80" alt="">
                                  <h2 class="mt-3 mb-0">¡Registro Exitoso!</h2>
                                  <p class="cnf-mail mb-1">Gracias por registrarte. Se ha enviado un correo electrónico a tu dirección. Por favor, revisa tu correo y sigue las instrucciones para verificar tu cuenta.</p>
 
@@ -43,7 +43,7 @@
                               </div>
                            </div>
                            <div class="col-lg-5 content-right">
-                              <img src="{{ asset('images/login/01.png') }}  " class="img-fluid image-right" alt="">
+                              <img src="{{ asset('img/login/01.png') }}  " class="img-fluid image-right" alt="">
                            </div>
                         </div>
                      </div>
