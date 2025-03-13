@@ -55,8 +55,8 @@ class StudyCenterController extends Controller
         $data['lastname'] = $request['lastname'];
 
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
-        DB::transaction(function () use ($data) {
-
+        DB::beginTransaction();
+        try {
             $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
 
             $data['user_id'] = $user['user']->id;
@@ -67,15 +67,21 @@ class StudyCenterController extends Controller
             // Crear el estudiante
             $password = $user['password'];
             $studyCenter = StudyCenter::create($data);
+            Log::info('Se creo el centro de estudio');
 
-            /*   return Redirect::route('study-center.show', compact('studyCenter', 'password'))
-                ->with('success', 'Centro de estudio creado satisfactoriamente.');*/
-            return view('study-center.show', compact('studyCenter'))
-                ->with('password', $password);
-        });
+            DB::commit();
 
-        return Redirect::route('study-centers.index')
-            ->with('error', 'Error. No se pudo insertar el Centro de estudio.');
+            // Retornar a la vista con el mensaje de éxito y la información necesaria
+            return view('study-center.show', compact('studyCenter'))->with('password', $user['password']);
+        } catch (\Exception $e) {
+            // Si hay un error, revertir todos los cambios
+            DB::rollback();
+            Log::error('Error al crear el centro de estudio: ' . $e->getMessage());
+
+            // Retornar a la vista de lista con un mensaje de error
+            return Redirect::route('study-centers.index')
+                ->with('error', 'Error. No se pudo insertar el Centro de estudio.');
+        }
 
 
 
@@ -118,7 +124,7 @@ class StudyCenterController extends Controller
         $data['name_people'] = $request['name_people'];
         $data['lastname'] = $request['lastname'];
 
-        DB::transaction(function () use ($data,$studyCenter) {
+        DB::transaction(function () use ($data, $studyCenter) {
 
             $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
 
