@@ -21,10 +21,15 @@
                     <div class="card-body bg-white">
 
 
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Código:</strong>
-                                    {{ $district->id }}
-                                </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>No:</strong>
+                            {{ $district->code }}
+                        </div>
+
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código de seguimiento:</strong>
+                            {{ $district->id }}
+                        </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Nombre:</strong>
                                     {{ $district->name }}
