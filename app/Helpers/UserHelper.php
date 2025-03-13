@@ -38,6 +38,8 @@ class UserHelper
         return [
             'message' => 'Usuario creado exitosamente',
             'user' => $user,
+            'email' =>  $email ,
+            
             'password' => $password // Puede ser útil para depuración, evita mostrarla en producción.
         ];
     }

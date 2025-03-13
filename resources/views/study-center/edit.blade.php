@@ -21,7 +21,6 @@
                         <form method="POST" action="{{ route('study-centers.update', $studyCenter->id) }}"  role="form" enctype="multipart/form-data" data-toggle="validator">
                             @csrf
                             @method('PATCH')
-
                             @include('study-center.form')
 
                         </form>

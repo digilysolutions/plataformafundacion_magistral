@@ -35,7 +35,7 @@
                               <thead>
                                  <tr class="ligth">
                                         <th>No</th>
-                                        
+
 									<th >Membership Id</th>
 									<th >Membership Feature Id</th>
 									<th >Value</th>
@@ -51,7 +51,7 @@
                                     @foreach ($membershipFeaturesMemberships as $membershipFeaturesMembership)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $membershipFeaturesMembership->membership_id }}</td>
 										<td >{{ $membershipFeaturesMembership->membership_feature_id }}</td>
 										<td >{{ $membershipFeaturesMembership->value }}</td>
@@ -71,7 +71,7 @@
                                   <tfoot>
                                  <tr>
                                  <th>No</th>
-                                  
+
 									<th >Membership Id</th>
 									<th >Membership Feature Id</th>
 									<th >Value</th>

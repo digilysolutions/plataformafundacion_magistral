@@ -13,7 +13,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof NotFoundHttpException) {
-            return redirect('/')->with('error', 'Página no encontrada.');
+            return redirect('/login')->with('error', 'Página no encontrada.');
         }
 
         return parent::render($request, $exception);

@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body bg-white">
-                        
+
                                 <div class="form-group mb-2 mb20">
                                     <strong>Membership Id:</strong>
                                     {{ $membershipFeaturesMembership->membership_id }}

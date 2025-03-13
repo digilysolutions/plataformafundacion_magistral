@@ -92,8 +92,6 @@ class UserController extends Controller
                 ->with('success', 'Usuario  creado satisfactoriamente.');
             });
 
-
-
         return Redirect::route('users.index');
     }
     public function updatePassword(Request $request, $userId)

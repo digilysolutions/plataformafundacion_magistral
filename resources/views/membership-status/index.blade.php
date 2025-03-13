@@ -35,7 +35,7 @@
                               <thead>
                                  <tr class="ligth">
                                         <th>No</th>
-                                        
+
 									<th >Name</th>
 									<th >Description</th>
 
@@ -50,7 +50,7 @@
                                     @foreach ($membershipStatuses as $membershipStatus)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $membershipStatus->name }}</td>
 										<td >{{ $membershipStatus->description }}</td>
 
@@ -69,7 +69,7 @@
                                   <tfoot>
                                  <tr>
                                  <th>No</th>
-                                  
+
 									<th >Name</th>
 									<th >Description</th>
 

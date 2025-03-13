@@ -4,7 +4,7 @@
             <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                 <i class="ri-menu-line wrapper-menu"></i>
                 <a href="" class="header-logo">
-                    <img src="{{ asset('img/icono/fm-icono (7).jpg') }}" class="img-fluid rounded-normal" alt="logo">
+                    <img src="{{ asset('img/icono/plataforma.jpg') }}" class="img-fluid rounded-normal" alt="logo">
                     <h5 class="logo-title ml-3">Plataforma</h5>
 
 

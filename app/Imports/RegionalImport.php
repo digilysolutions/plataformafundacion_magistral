@@ -30,7 +30,7 @@ class RegionalImport implements ToModel, WithHeadingRow
             'address' => $filteredRow['address'] ?? '',
             'phone' => $filteredRow['phone'] ?? '',
             'mail' => $filteredRow['mail'] ?? '',
-           
+            'activated' => $filteredRow['activated'] ? true : false,
             'country_id' => $filteredRow['country_id'] ?? null,
         ]);
     }
