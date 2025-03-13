@@ -23,6 +23,7 @@ class RegionalRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'code' => 'required|string|max:255',
             'phone' => 'nullable|string|max:15',
             'mail' => 'nullable|email|max:255',
             'country_id' => 'required|exists:countries,id',
