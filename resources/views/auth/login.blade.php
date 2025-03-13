@@ -112,13 +112,22 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <div class="floating-label form-group position-relative">
-                                                            <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="current-password" />
+                                                        <div class="floating-label form-group">
+                                                            <input class="ffloating-input form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="current-password" />
                                                             <label>Contraseña</label>
                                                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
                                                             <!-- Ojo para mostrar/ocultar contraseña -->
-                                                            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" style="cursor: pointer;"></span>
+                                                            <span toggle="#password" class="toggle-password" style="cursor: pointer;">
+                                                                <!-- Ojo Cerrado por defecto -->
+                                                                <svg class="svg-icon eye-icon" width="20" height="20"
+                                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                                    <path d="M1 12c0 0 3.1 7 11 7s11-7 11-7-3.1-7-11-7-11 7-11 7z"></path>
+                                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                                    <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"></line>
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
@@ -135,7 +144,6 @@
                                                             <label class="custom-control-label control-label-1" for="customCheck1">Recuérdame</label>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                                                 <p class="mt-3">
@@ -172,7 +180,7 @@
     <!-- app JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-   <script>
+    <script>
         const togglePassword = document.querySelector('.toggle-password');
         const passwordInput = document.querySelector('#password');
 
@@ -181,8 +189,21 @@
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
 
-            // Cambiar el icono
-            this.classList.toggle('fa-eye-slash');
+            // Cambiar el SVG
+            this.innerHTML = type === 'text' ? `
+                <svg class="svg-icon eye-icon" width="20" height="20"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12c0 0 3.1 7 11 7s11-7 11-7-3.1-7-11-7-11 7-11 7z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>` : `
+                <svg class="svg-icon eye-icon" width="20" height="20"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12c0 0 3.1 7 11 7s11-7 11-7-3.1-7-11-7-11 7-11 7z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"></line>
+                </svg>`;
         });
     </script>
 </body>
