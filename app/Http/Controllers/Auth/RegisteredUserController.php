@@ -124,8 +124,10 @@ class RegisteredUserController extends Controller
         $user->verification_code = null;
         $user->verification_token = null;
         $user->save();
+       // Mail::to($user->email)->send(new VerificationEmail($user));
         Auth::login($user);
-        return redirect()->route('user.dashboard');
+        return redirect()->route('user.dashboard')
+        ->with('user',$user);
        // return response()->json(['message' => '¡Correo verificado exitosamente! Puedes iniciar sesión.']);
     }
     public function thankYou()
