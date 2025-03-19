@@ -30,5 +30,9 @@ class MembershipFeature extends ModelMain
      */
     protected $fillable = ['name', 'description', 'activated'];
 
-
+    public function memberships()
+    {
+        return $this->belongsToMany(Membership::class, 'membership_features_memberships')
+            ->withPivot('value');
+    }
 }

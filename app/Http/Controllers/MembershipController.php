@@ -7,12 +7,14 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\MembershipRequest;
 use App\Models\MembershipFeature;
+use App\Models\MembershipFeaturesMembership;
 use App\Models\MembershipHistory;
 use App\Models\MembershipStatus;
 use App\Models\StudyCenter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Carbon\Carbon;
+use Database\Seeders\MemberShipMemberShipFeatureSeeder;
 use Illuminate\Support\Str;
 
 class MembershipController extends Controller
@@ -130,10 +132,11 @@ class MembershipController extends Controller
                 'membership_statuses_id' => $estadoActualId,
             ]);
         }
+        $membershipMemberShipFeature = MembershipFeaturesMembership::where('membership_id',$membership->id)->get();
 
         $features = MembershipFeature::allActivated();
 
-        return view('membership.show', compact('membership', 'messageActivate', 'features'));
+        return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
     }
 
     /**

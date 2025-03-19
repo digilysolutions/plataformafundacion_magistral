@@ -21,44 +21,39 @@ class MembershipSeeder extends Seeder
 
                 'activated' => true,
                 'name' => 'Basica',
-                'price' => 19.99,
+                'price' => 0,
                 'duration_days' => 30,
                 'start_date' => now(),
                 'end_date' => now()->addDays(30),
                 'type' => 'Tipo I',
                 'is_studio_center' => false,
-                'student_limit' => null,
-                'limite_items' => 10,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
 
                 'activated' => true,
-                'name' => 'Estudio',
+                'name' => 'Premium',
                 'price' => 49.99,
-                'duration_days' => 365,
+                'duration_days' => 180,
                 'start_date' => now(),
-                'end_date' => now()->addDays(365),
+                'end_date' => now()->addDays(180),
                 'type' => 'Tipo II',
-                'is_studio_center' => true,
-                'student_limit' => 20,
-                'limite_items' => 50,
+                'is_studio_center' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
 
-                'activated' => false,
-                'name' => 'Premium',
+                'activated' => true,
+                'name' => 'VIP',
                 'price' => 99.99,
-                'duration_days' => null, // Ilimitado
+                'duration_days' => 365, // Ilimitado
                 'start_date' => now(),
-                'end_date' => null, // Ilimitado
+                'end_date' => now()->addDays(365), // Ilimitado
                 'type' => 'Tipo III',
                 'is_studio_center' => false,
-                'student_limit' => null,
-                'limite_items' => 100,
+
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

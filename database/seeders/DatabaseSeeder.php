@@ -117,5 +117,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FeatureSeeder::class);
         //$this->call(StyCenterSeeder::class);
+        $this->call(MemberShipMemberShipFeatureSeeder::class);
+
     }
 }

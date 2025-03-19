@@ -24,17 +24,19 @@
                         <h3 class="mb-3"> {{ $membership->name }}</h3>
                         <ul class="list-unstyled mb-0">
                             <li><strong>Fecha Inicio:</strong> {{ $membership->start_date }}</li>
-                            <li><strong>Fecha Final: </strong>@if ($membership->end_date!=null)
-                                {{ $membership->end_date }}
+                            <li><strong>Fecha Final: </strong>
+                                @if ($membership->end_date != null)
+                                    {{ $membership->end_date }}
                                 @else
-                                Ilimitado
-                            @endif</li>
+                                    Ilimitado
+                                @endif
+                            </li>
                             <li>Cantidad Estudiantes:
-                                @if ( $membership->student_limit !=null)
-                                {{ $membership->student_limit }}
+                                @if ($membership->student_limit != null)
+                                    {{ $membership->student_limit }}
                                 @else
-                                Ilimitado
-                            @endif
+                                    Ilimitado
+                                @endif
                             </li>
                             <li>Cantidad de Items: {{ $membership->limite_items }}</li>
                             <li>Tipo: {{ $membership->type }}</li>
@@ -78,8 +80,15 @@
                                         <tr>
                                             <th class="" scope="row">{{ $feature->name }}</th>
 
-                                            <td class=" child-cell"><i class="ri-check-line ri-2x"></i>
-                                            </td>
+                                            @foreach ($membershipMemberShipFeature as $mmFeature)
+                                                @if ($mmFeature->membership_feature_id == $feature->id)
+                                                    <td >
+                                                        {{$mmFeature->value}}
+                                                    </td>
+                                                    @break
+                                                @endif
+                                            @endforeach
+
 
                                         </tr>
                                     @endforeach

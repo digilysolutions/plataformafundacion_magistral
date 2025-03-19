@@ -37,24 +37,20 @@ class MembershipHistory extends ModelMain
     protected $fillable = ['user_id', 'membership_id', 'start_date', 'end_date',  'membership_statuses_id'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+
     public function membership()
     {
-        return $this->belongsTo(\App\Models\Membership::class, 'membership_id', 'id');
+        return $this->belongsTo(Membership::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
+
     public function membershipStatus()
     {
-        return $this->belongsTo(\App\Models\MembershipStatus::class, 'membership_statuses_id', 'id');
+        return $this->belongsTo(MembershipStatus::class);
     }
 
 

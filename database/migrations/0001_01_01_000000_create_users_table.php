@@ -24,6 +24,10 @@ return new class extends Migration
             $table->integer('verification_code')->nullable(); // Cambiar a integer
             $table->boolean('is_verified')->default(false);
             $table->boolean('activated')->default(true);
+            $table->uuid('membership_id')->nullable(); // Asegúrate de que sea UUID
+            $table->foreign('membership_id')->references('id')->on('memberships')->onDelete('cascade'); // Cambia `id` por `tracking_code` si es necesario
+
+
             $table->timestamps();
         });
 

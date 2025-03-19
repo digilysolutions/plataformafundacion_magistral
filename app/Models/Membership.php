@@ -39,5 +39,10 @@ class Membership extends ModelMain
     {
         return $this->hasMany(StudyCenter::class);
     }
+    public function features()
+    {
+        return $this->belongsToMany(MembershipFeature::class, 'membership_features_memberships')
+            ->withPivot('value');
+    }
 
 }

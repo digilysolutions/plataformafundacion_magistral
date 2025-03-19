@@ -15,57 +15,57 @@ class FeatureSeeder extends Seeder
     {
         $features = [
             [
-                'name' => 'Cantidad de Estudiantes',
-                'description' => 'Número máximo de estudiantes que pueden acceder a la plataforma.',
+                'name' => 'Acceso a ITEMSs',
+                'description' => 'Acceso a los items que se encuentra en la plataforma',
                 'activated' => true,
             ],
             [
-                'name' => 'Cantidad de Ítems',
-                'description' => 'Número máximo de ítems de evaluación que pueden ser creados por la escuela.',
+                'name' => 'Acceso a Pruebas',
+                'description' => '',
                 'activated' => true,
             ],
             [
-                'name' => 'Cantidad de Pruebas',
-                'description' => 'Número máximo de pruebas que pueden realizarse mensualmente.',
+                'name' => 'Niveles de dificultad de ITEMS',
+                'description' => '',
                 'activated' => true,
             ],
             [
-                'name' => 'Acceso a Recursos Educativos',
-                'description' => 'Descarga y uso de materiales adicionales para reforzar el aprendizaje.',
+                'name' => 'Personalización de Exámenes',
+                'description' => '',
                 'activated' => true,
             ],
             [
-                'name' => 'Solicitar Corrección de Pruebas',
+                'name' => 'Solicitar Tutor',
                 'description' => 'Capacidad para solicitar la revisión manual de pruebas.',
                 'activated' => true,
             ],
             [
-                'name' => 'Generación de Reportes',
+                'name' => 'Generador de Reportes',
                 'description' => 'Posibilidad de generar informes sobre el desempeño de los estudiantes.',
                 'activated' => true,
             ],
             [
-                'name' => 'Soporte Técnico Prioritario',
+                'name' => 'Historial de Actividades',
                 'description' => 'Acceso a atención al cliente rápida y eficiente.',
                 'activated' => true,
             ],
             [
-                'name' => 'Promociones y Descuentos',
+                'name' => 'Solicitar   Certificado',
                 'description' => 'Acceso a ofertas y precios reducidos en servicios adicionales.',
                 'activated' => true,
             ],
             [
-                'name' => 'Características de Personalización de Pruebas',
+                'name' => 'Acceso a Recursos Educativos',
                 'description' => 'Capacidad para adaptar las pruebas a las necesidades de los estudiantes.',
                 'activated' => true,
             ],
             [
-                'name' => 'Capacidad de Crear Items Propios',
+                'name' => 'Soporte   Técnico Prioritario',
                 'description' => 'Posibilidad de diseñar y gestionar cursos personalizados.',
                 'activated' => true,
             ],
             [
-                'name' => 'Acceso a Análisis de Datos',
+                'name' => 'Promociones y Descuentos (Renovación',
                 'description' => 'Herramientas para interpretar el rendimiento académico.',
                 'activated' => true,
             ],
@@ -73,32 +73,7 @@ class FeatureSeeder extends Seeder
                 'name' => 'Configuración de Niveles de Dificultad',
                 'description' => 'Personalización del nivel de dificultad de las evaluaciones.',
                 'activated' => true,
-            ],
-            [
-                'name' => 'Tiempo de Acceso a la Plataforma',
-                'description' => 'Restricciones de tiempo en el uso de la plataforma.',
-                'activated' => true,
-            ],
-            [
-                'name' => 'Disponibles multiples Idiomas',
-                'description' => 'Acceso a la plataforma en diferentes idiomas.',
-                'activated' => false,
-            ],
-            [
-                'name' => 'Historial de Actividades',
-                'description' => 'Registro de acciones realizadas por estudiantes en la plataforma.',
-                'activated' => true,
-            ],
-            [
-                'name' => 'Notificaciones Personalizadas',
-                'description' => 'Alertas sobre actividades o fechas límites.',
-                'activated' => true,
-            ],
-            [
-                'name' => 'Capacidad de Publicar Noticias y Anuncios',
-                'description' => 'Habilitar la comunicación con los estudiantes a través de anuncios.',
-                'activated' => false,
-            ],
+            ]
 
         ];
 

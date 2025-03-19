@@ -34,6 +34,7 @@ class User extends Authenticatable
         'password',
         'roleid',
         'google_id',
+        'membership_id ',
         'verification_token',
         'verification_code'
     ];
@@ -80,5 +81,14 @@ class User extends Authenticatable
     public function hasRole($role): bool
     {
         return $this->role === $role; // Comparar directamente con el valor del campo
+    }
+    public function membership()
+    {
+        return $this->belongsTo(Membership::class);
+    }
+
+    public function membershipHistory()
+    {
+        return $this->hasMany(MembershipHistory::class);
     }
 }
