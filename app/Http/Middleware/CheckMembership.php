@@ -18,40 +18,45 @@ class CheckMembership
     {
         $user = Auth::user();
 
-        // Verificar si el usuario tiene un membership_id
-      /*  if (!$user->membership_id) {
-            return redirect()->route('membership.basic'); // Redirigir a la membresía básica
-        }*/
 
-        // Obtener la membresía y el historial de membresía del usuario
+        // Obtener la membresía activa del usuario
         $membership = $user->membership;
 
+        // Usar el historial de membresía para verificar su estado
         $latestMembershipHistory = $user->membershipHistory()
             ->with('membershipStatus')
             ->orderBy('created_at', 'desc')
             ->first();
 
-        // Comprobar si la membresía está activa
         if (!$latestMembershipHistory || ($latestMembershipHistory->membershipStatus->name !== 'Activo' && $latestMembershipHistory->membershipStatus->name !== 'Prueba')) {
-            return redirect()->route('membership.inactive'); // No puede acceder a los recursos
+            return redirect()->route('membership.inactive');
         }
 
-        // Verificar las características de acceso relacionadas con la solicitud actual
-        $requiredFeature = $request->route()->getName(); // Nombre de la ruta puede ser el nombre del feature a comprobar
-
+        // Verificar las características de acceso
+        $requiredFeature = $request->route()->getName();
         if ($requiredFeature) {
             $feature = $membership->features()->where('name', $requiredFeature)->first();
-            if ($feature) {
-                $value = $feature->pivot->value;
 
-                // Asegúrate de que tus rutas están definidos para comprobar el valor
-                if ($value === 'no_access') {
-                    return redirect()->route('access.denied'); // Redirigir si no tiene acceso
+            if ($feature) {
+                // Comprobar el acceso
+                if (!$feature->pivot->has_access) {
+                    return redirect()->route('access.denied');
                 }
+
+                // Comprobar si hay un límite de uso
+                if ($feature->pivot->usage_limit && $feature->pivot->usage_limit != null)
+                    if ($feature->pivot->usage_limit && $feature->pivot->current_usage >= $feature->pivot->usage_limit) {
+                        return redirect()->route('access.limit_reached'); // Acceso a pruebas excedido
+                    }
+
+                // Incrementar el uso si se trata de una prueba
+                /* if ($feature->pivot->type === 'prueba') {
+                    $feature->pivot->current_usage++;
+                    $feature->pivot->save(); // Guardar el nuevo uso
+                }*/
             }
         }
 
         return $next($request);
     }
-
 }

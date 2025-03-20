@@ -41,7 +41,7 @@ Route::get('/error404', function () {
     return view('error404'); // Asegúrate de tener este view creado
 });
 Route::get('/notaccess', function () {
-    return view('not-access'); // Asegúrate de tener este view creado
+    return view('not-access')->name('access.denied'); // Asegúrate de tener este view creado
 });
 //Registro (register):
 Route::get('register', function () {
@@ -113,15 +113,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/import', [ExcelController::class, 'import'])->name('import')->middleware('role:Administrador');
 
     //memberships
-    //Route::resource('memberships', MembershipController::class)->middleware('role:Administrador');
-    // Mostrar un membership específico (show)
-    Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo,Usuario');
-    Route::get('memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador,Centro Educativo');
+    Route::resource('memberships', MembershipController::class)->middleware('role:Administrador');
     Route::post('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'renew'])->name('study_centers.renew_membership')->middleware('role:Administrador,Centro Educativo');
     Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
-    Route::get('memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador'); // Para mostrar el formulario de crear estudiante
-    Route::delete('memberships/{membership}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
-    Route::get('memberships/{membership}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');  // Para mostrar el formulario de edición
+    Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
+    // Mostrar un membership específico (show)
+    // Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo,Usuario');
+    // Route::get('memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador,Centro Educativo');
+    // Route::get('memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador'); // Para mostrar el formulario de crear estudiante
+    //  Route::delete('memberships/{membership}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
+    //  Route::get('memberships/{membership}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');  // Para mostrar el formulario de edición
 
     //memberships History
     Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->name('memberships_histories.index')->middleware('role:Administrador,Centro Educativo');
@@ -149,8 +150,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('specialties', SpecialtyController::class)->middleware('role:Administrador');
 
     //Study Center
-     Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
-   /* Route::middleware('role:Administrador')->group(function () {
+    Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
+    /* Route::middleware('role:Administrador')->group(function () {
         Route::get('/study-centers', [StudyCenterController::class, 'index'])->name('study-centers.index');
         Route::get('/study-centers/create', [StudyCenterController::class, 'create'])->name('study-centers.create');
         Route::post('/study-centers', [StudyCenterController::class, 'store'])->name('study-centers.store');
@@ -174,7 +175,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('levels', LevelController::class)->middleware('role:Administrador');
 
 
-    Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
+
     Route::resource('membership-features', MembershipFeatureController::class);
     Route::resource('membership-features-memberships', MembershipFeaturesMembershipController::class);
 
@@ -271,6 +272,18 @@ Route::middleware(['auth', 'verified','user.role'])->group(function () {
 });
 */
 
+//----Paginas  de chequeo para ala membresia
+
+
+Route::get('/membership-inactive', function () {
+    return view('membership.inactive');
+})->name('membership.inactive');
+
+Route::get('/access-limit-reached', function () {
+    return view('access.limit_reached');
+})->name('access.limit_reached');
+
+
 
 ///-----Para los items de prueba
 Route::get('items/{name}', function ($name) {
@@ -284,4 +297,7 @@ Route::get('examens/{name}', function ($name) {
 Route::get('user/time', function () {
     return view('user.time'); // Pasamos el valor de $name a la vista
 })->name('user.time');
+
+
+
 require __DIR__ . '/auth.php';

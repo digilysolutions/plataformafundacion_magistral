@@ -18,6 +18,7 @@ class RedirectIfNotFound
     {
 
         $response = $next($request);
+
         // Verificar si la respuesta es 404
         if ($response->getStatusCode() === 404) {
 

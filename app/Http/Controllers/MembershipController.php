@@ -145,7 +145,6 @@ class MembershipController extends Controller
     public function edit($id): View
     {
         $membership = Membership::find($id);
-
         return view('membership.edit', compact('membership'));
     }
 
@@ -154,7 +153,6 @@ class MembershipController extends Controller
      */
     public function update(MembershipRequest $request, Membership $membership): RedirectResponse
     {
-        $data = $request->all();
         $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
         $data["is_studio_center"] =  $request->input('is_studio_center') === 'on' ? 1 : 0;
         // Establecer la fecha de inicio

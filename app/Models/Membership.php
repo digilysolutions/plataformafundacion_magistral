@@ -34,7 +34,7 @@ class Membership extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated', 'name','type','start_date','end_date', 'price', 'duration_days', 'is_studio_center', 'student_limit', 'limite_items'];
+    protected $fillable = ['activated', 'name','type','start_date','end_date', 'price', 'duration_days', 'is_studio_center'];
     public function studyCenters()
     {
         return $this->hasMany(StudyCenter::class);

@@ -27,30 +27,13 @@
                 placeholder="Tiempo de Duración">
                 <div class="help-block with-errors"></div>
         </div>
-        <div class="custom-control custom-checkbox custom-control-inline">
+        <div class="custom-control custom-checkbox custom-control-inline col-lg-6">
             <input type="checkbox" class="custom-control-input" id="customCheck5" name="is_studio_center">
             <label class="custom-control-label" for="customCheck5"> ¿Centro de estudio?</label>
          </div>
          <div class="help-block with-errors"></div>
 
-        <div id="student_limit_id" class="form-group mb-2 mb20">
-            <label for="student_limit" class="form-label">{{ __('Cantidad de Estudiantes') }}</label>
-            <input type="text" id="student_limit" name="student_limit" class="form-control @error('student_limit') is-invalid @enderror"
-                value="{{ old('student_limit', $membership?->student_limit) }}" id="student_limit"
-                placeholder="Cantidad de Estudiantes">
-                <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group mb-2 mb20">
-            <label for="limite_items" class="form-label">{{ __('Cantidad de Items') }}</label>
-            <input type="text" name="limite_items" class="form-control @error('limite_items') is-invalid @enderror"
-                value="{{ old('limite_items', $membership?->limite_items) }}" id="limite_items"
-                placeholder="Cantidad de Items">
-
-        </div>
-
-
-
-        <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+        <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline col-lg-6">
             <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-1" name="activated"
                 checked="">
             <label class="custom-control-label" for="customCheck-1"> Activado</label>

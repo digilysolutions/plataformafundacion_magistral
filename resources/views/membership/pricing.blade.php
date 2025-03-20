@@ -34,7 +34,7 @@
                                                 @foreach ($membershipMemberShipFeature as $mmFeature)
                                                     @if ($mmFeature->membership_feature_id == $feature->id && $membership->id == $mmFeature->membership_id)
                                                         <td class="text-center child-cell">
-                                                            {{ $mmFeature->value }}
+                                                            {{ $mmFeature->description }}
                                                         </td>
                                                         @break
                                                     @endif

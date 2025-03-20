@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MembershipFeaturesMembership extends ModelMain
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -30,7 +30,7 @@ class MembershipFeaturesMembership extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['membership_id', 'membership_feature_id', 'value'];
+    protected $fillable = ['membership_id', 'membership_feature_id', 'value','description','has_access','current_usage','url','usage_limit'];
 
 
     /**
@@ -40,7 +40,7 @@ class MembershipFeaturesMembership extends ModelMain
     {
         return $this->belongsTo(\App\Models\MembershipFeature::class, 'membership_feature_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -48,5 +48,5 @@ class MembershipFeaturesMembership extends ModelMain
     {
         return $this->belongsTo(\App\Models\Membership::class, 'membership_id', 'id');
     }
-    
+
 }

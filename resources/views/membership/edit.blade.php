@@ -22,6 +22,7 @@
                             {{ method_field('PATCH') }}
                             @csrf
 
+
                             @include('membership.form')
 
                         </form>

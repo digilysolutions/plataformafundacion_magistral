@@ -31,14 +31,7 @@
                                     Ilimitado
                                 @endif
                             </li>
-                            <li>Cantidad Estudiantes:
-                                @if ($membership->student_limit != null)
-                                    {{ $membership->student_limit }}
-                                @else
-                                    Ilimitado
-                                @endif
-                            </li>
-                            <li>Cantidad de Items: {{ $membership->limite_items }}</li>
+
                             <li>Tipo: {{ $membership->type }}</li>
                         </ul>
                         <strong class="  mt-3 text-center text-primary" style="max-width: 100%; word-wrap: break-word;">
@@ -83,7 +76,7 @@
                                             @foreach ($membershipMemberShipFeature as $mmFeature)
                                                 @if ($mmFeature->membership_feature_id == $feature->id)
                                                     <td >
-                                                        {{$mmFeature->value}}
+                                                        {{$mmFeature->description}}
                                                     </td>
                                                     @break
                                                 @endif

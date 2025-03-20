@@ -42,8 +42,6 @@
                                         <th>Duración</th>
                                         <th>Tipo</th>
                                         <th>Centro </th>
-                                        <th>Límite de estudiantes</th>
-                                        <th>Límite de Items</th>
                                         <th>Activado</th>
 
                                         <th></th>
@@ -67,8 +65,6 @@
                                                     No
                                                 @endif
                                             </td>
-                                            <td>{{ $membership->student_limit }}</td>
-                                            <td>{{ $membership->limite_items }}</td>
                                             <td>
                                                 @if ($membership->activated == 1)
                                                     Si
@@ -104,8 +100,7 @@
                                         <th>Duración</th>
                                         <th>Tipo</th>
                                         <th>Centro </th>
-                                        <th>Límite de estudiantes</th>
-                                        <th>Límite de Items</th>
+
                                         <th>Activado</th>
 
                                         <th></th>
