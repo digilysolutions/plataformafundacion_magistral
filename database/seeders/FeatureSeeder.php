@@ -68,11 +68,6 @@ class FeatureSeeder extends Seeder
                 'name' => 'Promociones y Descuentos (Renovación',
                 'description' => 'Herramientas para interpretar el rendimiento académico.',
                 'activated' => true,
-            ],
-            [
-                'name' => 'Configuración de Niveles de Dificultad',
-                'description' => 'Personalización del nivel de dificultad de las evaluaciones.',
-                'activated' => true,
             ]
 
         ];

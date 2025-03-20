@@ -186,7 +186,9 @@ class MembershipController extends Controller
     {
         $memberships = Membership::allActivated();
         $features = MembershipFeature::allActivated();
-        return view('membership.pricing', compact('memberships', 'features'));
+        $membershipMemberShipFeature = MembershipFeaturesMembership::all();
+
+        return view('membership.pricing', compact('memberships', 'features','membershipMemberShipFeature'));
     }
 
     public function remembership($studyCenterId): View

@@ -28,20 +28,19 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($features as $feature)
-
                                         <tr>
-                                                <th class="text-center" scope="row">{{$feature->name}}</th>
-                                                <td class="text-center child-cell"><i class="ri-check-line ri-2x">{{$membership->name}}</i>
-                                                </td>
-                                                <td class="text-center child-cell active"><i class="ri-close-line i_close">sddd
-                                                </td>
-                                                <td class="text-center child-cell"><i class="ri-check-line ri-2x"></i>
-                                                </td>
-                                                <td class="text-center child-cell"><i class="ri-check-line ri-2x"></i>
-                                                </td>
-
+                                            <th class="text-center" scope="row">{{ $feature->name }}</th>
+                                            @foreach ($memberships as $membership)
+                                                @foreach ($membershipMemberShipFeature as $mmFeature)
+                                                    @if ($mmFeature->membership_feature_id == $feature->id && $membership->id == $mmFeature->membership_id)
+                                                        <td class="text-center child-cell">
+                                                            {{ $mmFeature->value }}
+                                                        </td>
+                                                        @break
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
                                         </tr>
-
                                     @endforeach
                                 </tbody>
                             </table>
