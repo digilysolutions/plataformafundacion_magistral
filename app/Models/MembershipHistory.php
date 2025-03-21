@@ -48,6 +48,7 @@ class MembershipHistory extends ModelMain
         return $this->belongsTo(User::class);
     }
 
+
     public function membershipStatus()
     {
         return $this->belongsTo(MembershipStatus::class);

@@ -31,14 +31,16 @@
                                         <tr>
                                             <th class="text-center" scope="row">{{ $feature->name }}</th>
                                             @foreach ($memberships as $membership)
+                                            <td class="text-center child-cell">
                                                 @foreach ($membershipMemberShipFeature as $mmFeature)
-                                                    @if ($mmFeature->membership_feature_id == $feature->id && $membership->id == $mmFeature->membership_id)
-                                                        <td class="text-center child-cell">
+                                                    @if ($mmFeature->membership_feature_id === $feature->id && $membership->id === $mmFeature->membership_id)
+
                                                             {{ $mmFeature->description }}
-                                                        </td>
+
                                                         @break
                                                     @endif
                                                 @endforeach
+                                            </td>
                                             @endforeach
                                         </tr>
                                     @endforeach

@@ -33,6 +33,6 @@ class MembershipFeature extends ModelMain
     public function memberships()
     {
         return $this->belongsToMany(Membership::class, 'membership_features_memberships')
-            ->withPivot('value');
+        ->withPivot('value', 'description', 'usage_limit', 'current_usage', 'has_access', 'url');
     }
 }

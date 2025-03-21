@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MembershipStatus extends ModelMain
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -29,5 +29,8 @@ class MembershipStatus extends ModelMain
      */
     protected $fillable = ['name', 'description'];
 
-
+    public function membershipHistories(): HasMany
+    {
+        return $this->hasMany(MembershipHistory::class);
+    }
 }

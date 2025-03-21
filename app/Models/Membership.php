@@ -44,5 +44,16 @@ class Membership extends ModelMain
         return $this->belongsToMany(MembershipFeature::class, 'membership_features_memberships')
             ->withPivot('value');
     }
+    public function membershipFeatures()
+    {
+        return $this->belongsToMany(MembershipFeature::class, 'membership_features_memberships')
+            ->withPivot('value', 'description', 'usage_limit', 'current_usage', 'has_access', 'url')
+            ->withTimestamps();
+    }
+
+    public function membershipHistories()
+    {
+        return $this->hasMany(MembershipHistory::class);
+    }
 
 }

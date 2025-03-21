@@ -22,11 +22,14 @@ class RoleMiddleware
 
         // Obtener el rol del usuario autenticado
         $userRole = $request->user()->role;
+
         Log::info('Rol del usuario autenticado: ' . $userRole);
         Log::info('Roles permitidos: ' . json_encode($roles)); // Convertimos el arreglo de roles a JSON para mejor lectura en el log
 
+
         // Verificar si el rol del usuario está en el arreglo de roles permitidos
         if (!in_array($userRole, $roles)) {
+
             Log::info('Acceso denegado para el rol: ' . $userRole);
             return redirect('/notaccess');
         }

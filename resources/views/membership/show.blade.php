@@ -76,7 +76,7 @@
                                             @foreach ($membershipMemberShipFeature as $mmFeature)
                                                 @if ($mmFeature->membership_feature_id == $feature->id)
                                                     <td >
-                                                        {{$mmFeature->description}}
+                                                        {{ $mmFeature->description  }}
                                                     </td>
                                                     @break
                                                 @endif

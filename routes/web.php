@@ -113,16 +113,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/import', [ExcelController::class, 'import'])->name('import')->middleware('role:Administrador');
 
     //memberships
+    Route::patch('memberships/{membershipId}', [MembershipController::class, 'update'])->middleware('role:Administrador');
     Route::resource('memberships', MembershipController::class)->middleware('role:Administrador');
     Route::post('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'renew'])->name('study_centers.renew_membership')->middleware('role:Administrador,Centro Educativo');
     Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
     Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
-    // Mostrar un membership específico (show)
-    // Route::get('memberships/{membership_id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Centro Educativo,Usuario');
-    // Route::get('memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador,Centro Educativo');
-    // Route::get('memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador'); // Para mostrar el formulario de crear estudiante
-    //  Route::delete('memberships/{membership}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');  // Para eliminar un estudiante
-    //  Route::get('memberships/{membership}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');  // Para mostrar el formulario de edición
+
 
     //memberships History
     Route::get('membership-histories', [MembershipHistoryController::class, 'index'])->name('memberships_histories.index')->middleware('role:Administrador,Centro Educativo');

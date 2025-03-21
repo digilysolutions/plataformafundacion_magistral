@@ -22,8 +22,8 @@ class MembershipRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'name' => 'required|string',
-			'price' => 'required',
+            'name' => 'required|string|max:255',
+            'duration_days' => 'nullable|integer|min:0'
         ];
     }
 }

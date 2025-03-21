@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('memberships', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->boolean('activated')->default(false);
+            $table->boolean('activated')->nullable();
             $table->string('name');
             $table->double('price')->default(0);
             $table->integer('duration_days')->nullable(); //Duración de la membresía en días (ej: 30, 365, null para ilimitado)

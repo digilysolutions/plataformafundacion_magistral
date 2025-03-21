@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Carbon\Carbon;
 use Database\Seeders\MemberShipMemberShipFeatureSeeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class MembershipController extends Controller
@@ -34,9 +35,9 @@ class MembershipController extends Controller
     public function create(): View
     {
         $membership = new Membership();
-        $membershipFeatures = MembershipFeature::allActivated();
+        $membershipsFeature = MembershipFeature::allActivated();
 
-        return view('membership.create', compact('membership', 'membershipFeatures'));
+        return view('membership.create', compact('membership', 'membershipsFeature'));
     }
 
     /**
@@ -45,25 +46,93 @@ class MembershipController extends Controller
     public function store(MembershipRequest $request)
     {
         $data = $request->all();
-        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
-        $data["is_studio_center"] =  $request->input('is_studio_center') === 'on' ? 1 : 0;
-        // Establecer la fecha de inicio
-        $data['duration_days'] = (int)  $data['duration_days']; // Convierte a entero
 
-        // Luego configuras las fechas
-        $data['start_date'] = Carbon::now();
+        // Convertimos duration_days a entero
+        $durationDays = (int)$data['duration_days'];
 
-        // Calcular la fecha final
-        if ($data['duration_days'] > 0) { // Verifica que duration_days sea mayor que cero
-            $data['end_date'] = Carbon::now()->addDays($data['duration_days']);
-        } else {
-            $data['end_date'] = null; // O establece otro valor si no es válido
+        // Preparar datos para crear la membresía
+        $membershipData = [
+            "activated" => $request->input('activated') === 'on' ? 1 : 0,
+            "is_studio_center" => $request->input('is_studio_center') === 'on' ? 1 : 0,
+            "name" => $data['name'],
+            "price" => (float)$data['price'],
+            "type" => $data['type'],
+            "duration_days" => $durationDays,
+            "start_date" => now(),
+            "end_date" => $durationDays > 0 ? now()->addDays($durationDays) : null,
+        ];
+
+        // Iniciar transacción
+        DB::beginTransaction();
+        try {
+            // Crear la membresía
+            $membership = Membership::create($membershipData);
+
+            // Inicializar un array para agrupar las características de membresía
+            $membershipFeatures = [];
+
+            // Recorrer todos los campos en $data
+            foreach ($data as $key => $value) {
+                // Dividir la clave en dos partes: el identificador y el tipo de campo
+                if (strpos($key, '-') !== false) {
+                    list($featureType, $fieldType) = explode('-', $key, 2);
+
+                    // Verifica que fieldType sea uno de los tipos esperados
+                    if (in_array($fieldType, ['description', 'url', 'has_access', 'usage_limit'])) {
+                        // Si no existe una entrada para este featureType, inicializarla
+                        if (!isset($membershipFeatures[$featureType])) {
+                            $membershipFeatures[$featureType] = [
+                                'membership_id' => $membership->id,
+                                'membership_feature_id' => $featureType, // Necesitas tener una forma de mapear esto correctamente
+                                'description' => null,
+                                'usage_limit' => null,
+                                'has_access' => false,
+                                'url' => null,
+                                'created_at' => now(), // Marca de tiempo de creación
+                                'updated_at' => now(), // Marca de tiempo de actualización
+                            ];
+                        }
+
+                        // Reunir datos para la característica
+                        switch ($fieldType) {
+                            case 'description':
+                                $membershipFeatures[$featureType]['description'] = $value;
+                                break;
+                            case 'usage_limit':
+                                $membershipFeatures[$featureType]['usage_limit'] = ($value === 'null' ? null : (int)$value);
+                                break;
+                            case 'has_access':
+                                $membershipFeatures[$featureType]['has_access'] = (strtolower($value) === 'true');
+                                break;
+                            case 'url':
+                                $membershipFeatures[$featureType]['url'] = $value;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            // Insertar los datos en la base de datos
+            foreach ($membershipFeatures as $feature) {
+                // Comprobar si tanto description como url son vacíos o nulos
+                if (!empty($feature['description']) || !empty($feature['url'])) {
+                    // Guardar las características solo si al menos una de las propiedades es relevante
+                    DB::table('membership_features_memberships')->insert($feature);
+                }
+            }
+
+            // Confirmar transacción
+            DB::commit();
+
+            return Redirect::route('memberships.index')
+                ->with('success', 'Membresía creada satisfactoriamente.');
+        } catch (\Exception $e) {
+            // Revertir transacción en caso de error
+            DB::rollBack();
+
+            return Redirect::route('memberships.index')
+                ->with('error', 'Ocurrió un error al crear la membresía.');
         }
-
-        Membership::create($data);
-
-        return Redirect::route('memberships.index')
-            ->with('success', 'Membresía creada satisfactoriamente.');
     }
 
     /**
@@ -132,11 +201,11 @@ class MembershipController extends Controller
                 'membership_statuses_id' => $estadoActualId,
             ]);
         }
-        $membershipMemberShipFeature = MembershipFeaturesMembership::where('membership_id',$membership->id)->get();
+        $membershipMemberShipFeature = MembershipFeaturesMembership::where('membership_id', $membership->id)->get();
 
         $features = MembershipFeature::allActivated();
 
-        return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
+        return view('membership.show', compact('membership', 'messageActivate', 'features', 'membershipMemberShipFeature'));
     }
 
     /**
@@ -145,32 +214,125 @@ class MembershipController extends Controller
     public function edit($id): View
     {
         $membership = Membership::find($id);
-        return view('membership.edit', compact('membership'));
+        $membershipsFeature = MembershipFeature::allActivated();
+        return view('membership.edit', compact('membership', 'membershipsFeature'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(MembershipRequest $request, Membership $membership): RedirectResponse
+    public function update(MembershipRequest $request,  $membership_id): RedirectResponse
     {
-        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
-        $data["is_studio_center"] =  $request->input('is_studio_center') === 'on' ? 1 : 0;
-        // Establecer la fecha de inicio
-        $data['duration_days'] = (int)  $data['duration_days']; // Convierte a entero
+        $data = $request->all();
 
-        // Luego configuras las fechas
-        $data['start_date'] = Carbon::now();
+        // Convertimos duration_days a entero
+        $durationDays = (int)$data['duration_days'];
 
-        // Calcular la fecha final
-        if ($data['duration_days'] > 0) { // Verifica que duration_days sea mayor que cero
-            $data['end_date'] = Carbon::now()->addDays($data['duration_days']);
-        } else {
-            $data['end_date'] = null; // O establece otro valor si no es válido
+        // Obtener la membresía por su ID
+        $membership = Membership::findOrFail($membership_id);
+
+        // Preparar datos para la actualización de la membresía
+        $membershipData = [
+            "activated" => $request->input('activated') === 'on' ? 1 : 0,
+            "is_studio_center" => $request->input('is_studio_center') === 'on' ? 1 : 0,
+            "name" => $data['name'],
+            "price" => (float)$data['price'],
+            "type" => $data['type'],
+            "duration_days" => $durationDays,
+            "start_date" => now(),
+            "end_date" => $durationDays > 0 ? now()->addDays($durationDays) : null,
+        ];
+
+        // Iniciar transacción
+        DB::beginTransaction();
+        try {
+            // Actualizar la membresía
+            $membership->update($membershipData);
+
+            // Inicializar un array para agrupar las características de membresía
+            $membershipFeatures = [];
+
+            // Recorrer todos los campos en $data
+            foreach ($data as $key => $value) {
+                // Dividir la clave en dos partes: el identificador y el tipo de campo
+                if (strpos($key, '-') !== false) {
+                    list($featureType, $fieldType) = explode('-', $key, 2);
+
+                    // Verifica que fieldType sea uno de los tipos esperados
+                    if (in_array($fieldType, ['description', 'url', 'has_access', 'usage_limit'])) {
+                        // Si no existe una entrada para este featureType, inicializarla
+                        if (!isset($membershipFeatures[$featureType])) {
+                            $membershipFeatures[$featureType] = [
+                                'membership_id' => $membership->id,
+                                'membership_feature_id' => $featureType, // Necesitas tener una forma de mapear esto correctamente
+                                'description' => null,
+                                'usage_limit' => null,
+                                'has_access' => false,
+                                'url' => null,
+                                'created_at' => now(), // Marca de tiempo de creación
+                                'updated_at' => now(), // Marca de tiempo de actualización
+                            ];
+                        }
+
+                        // Reunir datos para la característica
+                        switch ($fieldType) {
+                            case 'description':
+                                $membershipFeatures[$featureType]['description'] = $value;
+                                break;
+                            case 'usage_limit':
+                                $membershipFeatures[$featureType]['usage_limit'] = ($value === 'null' ? null : (int)$value);
+                                break;
+                            case 'has_access':
+                                $membershipFeatures[$featureType]['has_access'] = (strtolower($value) === 'true');
+                                break;
+                            case 'url':
+                                $membershipFeatures[$featureType]['url'] = $value;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            // Actualizar o insertar los datos en la tabla de características de membresía
+            foreach ($membershipFeatures as $feature) {
+                // Comprobar si tanto description como url son vacíos o nulos
+                if (!empty($feature['description']) || !empty($feature['url'])) {
+                    // Comprobar si la característica ya existe
+                    $existingFeature = DB::table('membership_features_memberships')
+                        ->where('membership_id', $membership->id)
+                        ->where('membership_feature_id', $feature['membership_feature_id'])
+                        ->first();
+
+                    if ($existingFeature) {
+                        // Actualizar si ya existe
+                        DB::table('membership_features_memberships')
+                            ->where('id', $existingFeature->id)
+                            ->update([
+                                'description' => $feature['description'],
+                                'usage_limit' => $feature['usage_limit'],
+                                'has_access' => $feature['has_access'],
+                                'url' => $feature['url'],
+                                'updated_at' => now(),
+                            ]);
+                    } else {
+                        // Insertar solo si al menos una de las propiedades es relevante
+                        DB::table('membership_features_memberships')->insert($feature);
+                    }
+                }
+            }
+
+            // Confirmar transacción
+            DB::commit();
+
+            return Redirect::route('memberships.index')
+                ->with('success', 'Membresía actualizada satisfactoriamente.');
+        } catch (\Exception $e) {
+            // Revertir transacción en caso de error
+            DB::rollBack();
+
+            return Redirect::route('memberships.index')
+                ->with('error', 'Ocurrió un error al actualizar la membresía.');
         }
-        $membership->update($data);
-
-        return Redirect::route('memberships.index')
-            ->with('success', 'Membresía actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -186,7 +348,7 @@ class MembershipController extends Controller
         $features = MembershipFeature::allActivated();
         $membershipMemberShipFeature = MembershipFeaturesMembership::all();
 
-        return view('membership.pricing', compact('memberships', 'features','membershipMemberShipFeature'));
+        return view('membership.pricing', compact('memberships', 'features', 'membershipMemberShipFeature'));
     }
 
     public function remembership($studyCenterId): View
@@ -258,7 +420,4 @@ class MembershipController extends Controller
             return view('membership.show', compact('membership', 'messageActivate', 'features'));
         }
     }
-
-
-
 }
