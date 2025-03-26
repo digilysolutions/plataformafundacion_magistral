@@ -53,7 +53,7 @@
                         </li>
                         @endif
                         <li class="{{ request()->is('study-centers/*') ? 'active' : '' }}">
-                            <a href="{{ route('study_centers.remembership', $user?->person?->student?->id) }}">
+                            <a href="">
                                 <i class="las la-minus"></i><span>Renovar Membresía</span>
                             </a>
                         </li>
