@@ -15,8 +15,10 @@ use Illuminate\Support\Str;
 use App\Mail\VerificationEmail;
 use App\Models\Person;
 use App\Models\Student;
+use App\Validators\PasswordValidator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 class RegisteredUserController extends Controller
 {
     /**
@@ -42,6 +44,10 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $validator = PasswordValidator::validate($data);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
         // Si la validación falla, redirigir de vuelta con errores
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
