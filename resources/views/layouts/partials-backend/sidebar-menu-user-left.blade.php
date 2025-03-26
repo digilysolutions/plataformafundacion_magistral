@@ -42,7 +42,7 @@
 
 
                     <ul id="membresia" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        @if ( $user->person->student->membership!==null)
+                        @if ( $user?->membership!==null)
 
 
                         <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
@@ -343,7 +343,7 @@
                         <span class="ml-4">Solicitar Certificado</span>
                     </a>
                 </li>
-                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                <li class="{{ request()->is('') ? 'active' : '' }}">
                     <a href="https://fundacionmagistral.org/ayuda">
                         <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
