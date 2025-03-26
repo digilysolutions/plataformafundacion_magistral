@@ -22,7 +22,7 @@
                     </div>
                     <div class="iq-alert-text">
                         <p>Usuario: {{ $user->email }}</p>
-                        <p>Código de Seguimimiento: {{ $user->person->id }}</p>
+                        <p>Código de Seguimimiento: {{ $user?->person?->id }}</p>
                     </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <i class="ri-close-line"></i>
