@@ -35,4 +35,6 @@ class MembershipFeature extends ModelMain
         return $this->belongsToMany(Membership::class, 'membership_features_memberships')
         ->withPivot('value', 'description', 'usage_limit', 'current_usage', 'has_access', 'url');
     }
+
+    
 }

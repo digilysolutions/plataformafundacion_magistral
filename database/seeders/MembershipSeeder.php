@@ -53,7 +53,6 @@ class MembershipSeeder extends Seeder
                 'end_date' => now()->addDays(365), // Ilimitado
                 'type' => 'Tipo III',
                 'is_studio_center' => false,
-
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

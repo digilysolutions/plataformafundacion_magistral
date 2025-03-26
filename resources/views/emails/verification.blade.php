@@ -7,7 +7,7 @@
 <body>
     <h4>Hola {{ $user->name }}</h4>
     Gracias por registrarte. Por favor verifica tu correo haciendo clic en el siguiente enlace:</p>
-    <a href="{{ $url }}">Verificar mi cuenta</a> us ael co
+    <a href="{{ $url }}">Verificar mi cuenta</a>
     <p>Usa el código para verificar la cuenta:</p>
     <h6>Código de Verificación: {{ $verificationCode }}</h6>
     <p>Si no te registraste, ignora este correo.</p>
