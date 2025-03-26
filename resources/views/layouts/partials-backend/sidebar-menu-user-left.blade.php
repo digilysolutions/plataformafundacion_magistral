@@ -345,7 +345,7 @@
                     </a>
                 </li>
                 <li class="{{ request()->is('') ? 'active' : '' }}">
-                    <a href="https://fundacionmagistral.org/ayuda">
+                    <a href="https://fundacionmagistral.org/ayuda" target="_blank" >
                         <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M9 9c0-1.5 1-2.5 2-2.5s2 1 2 2c0 1-1 1.5-1 2h-1"></path>

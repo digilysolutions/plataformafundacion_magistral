@@ -34,14 +34,21 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
-        $request->validate([
+        // Validación
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // Si la validación falla, redirigir de vuelta con errores
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
         DB::beginTransaction();
+
         try {
             $user = User::create([
                 'name' => $request->name,
@@ -49,44 +56,36 @@ class RegisteredUserController extends Controller
                 'activated' => true,
                 'password' => Hash::make($request->password),
                 'verification_token' => Str::random(40),
-                'verification_code' => random_int(100000, 999999), // Generar un código de 6 dígitos
+                'verification_code' => random_int(100000, 999999),
                 'role' => 'Usuario',
                 'roleid' => 6,
-                'membership_id'=>'BA0001'
+                'membership_id' => 'BA0001'
             ]);
 
-            $person = Person::create(
-                [
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'lastname' => $request->lastname,
-                    'phone' => $request->lastname,
-                    'activated' => true,
-                    'user_id' => $user->id
-                ]
-            );
+            $person = Person::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'lastname' => $request->lastname,
+                'phone' => $request->phone,
+                'activated' => true,
+                'user_id' => $user->id
+            ]);
 
-            $student = Student::create(
-                [
-                    'name' => $request->name,
-                    'activated' => true,
-                    'course' => $request->course,
-                    'people_id' => $person->id,
-                    'membership_id' => 'BA0001',
+            $student = Student::create([
+                'name' => $request->name,
+                'activated' => true,
+                'course' => $request->course,
+                'people_id' => $person->id,
+                'membership_id' => 'BA0001',
+            ]);
 
-                ]
-            );
             event(new Registered($user));
-           // Auth::login($user);
             Mail::to($user->email)->send(new VerificationEmail($user));
             DB::commit();
             return redirect()->route('thankYou');
-            // Confirma la transacción si todo es exitoso
-            //se envia para una pagina dandole las gracias por registrarse y dandole las idnicaciones del correo que revise su correo
-          //  return redirect()->route('user.dashboard');
         } catch (\Exception $e) {
-            DB::rollback(); // Revierte la transacción en caso de error
-            return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud.']); // Devuelve un mensaje de error
+            DB::rollback();
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]); // Muestra el mensaje de error que ocurrió
         }
     }
 
