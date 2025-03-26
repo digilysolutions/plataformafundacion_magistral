@@ -24,7 +24,7 @@
                         <p>Usuario: {{ $user->email }}</p>
                         <p>Código de Seguimimiento: {{ $user?->person?->id }}</p>
                         @if ($user->google_id!=null)
-                        <p>Contraseña: Password1234. <i>Debes de cambiarla </i></p>
+                        <p>Contraseña: Password1234. <i>Debes cambiarla haciendo click en el <a href="/profile">perfil</a> de usuario en la esquina superior derecha</i></p>
                         @endif
                     </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
