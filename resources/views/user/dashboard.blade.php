@@ -23,6 +23,9 @@
                     <div class="iq-alert-text">
                         <p>Usuario: {{ $user->email }}</p>
                         <p>Código de Seguimimiento: {{ $user?->person?->id }}</p>
+                        @if ($user->google_id!=null)
+                        <p>Contraseña: Password1234. <i>Debes de cambiarla </i></p>
+                        @endif
                     </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <i class="ri-close-line"></i>

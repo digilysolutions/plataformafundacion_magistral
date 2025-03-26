@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Person;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -52,12 +54,29 @@ class GoogleController extends Controller
                     'google_id' => $user->id,
                     'role' => 'Usuario',
                     'roleid' => 6,
+                    'membership_id'=>'BA0001',
                     'password' => Hash::make('Password1234'), // Considera usar una mejor manera de manejar contraseñas
                 ]);
+                $person = Person::create(
+                    [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'activated' => true,
+                        'user_id' => $user->id
+                    ]
+                );
+                $student = Student::create(
+                    [
+                        'name' => $user->name,
+                        'activated' => true,
+                        'people_id' => $person->id,
+                        'membership_id'=>'BA0001',
+                    ]
+                );
 
                 // Inicia sesión con el nuevo usuario
                 Auth::login($newUser);
-                return redirect()->intended('dashboard');
+                return  redirect()->route('user.dashboard');
             }
         } catch (\Exception $e) {
             // Manejo de excepciones

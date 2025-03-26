@@ -51,9 +51,9 @@ class RegisteredUserController extends Controller
                 'verification_token' => Str::random(40),
                 'verification_code' => random_int(100000, 999999), // Generar un código de 6 dígitos
                 'role' => 'Usuario',
-                'roleid' => 6
+                'roleid' => 6,
+                'membership_id'=>'BA0001'
             ]);
-
 
             $person = Person::create(
                 [
@@ -72,7 +72,7 @@ class RegisteredUserController extends Controller
                     'activated' => true,
                     'course' => $request->course,
                     'people_id' => $person->id,
-                    'membership_id' => null,
+                    'membership_id' => 'BA0001',
 
                 ]
             );
