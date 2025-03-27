@@ -89,6 +89,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'usuario@gmail.com',
             'role' => 'Usuario',
             'password' => '1234',
+             'membership_id' => 'BA0001',
             'roleid' => 6
         ]);
         $person = Person::create(
