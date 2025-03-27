@@ -34,7 +34,7 @@ class User extends Authenticatable
         'password',
         'roleid',
         'google_id',
-        'membership_id ',
+        'membership_id',
         'verification_token',
         'verification_code'
     ];
