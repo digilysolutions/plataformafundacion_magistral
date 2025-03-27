@@ -61,7 +61,7 @@
 
 
                         <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
-                            <a href="{{ route('memberships.show', $user?->membership_id) }}">
+                            <a href="{{ route('memberships.show', $user->membership_id) }}">
                                 <i class="las la-minus"></i><span>Detalles de Membresía</span>
                             </a>
 
