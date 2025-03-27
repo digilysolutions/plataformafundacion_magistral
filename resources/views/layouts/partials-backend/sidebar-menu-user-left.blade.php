@@ -59,14 +59,14 @@
 
                     <ul id="membresia" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
-
+@if ($user && $user->membership)
                         <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
                             <a href="{{ route('memberships.show', $user->membership_id) }}">
                                 <i class="las la-minus"></i><span>Detalles de Membresía</span>
                             </a>
 
                         </li>
-
+@endif
                         <li class="{{ request()->is('study-centers/*') ? 'active' : '' }}">
                             <a href="">
                                 <i class="las la-minus"></i><span>Renovar Membresía</span>

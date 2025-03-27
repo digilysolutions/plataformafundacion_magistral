@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
         ], [
             'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
         ]);
-    
+
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -66,9 +66,10 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
                 'verification_token' => Str::random(40),
                 'verification_code' => random_int(100000, 999999),
+                'membership_id' => 'BA0001',
                 'role' => 'Usuario',
                 'roleid' => 6,
-                'membership_id' => 'BA0001'
+
             ]);
 
             $person = Person::create([
