@@ -18,7 +18,6 @@ class CheckMembership
     {
         $user = Auth::user();
 
-
         // Obtener la membresía activa del usuario
         $membership = $user->membership;
 
@@ -34,6 +33,7 @@ class CheckMembership
 
         // Verificar las características de acceso
         $requiredFeature = $request->route()->getName();
+
         if ($requiredFeature) {
             $feature = $membership->features()->where('name', $requiredFeature)->first();
 
