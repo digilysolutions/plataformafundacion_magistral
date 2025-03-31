@@ -15,7 +15,7 @@
         </div>
         <div class="form-group col-md-4 ">
             <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
-            <input type="text" name="phone" class="c @error('phone') is-invalid @enderror"
+            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
                 value="{{ old('phone', $regional?->phone) }}" id="phone" placeholder="Teléfono">
                 <div class="help-block with-errors"></div>
                 @error('phone')
