@@ -19,78 +19,113 @@ class RegionalsSeeder extends Seeder
         $countryId = Country::where('name', 'República Dominicana')->pluck('id')->first();
         $regionals = [
             [
-                
-                'name' => 'Santo Domingo',
-                'address' => 'Avenida John F. Kennedy',
-                'phone' => '809-555-1234',
-                'mail' => 'santo.domingo@example.com',
+                'name' => 'BARAHONA',
+                'code'=>'01',
                 'activated' => true,
                 'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-                
-                'name' => 'Santiago',
-                'address' => 'Calle 30 de Marzo',
-                'phone' => '809-555-5678',
-                'mail' => 'santiago@example.com',
+                'name' => 'SAN JUAN DE LA MAGUANA',
+                'code'=>'02',
                 'activated' => true,
-                'country_id' =>  $countryId,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-               
-                'name' => 'La Altagracia',
-                'address' => 'Calle 1, Punta Cana',
-                'phone' => '809-555-8765',
-                'mail' => 'alta.gracia@example.com',
+                'name' => 'AZUA',
+                'code'=>'03',
                 'activated' => true,
-                'country_id' =>  $countryId,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-                
-                'name' => 'San Cristóbal',
-                'address' => 'Calle Independencia',
-                'phone' => '809-555-3210',
-                'mail' => 'san.cristobal@example.com',
+                'name' => 'SAN CRISTOBAL',
+                'code'=>'04',
                 'activated' => true,
-                'country_id' =>  $countryId,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-               
-                'name' => 'San Pedro de Macorís',
-                'address' => 'Avenida Francisco Alberto Caamaño',
-                'phone' => '809-555-9624',
-                'mail' => 'san.pedro@example.com',
+                'name' => 'SAN PEDRO DE MACORIS',
+                'code'=>'05',
                 'activated' => true,
-                'country_id' =>  $countryId,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-              
-                'name' => 'Puerto Plata',
-                'address' => 'Calle José Francisco Peña Gómez',
-                'phone' => '809-555-6543',
-                'mail' => 'puerto.plata@example.com',
+                'name' => 'LA VEGA',
+                'code'=>'06',
                 'activated' => true,
-                'country_id' =>  $countryId,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-               
-                'name' => 'La Vega',
-                'address' => 'Avenida Pedro A. Rivera',
-                'phone' => '809-555-4411',
-                'mail' => 'la.vega@example.com',
+                'name' => 'SAN FRANCISCO DE MACORIS',
+                'code'=>'07',
                 'activated' => true,
-                'country_id' =>  $countryId,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
             [
-                
-                'name' => 'Mahó',
-                'address' => 'Calle Maximo Gomez',
-                'phone' => '809-555-2345',
-                'mail' => 'maho@example.com',
+                'name' => 'SANTIAGO',
+                'code'=>'08',
                 'activated' => true,
-                'country_id' =>  $countryId,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
             ],
-            // Agrega más regionales según sea necesario
+            [
+                'name' => 'MAO',
+                'code'=>'09',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'SANTO DOMINGO',
+                'code'=>'10',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'PUERTO PLATA',
+                'code'=>'11',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'HIGUEY',
+                'code'=>'12',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'MONTE CRISTI',
+                'code'=>'13',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'NAGUA',
+                'code'=>'14',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'SANTO DOMINGO',
+                'code'=>'15',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'COTUI',
+                'code'=>'16',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'MONTE PLATA',
+                'code'=>'17',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
+            [
+                'name' => 'BAORUCO',
+                'code'=>'18',
+                'activated' => true,
+                'country_id' =>  $countryId, // Reemplazar con el UUID real
+            ],
         ];
 
         foreach ($regionals as $regional) {
