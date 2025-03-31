@@ -39,8 +39,6 @@
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Distrito</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
                                         <th>Regional</th>
                                         <th>Activado</th>
 
@@ -56,8 +54,6 @@
                                             <td>{{ $district->code }}</td>
                                             <td>{{ $district->id }}</td>
                                             <td>{{ $district->name }}</td>
-                                            <td>{{ $district->phone }}</td>
-                                            <td>{{ $district->mail }}</td>
                                             <td>{{ $district->regional->name }}</td>
                                             <td>
                                                 @if ($district->activated == 1)
@@ -90,8 +86,7 @@
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Distrito</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
+
                                         <th>Regional</th>
                                         <th>Activado</th>
                                     </tr>

@@ -38,8 +38,6 @@
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Regional</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
                                         <th>Activado</th>
                                         <th></th>
                                     </tr>
@@ -53,8 +51,6 @@
                                             <td>{{ $regional->code }}</td>
                                             <td>{{ $regional->id }}</td>
                                             <td>{{ $regional->name }}</td>
-                                            <td>{{ $regional->phone }}</td>
-                                            <td>{{ $regional->mail }}</td>
                                             <td>
                                                 @if ($regional->activated == 1)
                                                     Si
@@ -87,8 +83,6 @@
                                         <th>No</th>
                                         <th>Código</th>
                                         <th>Regional</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
                                         <th>Activado</th>
                                         <th></th>
                                     </tr>
