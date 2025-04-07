@@ -22,6 +22,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudyCenterController;
 use App\Http\Controllers\TutorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ValidatorController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
@@ -199,6 +200,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('countries', CountryController::class);
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);
+    Route::resource('validators', ValidatorController::class);
+    Route::get('/validator/dashboard', function () {
+        return view('validator.dashboard'); // Vista para el dashboard del usuario
+    })->name('validator.dashboard');
     ///-------End nuevas rutass
 });
 

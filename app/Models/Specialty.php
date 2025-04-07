@@ -30,8 +30,9 @@ class Specialty extends ModelMain
     protected $fillable = ['activated', 'name'];
 
 
-    public function specialties()
+
+    public function validators()
     {
-        return $this->belongsToMany(Specialty::class, 'specialty_tutor', 'tutor_id', 'specialty_id');
+        return $this->hasMany(Validator::class, 'specialty_id', 'id');
     }
 }

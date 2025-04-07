@@ -19,6 +19,7 @@ use App\Validators\PasswordValidator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -105,7 +106,7 @@ class RegisteredUserController extends Controller
         $user = User::where('verification_token', $token)->first();
 
         if (!$user) {
-            return redirect('/')->with('error', 'Token de verificación inválido o expirado.');
+            return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');
         }
 
         return view('auth.verify', compact('user'));
@@ -113,16 +114,16 @@ class RegisteredUserController extends Controller
 
     public function verifyEmail(Request $request)
     {
+        
         $request->validate([
             'email' => 'required|string|email',
             'verification_code' => 'required|integer',
             'verification_token' => 'required|string',
         ]);
-
+        
         $user = User::where('email', $request->email)
-                    ->where('verification_token', $request->verification_token)
-                    ->first();
-
+            ->where('verification_token', $request->verification_token)
+            ->first();
 
         if (!$user || $user->verification_code !== (int)$request->verification_code) {
             return response()->json(['error' => 'Código de verificación inválido'], 400);
@@ -133,11 +134,29 @@ class RegisteredUserController extends Controller
         $user->verification_code = null;
         $user->verification_token = null;
         $user->save();
-       // Mail::to($user->email)->send(new VerificationEmail($user));
-        Auth::login($user);
+        // Mail::to($user->email)->send(new VerificationEmail($user));
+
+        if ($user->roleid == 4) {
+            // Asegúrate de que la relación está definida correctamente en tu modelo
+            $validator = $user->person->validator; // Obtiene el validador asociado a la persona
+
+            if ($validator) { // Asegúrate de que el validador exista
+                $validator->activated = true; // Cambia el estado de activated a true
+                $validator->save(); // Guarda los cambios en la base de datos
+            } else {
+                // Manejo de error si el validador no existe
+                return redirect()->route('/login') // Cambia 'some.route' al adecuado
+                    ->with('error', 'El validador no se encontró.');
+            }
+            Auth::login($user);
+            return redirect()->route('validator.dashboard') // Redirige al Dashboard del validador
+                ->with('user', $user); // Opcional, si necesitas pasar el usuario
+        }
+        if ($user->roleid == 6)
+            Auth::login($user);
         return redirect()->route('user.dashboard')
-        ->with('user',$user);
-       // return response()->json(['message' => '¡Correo verificado exitosamente! Puedes iniciar sesión.']);
+            ->with('user', $user);
+        // return response()->json(['message' => '¡Correo verificado exitosamente! Puedes iniciar sesión.']);
     }
     public function thankYou()
     {

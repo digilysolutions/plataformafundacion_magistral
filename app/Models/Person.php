@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Ramsey\Uuid\Uuid;
+use App\Models\Validator;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -45,9 +44,11 @@ class Person extends ModelMain
      */
 
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
+    public function user() { // Cambia "people" a "person"
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function validator() { // Solo un validador por persona
+        return $this->hasOne(Validator::class, 'people_id');
     }
 
     public function studyCenter(): HasOne

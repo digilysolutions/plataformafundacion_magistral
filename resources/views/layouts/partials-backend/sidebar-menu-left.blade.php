@@ -79,8 +79,8 @@
                                 <span>Distritos</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="">
+                        <li class="{{ request()->is('validators*') ? 'active' : '' }}">
+                            <a href="{{ route('validators.index') }}">
                                 <i class="las la-minus"></i><span>Validador</span>
                             </a>
                         </li>

@@ -74,9 +74,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
-    public function person(): HasOne
-    {
-        return $this->hasOne(Person::class);
+    public function person() { // Cambia "people" a "person"
+        return $this->hasOne(Person::class, 'user_id');
     }
     public function hasRole($role): bool
     {

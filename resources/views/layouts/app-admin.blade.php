@@ -30,6 +30,8 @@
             @include('layouts.partials-backend.sidebar-menu-study-center-left')
         @elseif ($user->role == 'Usuario')
             @include('layouts.partials-backend.sidebar-menu-user-left')
+            @elseif ($user->role == 'Validador')
+            @include('layouts.partials-backend.sidebar-menu-validator-left')
         @else
             @include('layouts.partials-backend.sidebar-menu-left')
         @endif
