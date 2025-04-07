@@ -30,12 +30,10 @@ class StyCenterSeeder extends Seeder
         $studiesCenter = [
             [
 
-                'name' => 'Centro de Estudioio 1',
-                'address' => 'Direccion del centro de estudio ',
-                'phone' => '809-555-1234',
-                'phone' => 'centrostudio@gmail.com',
-                'regional_id' => 'LA0001',
-                'district_id' => 'LA0001',
+                'name' => ' DIVINA PASTORA',
+                'code' => '06466',
+                'regional_id' => 'BA0001',
+                'district_id' => 'BA0001',
                 'people_id' => $person->id,
                 'activated' => true,
                 'membership_id'=>'BA0001'

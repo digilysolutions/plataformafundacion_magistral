@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SpecialtiesSeeder::class);
 
         $this->call(FeatureSeeder::class);
-        //$this->call(StyCenterSeeder::class);
+        $this->call(StyCenterSeeder::class);
         $this->call(MemberShipMemberShipFeatureSeeder::class);
 
     }
