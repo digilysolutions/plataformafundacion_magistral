@@ -5,7 +5,7 @@
 @section('content-admin')
 Tutor
 {{ dd(session()->all()) }}  {{-- Para depurar el arreglo de la sesión --}}
-    @if (Session::has('password'))
+    
         <div class="iq-alert-text">
             <p>Usuario: {{ $user->email }}</p>
             <p>Código de Seguimimiento: {{ $user?->person?->id }}</p>
@@ -13,5 +13,4 @@ Tutor
                         href="/profile">perfil</a> de usuario en la esquina superior derecha</i></p>
 
         </div>
-    @endif
 @endsection
