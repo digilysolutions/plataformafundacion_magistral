@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator as ValidatorFacades;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class TutorController extends Controller
@@ -137,10 +138,10 @@ class TutorController extends Controller
                 // Usa attach en lugar de sync
                 $tutor->specialties()->attach($request->specialty_id);
             }
-            $studyCenter =StudyCenter::find($request->studycenters_id);
+            $studyCenter = StudyCenter::find($request->studycenters_id);
             event(new Registered($tutor));
             Session::flash('password', $password);
-            Mail::to($user->email)->send(new VerificationEmailTutor($user,$studyCenter));
+            Mail::to($user->email)->send(new VerificationEmailTutor($user, $studyCenter));
             DB::commit();
             return Redirect::route('tutors.index')
                 ->with('success', 'Tutor creado satisfactoriamente. Esperando su confrimacion de correo');
@@ -186,7 +187,30 @@ class TutorController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Tutor::find($id)->delete();
+        try {
+            $tutor = Tutor::find($id);
+
+            if ($tutor) {
+
+                // Obtén a la persona
+                $people = $tutor->person;
+                $user =  $people->user;
+
+                // Elimina el validador
+                $tutor->delete();
+
+                // Ahora elimina a la persona si es necesario
+                if ($people) {
+                    $people->delete();
+                }
+                if ($user) {
+                    $user->delete();
+                }
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            // O puedes hacer un dd($e) para ver el error.
+        }
 
         return Redirect::route('tutors.index')
             ->with('success', 'Tutor eliminado satisfactoriamente');

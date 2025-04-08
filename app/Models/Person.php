@@ -50,7 +50,9 @@ class Person extends ModelMain
     public function validator() { // Solo un validador por persona
         return $this->hasOne(Validator::class, 'people_id');
     }
-
+    public function tutor() { // Solo un validador por persona
+        return $this->hasOne(Tutor::class, 'people_id');
+    }
     public function studyCenter(): HasOne
     {
         return $this->hasOne(StudyCenter::class, 'people_id');
