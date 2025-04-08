@@ -152,16 +152,16 @@ class RegisteredUserController extends Controller
             return redirect()->route('validator.dashboard') // Redirige al Dashboard del validador
                 ->with('user', $user); // Opcional, si necesitas pasar el usuario
         }
-        if ($user->roleid == 3)
-        $tutor = $user->person->tutor;
-        if ($tutor) { // Asegúrate de que el validador exista
-            $tutor->activated = true; // Cambia el estado de activated a true
-            $tutor->save(); // Guarda los cambios en la base de datos
-        } else {
-            // Manejo de error si el validador no existe
-            return redirect()->route('/login') // Cambia 'some.route' al adecuado
-                ->with('error', 'El tutor no se encontró.');
-        }{
+        if ($user->roleid == 3) {
+            $tutor = $user->person->tutor;
+            if ($tutor) { // Asegúrate de que el validador exista
+                $tutor->activated = true; // Cambia el estado de activated a true
+                $tutor->save(); // Guarda los cambios en la base de datos
+            } else {
+                // Manejo de error si el validador no existe
+                return redirect()->route('/login') // Cambia 'some.route' al adecuado
+                    ->with('error', 'El tutor no se encontró.');
+            }
             Auth::login($user);
             return redirect()->route('tutor.dashboard') // Redirige al Dashboard del validador
                 ->with('user', $user); // Opcional, si necesitas pasar el usuario
