@@ -40,7 +40,7 @@ class Tutor extends ModelMain
      */
     public function person()
     {
-        return $this->belongsTo(\App\Models\Person::class, 'people_id', 'id');
+        return $this->belongsTo(\App\Models\Person::class, 'people_id');
     }
 
     /**
@@ -54,4 +54,5 @@ class Tutor extends ModelMain
     {
         return $this->belongsTo(\App\Models\StudyCenter::class, 'studycenters_id', 'id');
     }
+
 }

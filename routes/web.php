@@ -204,6 +204,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/validator/dashboard', function () {
         return view('validator.dashboard'); // Vista para el dashboard del usuario
     })->name('validator.dashboard');
+
+    Route::get('/tutor/dashboard', function () {
+        return view('tutor.dashboard'); // Vista para el dashboard del usuario
+    })->name('tutor.dashboard');
     ///-------End nuevas rutass
 });
 

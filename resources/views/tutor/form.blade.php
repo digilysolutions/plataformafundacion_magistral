@@ -49,21 +49,7 @@
 
                 <div class="help-block with-errors"></div>
         </div>
-        <div class="form-group col-md-12">
-            <label for="name" class="form-label">{{ __('Usuario') }}</label>
-            <input type="text" name="username" class="form-control " value="{{ old('username', $tutor?->person?->user->name) }}"
-                id="username" placeholder="Usuario" required>
-            <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group col-md-12">
-            <label for="password" class="form-label">{{ __('Contraseña') }}</label>
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                 id="password" placeholder="Contraseña">
-            <div class="help-block with-errors"></div>
-            @error('password')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-        </div>
+
     <div class="col-md-12 mt20 mt-2">
         <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
     </div>

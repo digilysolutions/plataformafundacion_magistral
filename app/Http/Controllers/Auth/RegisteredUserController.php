@@ -114,13 +114,13 @@ class RegisteredUserController extends Controller
 
     public function verifyEmail(Request $request)
     {
-        
+
         $request->validate([
             'email' => 'required|string|email',
             'verification_code' => 'required|integer',
             'verification_token' => 'required|string',
         ]);
-        
+
         $user = User::where('email', $request->email)
             ->where('verification_token', $request->verification_token)
             ->first();
@@ -152,8 +152,15 @@ class RegisteredUserController extends Controller
             return redirect()->route('validator.dashboard') // Redirige al Dashboard del validador
                 ->with('user', $user); // Opcional, si necesitas pasar el usuario
         }
+        if ($user->roleid == 3) {
+            Auth::login($user);
+            return redirect()->route('tutor.dashboard') // Redirige al Dashboard del validador
+                ->with('user', $user); // Opcional, si necesitas pasar el usuario
+        }
+
         if ($user->roleid == 6)
             Auth::login($user);
+
         return redirect()->route('user.dashboard')
             ->with('user', $user);
         // return response()->json(['message' => '¡Correo verificado exitosamente! Puedes iniciar sesión.']);

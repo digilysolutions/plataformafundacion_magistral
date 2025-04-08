@@ -9,31 +9,31 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VerificationEmailValidator extends Mailable
+class VerificationEmailTutor extends Mailable
 {
     use Queueable, SerializesModels;
 
     private $user;
-    private $password;
+    private $studyCenter;
     /**
      * Create a new message instance.
      */
-    public function __construct($user,$password)
+    public function __construct($user,$studyCenter)
     {
 
         $this->user = $user;
-        $this->password = $password;
+        $this->studyCenter = $studyCenter;
     }
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Verifica tu correo')
-            ->view('emails.verification_validator')
+            ->view('emails.verification_tutor')
             ->with([
                 'url' => route('verify', $this->user->verification_token),
                 'verificationCode' => $this->user->verification_code,
             ])
             ->with('user', $this->user)
-            ->with('password', $this->password);
+            ->with('studyCenter', $this->studyCenter);
     }
     /**
      * Get the message envelope.
@@ -51,7 +51,7 @@ class VerificationEmailValidator extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.verification_validator',
+            view: 'emails.verification_tutor',
         );
     }
 

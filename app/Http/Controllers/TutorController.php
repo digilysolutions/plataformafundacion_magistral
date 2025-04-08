@@ -6,6 +6,7 @@ use App\Models\Tutor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\TutorRequest;
+use App\Mail\VerificationEmailTutor;
 use App\Models\Person;
 use App\Models\Specialty;
 use App\Models\StudyCenter;
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator as ValidatorFacades;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Session;
 
 class TutorController extends Controller
 {
@@ -55,59 +61,94 @@ class TutorController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(TutorRequest $request)
-{
-    $data = $request->validated();
-    $data['lastname'] = $request->lastname;
-    $data['email'] = $request->email;
-    $data['username'] = isset($request->username) && !empty($request->username) ? $request->username : $request->name;
-    $data['activated'] = true;
-    $data['password'] = Hash::make($request->password); // Hashea la contraseña
+    {
+        /* $data = $request->validated();
+        $data['lastname'] = $request->lastname;
+        $data['email'] = $request->email;
+        $data['username'] = isset($request->username) && !empty($request->username) ? $request->username : $request->name;
+        $data['activated'] = true;
+        $data['password'] = Hash::make($request->password); // Hashea la contraseña
 
-    // Asegúrate de que specialty_id sea un array
-    if (!empty($data['specialty_id']) && is_array($data['specialty_id'])) {
-        foreach ($data['specialty_id'] as $specialtyId) {
-            // Verificar si cada specialty_id existe
-            if (!Specialty::where('id', $specialtyId)->exists()) {
-                return redirect()->back()->withErrors(['specialty_id' => 'La especialidad con ID ' . $specialtyId . ' no es válida.']);
+        // Asegúrate de que specialty_id sea un array
+        if (!empty($data['specialty_id']) && is_array($data['specialty_id'])) {
+            foreach ($data['specialty_id'] as $specialtyId) {
+                // Verificar si cada specialty_id existe
+                if (!Specialty::where('id', $specialtyId)->exists()) {
+                    return redirect()->back()->withErrors(['specialty_id' => 'La especialidad con ID ' . $specialtyId . ' no es válida.']);
+                }
             }
+        } else {
+            return redirect()->back()->withErrors(['specialty_id' => 'Debes proporcionar uno o más specialty_id válidos.']);
         }
-    } else {
-        return redirect()->back()->withErrors(['specialty_id' => 'Debes proporcionar uno o más specialty_id válidos.']);
-    }
+*/
+        // Validación
+        $tutor = ValidatorFacades::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
 
-    DB::transaction(function () use ($data) {
-        // Crear el usuario
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'], // Usar la contraseña hasheada
-            'activated' => true,
-            'role' => 'Tutor',
-            'roleid' => 3,
+        ], [
+            'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
         ]);
 
-        // Crear la persona
-        $personData = [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'user_id' => $user->id,
-        ];
-        $person = Person::create($personData);
 
-        // Crear el tutor
-        $tutorData = array_merge($data, ['user_id' => $user->id, 'people_id' => $person->id]);
-        $tutor = Tutor::create($tutorData);
-
-        // Agregar especialidades
-        if (!empty($data['specialty_id'])) {
-            // Usa attach en lugar de sync
-            $tutor->specialties()->attach($data['specialty_id']);
+        if ($tutor->fails()) {
+            return back()->withErrors($tutor)->withInput();
         }
-    });
+        // Si la validación falla, redirigir de vuelta con errores
+        if ($tutor->fails()) {
+            return back()->withErrors($tutor)->withInput();
+        }
 
-    return Redirect::route('tutors.index')->with('success', 'Tutor creado satisfactoriamente.');
-}
+        DB::beginTransaction();
+        try {
+            $password = Str::random(10); // Genera una contraseña aleatoria de 10 caracteres
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'activated' => true,
+                'password' => Hash::make($password),
+                'verification_token' => Str::random(40),
+                'verification_code' => random_int(100000, 999999),
+                'membership_id' => 'BA0001',
+                'role' => 'Tutor',
+                'roleid' => 3,
+
+            ]);
+
+            $person = Person::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'lastname' => $request->lastname,
+                'phone' => $request->phone,
+                'activated' => true,
+                'user_id' => $user->id
+            ]);
+            //Crear Tutor
+            $tutor =  Tutor::create([
+                'name' => $request->name,
+                'activated' => false,
+                'people_id' => $person->id,
+                'studycenters_id' => $request->studycenters_id
+            ]);
+            // Agregar especialidades
+            if (!empty($data['specialty_id'])) {
+                // Usa attach en lugar de sync
+                $tutor->specialties()->attach($request->specialty_id);
+            }
+            $studyCenter =StudyCenter::find($request->studycenters_id);
+            event(new Registered($tutor));
+            Session::flash('password', $password);
+            Mail::to($user->email)->send(new VerificationEmailTutor($user,$studyCenter));
+            DB::commit();
+            return Redirect::route('tutors.index')
+                ->with('success', 'Tutor creado satisfactoriamente. Esperando su confrimacion de correo');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]); // Muestra el mensaje de error que ocurrió
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -127,7 +168,7 @@ class TutorController extends Controller
         $tutor = Tutor::find($id);
         $studyCenters = StudyCenter::allActivated();
         $specialties = Specialty::allActivated();
-        return view('tutor.edit', compact('tutor','studyCenters','specialties'));
+        return view('tutor.edit', compact('tutor', 'studyCenters', 'specialties'));
     }
 
     /**
