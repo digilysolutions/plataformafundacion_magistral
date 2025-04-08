@@ -4,7 +4,7 @@
 @endsection
 @section('content-admin')
 Tutor
-{{ dd(session()->all()) }}  {{-- Para depurar el arreglo de la sesión --}}
+
     
         <div class="iq-alert-text">
             <p>Usuario: {{ $user->email }}</p>
