@@ -50,16 +50,16 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $i=0;
+                                        $i = 0;
                                     @endphp
                                     @foreach ($tutors as $tutor)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $tutor->id }}</td>
                                             <td>{{ $tutor->person->name }}</td>
-                                            <td> @foreach ($tutor->specialties as $speciality)
-
-                                                {{ $speciality->name }},
+                                            <td>
+                                                @foreach ($tutor->specialties as $speciality)
+                                                    {{ $speciality->name }},
                                                 @endforeach
 
 
@@ -76,17 +76,27 @@
                                             </td>
                                             <td>
                                                 <form action="{{ route('tutors.destroy', $tutor->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('tutors.show', $tutor->id) }}"><i
-                                                            class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success"
-                                                        href="{{ route('tutors.edit', $tutor->id) }}"><i
-                                                            class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
-                                                            class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+
+                                                    <div class="d-flex align-items-center list-action">
+                                                        <a class="badge badge-info mr-2" data-toggle="tooltip"
+                                                            data-placement="top" data-original-title=" {{ __('Show') }}"
+                                                            href="{{ route('tutors.show', $tutor->id) }}"><i
+                                                                class="fa fa-fw fa-eye"></i>{{ __('Show') }}</a>
+                                                        <a class="badge badge-danger mr-2" data-toggle="tooltip"
+                                                            data-placement="top" data-original-title="Cambiar Contraseña "
+                                                            href="{{ route('tutors.show', $tutor->id) }}"><i
+                                                                class="ri-reply-line"></i> {{ __('Password') }}</a>
+                                                        <a class="badge badge-success mr-2" data-toggle="tooltip"
+                                                            data-placement="top" data-original-title="{{ __('Edit') }}"
+                                                            href="{{ route('tutors.edit', $tutor->id) }}"><i
+                                                                class="ri-pencil-line mr-0"></i>  {{ __('Edit') }}</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a type="submit" class="badge bg-warning mr-2"
+                                                            onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
+                                                                class="fa fa-fw fa-trash" data-placement="top"
+                                                                data-original-title="{{ __('Edit') }}"></i> {{ __('Delete') }}</a>
+                                                    </div>
                                                 </form>
                                             </td>
                                         </tr>
