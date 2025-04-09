@@ -3,7 +3,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>Panel Admin - @yield('title-header-admin')</title>
 <!-- Favicon -->
-<link rel="shortcut icon" href="{{ asset('admin/images/favicon.ico') }}" />
+<link rel="shortcut icon" href="{{ asset('img/icono/fm-plataforma.jpg') }}" />
 <link rel="stylesheet" href="{{ asset('admin/css/backend-plugin.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/backend.css?v=1.0.0') }}">
 <link rel="stylesheet" href="{{ asset('admin/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}">
