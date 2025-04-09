@@ -38,12 +38,7 @@
                                         <th>No</th>
 
                                         <th>Código</th>
-                                        <th>Nombre</th>
-
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
-
-                                        <th>Regional</th>
+                                        <th>Nombre</th><th>Regional</th>
                                         <th>Distrito</th>
                                         <th>Membresía</th>
                                         <th>Activado</th>
@@ -60,9 +55,6 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $studyCenter->id }}</td>
                                             <td>{{ $studyCenter->name }}</td>
-                                            <td>{{ $studyCenter->phone }}</td>
-                                            <td>{{ $studyCenter->mail }}</td>
-
                                             <td>{{ $studyCenter->regional->name }}</td>
                                             <td>{{ $studyCenter->district->name }}</td>
                                             <td>{{ $studyCenter->membership->name }}</td>
@@ -98,9 +90,6 @@
 
                                         <th>Código</th>
                                         <th>Nombre</th>
-
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
 
                                         <th>Regional</th>
                                         <th>Distrito</th>
