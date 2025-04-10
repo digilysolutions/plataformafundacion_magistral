@@ -33,11 +33,23 @@
                         </svg>
                     </a>
                     <ul id="registro" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('study-centers*') || request()->is('register-study-centers*') ? 'active' : '' }}">
                             <a href="{{ route('study-centers.index') }}">
                                 <i class="las la-minus"></i><span>Centro Educativo</span>
                             </a>
+                                <ul id="reportes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                    <li class="">
+                                        <a href="">
+                                            <i class="las la-minus"></i><span>Reporte General
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
                         </li>
+
+
                         <li class="{{ request()->is('students*') ? 'active' : '' }}">
                             <a href="{{ route('students.index') }}">
                                 <i class="las la-minus"></i><span>Estudiantes</span>

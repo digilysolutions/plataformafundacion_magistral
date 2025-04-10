@@ -177,7 +177,7 @@
 
                                                     <div>
                                                         <a href="{{ route('register') }}">Usuario</a> |
-                                                        <a href="">Centro Educativo</a>
+                                                        <a href="{{route('register-study-centers.create')}}">Centro Educativo</a>
                                                     </div>
                                                 </div>
 

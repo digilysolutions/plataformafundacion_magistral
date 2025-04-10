@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendEmailToAdminStudyCenter;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -14,7 +15,9 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use App\Mail\VerificationEmail;
 use App\Models\Person;
+use App\Models\RegisterStudyCenter;
 use App\Models\Student;
+use App\Models\StudyCenter;
 use App\Validators\PasswordValidator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
@@ -114,13 +117,14 @@ class RegisteredUserController extends Controller
 
     public function verifyEmail(Request $request)
     {
-
+        // Validación de la solicitud
         $request->validate([
             'email' => 'required|string|email',
             'verification_code' => 'required|integer',
             'verification_token' => 'required|string',
         ]);
 
+        // Buscar usuario por correo y token de verificación
         $user = User::where('email', $request->email)
             ->where('verification_token', $request->verification_token)
             ->first();
@@ -129,50 +133,77 @@ class RegisteredUserController extends Controller
             return response()->json(['error' => 'Código de verificación inválido'], 400);
         }
 
+        // Marca el usuario como verificado
+        $this->markUserAsVerified($user);
+
+        // Manejo de roles
+        switch ($user->roleid) {
+            case 4:
+                return $this->activateValidator($user);
+            case 3:
+                return $this->activateTutor($user);
+            case 1:
+                return $this->handleStudyCenterRegistration($user);
+            case 6:
+                Auth::login($user);
+                return redirect()->route('user.dashboard')->with('user', $user);
+            default:
+                return redirect('/login')->with('error', 'Rol no reconocido.');
+        }
+    }
+
+    private function markUserAsVerified(User $user)
+    {
         $user->is_verified = true;
         $user->email_verified_at = now();
         $user->verification_code = null;
         $user->verification_token = null;
         $user->save();
-        // Mail::to($user->email)->send(new VerificationEmail($user));
+    }
 
-        if ($user->roleid == 4) {
-            // Asegúrate de que la relación está definida correctamente en tu modelo
-            $validator = $user->person->validator; // Obtiene el validador asociado a la persona
+    private function activateValidator(User $user)
+    {
+        // Asegúrate de que la relación está definida correctamente
+        $validator = $user->person->validator;
 
-            if ($validator) { // Asegúrate de que el validador exista
-                $validator->activated = true; // Cambia el estado de activated a true
-                $validator->save(); // Guarda los cambios en la base de datos
-            } else {
-                // Manejo de error si el validador no existe
-                return redirect()->route('/login') // Cambia 'some.route' al adecuado
-                    ->with('error', 'El validador no se encontró.');
-            }
-            Auth::login($user);
-            return redirect()->route('validator.dashboard') // Redirige al Dashboard del validador
-                ->with('user', $user); // Opcional, si necesitas pasar el usuario
-        }
-        if ($user->roleid == 3) {
-            $tutor = $user->person->tutor;
-            if ($tutor) { // Asegúrate de que el validador exista
-                $tutor->activated = true; // Cambia el estado de activated a true
-                $tutor->save(); // Guarda los cambios en la base de datos
-            } else {
-                // Manejo de error si el validador no existe
-                return redirect()->route('/login') // Cambia 'some.route' al adecuado
-                    ->with('error', 'El tutor no se encontró.');
-            }
-            Auth::login($user);
-            return redirect()->route('tutor.dashboard') // Redirige al Dashboard del validador
-                ->with('user', $user); // Opcional, si necesitas pasar el usuario
+        if (!$validator) {
+            return redirect('/login')->with('error', 'El validador no se encontró.');
         }
 
-        if ($user->roleid == 6)
-            Auth::login($user);
+        $validator->activated = true;
+        $validator->save();
 
-        return redirect()->route('user.dashboard')
-            ->with('user', $user);
-        // return response()->json(['message' => '¡Correo verificado exitosamente! Puedes iniciar sesión.']);
+        Auth::login($user);
+        return redirect()->route('validator.dashboard')->with('user', $user);
+    }
+
+    private function activateTutor(User $user)
+    {
+        $tutor = $user->person->tutor;
+
+        if (!$tutor) {
+            return redirect('/login')->with('error', 'El tutor no se encontró.');
+        }
+        $tutor->activated = true;
+        $tutor->save();
+
+        Auth::login($user);
+        return redirect()->route('tutor.dashboard')->with('user', $user);
+    }
+
+    private function handleStudyCenterRegistration(User $user)
+    {
+        $studyCenter = RegisterStudyCenter::where('mail', $user->email)->first();
+
+        if (!$studyCenter) {
+            return redirect('/login')->with('error', 'La solicitud del centro de estudio no se encontró.');
+        }
+
+        $studyCenter->state = 'Pendiente';
+        $studyCenter->save();
+
+        Mail::to('registro@plataforma.fundacionmagistral.org')->send(new SendEmailToAdminStudyCenter($studyCenter));
+        return redirect()->route('register-study-center.okVerificationStudyCenter');
     }
     public function thankYou()
     {

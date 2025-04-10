@@ -17,6 +17,7 @@ use App\Http\Controllers\MembershipPaymentStatusController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionalController;
+use App\Http\Controllers\RegisterStudyCenterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudyCenterController;
@@ -105,6 +106,8 @@ Route::middleware('roles:Administrator')->group(function () {
 });*/
 Route::get('/verify/{token}', [RegisteredUserController::class, 'verify'])->name('verify');
 Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->name('thankYou');
+
+
 // Ruta para procesar el código de verificación
 Route::post('/verify-email', [RegisteredUserController::class, 'verifyEmail'])->name('verifyEmail');
 Route::middleware('auth')->group(function () {
@@ -208,9 +211,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/tutor/dashboard', function () {
         return view('tutor.dashboard'); // Vista para el dashboard del usuario
     })->name('tutor.dashboard');
+    //Para centros de estudios que solicitan el registro en la plataforma
+    Route::resource('register-study-centers', RegisterStudyCenterController::class);
     ///-------End nuevas rutass
 });
-
+Route::post('register-study-centers/store', [RegisterStudyCenterController::class, 'processStore'])->name('register-study-centers.processStore');
+Route::get('/thank-you-studycenter', [RegisterStudyCenterController::class, 'thankYou'])->name('thankYouStudyCenter');
+Route::get('/verification-email/studcenter', function () {
+    return view('register-study-center.okVerificationStudyCenter'); // Vista para el dashboard del usuario
+})->name('register-study-center.okVerificationStudyCenter');
 /*
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

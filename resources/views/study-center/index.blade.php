@@ -29,9 +29,13 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-
+                  <div class="float-left ml-3 mt-3">
+                   <a href="{{route('register-study-centers.index')}}">Solicitudes de registro</a>  |
+                  </div>
                     <div class="card-body bg-white">
+
                        <div class="table-responsive">
+
                             <table id="datatable" class="table data-tables table-striped">
                                 <thead>
                                     <tr class="ligth">

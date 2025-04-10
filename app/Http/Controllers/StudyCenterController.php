@@ -11,6 +11,7 @@ use App\Models\District;
 use App\Models\Membership;
 use App\Models\Person;
 use App\Models\Regional;
+use App\Models\RegisterStudyCenter;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
@@ -48,31 +49,38 @@ class StudyCenterController extends Controller
      */
     public function store(StudyCenterRequest $request)
     {
-
-
         $data = $request->validated();
-        $data['name_people'] = $request['name_people'];
-        $data['lastname'] = $request['lastname'];
+        $data['name_people'] = $request->input('name_people');
+        $data['lastname'] = $request->input('lastname');
+        $data['email'] = $request->input('mail');
+        $data['activated'] = $request->has('activated') ? 1 : 0;
 
-        $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
         DB::beginTransaction();
+
         try {
-            $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
+            // Obtener el usuario por correo
+            $user = User::where('mail', $request->mail)->firstOrFail();
 
-            $data['user_id'] = $user['user']->id;
-            $data['email'] = $user['user']->email;
-            $person = Person::create($data);
+            // Obtener la solicitud del centro de estudio por correo
+            $studyCenter = RegisterStudyCenter::where('mail', $request->mail)->firstOrFail();
 
-            $data['people_id'] = $person->id;
-            // Crear el estudiante
-            $password = $user['password'];
-            $studyCenter = StudyCenter::create($data);
-            Log::info('Se creo el centro de estudio');
+            // Verificar el estado del centro de estudio
+            if ($studyCenter->state == "Pendiente") {
+                // Crear entidad de Persona y Centro de Estudio
+                $person = Person::create($data);
+                $studyCenter = StudyCenter::create($data);
+                $studyCenter->state = "Completada";
+                $studyCenter->save(); // Asegúrate de guardar el cambio del estado
+            } else if ($studyCenter->state == "Completada") {
+                return Redirect::route('study-centers.index')
+                    ->with('error', 'El centro de estudio ya está completado.');
+            }
 
+            // Commita la transacción si todo ha ido bien
             DB::commit();
 
-            // Retornar a la vista con el mensaje de éxito y la información necesaria
-            return view('study-center.show', compact('studyCenter'))->with('password', $user['password']);
+            // Retorna a la vista con éxito
+            return view('study-center.show', compact('studyCenter'))->with('password', $user->password);
         } catch (\Exception $e) {
             // Si hay un error, revertir todos los cambios
             DB::rollback();
@@ -82,11 +90,6 @@ class StudyCenterController extends Controller
             return Redirect::route('study-centers.index')
                 ->with('error', 'Error. No se pudo insertar el Centro de estudio.');
         }
-
-
-
-        //Crear el usurio y la persona
-
     }
 
     /**
