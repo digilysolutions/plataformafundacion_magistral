@@ -21,7 +21,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasRoles;
-
+    protected $expiresAt = '24 hours';
     /**
      * The attributes that are mass assignable.
      *

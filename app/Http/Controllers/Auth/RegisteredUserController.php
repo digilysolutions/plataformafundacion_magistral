@@ -202,7 +202,7 @@ class RegisteredUserController extends Controller
         $studyCenter->state = 'Pendiente';
         $studyCenter->save();
 
-        Mail::to('registro@plataforma.fundacionmagistral.org')->send(new SendEmailToAdminStudyCenter($studyCenter));
+        Mail::to('yrpiloto@gmail.com')->send(new SendEmailToAdminStudyCenter($studyCenter));
         return redirect()->route('register-study-center.okVerificationStudyCenter');
     }
     public function thankYou()

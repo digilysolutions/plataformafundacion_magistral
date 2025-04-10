@@ -6,7 +6,7 @@
 </head>
 <body>
     <h4>Hola {{ $user->name }}</h4>
-    Uste ha solicitado registrarse en la plataforma <a href="https://plataforma.fundacionmagistral.org/"> plataforma.fundacionmagistral.org/</a>, como un Centro de Estudio. Por favor verifica tu correo haciendo clic en el siguiente enlace:</p>
+    Usted ha solicitado registrarse en la plataforma <a href="https://plataforma.fundacionmagistral.org/"> plataforma.fundacionmagistral.org/</a>, como un Centro de Estudio. Por favor verifica tu correo haciendo clic en el siguiente enlace:</p>
     <p>Nombre: {{$studyCenter->name}}</p>
     <a href="{{ $url }}">Verificar mi cuenta</a>
 

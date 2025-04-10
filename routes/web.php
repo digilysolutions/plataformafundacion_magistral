@@ -217,6 +217,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::post('register-study-centers/store', [RegisterStudyCenterController::class, 'processStore'])->name('register-study-centers.processStore');
 Route::get('/thank-you-studycenter', [RegisterStudyCenterController::class, 'thankYou'])->name('thankYouStudyCenter');
+Route::get('/user/register-study-centers/', [RegisterStudyCenterController::class,'create'])->name('user-study-centers.create');
 Route::get('/verification-email/studcenter', function () {
     return view('register-study-center.okVerificationStudyCenter'); // Vista para el dashboard del usuario
 })->name('register-study-center.okVerificationStudyCenter');
