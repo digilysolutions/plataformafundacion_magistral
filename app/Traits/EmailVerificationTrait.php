@@ -9,6 +9,9 @@ use Illuminate\Support\Str;
 
 trait EmailVerificationTrait
 {
+    /**
+     * Resend the verification email to the user.
+     */
     public function resendVerificationEmail(Request $request, $verificationEmail)
     {
         $request->validate(['email' => 'required|email']);

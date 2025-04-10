@@ -29,6 +29,12 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
+                    @if (isset($error))
+                        <div class="alert alert-danger">
+                            {!! $error !!}
+                        </div>
+                    @endif
                   <div class="float-left ml-3 mt-3">
                    <a href="{{route('register-study-centers.index')}}">Solicitudes de registro</a>  |
                   </div>

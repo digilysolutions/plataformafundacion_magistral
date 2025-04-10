@@ -7,6 +7,8 @@ use App\Models\StudyCenter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudyCenterRequest;
+use App\Mail\SendEmailToAdminStudyCenter;
+use App\Mail\SendEmailToStudyCenter;
 use App\Models\District;
 use App\Models\Membership;
 use App\Models\Person;
@@ -18,6 +20,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class StudyCenterController extends Controller
 {
@@ -59,8 +62,8 @@ class StudyCenterController extends Controller
 
         try {
             // Obtener el usuario por correo
-            $user = User::where('mail', $request->mail)->firstOrFail();
-
+            $user = User::where('email', $request->mail)->firstOrFail();
+            dd("sadasd");
             // Obtener la solicitud del centro de estudio por correo
             $studyCenter = RegisterStudyCenter::where('mail', $request->mail)->firstOrFail();
 
@@ -68,19 +71,24 @@ class StudyCenterController extends Controller
             if ($studyCenter->state == "Pendiente") {
                 // Crear entidad de Persona y Centro de Estudio
                 $person = Person::create($data);
+                $data['people_id'] = $person->id;
                 $studyCenter = StudyCenter::create($data);
                 $studyCenter->state = "Completada";
                 $studyCenter->save(); // Asegúrate de guardar el cambio del estado
+
+
             } else if ($studyCenter->state == "Completada") {
                 return Redirect::route('study-centers.index')
                     ->with('error', 'El centro de estudio ya está completado.');
             }
 
+            Mail::to($user->email)->send(new SendEmailToStudyCenter($user, $studyCenter));
             // Commita la transacción si todo ha ido bien
             DB::commit();
 
             // Retorna a la vista con éxito
-            return view('study-center.show', compact('studyCenter'))->with('password', $user->password);
+            return Redirect::route('study-centers.index')
+            ->with('success', 'Centro de estudio creado satisfactoriamente');
         } catch (\Exception $e) {
             // Si hay un error, revertir todos los cambios
             DB::rollback();
