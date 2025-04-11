@@ -19,7 +19,10 @@
                     </div>
 
                     <div class="card-body bg-white">
-
+                        <div class="form-group mb-2 mb20">
+                            <strong>Código:</strong>
+                            {{ $validator->person->name }}
+                        </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Nombre:</strong>
                             {{ $validator->person->name }}
