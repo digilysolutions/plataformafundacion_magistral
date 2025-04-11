@@ -61,10 +61,11 @@
             padding: 0 5px;
             /* Espaciado alrededor del texto */
         }
+
         .register-prompt {
-    text-align: center;
-    margin-top: 15px;
-}
+            text-align: center;
+            margin-top: 15px;
+        }
     </style>
 </head>
 
@@ -75,8 +76,8 @@
             <div class="container">
                 <div class="row align-items-center justify-content-center height-self-center">
 
-                    <div class="col-lg-8">
-                        <div class="card auth-card">
+                    <div class="col-lg-4 ">
+                        <div class="card auth-card text-center">
                             @if (session('error'))
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
@@ -89,20 +90,17 @@
                             @endif
                             <div class="card-body p-0">
                                 <div class="d-flex align-items-center auth-content">
-                                    <div class="col-lg-7 align-self-center">
+                                    <div class="col-lg-12 align-self-center">
 
                                         <div class="p-3">
-                                            <h2 class="mb-2">Iniciar Sesión</h2>
-                                            <p>Inicia sesión para mantenerte conectado con:</p>
+                                            <h2 class="mb-2">Iniciar Sesión</h2>                                        
                                             <a href="{{ route('login.google') }}"
-                                                class="d-flex align-items-center mb-4 card-total-sale text-center">
+                                                class="d-flex align-items-center mb-2 card-total-sale text-center">
                                                 <div class="icon ">
                                                     <img src="{{ asset('img/google.png') }}" class="img-fluid"
                                                         alt="image">
                                                 </div>
-
-                                                <h3 class="mt-2 ml-2">Google</h4>
-
+                                                <h3 class="mt-2 ml-2">Google</h3>
                                             </a>
 
 
@@ -162,45 +160,49 @@
                                                     </div>
 
                                                     <div class="col-lg-6">
-                                                        <div class="custom-control custom-checkbox mb-3">
+                                                        <div class="custom-control custom-checkbox mb-3 ">
                                                             <input type="checkbox" class="custom-control-input"
                                                                 name="remember" id="customCheck1">
                                                             <label class="custom-control-label control-label-1"
                                                                 for="customCheck1">Recuérdame</label>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-6"> <button type="submit"
+                                                            class="btn btn-primary float-right">Iniciar Sesión</button>
+                                                    </div>                                                   
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-
-                                                <div class="register-prompt">
-                                                    <p>¿Eres nuevo aquí? Regístrate como:</p>
-
-                                                    <div>
-                                                        <a href="{{ route('register') }}">Usuario</a> |
-                                                        <a href="{{route('user-study-centers.create')}}">Centro Educativo</a>
-                                                    </div>
-                                                </div>
-
+                                               
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5 content-right">
-                                        <img src="{{ asset('img/login/01.png') }}" class="img-fluid image-right"
-                                            alt="">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="register-prompt">                           
+                                <a href="{{route('password.request')}}" class="text-primary ">¿Olvidaste
+                                    tu contraseña?</a> |  <a href="auth-recoverpw.html"
+                                    class="text-primary">¿Olvidaste tu código?</a>
+                                                      
+                            <p>¿Eres nuevo aquí? Regístrate como:</p>    
+                           
+                                <a href="{{ route('register') }}">Usuario</a> |
+                                <a href="{{ route('user-study-centers.create') }}">Centro
+                                    Educativo</a>                            
+                        </div>
                     </div>
+                    
                 </div>
+                <div class="row">
+                    
+
+                </div>
+
             </div>
         </section>
     </div>
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+
     <!-- Backend Bundle JavaScript -->
     <script src="{{ asset('js/backend-bundle.min.js') }}"></script>
     <!-- Table Treeview JavaScript -->
