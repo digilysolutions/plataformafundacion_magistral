@@ -35,7 +35,6 @@ class DatabaseSeeder extends Seeder
             Role::create(['name' => $role]);
         }
 
-
         User::factory()->create([
             'name' => 'Centro educativo',
             'email' => 'centroeducativo@gmail.com',
@@ -44,31 +43,8 @@ class DatabaseSeeder extends Seeder
             'roleid' => 1
         ]);
 
-        User::factory()->create([
-            'name' => 'Estudiante',
-            'email' => 'estudiante@gmail.com',
-            'password' => '1234',
-            'role' => 'Estudiante',
-            'roleid' => 2
-        ]);
 
-        //
-        User::factory()->create([
-            'name' => 'Tutor',
-            'email' => 'tutor@gmail.com',
-            'password' => '1234',
-            'role' => 'Tutor',
-            'roleid' => 3
-        ]);
-
-        User::factory()->create([
-            'name' => 'Validador',
-            'email' => 'validador@gmail.com',
-            'password' => '1234',
-            'role' => 'Validador',
-            'roleid' => 4
-        ]);
-
+       
         $user = User::factory()->create([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
@@ -80,6 +56,21 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Administrador',
                 'email' => 'admin@gmail.com',
+                'phone' => '58205454',
+                'user_id' =>  $user->id,
+            ]
+        );
+        $user = User::factory()->create([
+            'name' => 'Yasniel',
+            'email' => 'yrpiloto@nauta.cu',
+            'role' => 'Administrador',
+            'password' => '1234',
+            'roleid' => 5
+        ]);
+        $person = Person::create(
+            [
+                'name' => 'Yasniel',
+                'email' => 'yrpiloto@nauta.cu',
                 'phone' => '58205454',
                 'user_id' =>  $user->id,
             ]
