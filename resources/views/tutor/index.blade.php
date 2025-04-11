@@ -66,7 +66,13 @@
 
 
                                             </td>
-                                            <td>{{ $tutor->studyCenter->name }}</td>
+                                            <td>
+                                                @if ($tutor->studyCenter)
+                                                    {{ $tutor->studyCenter->name }}
+                                                @else
+                                                    Fundación
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if ($tutor->activated == 1)
                                                     Si
@@ -89,13 +95,14 @@
                                                         <a class="badge badge-success mr-2" data-toggle="tooltip"
                                                             data-placement="top" data-original-title="{{ __('Edit') }}"
                                                             href="{{ route('tutors.edit', $tutor->id) }}"><i
-                                                                class="ri-pencil-line mr-0"></i>  {{ __('Edit') }}</a>
+                                                                class="ri-pencil-line mr-0"></i> {{ __('Edit') }}</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <a type="submit" class="badge bg-warning mr-2"
                                                             onclick="event.preventDefault(); confirm('¿Estás seguro que quieres eliminar?') ? this.closest('form').submit() : false;"><i
                                                                 class="fa fa-fw fa-trash" data-placement="top"
-                                                                data-original-title="{{ __('Edit') }}"></i> {{ __('Delete') }}</a>
+                                                                data-original-title="{{ __('Edit') }}"></i>
+                                                            {{ __('Delete') }}</a>
                                                     </div>
                                                 </form>
                                             </td>

@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    {{ $validator->name ?? __('Show') . " " . __('Validator') }}
+    {{ $validator->name ?? __('Show') . ' ' . __('Validator') }}
 @endsection
 
 @section('content-admin')
@@ -20,26 +20,35 @@
 
                     <div class="card-body bg-white">
 
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Nombre:</strong>
-                                    {{ $validator->person->name }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Apellidos:</strong>
-                                    {{ $validator->person->lastname }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Especialidad:</strong>
-                                    {{ $validator->specialty->name }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Activated:</strong>
-                                    {{ $validator->activated }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>People Id:</strong>
-                                    {{ $validator->people_id }}
-                                </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Nombre:</strong>
+                            {{ $validator->person->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Apellidos:</strong>
+                            {{ $validator->person->lastname }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Especialidad:</strong>
+                            {{ $validator->specialty->name }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Correo:</strong>
+                            {{ $validator->person->email }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Teléfono:</strong>
+                            {{ $validator->person->phone }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
+                            <strong>Activado:</strong>
+                            @if ($validator->activated == 1)
+                                Si
+                            @else
+                                No
+                            @endif
+                        </div>
+                       
 
                     </div>
                 </div>
