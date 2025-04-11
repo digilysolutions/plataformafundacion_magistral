@@ -42,9 +42,8 @@
                                     <tr class="ligth">
                                         <th>No</th>
                                         <th>Usuario</th>
-                                        <th>Código</th>
-                                        <th>Rol</th>
-                                        <th>Centro Educativo</th>
+                                        <th>Código</th>                                        
+                                     
                                         <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>
@@ -58,17 +57,10 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $user->email }}</td>
+                                           
                                             <td>
-                                                @if ($user->roleid == 1)
-                                                    {{ $user->person?->studyCenter->id }}
-                                                @else
-                                                    {{ $user->person?->id }}
-                                                @endif
-                                            </td>
-                                            <td>{{ $user->role }}</td>
-                                            <td>
-                                                @if ($user->person && $user->person->studyCenter)
-                                                    {{ $user->person->studyCenter->name }}
+                                                @if ($user->person)
+                                                    {{ $user->person->id }}
                                                 @else
                                                     ------
                                                 @endif
@@ -113,9 +105,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Usuario</th>
-                                        <th>Código</th>
-                                        <th>Rol</th>
-                                        <th>Centro Educativo</th>
+                                        <th>Código</th>                                        
                                         <th>Membresía</th>
                                         <th>Activado</th>
                                         <th></th>

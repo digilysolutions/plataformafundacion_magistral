@@ -29,25 +29,21 @@
                             <strong>Nombre y Apellidos:</strong>
                             {{ $user->person?->name }} {{ $user->person?->lastname }}
                         </div>
-                        @if ($user->person && $user->person?->student && $user->person?->student->course)
-                            {{ $user->person->student->course }}
-                        @else
-                            <p>No hay información de curso disponible.</p>
-                        @endif
                         <div class="form-group mb-2 mb20">
-                            <strong>Centro de estudio:</strong>
-                            @if ($user->person && $user->person?->student && $user->person?->student->studyCenter)
-                                {{ $user->person->student->studyCenter->name }}
+                            <strong>Nombre y Apellidos:</strong>
+                            @if ($user->person && $user->person?->student && $user->person?->student->course)
+                                {{ $user->person->student->course }}
                             @else
-                                <p>No hay información del centro de estudio disponible.</p>
+                                <p>No hay información de curso disponible.</p>
                             @endif
                         </div>
+                        
                         <div class="form-group mb-2 mb20">
                             <strong>Teléfono:</strong>
                             {{ $user->person?->phone }}
                         </div>
                         <div class="form-group mb-2 mb20">
-                            <strong>Teléfono:</strong>
+                            <strong>Correo:</strong>
                             {{ $user->person?->email }}
                         </div>
                         <div class="form-group mb-2 mb20">
@@ -57,10 +53,10 @@
                         <div class="form-group mb-2 mb20">
                             <strong>Membresía:</strong>
                             @if ($user->person && $user->person->student && $user->person->student->membership)
-                            {{ $user->person->student->membership->name }}
+                                {{ $user->person->student->membership->name }}
                             @else
-                            <p>No hay información membresía disponible.</p>
-                        @endif
+                                <p>No hay información membresía disponible.</p>
+                            @endif
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>

@@ -246,6 +246,6 @@ class StudentController extends Controller
         Student::find($id)->delete();
 
         return Redirect::route('students.index')
-            ->with('success', 'Student eliminado satisfactoriamente');
+            ->with('success', 'Estudiante eliminado satisfactoriamente');
     }
 }
