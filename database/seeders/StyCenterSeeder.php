@@ -19,9 +19,9 @@ class StyCenterSeeder extends Seeder
     {
         $person = Person::create(
             [
-                'name' => 'Responsable Center',
-                'lastname' => 'ytrpiloto@gmail.com',
-                'email' => 'Centro educativo',
+                'name' => 'Responsable',
+                'lastname' => 'Centro DIVINA PASTORA',
+                'email' => 'divina.pastora@fundacionmagistral.org',
                 'user_id' => 1
 
 
@@ -29,8 +29,7 @@ class StyCenterSeeder extends Seeder
         );
         $studiesCenter = [
             [
-
-                'name' => ' DIVINA PASTORA',
+                'name' => 'DIVINA PASTORA',
                 'code' => '06466',
                 'regional_id' => 'BA0001',
                 'district_id' => 'BA0001',

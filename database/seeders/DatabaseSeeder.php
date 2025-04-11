@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             'Tutor',
             'Validador',
             'Administrador',
-            'Usuario'
+            'Usuario',
+            'SuperAdmin'
         ];
 
         foreach ($roles as $role) {
@@ -42,24 +43,16 @@ class DatabaseSeeder extends Seeder
             'role' => 'Centro Educativo',
             'roleid' => 1
         ]);
-        $person_studyCenter = [
-            [
-                'name' => 'Responsable Center',
-                'lastname' => 'Centro educativo',
-                'email' => 'ytrpiloto@gmail.com',
-                'user_id' => 1,
-                'activated' => true,
-            ]
-        ];
 
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Estudiante',
             'email' => 'estudiante@gmail.com',
             'password' => '1234',
             'role' => 'Estudiante',
             'roleid' => 2
         ]);
 
+        //
         User::factory()->create([
             'name' => 'Tutor',
             'email' => 'tutor@gmail.com',
@@ -76,20 +69,44 @@ class DatabaseSeeder extends Seeder
             'roleid' => 4
         ]);
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
             'role' => 'Administrador',
             'password' => '1234',
             'roleid' => 5
         ]);
+        $person = Person::create(
+            [
+                'name' => 'Administrador',
+                'email' => 'admin@gmail.com',
+                'phone' => '58205454',
+                'user_id' =>  $user->id,
+            ]
+        );
+        $user = User::factory()->create([
+            'name' => 'Jorge',
+            'email' => 'jbarramedac@gmail.com',
+            'role' => 'Administrador',
+            'password' => 'Plataforma2025*',
+            'roleid' => 5
+        ]);
+        $person = Person::create(
+            [
+                'name' => 'Jorge',
+                'email' => 'jbarramedac@gmail.com',
+                'lastname' => 'Barrameda',
+                'phone' => '58205454',
+                'user_id' =>  $user->id,
+            ]
+        );
 
         $user = User::factory()->create([
             'name' => 'Usuario',
             'email' => 'usuario@gmail.com',
             'role' => 'Usuario',
             'password' => '1234',
-             'membership_id' => 'BA0001',
+            'membership_id' => 'BA0001',
             'roleid' => 6
         ]);
         $person = Person::create(
@@ -104,9 +121,9 @@ class DatabaseSeeder extends Seeder
         $student = Student::create(
             [
                 'name' =>  $person->name,
-                'people_id'=>$person->id,
-                'course'=>'Curso 1',
-                'membership_id'=>'BA0001'
+                'people_id' => $person->id,
+                'course' => 'Curso 1',
+                'membership_id' => 'BA0001'
 
             ]
         );
@@ -120,5 +137,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StyCenterSeeder::class);
         $this->call(MemberShipMemberShipFeatureSeeder::class);
         $this->call(LevelSeeder::class);
+        $this->call(ValidatorSeeder::class);
+        $this->call(TutorSeeder::class);
     }
 }

@@ -21,8 +21,16 @@
                     <div class="card-body bg-white">
 
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
-                                    {{ $validator->name }}
+                                    <strong>Nombre:</strong>
+                                    {{ $validator->person->name }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Apellidos:</strong>
+                                    {{ $validator->person->lastname }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Especialidad:</strong>
+                                    {{ $validator->specialty->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Activated:</strong>
