@@ -14,20 +14,23 @@ class SendEmailToStudyCenter extends Mailable
     use Queueable, SerializesModels;
 
     private $studyCenter;
+    private $password;
     private $user;
     /**
      * Create a new message instance.
      */
-    public function __construct($user,$studyCenter)
+    public function __construct($user,$studyCenter,$password)
     {
         $this->studyCenter = $studyCenter;
         $this->user = $user;
+        $this->password = $password;
     }
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Centro de Estudio registrado')
             ->view('emails.email_study_center')
             ->with('user', $this->user)
+            ->with('password', $this->password)
             ->with('studyCenter', $this->studyCenter);
     }
     /**

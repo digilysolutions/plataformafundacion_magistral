@@ -8,10 +8,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success m-4">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
+            
+            @if ($errors->any())
+                <div class="alert alert-danger m-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{!! $error !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
+                           
                             <span id="card_title">
                                 {{ __('Centros de Estudios') }}
                             </span>
@@ -24,23 +39,13 @@
                             </div>
                         </div>
                     </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success m-4">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
 
-                    @if (isset($error))
-                        <div class="alert alert-danger">
-                            {!! $error !!}
-                        </div>
-                    @endif
-                  <div class="float-left ml-3 mt-3">
-                   <a href="{{route('register-study-centers.index')}}">Solicitudes de registro</a>  |
-                  </div>
+                    <div class="float-left ml-3 mt-3">
+                        <a href="{{ route('register-study-centers.index') }}">Solicitudes de registro</a> |
+                    </div>
                     <div class="card-body bg-white">
 
-                       <div class="table-responsive">
+                        <div class="table-responsive">
 
                             <table id="datatable" class="table data-tables table-striped">
                                 <thead>
@@ -48,7 +53,8 @@
                                         <th>No</th>
 
                                         <th>Código</th>
-                                        <th>Nombre</th><th>Regional</th>
+                                        <th>Nombre</th>
+                                        <th>Regional</th>
                                         <th>Distrito</th>
                                         <th>Membresía</th>
                                         <th>Activado</th>

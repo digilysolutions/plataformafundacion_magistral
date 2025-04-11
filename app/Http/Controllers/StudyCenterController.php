@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use App\Helpers\UserHelper;
 use App\Models\StudyCenter;
 use Illuminate\Http\RedirectResponse;
@@ -50,54 +50,86 @@ class StudyCenterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StudyCenterRequest $request)
+    public function store(StudyCenterRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['name_people'] = $request->input('name_people');
-        $data['lastname'] = $request->input('lastname');
-        $data['email'] = $request->input('mail');
-        $data['activated'] = $request->has('activated') ? 1 : 0;
+        $data['activated'] = $request->has('activated');
 
         DB::beginTransaction();
 
         try {
-            // Obtener el usuario por correo
-            $user = User::where('email', $request->mail)->firstOrFail();
-            dd("sadasd");
-            // Obtener la solicitud del centro de estudio por correo
-            $studyCenter = RegisterStudyCenter::where('mail', $request->mail)->firstOrFail();
+
+            $user = $this->getUserByEmail($request->input('mail'));
+            $password = Str::random(10);
+            $user->password = $password;
+            $user->save();
+            
+            $studyCenter = $this->getStudyCenterByEmail($request->input('mail'));
 
             // Verificar el estado del centro de estudio
-            if ($studyCenter->state == "Pendiente") {
-                // Crear entidad de Persona y Centro de Estudio
-                $person = Person::create($data);
-                $data['people_id'] = $person->id;
-                $studyCenter = StudyCenter::create($data);
-                $studyCenter->state = "Completada";
-                $studyCenter->save(); // Asegúrate de guardar el cambio del estado
-
-
-            } else if ($studyCenter->state == "Completada") {
+            if ($studyCenter->state === "Completada") {
                 return Redirect::route('study-centers.index')
                     ->with('error', 'El centro de estudio ya está completado.');
             }
 
-            Mail::to($user->email)->send(new SendEmailToStudyCenter($user, $studyCenter));
-            // Commita la transacción si todo ha ido bien
-            DB::commit();
+            // Crear persona y centro de estudio
+            $person = $this->createPerson($request, $user->id);
 
-            // Retorna a la vista con éxito
-            return Redirect::route('study-centers.index')
-            ->with('success', 'Centro de estudio creado satisfactoriamente');
+            $newstudyCenter = $this->createStudyCenter($request, $person->id, $data);
+
+            // Completando el proceso
+            $studyCenter->state = "Completada";
+            $studyCenter->save();
+
+            // Enviar correo de confirmación
+            Mail::to($user->email)->send(new SendEmailToStudyCenter($user, $studyCenter,$password));
+
+            DB::commit();
+            return Redirect::route('study-centers.index')->with('success', 'Centro de estudio creado satisfactoriamente');
         } catch (\Exception $e) {
-            // Si hay un error, revertir todos los cambios
+
             DB::rollback();
             Log::error('Error al crear el centro de estudio: ' . $e->getMessage());
-
-            // Retornar a la vista de lista con un mensaje de error
-            return Redirect::route('study-centers.index')
-                ->with('error', 'Error. No se pudo insertar el Centro de estudio.');
+            return Redirect::route('study-centers.index')->withErrors(['error' => 'Error. No se pudo insertar el Centro de estudio ']);
         }
+    }
+
+    private function getUserByEmail(string $email): User
+    {
+        return User::where('email', $email)->firstOrFail();
+    }
+
+    private function getStudyCenterByEmail(string $email): RegisterStudyCenter
+    {
+        return RegisterStudyCenter::where('mail', $email)->firstOrFail();
+    }
+
+    private function createPerson(Request $request, string $userId): Person
+    {
+        return Person::create([
+            'name' => $request->input('name_people'),
+            'lastname' => $request->input('lastname'),
+            'email' => $request->input('mail'),
+            'phone' => $request->input('phone'),
+            'activated' => true,
+            'user_id' => $userId,
+        ]);
+    }
+
+    private function createStudyCenter(Request $request, string $personId, array $data): StudyCenter
+    {
+        return StudyCenter::create([
+            'name' => $request->input('name'),
+            'activated' => $data['activated'],
+            'code' => $request->input('code'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'mail' => $request->input('mail'),
+            'regional_id' => $request->input('regional_id'),
+            'district_id' => $request->input('district_id'),
+            'people_id' => $personId,
+            'membership_id' => $request->input('membership_id'),
+        ]);
     }
 
     /**
