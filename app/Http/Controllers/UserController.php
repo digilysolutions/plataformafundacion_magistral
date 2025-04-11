@@ -26,8 +26,7 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $users = User::all();
-
+        $users = User::where('role', 'Usuario')->get();
         return view('user.index', compact('users'));
     }
 
@@ -73,13 +72,12 @@ class UserController extends Controller
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']), // Contraseña inicial
                     'activated' => true,
-                    'role' => 'Estudiante',
-                    'roleid' => 2
+                    'role' => 'Usuario',
+                    'roleid' => 6
                 ]);
 
                 $data['user_id'] = $user->id;
                 $person = Person::create($data);
-
                 $data['people_id'] = $person->id;
                 // Crear el estudiante
 
