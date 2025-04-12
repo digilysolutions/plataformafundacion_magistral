@@ -89,31 +89,33 @@ class PersonController extends Controller
         return Redirect::route('people.index')
             ->with('success', 'Person eliminado satisfactoriamente');
     }
-    public function createCode() {}
+
     public function sendEmailWhithCode(Request $request)
     {
-        
+
         try {
             DB::beginTransaction();
             // Obtener el correo desde el request
             $email = $request->email;
-            
+
             // Encontrar el usuario usando el correo
             $user = User::where('email', $email)->first();
             if ($user) {
                 $user->verification_token = Str::random(40);
-                $user->verification_code = random_int(100000, 999999);                  
-                $user->save();
+                $user->verification_code = random_int(100000, 999999);
+                $user->is_verified=0;
+                $user->update();
+
                 $person = $user?->person;
+
                 Mail::to($user->email)->send(new SendEmailwhitCode($user, $person));
                 DB::commit();
                 return redirect()->route('login')->with('status', "Te hemos enviado un correo electrónico con todas las instrucciones necesarias para que puedas verificar tu cuenta de manera sencilla y rápida.");
             }
-            return redirect()->route('login')->withErrors(['error'=> "Error, no existe el correo"]);
-        } catch (\Exception $e) 
-        {
+            return view('auth.login')->withErrors(['error' => 'Error, no existe el correo']);
+        } catch (\Exception $e) {
             DB::rollback();
-            
+            dd($e->getMessage());
             return back()->withErrors(['error' => 'Ocurrió un error al enviar el código de seguimiento ']); // Muestra el mensaje de error que ocurrió
         }
     }
