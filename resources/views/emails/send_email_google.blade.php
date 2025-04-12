@@ -37,7 +37,7 @@
         <p><strong>Contraseña:</strong> {{ $password }}</p>   
         
         <h6>Tu Código de Seguimiento:</h6>
-        <p>{{ $person->code }}</p>
+        <p>{{ $person->id }}</p>
         
         <p>Para cualquier consulta o asistencia, no dudes en contactarnos. ¡Estamos aquí para ayudarte!</p>
         
