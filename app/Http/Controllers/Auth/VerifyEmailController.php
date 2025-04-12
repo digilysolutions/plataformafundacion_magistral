@@ -35,8 +35,5 @@ class VerifyEmailController extends Controller
         ]);
     }
 
-    /**
-     * Resend the verification email to the user.
-     */
 
 }

@@ -26,7 +26,6 @@ class UserHelper
         // Crear el usuario
         $user = User::create([
             'name' => $name,
-
             'email' => $email,
             'password' =>  Hash::make($password),
             'activated' => true,

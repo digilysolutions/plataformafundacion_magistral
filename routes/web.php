@@ -105,6 +105,8 @@ Route::middleware('roles:Administrator')->group(function () {
 
 });*/
 Route::get('/verify/{token}', [RegisteredUserController::class, 'verify'])->name('verify');
+Route::get('/verify/code', [RegisteredUserController::class, 'verifyTokenToCode'])->name('verifyTokenToCode');
+Route::post('/verify-code', [RegisteredUserController::class, 'verifyToCode'])->name('verify.code');
 Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->name('thankYou');
 
 
@@ -215,12 +217,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('register-study-centers', RegisterStudyCenterController::class);
     ///-------End nuevas rutass
 });
+
 Route::post('register-study-centers/store', [RegisterStudyCenterController::class, 'processStore'])->name('register-study-centers.processStore');
 Route::get('/thank-you-studycenter', [RegisterStudyCenterController::class, 'thankYou'])->name('thankYouStudyCenter');
 Route::get('/user/register-study-centers/', [RegisterStudyCenterController::class,'create'])->name('user-study-centers.create');
 Route::get('/verification-email/studcenter', function () {
     return view('register-study-center.okVerificationStudyCenter'); // Vista para el dashboard del usuario
 })->name('register-study-center.okVerificationStudyCenter');
+Route::post('/person/send-code', [PersonController::class, 'sendEmailWhithCode'])->name('person.sendEmailWhithCode');
+Route::get('/person-code', function () {
+    return view('auth.forgot-code'); // Vista para el dashboard del usuario
+})->name('person.code');
 /*
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

@@ -45,7 +45,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0105',
                 'regional_id' => 'BA0001',
             ],
-        
+
             // Distritos de SAN JUAN DE LA MAGUANA
             [
                 'name' => 'COMENDADOR',
@@ -89,7 +89,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0207',
                 'regional_id' => 'SA0001',
             ],
-        
+
             // Distritos de AZUA
             [
                 'name' => 'AZUA',
@@ -121,7 +121,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0305',
                 'regional_id' => 'AZ0001',
             ],
-        
+
             // Distritos de SAN CRISTOBAL
             [
                 'name' => 'CAMBITA GARABITOS',
@@ -165,7 +165,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0407',
                 'regional_id' => 'SA0002',
             ],
-        
+
             // Distritos de SAN PEDRO DE MACORIS
             [
                 'name' => 'SAN PEDRO DE MACORIS ESTE',
@@ -233,7 +233,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0511',
                 'regional_id' => 'SA0003',
             ],
-        
+
             // Distritos de LA VEGA
             [
                 'name' => 'JOSE CONTRERAS',
@@ -295,7 +295,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0610',
                 'regional_id' => 'LA0001',
             ],
-        
+
             // Distritos de SAN FRANCISCO DE MACORIS
             [
                 'name' => 'TENARES',
@@ -339,7 +339,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0707',
                 'regional_id' => 'SA0004',
             ],
-        
+
             // Distritos de SANTIAGO
             [
                 'name' => 'SAN JOSE DE LAS MATAS',
@@ -401,7 +401,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0810',
                 'regional_id' => 'SA0005',
             ],
-        
+
             // Distritos de MAO
             [
                 'name' => 'MAO',
@@ -439,7 +439,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '0906',
                 'regional_id' => 'MA0001',
             ],
-        
+
             // Distritos de SANTO DOMINGO
             [
                 'name' => 'VILLA MELLA',
@@ -483,7 +483,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1007',
                 'regional_id' => 'SA0006',
             ],
-        
+
             // Distritos de PUERTO PLATA
             [
                 'name' => 'SOSUA',
@@ -527,7 +527,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1107',
                 'regional_id' => 'PU0001',
             ],
-        
+
             // Distritos de HIGUEY
             [
                 'name' => 'HIGUEY',
@@ -553,7 +553,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1204',
                 'regional_id' => 'HI0001',
             ],
-        
+
             // Distritos de MONTE CRISTI
             [
                 'name' => 'MONTE CRISTI',
@@ -591,7 +591,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1306',
                 'regional_id' => 'MO0001',
             ],
-        
+
             // Distritos de NAGUA
             [
                 'name' => 'NAGUA',
@@ -635,7 +635,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1407',
                 'regional_id' => 'NA0001',
             ],
-        
+
             // Distritos de SANTO DOMINGO
             [
                 'name' => 'LOS ALCARRIZOS',
@@ -673,7 +673,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1506',
                 'regional_id' => 'SA0007',
             ],
-        
+
             // Distritos de COTUI
             [
                 'name' => 'COTUI',
@@ -717,7 +717,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1607',
                 'regional_id' => 'CO0001',
             ],
-        
+
             // Distritos de MONTE PLATA
             [
                 'name' => 'YAMASA',
@@ -749,7 +749,7 @@ class DistrictsSeeder extends Seeder
                 'code' => '1705',
                 'regional_id' => 'MO0002',
             ],
-            
+
             // Distritos de BAORUCO
             [
                 'name' => 'NEIBA',

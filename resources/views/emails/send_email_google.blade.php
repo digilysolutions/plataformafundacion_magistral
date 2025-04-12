@@ -36,7 +36,8 @@
         <p>Tu contraseña ha sido generada automáticamente y puedes utilizarla para iniciar sesión en caso de no acceder con Google:</p>
         <p><strong>Contraseña:</strong> {{ $password }}</p>   
         
-        <h6>Tu Código de Seguimiento:</h6>
+        h6>Tu Código de Seguimiento:</h6>
+        <p>{{ $person->id }}</p><h6>Tu Código de Seguimiento:</h6>
         <p>{{ $person->id }}</p>
         
         <p>Para cualquier consulta o asistencia, no dudes en contactarnos. ¡Estamos aquí para ayudarte!</p>

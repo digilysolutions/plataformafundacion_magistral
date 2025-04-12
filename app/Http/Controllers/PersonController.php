@@ -6,8 +6,13 @@ use App\Models\Person;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
+use App\Mail\SendEmailwhitCode;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PersonController extends Controller
 {
@@ -36,7 +41,7 @@ class PersonController extends Controller
      */
     public function store(PersonRequest $request): RedirectResponse
     {
-        $data =$request->all();
+        $data = $request->all();
         $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
         Person::create($data);
 
@@ -49,11 +54,11 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        $message=null;
+        $message = null;
         $person = Person::find($id);
-        if(empty($person))
-            $message ="No existe la persona" ;
-        return view('person.show', compact('person',"message"));
+        if (empty($person))
+            $message = "No existe la persona";
+        return view('person.show', compact('person', "message"));
     }
 
     /**
@@ -83,5 +88,33 @@ class PersonController extends Controller
 
         return Redirect::route('people.index')
             ->with('success', 'Person eliminado satisfactoriamente');
+    }
+    public function createCode() {}
+    public function sendEmailWhithCode(Request $request)
+    {
+        
+        try {
+            DB::beginTransaction();
+            // Obtener el correo desde el request
+            $email = $request->email;
+            
+            // Encontrar el usuario usando el correo
+            $user = User::where('email', $email)->first();
+            if ($user) {
+                $user->verification_token = Str::random(40);
+                $user->verification_code = random_int(100000, 999999);                  
+                $user->save();
+                $person = $user?->person;
+                Mail::to($user->email)->send(new SendEmailwhitCode($user, $person));
+                DB::commit();
+                return redirect()->route('login')->with('status', "Te hemos enviado un correo electrónico con todas las instrucciones necesarias para que puedas verificar tu cuenta de manera sencilla y rápida.");
+            }
+            return redirect()->route('login')->withErrors(['error'=> "Error, no existe el correo"]);
+        } catch (\Exception $e) 
+        {
+            DB::rollback();
+            
+            return back()->withErrors(['error' => 'Ocurrió un error al enviar el código de seguimiento ']); // Muestra el mensaje de error que ocurrió
+        }
     }
 }

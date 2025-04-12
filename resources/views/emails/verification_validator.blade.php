@@ -15,3 +15,4 @@
     <p>Si no te registraste, ignora este correo.</p>
 </body>
 </html>
+    

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->integer('id')->nullable();
             $table->boolean('activated')->default(false);
             $table->string('name');
             $table->string('description')->nullable();

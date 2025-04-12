@@ -178,7 +178,7 @@
 
                         <div class="register-prompt">
                             <a href="{{ route('password.request') }}" class="text-primary ">¿Olvidaste
-                                tu contraseña?</a> | <a href="auth-recoverpw.html" class="text-primary">¿Olvidaste tu
+                                tu contraseña?</a> | <a href="{{ route('person.code') }}" class="text-primary">¿Olvidaste tu
                                 código?</a>
 
                             <p>¿Eres nuevo aquí? Regístrate como:</p>

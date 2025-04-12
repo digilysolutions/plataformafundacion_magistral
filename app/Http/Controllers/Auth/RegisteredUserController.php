@@ -102,7 +102,16 @@ class RegisteredUserController extends Controller
             return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]); // Muestra el mensaje de error que ocurrió
         }
     }
+    public function verifyTokenToCode($token)
+    {
+        // Verifica que el token existe
+        $user = User::where('verification_token', $token)->first();
 
+        if (!$user) {
+            return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');
+        }
+        return view('auth.verify_token_code', compact('user'));
+    }
     public function verify($token)
     {
         // Verifica que el token existe
@@ -111,11 +120,9 @@ class RegisteredUserController extends Controller
         if (!$user) {
             return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');
         }
-
         return view('auth.verify', compact('user'));
     }
-
-    public function verifyEmail(Request $request)
+    private function verifyToken(Request $request)
     {
         // Validación de la solicitud
         $request->validate([
@@ -135,7 +142,12 @@ class RegisteredUserController extends Controller
 
         // Marca el usuario como verificado
         $this->markUserAsVerified($user);
+        return $user;
+    }
+    public function verifyEmail(Request $request)
+    {
 
+        $user = $this->verifyToken($request);
         // Manejo de roles
         switch ($user->roleid) {
             case 4:
@@ -150,6 +162,18 @@ class RegisteredUserController extends Controller
             default:
                 return redirect('/login')->with('error', 'Rol no reconocido.');
         }
+    }
+    public function verifyToCode(Request $request) {
+        // Verifica el token y obtiene el usuario
+        $user = $this->verifyToken($request);
+    
+        // Verifica que el usuario tenga una relación 'person'
+        if ($user && $user->person) {
+            // Retorna el ID de la persona como respuesta JSON
+            return response()->json(['person_id' => $user->person->id], 200);
+        }    
+        // Retorna un error si el usuario no se encuentra o no tiene persona asociada
+        return response()->json(['error' => 'Usuario no encontrado o persona no encontrada'], 404);
     }
 
     private function markUserAsVerified(User $user)

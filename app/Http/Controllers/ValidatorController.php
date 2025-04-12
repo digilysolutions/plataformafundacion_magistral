@@ -110,7 +110,7 @@ class ValidatorController extends Controller
                 ->with('success', 'Validador creado satisfactoriamente. Esperando su confrimacion de correo');
         } catch (\Exception $e) {
             DB::rollback();
-            return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]); // Muestra el mensaje de error que ocurrió
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud']); // Muestra el mensaje de error que ocurrió
         }
     }
 
