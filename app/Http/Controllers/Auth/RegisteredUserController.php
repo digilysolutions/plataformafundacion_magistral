@@ -103,12 +103,12 @@ class RegisteredUserController extends Controller
         }
     }
     public function verifyTokenToCode($token)
-    {
+    {dd("Entre");
         // Verifica que el token existe
         $user = User::where('verification_token', $token)->first();
 
         if (!$user) {
-            return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');
+            return redirect('login')->with('error', 'Token de verificación inválido o expirado.');
         }
         return view('auth.verify_token_code', compact('user'));
     }
@@ -124,6 +124,7 @@ class RegisteredUserController extends Controller
     }
     private function verifyToken(Request $request)
     {
+        dd( $request );
         // Validación de la solicitud
         $request->validate([
             'email' => 'required|string|email',
@@ -164,14 +165,15 @@ class RegisteredUserController extends Controller
         }
     }
     public function verifyToCode(Request $request) {
+        dd('Entree');
         // Verifica el token y obtiene el usuario
         $user = $this->verifyToken($request);
-    
+
         // Verifica que el usuario tenga una relación 'person'
         if ($user && $user->person) {
             // Retorna el ID de la persona como respuesta JSON
             return response()->json(['person_id' => $user->person->id], 200);
-        }    
+        }
         // Retorna un error si el usuario no se encuentra o no tiene persona asociada
         return response()->json(['error' => 'Usuario no encontrado o persona no encontrada'], 404);
     }
