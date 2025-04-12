@@ -78,21 +78,32 @@
 
                     <div class="col-lg-7 ">
                         <div class="card auth-card text-center">
-                            @if (session('status'))
+                            @if (session('status'))                                
                                 <div class="alert alert-success mt-2">
                                     {{ session('status') }}
                                 </div>
                             @endif
                             @if (session('error'))
+                               
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
                                 </div>
                             @endif
                             @if (session('errors'))
+                              
                                 <div class="alert alert-danger">
                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
                             @endif
+                            @if ($errors->has('error'))
+                               
+                                <div class="alert alert-danger mt-2">
+                                    {{ $errors->first('error') }} <!-- Cambia "email" por el campo correcto -->
+                                </div>
+                            @endif
+                           
+
+
                             <div class="card-body p-0">
                                 <div class="d-flex align-items-center auth-content">
                                     <div class="col-lg-7 align-self-center">
@@ -178,7 +189,8 @@
 
                         <div class="register-prompt">
                             <a href="{{ route('password.request') }}" class="text-primary ">¿Olvidaste
-                                tu contraseña?</a> | <a href="{{ route('person.code') }}" class="text-primary">¿Olvidaste tu
+                                tu contraseña?</a> | <a href="{{ route('person.code') }}"
+                                class="text-primary">¿Olvidaste tu
                                 código?</a>
 
                             <p>¿Eres nuevo aquí? Regístrate como:</p>
