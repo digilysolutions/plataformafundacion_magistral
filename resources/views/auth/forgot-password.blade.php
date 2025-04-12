@@ -48,6 +48,10 @@
                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">  {{ __('Email Password Reset Link') }}</button>
+                                    <p class="mt-3">
+                                        ¿Ya tienes una cuenta?" <a href="{{ route('login') }}"
+                                            class="text-primary">Iniciar sesión</a>
+                                    </p>
                                  </form>
                               </div>
                            </div>
