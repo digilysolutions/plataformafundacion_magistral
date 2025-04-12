@@ -28,7 +28,7 @@ class SendEmailToGoogle extends Mailable
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Registro con Google')
             ->view('emails.send_email_google')        
-            ->with('code', $this->person->id)
+            ->with('person', $this->person)
             ->with('password', $this->password);
     }
     /**
