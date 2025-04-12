@@ -50,7 +50,7 @@ class GoogleController extends Controller
                         'name' => $user->name,
                         'email' => $user->email,
                         'activated' => true,
-                        'user_id' => $user->id
+                        'user_id' => $newUser->id
                     ]
                 );
                 $student = Student::create(
