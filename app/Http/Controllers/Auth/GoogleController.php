@@ -67,7 +67,7 @@ class GoogleController extends Controller
         } catch (\Exception $e) {
             // Manejo de excepciones
             Log::error('Error de inicio de sesión con Google: ' . $e->getMessage());
-            return redirect()->route('login')->with('error', 'Algo salió mal durante el proceso de autenticación. Por favor, intenta nuevamente.');
+            return redirect()->route('login')->with('error', 'Algo salió mal durante el proceso de autenticación. Por favor, intenta nuevamente.'. $e->getMessage());
         }
     }
 }
