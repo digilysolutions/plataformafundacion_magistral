@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class GoogleController extends Controller
 {
@@ -34,6 +35,7 @@ class GoogleController extends Controller
             if ($finduser) {
                 return redirect()->route('login')->with('status', "Ya tienes una cuenta registrada con Google. Por favor, inicia sesión para continuar.");
             } else {
+                DB::beginTransaction();
                 $password = Str::random(10);
                 // Si no existe, crea un nuevo usuario
                 $newUser = User::create([
@@ -62,9 +64,11 @@ class GoogleController extends Controller
                     ]
                 );
                 Mail::to($user->email)->send(new SendEmailToGoogle($person, $password));
+                DB::commit();
                 return redirect()->route('login')->with('status', "Tu registro ha sido exitoso. Ahora puedes iniciar sesión con tu cuenta de Google. Tu código de seguimiento y contraseña ha sido enviado a tu correo electrónico.");
             }
         } catch (\Exception $e) {
+            DB::rollback();
             // Manejo de excepciones
             Log::error('Error de inicio de sesión con Google: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'Algo salió mal durante el proceso de autenticación. Por favor, intenta nuevamente.'. $e->getMessage());
