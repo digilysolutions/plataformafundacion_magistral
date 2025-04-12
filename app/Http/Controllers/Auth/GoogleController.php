@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendEmailToGoogle;
 use App\Models\Person;
 use App\Models\Student;
 use App\Models\User;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class GoogleController extends Controller
 {
@@ -29,24 +32,9 @@ class GoogleController extends Controller
             $finduser = User::where('google_id', $user->id)->first();
 
             if ($finduser) {
-                // Si el usuario ya existe, iniciar sesión
-                Auth::login($finduser);
-                switch ($finduser->role) {
-                    case 'Centro Educativo':
-                        return redirect()->route('educationalcenter.dashboard');
-                    case 'Estudiante':
-                        return redirect()->route('student.dashboard');
-                    case "Tutor":
-                        return redirect()->route('tutor.dashboard');
-                    case "Validador":
-                        return redirect()->route('validator.dashboard');
-                    case 'Administrador':
-                        return redirect()->route('admin.dashboard');
-                    case "Usuario":
-                        return redirect()->route('user.dashboard');
-                }
-               // return redirect()->intended('dashboard');
+                return redirect()->route('login')->with('status', "Ya tienes una cuenta registrada con Google. Por favor, inicia sesión para continuar.");
             } else {
+                $password = Str::random(10);
                 // Si no existe, crea un nuevo usuario
                 $newUser = User::create([
                     'name' => $user->name,
@@ -55,7 +43,7 @@ class GoogleController extends Controller
                     'role' => 'Usuario',
                     'roleid' => 6,
                     'membership_id'=>'BA0001',
-                    'password' => Hash::make('Password1234'), // Considera usar una mejor manera de manejar contraseñas
+                    'password' => Hash::make( $password ), // Considera usar una mejor manera de manejar contraseñas
                 ]);
                 $person = Person::create(
                     [
@@ -73,10 +61,8 @@ class GoogleController extends Controller
                         'membership_id'=>'BA0001',
                     ]
                 );
-
-                // Inicia sesión con el nuevo usuario
-                Auth::login($newUser);
-                return  redirect()->route('user.dashboard');
+                Mail::to($user->email)->send(new SendEmailToGoogle($person, $password));
+                return redirect()->route('login')->with('status', "Tu registro ha sido exitoso. Ahora puedes iniciar sesión con tu cuenta de Google. Tu código de seguimiento y contraseña ha sido enviado a tu correo electrónico.");
             }
         } catch (\Exception $e) {
             // Manejo de excepciones

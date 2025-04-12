@@ -1,39 +1,104 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+<!doctype html>
+<html lang="en">
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>POS Dash | Recuperar Contraseña</title>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('img/icono/fm-plataforma.jpg') }}" />
+    <link rel="stylesheet" href="{{ asset('css/backend-plugin.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend.css?v=1.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/remixicon.css') }}">
+</head>
+
+<body class=" ">
+    <!-- loader Start -->
+    <div id="loading">
+        <div id="loading-center">
         </div>
+    </div>
+    <!-- loader END -->
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <div class="wrapper">
+        <section class="login-content">
+            <div class="container">
+                <div class="row align-items-center justify-content-center height-self-center">
+                    <div class="col-lg-8">
+                        <div class="card auth-card">
+                            <div class="card-body p-0">
+                                <div class="d-flex align-items-center auth-content">
+                                    <div class="col-lg-7 align-self-center">
+                                        <form method="POST" action="{{ route('password.store') }}">
+                                            @csrf
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                                            <!-- Password Reset Token -->
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
+                                            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                                            <!-- Email Address -->
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+                                            <div class="col-lg-12">
+                                                <div class="floating-label form-group">
+                                                    <input class="floating-input form-control" id="email"
+                                                        type="email" name="email"
+                                                        value="{{ old('email', $request->email) }}" required autofocus
+                                                        autocomplete="username">
+                                                    <label>{{ __('Email') }}</label>
+                                                </div>
+                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                            </div>
+
+                                            <!-- Password -->
+                                            <div class="col-lg-12">
+                                                <div class="floating-label form-group">
+                                                    <input class="floating-input form-control" id="password"
+                                                        type="password" name="password" value="{{ __('Password') }}"
+                                                        required autocomplete="new-password">
+                                                    <label>{{ __('Password') }}</label>
+                                                </div>
+                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                            </div>
+                                            <!-- Confirm Password -->
+                                            <div class="col-lg-12">
+                                                <div class="floating-label form-group">
+                                                    <input class="floating-input form-control" id="password_confirmation"
+                                                        type="password" name="password_confirmation" value="{{ __('Password') }}"
+                                                        required autocomplete="new-password">
+                                                    <label>{{ __('Confirm Password')}}</label>
+                                                </div>
+                                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"> {{ __('Reset Password') }}</button>
+                                            
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-5 content-right">
+                                        <img src="{{ asset('img/login/01.png') }}" class="img-fluid image-right"
+                                            alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Backend Bundle JavaScript -->
+    <script src="{{ asset('js/backend-bundle.min.js') }}"></script>
+    <!-- Table Treeview JavaScript -->
+    <script src="{{ asset('admin/js/table-treeview.js') }}"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="{{ asset('admin/js/customizer.js') }}"></script>
+    <!-- Chart Custom JavaScript -->
+    <script async src="{{ asset('admin/js/chart-custom.js') }}"></script>
+    <!-- app JavaScript -->
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+
+</html>
