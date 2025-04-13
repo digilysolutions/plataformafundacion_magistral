@@ -51,7 +51,6 @@ class RegisteredUserController extends Controller
             'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
         ]);
 
-
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
@@ -103,7 +102,8 @@ class RegisteredUserController extends Controller
         }
     }
     public function verifyTokenToCode($token)
-    {dd("Entre");
+    {
+
         // Verifica que el token existe
         $user = User::where('verification_token', $token)->first();
 
@@ -124,7 +124,7 @@ class RegisteredUserController extends Controller
     }
     private function verifyToken(Request $request)
     {
-        dd( $request );
+
         // Validación de la solicitud
         $request->validate([
             'email' => 'required|string|email',
@@ -165,7 +165,6 @@ class RegisteredUserController extends Controller
         }
     }
     public function verifyToCode(Request $request) {
-        dd('Entree');
         // Verifica el token y obtiene el usuario
         $user = $this->verifyToken($request);
 
