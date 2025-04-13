@@ -117,6 +117,8 @@ Route::middleware('auth')->group(function () {
     //Carga inicial con excel
     Route::get('/import', [ExcelController::class, 'importView'])->name('import.view')->middleware('role:Administrador');
     Route::post('/import', [ExcelController::class, 'import'])->name('import')->middleware('role:Administrador');
+    Route::get('/import-students', [ExcelController::class, 'importViewStudents'])->name('import.viewStudents')->middleware('role:Administrador');
+    Route::post('/import-students', [ExcelController::class, 'importStudents'])->name('importStudents')->middleware('role:Administrador');
 
     //memberships
     Route::patch('memberships/{membershipId}', [MembershipController::class, 'update'])->middleware('role:Administrador');
