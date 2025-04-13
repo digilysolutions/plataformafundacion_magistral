@@ -86,7 +86,9 @@ class TutorSeeder extends Seeder
                 'name' => $data['name'],
                 'activated' => true,
                 'people_id' => $person->id,
-                'studycenters_id' => $data['studycenters_id'] ?? null // Asignar el ID del centro educativo
+                'studycenters_id' => $data['studycenters_id'] ?? null ,
+                'specialty_id' => $data['specialty_id']
+
             ]);
 
             // Crear la relación con specialty
