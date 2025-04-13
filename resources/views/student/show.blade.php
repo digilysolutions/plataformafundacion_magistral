@@ -26,6 +26,10 @@
                             {{ $student->id }}
                         </div>
                         <div class="form-group mb-2 mb20">
+                            <strong>Usuario:</strong>
+                            {{ $student->person->user->email }}
+                        </div>
+                        <div class="form-group mb-2 mb20">
                             <strong>Nombre y Apellidos:</strong>
                             {{ $student->person->name }} {{ $student->person->lastname }}
                         </div>
@@ -37,10 +41,7 @@
                             <strong>Centro de estudio:</strong>
                             @if($student->studyCenter) {{ $student->studyCenter->name }} @else No pertenece @endif
                         </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Usuario:</strong>
-                            {{ $student->person->user->name }}
-                        </div>
+
                         <div class="form-group mb-2 mb20">
                             <strong>Membresía:</strong>
                             @if($student->membership){{ $student->membership->name }} @else Sin membresía @endif
