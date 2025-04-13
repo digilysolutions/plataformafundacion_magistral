@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class StudentController extends Controller
 {
@@ -243,8 +244,28 @@ class StudentController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Student::find($id)->delete();
 
+        try {
+            $student = Student::find($id);
+
+            if ($student) {
+                // Obtén a la persona
+                $people = $student->person;
+                $user =  $people->user;
+                // Elimina el validador
+                $student->delete();
+                // Ahora elimina a la persona si es necesario
+                if ($people) {
+                    $people->delete();
+                }
+                if ($user) {
+                    $user->delete();
+                }
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            // O puedes hacer un dd($e) para ver el error.
+        }
         return Redirect::route('students.index')
             ->with('success', 'Estudiante eliminado satisfactoriamente');
     }

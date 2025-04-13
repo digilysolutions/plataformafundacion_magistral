@@ -26,7 +26,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        
+
                         <div class="float-right mr-5">
                             <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm float-right"
                                 data-placement="left">
@@ -55,6 +55,10 @@
                             {!! $error !!}
                         </div>
                     @endif
+                    <div class="float-left ml-3 mt-3">
+                        <p>Utiliza el siguiente botón para cargar un archivo Excel con la información de los estudiantes.</p>
+                        <a href="{{ route('register-study-centers.index') }}">Descargar Excel</a> | <a href="{{ route('import.viewStudents') }}">Carga Inicial de Estudiantes</a>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="datatable" class="table data-tables table-striped">

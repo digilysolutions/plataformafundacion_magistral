@@ -31,15 +31,33 @@ class ExcelController extends Controller
     ///Vista para la carga Inicial de los estudiantes
     public function importViewStudents()
     {
-        return view('importStudents');
+        return view('study-center.importStudents');
     } //Importar estudiantes
     public function importStudents(Request $request)
     {
+
         $request->validate([
             'import_file' => 'required|mimes:xlsx,xls',
         ]);
 
-        Excel::import(new StudentsImport, $request->file('import_file'));
+        // Importar estudiantes
+        $import = new StudentsImport();
+        Excel::import($import, $request->file('import_file'));
+
+        // Obtener los correos duplicados de la importación
+        $duplicateEmails = $import->getDuplicateEmails();
+
+
+        if (!empty($duplicateEmails)) {
+            // Formatear la salida
+            $formattedDuplicates = implode('<br>', array_map(
+                fn($email, $message) => "$email: $message",
+                array_keys($duplicateEmails),
+                $duplicateEmails
+            ));
+
+            return back()->withErrors(['duplicates' => 'Los siguientes correos son duplicados:<br>' . $formattedDuplicates]);
+        }
 
         return back()->with('success', 'Datos importados exitosamente.');
     }
