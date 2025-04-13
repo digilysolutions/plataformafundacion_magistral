@@ -44,10 +44,7 @@
 
                         <div class="form-group mb-2 mb20">
                             <strong>Especialidad:</strong>
-                            @foreach ($tutor->specialties as $speciality)
-
-                            {{ $speciality->name }},
-                            @endforeach
+                            {{ $tutor->specialty->name }}
                         </div>
 
                         <div class="form-group mb-2 mb20">

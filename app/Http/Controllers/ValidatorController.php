@@ -69,17 +69,22 @@ class ValidatorController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-
+        $data['username'] = !empty($request->username) ? $request->username : $request->name;
+        if (!empty($request->password)) {
+            $data['password'] = Hash::make($request->password);
+        } else {
+            unset($data['password']); // Si no hay contraseña nueva, removemos la clave
+        }
         DB::beginTransaction();
 
         try {
             // Generar una contraseña aleatoria
-            $password = Str::random(10); // Genera una contraseña aleatoria de 10 caracteres
+
             $user = User::create([
-                'name' => $request->name,
+                'name' => $data['username'],
                 'email' => $request->email,
                 'activated' => true,
-                'password' => Hash::make($password),
+                'password' => Hash::make($data['password']),
                 'verification_token' => Str::random(40),
                 'verification_code' => random_int(100000, 999999),
                 'membership_id' => 'BA0001',
@@ -104,7 +109,7 @@ class ValidatorController extends Controller
                 'specialty_id' => $request->specialty_id
             ]);
             event(new Registered($validator));
-            Mail::to($user->email)->send(new VerificationEmailValidator($user, $password));
+            Mail::to($user->email)->send(new VerificationEmailValidator($user,$request->password));
             DB::commit();
             return Redirect::route('validators.index')
                 ->with('success', 'Validador creado satisfactoriamente. Esperando su confrimacion de correo');

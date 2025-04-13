@@ -58,12 +58,7 @@
                                             <td>{{ $tutor->id }}</td>
                                             <td>{{ $tutor->person->name }}</td>
                                             <td>
-                                                @foreach ($tutor->specialties as $speciality)
-                                                    {{ $speciality->name }},
-                                                @endforeach
-
-
-
+                                                <td>{{ $tutor->specialty->name }}</td>
 
                                             </td>
                                             <td>

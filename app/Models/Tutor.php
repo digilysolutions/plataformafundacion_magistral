@@ -32,7 +32,7 @@ class Tutor extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'activated', 'studycenters_id', 'people_id'];
+    protected $fillable = ['name', 'activated', 'studycenters_id', 'people_id','specialty_id'];
 
 
     /**
@@ -53,6 +53,9 @@ class Tutor extends ModelMain
     public function studyCenter()
     {
         return $this->belongsTo(\App\Models\StudyCenter::class, 'studycenters_id', 'id');
+    }
+    public function specialty() {
+        return $this->belongsTo(Specialty::class);
     }
 
 }

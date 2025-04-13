@@ -102,14 +102,21 @@ class TutorController extends Controller
             return back()->withErrors($tutor)->withInput();
         }
 
+        $data['username'] = !empty($request->username) ? $request->username : $request->name;
+        if (!empty($request->password)) {
+            $data['password'] = Hash::make($request->password);
+        } else {
+            unset($data['password']); // Si no hay contraseña nueva, removemos la clave
+        }
         DB::beginTransaction();
         try {
-            $password = Str::random(10); // Genera una contraseña aleatoria de 10 caracteres
+
+           // Genera una contraseña aleatoria de 10 caracteres
             $user = User::create([
-                'name' => $request->name,
+                'name' => $data['username'],
                 'email' => $request->email,
                 'activated' => true,
-                'password' => Hash::make($password),
+                'password' => Hash::make($data['password']),
                 'verification_token' => Str::random(40),
                 'verification_code' => random_int(100000, 999999),
                 'membership_id' => 'BA0001',
@@ -126,28 +133,29 @@ class TutorController extends Controller
                 'activated' => true,
                 'user_id' => $user->id
             ]);
+
+
             //Crear Tutor
             $tutor =  Tutor::create([
                 'name' => $request->name,
-                'activated' => false,
+                'activated' => true,
                 'people_id' => $person->id,
                 'specialty_id' => $request->specialty_id,
                 'studycenters_id' => $request->studycenters_id
             ]);
+
             // Agregar especialidades
-            if (!empty($data['specialty_id'])) {
-                // Usa attach en lugar de sync
-                $tutor->specialties()->attach($request->specialty_id);
-            }
+
             $studyCenter = StudyCenter::find($request->studycenters_id);
             event(new Registered($tutor));
-            Session::flash('password', $password);
+            Session::flash('password',$request->password);
             Mail::to($user->email)->send(new VerificationEmailTutor($user, $studyCenter));
             DB::commit();
             return Redirect::route('tutors.index')
                 ->with('success', 'Tutor creado satisfactoriamente. Esperando su confrimacion de correo');
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e->getMessage());
             return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]); // Muestra el mensaje de error que ocurrió
         }
     }
