@@ -105,7 +105,6 @@ class PersonController extends Controller
                 $user->verification_code = random_int(100000, 999999);
                 $user->is_verified=0;
                 $user->update();
-
                 $person = $user?->person;
 
                 Mail::to($user->email)->send(new SendEmailwhitCode($user, $person));
@@ -115,7 +114,6 @@ class PersonController extends Controller
             return view('auth.login')->withErrors(['error' => 'Error, no existe el correo']);
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e->getMessage());
             return back()->withErrors(['error' => 'Ocurrió un error al enviar el código de seguimiento ']); // Muestra el mensaje de error que ocurrió
         }
     }
