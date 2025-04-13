@@ -36,18 +36,15 @@
         </div>
 
         <div class="form-group col-md-12">
-            <label class="form-label" for="terms">Selecciona las especialidades *</label>
-
-                <select id="specialty_id" class="form-control" name="specialty_id[]" multiple="" required>
-                    @foreach ($specialties as $specialty)
-                    <option value="{{ $specialty->id }}" @if ($specialty->id==$tutor->specialty_id) select
-
-                    @endif>
-                        {{ $specialty->name }}</option>
+            <label class="form-label" for="terms">Selecciona una  especialidad *</label>
+            <select id="specialty_id" class="form-control" name="specialty_id" required>
+                @foreach ($specialties as $specialty)
+                    <option value="{{ $specialty->id }}" @if ($specialty->id == $tutor->specialty_id) selected @endif>
+                        {{ $specialty->name }}
+                    </option>
                 @endforeach
-                </select>
-
-                <div class="help-block with-errors"></div>
+            </select>
+            <div class="help-block with-errors"></div>
         </div>
 
     <div class="col-md-12 mt20 mt-2">
