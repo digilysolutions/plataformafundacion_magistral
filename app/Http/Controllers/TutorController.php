@@ -131,6 +131,7 @@ class TutorController extends Controller
                 'name' => $request->name,
                 'activated' => false,
                 'people_id' => $person->id,
+                'specialty_id' => $request->specialty_id,
                 'studycenters_id' => $request->studycenters_id
             ]);
             // Agregar especialidades
