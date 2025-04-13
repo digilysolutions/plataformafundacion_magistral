@@ -27,6 +27,8 @@ use App\Http\Controllers\ValidatorController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
+use App\Exports\StudentsExport;
+use Maatwebsite\Excel\Facades\Excel;
 /*
 Route::get('/', function () {
     return view('auth.login');
@@ -230,6 +232,10 @@ Route::post('/person/send-code', [PersonController::class, 'sendEmailWhithCode']
 Route::get('/person-code', function () {
     return view('auth.forgot-code'); // Vista para el dashboard del usuario
 })->name('person.code');
+// Ruta para descargar el archivo Excel
+Route::get('/download-students', function () {
+    return Excel::download(new StudentsExport, 'estudiantes.xlsx');
+})->name('download.students');
 /*
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

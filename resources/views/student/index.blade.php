@@ -57,7 +57,7 @@
                     @endif
                     <div class="float-left ml-3 mt-3">
                         <p>Utiliza el siguiente botón para cargar un archivo Excel con la información de los estudiantes.</p>
-                        <a href="{{ route('register-study-centers.index') }}">Descargar Excel</a> | <a href="{{ route('import.viewStudents') }}">Carga Inicial de Estudiantes</a>
+                        <a href="{{asset('ci_excel/CI-Estudiantes.xlsx')}}">Descargar Excel</a> | <a href="{{ route('import.viewStudents') }}">Carga Inicial de Estudiantes</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
