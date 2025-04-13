@@ -105,7 +105,7 @@ Route::middleware('roles:Administrator')->group(function () {
 
 });*/
 Route::get('/verify/{token}', [RegisteredUserController::class, 'verify'])->name('verify');
-Route::get('/verify/code', [RegisteredUserController::class, 'verifyTokenToCode'])->name('verifyTokenToCode');
+Route::get('/verify/code/{token}', [RegisteredUserController::class, 'verifyTokenToCode'])->name('verifyTokenToCode');
 Route::post('/verify-code', [RegisteredUserController::class, 'verifyToCode'])->name('verify.code');
 Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->name('thankYou');
 
