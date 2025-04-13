@@ -42,21 +42,44 @@ class ExcelController extends Controller
 
         // Importar estudiantes
         $import = new StudentsImport();
-        Excel::import($import, $request->file('import_file'));
+        $headers =  $import->getRowValidationRules();
+        $file = $request->file('import_file');
+        $reader = Excel::toArray(new StudentsImport(), $file);
+        $headers = array_keys($reader[0][0]);
 
-        // Obtener los correos duplicados de la importación
-        $duplicateEmails = $import->getDuplicateEmails();
+        // Verifica los encabezados
+        $import->checkHeaders($headers);
+        $headerErrors = $import->getHeaderErrors();
+        if (!empty($headerErrors)) {
+            return back()->withErrors(['header_errors' => implode('<br>', $headerErrors)]);
+        }
 
+        try {
+            Excel::import($import, $request->file('import_file'));
+            // Obtener los correos duplicados de la importación
+            $duplicateEmails = $import->getDuplicateEmails();
 
-        if (!empty($duplicateEmails)) {
-            // Formatear la salida
-            $formattedDuplicates = implode('<br>', array_map(
-                fn($email, $message) => "$email: $message",
-                array_keys($duplicateEmails),
-                $duplicateEmails
-            ));
+            if (!empty($duplicateEmails)) {
+                // Formatear la salida
+                $formattedDuplicates = implode('<br>', array_map(
+                    fn($email, $message) => "$email: $message",
+                    array_keys($duplicateEmails),
+                    $duplicateEmails
+                ));
 
-            return back()->withErrors(['duplicates' => 'Los siguientes correos son duplicados:<br>' . $formattedDuplicates]);
+                return back()->withErrors(['duplicates' => 'Los siguientes correos son duplicados:<br>' . $formattedDuplicates]);
+            }
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            // Captura los errores de validación
+            $failures = $e->failures();
+
+            // Prepara los mensajes de error
+            $errorMessages = [];
+            foreach ($failures as $failure) {
+                // Mensaje para cada fallo, aquí puedes personalizar
+                $errorMessages[] = "Fila {$failure->row()}: " . implode(', ', $failure->errors());
+            }
+            return back()->withErrors(['duplicates' => implode('<br>', $errorMessages)]);
         }
 
         return back()->with('success', 'Datos importados exitosamente.');
