@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->uuid('studycenters_id')->nullable();
             $table->foreign('studycenters_id')->references('id')->on('study_centers')->onDelete('cascade');
+            $table->uuid('specialty_id');
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
             $table->timestamps();
         });
     }
