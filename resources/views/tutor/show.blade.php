@@ -35,7 +35,7 @@
                           {{$tutor->person->phone}}
 
                         </div>
-                        
+
                         <div class="form-group mb-2 mb20">
                             <strong>Correo:</strong>
                           {{$tutor->person->email}}
@@ -43,13 +43,13 @@
                         </div>
 
                         <div class="form-group mb-2 mb20">
-                            <strong>Especialidades:</strong>
+                            <strong>Especialidad:</strong>
                             @foreach ($tutor->specialties as $speciality)
 
                             {{ $speciality->name }},
                             @endforeach
                         </div>
-                       
+
                         <div class="form-group mb-2 mb20">
                             <strong>Activado:</strong>
                             @if ($tutor->activated == 1)
