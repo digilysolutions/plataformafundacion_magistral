@@ -58,7 +58,7 @@
                                             <td>{{ $tutor->id }}</td>
                                             <td>{{ $tutor->person->name }}</td>
                                             <td>
-                                                <td>{{ $tutor->specialty->name }}</td>
+                                                {{ $tutor->specialty->name }}
 
                                             </td>
                                             <td>
