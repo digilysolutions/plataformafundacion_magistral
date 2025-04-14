@@ -63,7 +63,7 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         </div>
-        div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+        <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
         <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-1" name="activated"
             checked="">
         <label class="custom-control-label" for="customCheck-1"> Activado</label>
