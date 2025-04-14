@@ -14,6 +14,7 @@ use App\Models\Person;
 use App\Models\StudyCenter;
 use App\Models\User;
 use App\Validators\PasswordValidator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -26,51 +27,11 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
-    {
-        $students = Student::all();
-
-        return view('student.index', compact('students'));
-    }
-
-    public function indexToStudyCenter($studycenters_id): View
-    {
-        $students = Student::allActivated()->where('studycenters_id', $studycenters_id);
-        return view('student.index', compact('students'));
-    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
-    {
-        $student = new Student();
-        $studyCenters = StudyCenter::allActivated();
-        $memberships = Membership::allActivated();
-        if (count($studyCenters) == 0) {
-            $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
-                . 'Si quieres crear un centro de estudio, puedes hacerlo '
-                . '<a href="' . route('study-centers.create') . '"> aquí</a>.';
-            $students = Student::allActivated();
-            return view('student.index', compact('students'))->with('error', $error);
-        }
-        return view('student.create', compact('student', 'studyCenters', 'memberships'));
-    }
-    public function createStudentToStudyCenter($idStudyCenter): View
-    {
-        $student = new Student();
-        $studyCenters = StudyCenter::allActivated();
 
-        if (count($studyCenters) == 0) {
-            $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
-                . 'Si quieres crear un centro de estudio, puedes hacerlo '
-
-                . '<a href="' . route('study-centers.create') . '"> aquí</a>.';
-            $students = $this->indexToStudyCenter($idStudyCenter);
-            return view('student.index', compact('students'))->with('error', $error);
-        }
-        return view('student.create', compact('student', 'studyCenters', 'idStudyCenter'));
-    }
     /**
      * Store a newly created resource in storage.
      */
@@ -103,7 +64,7 @@ class StudentController extends Controller
 
 
                 // Crear el usuario
-               /* $user = User::create([
+                /* $user = User::create([
                     'name' => $data['username'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']), // Contraseña inicial
@@ -126,8 +87,13 @@ class StudentController extends Controller
                 //  Mail::to($person->email)->send(new StudentConfirmationMail($student->id));
             });
 
-            return Redirect::route('students.index')
-                ->with('success', 'Estudiante creado satisfactoriamente.');
+            $role = Auth::user()->role;
+            if ($role == "Centro Educativo")
+                return Redirect::route('students.indexToStudyCenter',[$request->studycenters_id])
+                    ->with('success', 'Estudiante creado satisfactoriamente.');
+            else
+                return Redirect::route('students.index')
+                    ->with('success', 'Estudiante creado satisfactoriamente.');
         }
 
         return Redirect::route('students.index')
@@ -165,22 +131,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id): View
-    {
-        $student = Student::find($id);
 
-        return view('student.show', compact('student'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id): View
-    {
-        $student = Student::with('person')->findOrFail($id);
-        $studyCenters = StudyCenter::allActivated();
-        return view('student.edit', compact('student', 'studyCenters'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -245,11 +196,9 @@ class StudentController extends Controller
             ->with('error', 'No se pudo actualizar el estudiante.');
     }
 
-    public function destroy($id): RedirectResponse
+    private function destroyStudent($student)
     {
-
         try {
-            $student = Student::find($id);
 
             if ($student) {
                 // Obtén a la persona
@@ -267,9 +216,95 @@ class StudentController extends Controller
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            // O puedes hacer un dd($e) para ver el error.
+            return Redirect::route('students.index')
+                ->with('error', 'Error al eliminar al estudiante.');
         }
         return Redirect::route('students.index')
             ->with('success', 'Estudiante eliminado satisfactoriamente');
+    }
+
+
+
+    //-----Functiones  del administrador---
+    public function destroy($id)
+    {
+        $student = Student::find($id);
+        return $this->destroyStudent($student);
+    }
+
+    public function edit($id): View
+    {
+        $student = Student::with('person')->findOrFail($id);
+        $studyCenters = StudyCenter::allActivated();
+        return view('student.edit', compact('student', 'studyCenters'));
+    }
+    public function show($id): View
+    {
+        $student = Student::find($id);
+        return view('student.show', compact('student'));
+    }
+    public function index(Request $request): View
+    {
+        $students = Student::all();
+
+        return view('student.index', compact('students'));
+    }
+    public function create(): View
+    {
+        $student = new Student();
+        $studyCenters = StudyCenter::allActivated();
+        $memberships = Membership::allActivated();
+        if (count($studyCenters) == 0) {
+            $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
+                . 'Si quieres crear un centro de estudio, puedes hacerlo '
+                . '<a href="' . route('study-centers.create') . '"> aquí</a>.';
+            $students = Student::allActivated();
+            return view('student.index', compact('students'))->with('error', $error);
+        }
+        return view('student.create', compact('student', 'studyCenters', 'memberships'));
+    }
+
+
+
+
+
+
+
+    //-----Functiones del centro educativo para gestionar sus estudiantes
+    public function destroyStutendToStudyCenter($id, $idStudyCenter)
+    {
+        $student = Student::where('studycenters_id', $idStudyCenter)->find($id);
+        return $this->destroyStudent($student);
+    }
+    public function editStutendToStudyCenter($id, $idStudyCenter): View
+    {
+        $student = Student::where('studycenters_id', $idStudyCenter)->find($id);
+        $studyCenters = StudyCenter::allActivated();
+        return view('student.edit', compact('student', 'studyCenters', 'idStudyCenter'));
+    }
+    public function showStutendToStudyCenter($id, $idStudyCenter): View
+    {
+        $student = Student::where('studycenters_id', $idStudyCenter)->find($id);
+        return view('student.show', compact('student'));
+    }
+    public function indexToStudyCenter($studycenters_id): View
+    {
+        $students = Student::allActivated()->where('studycenters_id', $studycenters_id);
+        return view('student.indexStudyCenter', compact('students', 'studycenters_id'));
+    }
+    public function createStudentToStudyCenter($idStudyCenter): View
+    {
+        $student = new Student();
+        $studyCenters = StudyCenter::allActivated();
+
+        if (count($studyCenters) == 0) {
+            $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
+                . 'Si quieres crear un centro de estudio, puedes hacerlo '
+
+                . '<a href="' . route('study-centers.create') . '"> aquí</a>.';
+            $students = $this->indexToStudyCenter($idStudyCenter);
+            return view('student.index', compact('students'))->with('error', $error);
+        }
+        return view('student.create', compact('student', 'studyCenters', 'idStudyCenter'));
     }
 }

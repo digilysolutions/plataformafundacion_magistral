@@ -27,12 +27,12 @@ class StudentRequest extends FormRequest
             'studycenters_id' => 'required',
             'name' => 'required|string',
             'lastname' => 'nullable|string',
-            'email' => [
+            /*'email' => [
                 'required',
                 'email',
                 'max:255',
                 Rule::unique('users'), // Cambiado para no necesitar el studentId
-            ],
+            ],*/
             'phone' => 'nullable|string',
         ];
     }
@@ -40,7 +40,7 @@ class StudentRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.unique' => 'Este correo electrónico ya está registrado.',
+          //  'email.unique' => 'Este correo electrónico ya está registrado.',
             // Otros mensajes personalizados...
         ];
     }
