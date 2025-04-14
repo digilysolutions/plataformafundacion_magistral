@@ -112,7 +112,7 @@ class ValidatorController extends Controller
             Mail::to($user->email)->send(new VerificationEmailValidator($user,$request->password));
             DB::commit();
             return Redirect::route('validators.index')
-                ->with('success', 'Validador creado satisfactoriamente. Esperando su confrimacion de correo');
+                ->with('success', 'Validador creado satisfactoriamente. Esperando su confirmación de correo');
         } catch (\Exception $e) {
             DB::rollback();
             return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud']); // Muestra el mensaje de error que ocurrió
@@ -135,8 +135,9 @@ class ValidatorController extends Controller
     public function edit($id): View
     {
         $validator = Validator::find($id);
-        $specialties = Specialty::allActivated();
-        return view('validator.edit', compact('validator'));
+
+  $specialties = Specialty::allActivated();
+        return view('validator.edit', compact('validator','specialties'));
     }
 
     /**

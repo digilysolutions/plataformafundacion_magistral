@@ -116,7 +116,7 @@ class TutorController extends Controller
                 'name' => $data['username'],
                 'email' => $request->email,
                 'activated' => true,
-                'password' => Hash::make($data['password']),
+                'password' =>  $data['password'],
                 'verification_token' => Str::random(40),
                 'verification_code' => random_int(100000, 999999),
                 'membership_id' => 'BA0001',

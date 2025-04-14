@@ -19,7 +19,6 @@
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('tutors.store') }}"  role="form" enctype="multipart/form-data" data-toggle="validator" >
                             @csrf
-
                             @include('tutor.form')
 
                         </form>
