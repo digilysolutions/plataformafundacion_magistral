@@ -83,10 +83,7 @@
                                                             data-placement="top" data-original-title=" {{ __('Show') }}"
                                                             href="{{ route('tutors.show', $tutor->id) }}"><i
                                                                 class="fa fa-fw fa-eye"></i>{{ __('Show') }}</a>
-                                                        <a class="badge badge-danger mr-2" data-toggle="tooltip"
-                                                            data-placement="top" data-original-title="Cambiar Contraseña "
-                                                            href="{{ route('tutors.show', $tutor->id) }}"><i
-                                                                class="ri-reply-line"></i> {{ __('Password') }}</a>
+
                                                         <a class="badge badge-success mr-2" data-toggle="tooltip"
                                                             data-placement="top" data-original-title="{{ __('Edit') }}"
                                                             href="{{ route('tutors.edit', $tutor->id) }}"><i
