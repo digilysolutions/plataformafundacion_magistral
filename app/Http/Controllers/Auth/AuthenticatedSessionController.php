@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\RegisterStudyCenter;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -92,12 +93,22 @@ class AuthenticatedSessionController extends Controller
                         Auth::logout();
                         return redirect('/login')->with('error', 'Este usuario no está asignado a un centro de estudio o no tiene los permisos necesarios.');
                     }
-                    if (!$user->person->studyCenter->where('id', $request->codigo_seguimiento)->first()) {
+                    $studyCenter = $user->person->studyCenter->where('id', $request->codigo_seguimiento)->first();
+
+                    if (!$studyCenter) {
                         Auth::logout();
                         return redirect('/login')->with('error', 'Este usuario no tiene los permisos necesarios.Error de código');
                     }
+
+                    $segisterStudyCenter  =   RegisterStudyCenter::where('mail', $studyCenter->mail)->first();
+                    if ($segisterStudyCenter->state != "Completada") {
+                        $segisterStudyCenter->state = "Completada";
+                        $segisterStudyCenter->update();
+                    }
+
                     return redirect()->route('study-center.dashboard');
                 case 2:
+
                     return redirect()->route('student.dashboard');
                 case 3:
                     return redirect()->route('tutor.dashboard');
@@ -106,7 +117,7 @@ class AuthenticatedSessionController extends Controller
                 case 5:
                     return redirect()->route('admin.dashboard');
                 case 6:
-                   return redirect()->route('user.dashboard');
+                    return redirect()->route('user.dashboard');
                 default:
                     return redirect('/');
             }

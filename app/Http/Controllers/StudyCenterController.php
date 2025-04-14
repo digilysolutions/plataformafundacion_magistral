@@ -80,6 +80,12 @@ class StudyCenterController extends Controller
                 return Redirect::route('study-centers.index')
                     ->with('error', 'El centro de estudio ya está registrado y ha accedido a la plataforma al menos una vez. No es posible realizar el registro nuevamente.');
             }
+            if ($studyCenter->state === "Aceptada") {
+                DB::rollback();
+                return Redirect::route('study-centers.index')
+                    ->with('error', 'El centro de estudio ya está registrado pero no ha accedido a la plataforma. No es posible realizar el registro nuevamente.');
+            }
+
 
             // Crear persona y centro de estudio
             $person = $this->createPerson($request, $user->id);
@@ -87,11 +93,11 @@ class StudyCenterController extends Controller
             $newstudyCenter = $this->createStudyCenter($request, $person->id, $data);
 
             // Completando el proceso
-            $studyCenter->state = "Completada";
+            $studyCenter->state = "Aceptada";
             $studyCenter->save();
 
             // Enviar correo de confirmación
-            Mail::to($user->email)->send(new SendEmailToStudyCenter($user, $studyCenter, $password));
+            Mail::to($user->email)->send(new SendEmailToStudyCenter($user, $newstudyCenter, $password));
 
             DB::commit();
             return Redirect::route('study-centers.index')->with('success', 'Centro de estudio creado satisfactoriamente');

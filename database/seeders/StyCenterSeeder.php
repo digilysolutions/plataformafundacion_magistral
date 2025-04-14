@@ -23,8 +23,6 @@ class StyCenterSeeder extends Seeder
                 'lastname' => 'Centro DIVINA PASTORA',
                 'email' => 'divina.pastora@fundacionmagistral.org',
                 'user_id' => 1
-
-
             ]
         );
         $studiesCenter = [
@@ -33,6 +31,7 @@ class StyCenterSeeder extends Seeder
                 'code' => '06466',
                 'regional_id' => 'BA0001',
                 'district_id' => 'BA0001',
+                'mail'=>'divina.pastora@fundacionmagistral.org',
                 'people_id' => $person->id,
                 'activated' => true,
                 'membership_id'=>'BA0001'

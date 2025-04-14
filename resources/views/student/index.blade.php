@@ -5,22 +5,7 @@
 @endsection
 
 @section('content-admin')
-@if(count($students)==0 || $students==null)
-    <div class="row">
-        <div class="container-fluid">
-            <h3>Carga Inicial de Datos</h3>
-            @if (session('success'))
-                <div>{{ session('success') }}</div>
-            @endif
 
-            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <label for="file">Selecciona un archivo Excel:</label>
-                <input type="file" name="import_file" required>
-                <button type="submit" class="btn btn-primary btn-sm ">Cargar Datos</button>
-            </form>
-        </div>
-@endif
         <div class="row">
 
             <div class="col-sm-12">

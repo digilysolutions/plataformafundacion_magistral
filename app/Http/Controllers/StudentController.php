@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\UserHelper;
 use App\Models\Student;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -83,6 +84,7 @@ class StudentController extends Controller
         $data['name'] = $request->name;
         $data['lastname'] = $request->lastname;
         $data['studycenters_id'] = $request->studycenters_id;
+
         // Iniciar una transacción para asegurar la consistencia
         $validator = PasswordValidator::validate($data);
         if ($validator->fails()) {
@@ -101,16 +103,17 @@ class StudentController extends Controller
 
 
                 // Crear el usuario
-                $user = User::create([
+               /* $user = User::create([
                     'name' => $data['username'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']), // Contraseña inicial
                     'activated' => true,
                     'role' => 'Estudiante',
                     'roleid' => 2
-                ]);
+                ]);*/
+                $user = UserHelper::createDefaultUser($data['username'], $data['lastname'], 'Estudiante', 2);
 
-                $data['user_id'] = $user->id;
+                $data['user_id'] = $user['user']->id;
                 $person = Person::create($data);
 
                 $data['people_id'] = $person->id;

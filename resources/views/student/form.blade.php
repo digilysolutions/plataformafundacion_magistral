@@ -13,16 +13,7 @@
                 value="{{ old('lastname', $student?->person?->lastname) }}" id="lastname" placeholder="Apellidos">
             <div class="help-block with-errors"></div>
         </div>
-        <div class="form-group mb-2 mb20">
-            <label for="email" class="form-label">{{ __('Correo') }}</label>
-            <input type="text" id="mail" name="email"
-                class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $student?->person?->email) }}"
-                id="email" placeholder="Correo">
-            <div class="help-block with-errors"></div>
-            @error('email')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-        </div>
+
         <div class="form-group mb-2 mb20">
             <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
             <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
