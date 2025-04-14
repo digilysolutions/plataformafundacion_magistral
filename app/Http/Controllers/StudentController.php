@@ -89,7 +89,7 @@ class StudentController extends Controller
 
             $role = Auth::user()->role;
             if ($role == "Centro Educativo")
-                return Redirect::route('students.indexToStudyCenter',[$request->studycenters_id])
+                return Redirect::route('students.indexToStudyCenter', [$request->studycenters_id])
                     ->with('success', 'Estudiante creado satisfactoriamente.');
             else
                 return Redirect::route('students.index')
@@ -136,9 +136,9 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StudentUpdateRequest $request, Student $student): RedirectResponse
+    public function update(StudentUpdateRequest $request, Student $student)
     {
-
+        $role = Auth::user()->role;
         // Validamos los datos del request
         $data = $request->validated();
 
@@ -162,48 +162,56 @@ class StudentController extends Controller
         } else {
             return back()->withErrors(['studycenters_id' => 'El centro de estudio no es válido.'])->withInput();
         }
-
+        DB::beginTransaction();
         // Iniciar una transacción para asegurar la consistencia
-        DB::transaction(function () use ($data, $student) {
-            // Actualizamos el usuario relacionado con el estudiante
-            $studentUser = User::find($student->person->user_id);
-            if ($studentUser) {
-                $studentUser->update([
-                    'name' => $data['username'],
-                    'email' => $data['email'], // El correo será validado en StudentRequest
-                    'password' => $data['password'] ?? $studentUser->password, // Solo actualiza si hay una nueva contraseña
-                    'activated' => true,
-                    'role' => 'Estudiante',
-                    'roleid' => 2
-                ]);
-            }
 
-            // Actualizar datos de la persona
+        // Actualizamos el usuario relacionado con el estudiante
+        $studentUser = User::find($student->person->user_id);
+        if ($studentUser) {
+            $studentUser->update([
+                'name' => $data['username'],
+                'password' => $data['password'] ?? $studentUser->password, // Solo actualiza si hay una nueva contraseña
+                'activated' => true,
+                'role' => 'Estudiante',
+                'roleid' => 2
+            ]);
+        }
 
-            $student->person->update($data);
-            // Actualizar los datos del estudiante
-            $student->update($data);
+        // Actualizar datos de la persona
 
-            // Enviar correo de confirmación (opcional)
-            // Mail::to($person->email)->send(new StudentConfirmationMail($student->id));
+        $student->person->update($data);
 
+        if ($role == "Administrador") {
             return Redirect::route('students.index')
                 ->with('success', 'Estudiante actualizado satisfactoriamente');
-        });
+        }
+        if ($role == "Centro Educativo") {
+            return Redirect::route('students.indexToStudyCenter', [$student->studyCenter->id])
+                ->with('success', 'Estudiante actualizado satisfactoriamente');
+        }
 
-        // En caso de que la transacción falle, se puede manejar mejor el mensaje de error
-        return Redirect::route('students.index')
-            ->with('error', 'No se pudo actualizar el estudiante.');
+        DB::commit();
+        if ($role == "Administrador") {
+            return Redirect::route('students.index')
+                ->with('error', 'No se pudo actualizar el estudiante.');
+        }
+        if ($role == "Centro Educativo") {
+            return Redirect::route('students.indexToStudyCenter', [$student->studyCenter->id])
+                ->with('error', 'No se pudo actualizar el estudiante.');
+        }
     }
 
     private function destroyStudent($student)
     {
+        $studyCenter_id=$student->studyCenter->id;
+        $role = Auth::user()->role;
         try {
 
             if ($student) {
                 // Obtén a la persona
                 $people = $student->person;
                 $user =  $people->user;
+
                 // Elimina el validador
                 $student->delete();
                 // Ahora elimina a la persona si es necesario
@@ -216,11 +224,24 @@ class StudentController extends Controller
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return Redirect::route('students.index')
-                ->with('error', 'Error al eliminar al estudiante.');
+
+            if ($role == "Administrador") {
+                return Redirect::route('students.index')
+                    ->with('error', 'Error al eliminar al estudiante.');
+            }
+            if ($role == "Centro Educativo") {
+                return Redirect::route('students.indexToStudyCenter', [$student->studyCenter->id])
+                    ->with('error', 'Error al eliminar al estudiante.');
+            }
         }
-        return Redirect::route('students.index')
-            ->with('success', 'Estudiante eliminado satisfactoriamente');
+        if ($role == "Administrador") {
+            return Redirect::route('students.index')
+                ->with('success', 'Estudiante eliminado satisfactoriamente');
+        }
+        if ($role == "Centro Educativo") {
+            return Redirect::route('students.indexToStudyCenter', [ $studyCenter_id])
+                ->with('success', 'Estudiante eliminado satisfactoriamente');
+        }
     }
 
 

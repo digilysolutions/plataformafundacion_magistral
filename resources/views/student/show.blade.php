@@ -14,7 +14,7 @@
                             <span class="card-title">{{ __('Mostrar') }} Estudiante</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}"> {{ __('Atrás') }}</a>
+                            <a class="btn btn-primary btn-sm" href="@if(Auth::user()->role=="Centro Educativo"){{ route('students.indexToStudyCenter',[$student->studyCenter->id]) }} @elseif ( Auth::user()->role=="Administrador"){{ route('students.index') }} @endif"> {{ __('Atrás') }}</a>
                         </div>
                     </div>
 

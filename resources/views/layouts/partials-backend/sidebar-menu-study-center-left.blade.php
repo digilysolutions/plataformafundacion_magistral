@@ -123,7 +123,7 @@
                     <ul id="tutores" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="{{ route('study-centers.index') }}">
+                            <a href="{{ route('tutors.create') }}">
                                 <i class="las la-minus"></i><span>Registrar Tutores</span>
                             </a>
                         </li>

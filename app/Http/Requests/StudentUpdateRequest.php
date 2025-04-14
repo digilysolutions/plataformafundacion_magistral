@@ -38,13 +38,13 @@ class StudentUpdateRequest extends FormRequest
             'studycenters_id' => 'required',
             'name' => 'required|string',
             'lastname' => 'nullable|string',
-            'email' => [
+          /*  'email' => [
                 'required',
                 'email',
                 'max:255',
                 // Esto revisará si el correo es único, pero ignorará el correo actual si no ha cambiado
                 Rule::unique('people')->ignore($personId),
-            ],
+            ],*/
             'phone' => 'nullable|string',
         ];
     }

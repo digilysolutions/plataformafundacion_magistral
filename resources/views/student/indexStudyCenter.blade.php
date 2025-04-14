@@ -35,11 +35,15 @@
                         </div>
                     @endif
 
-                    @if (isset($error))
-                        <div class="alert alert-danger">
-                            {!! $error !!}
-                        </div>
-                    @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <div class="float-left ml-3 mt-3">
                         <p>Utiliza el siguiente botón para cargar un archivo Excel con la información de los estudiantes.</p>
                         <a href="{{asset('ci_excel/CI-Estudiantes.xlsx')}}">Descargar Excel</a> | <a href="{{ route('import.viewStudents') }}">Carga Inicial de Estudiantes</a>

@@ -136,7 +136,7 @@ Route::middleware('auth')->group(function () {
 
 
     //Tutors
-    Route::resource('tutors', TutorController::class)->middleware('role:Administrador');
+    Route::resource('tutors', TutorController::class)->middleware('role:Administrador,Centro Educativo');
     Route::get('tutors/studyCenter/{idstudyCenter}', [TutorController::class, 'indexToStudyCenter'])->name('tutors.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
 
     //Students

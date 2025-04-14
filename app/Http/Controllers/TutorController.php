@@ -155,7 +155,6 @@ class TutorController extends Controller
                 ->with('success', 'Tutor creado satisfactoriamente. Esperando su confrimacion de correo');
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e->getMessage());
             return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]); // Muestra el mensaje de error que ocurrió
         }
     }
