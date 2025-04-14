@@ -13,7 +13,7 @@
                     <p>{{ $message }}</p>
                 </div>
             @endif
-            
+
             @if ($errors->any())
                 <div class="alert alert-danger m-4">
                     <ul>
@@ -23,10 +23,11 @@
                     </ul>
                 </div>
             @endif
+
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                           
+
                             <span id="card_title">
                                 {{ __('Centros de Estudios') }}
                             </span>

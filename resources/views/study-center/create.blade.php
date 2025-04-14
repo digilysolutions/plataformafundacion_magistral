@@ -9,6 +9,20 @@
         <div class="row">
             <div class="col-md-12">
 
+                @if (session('error'))
+                    <div class="alert alert-danger m-4">
+                        {!! session('error') !!}
+                    </div>
+                @endif
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                 <div class="card card-default">
                     <div class="card-header">
                         <span class="card-title">{{ __('Crear') }} Centro de Estudio</span>
@@ -33,10 +47,10 @@
     </section>
 @endsection
 @section('js')
-<!-- Validated Mail JavaScript -->
-<script src="{{ asset('js/mail-validate.js') }}"></script>
+    <!-- Validated Mail JavaScript -->
+    <script src="{{ asset('js/mail-validate.js') }}"></script>
     <script>
-         $('#district_id').prop('disabled', true);
+        $('#district_id').prop('disabled', true);
         $(document).ready(function() {
             $('#regional_id').change(function() {
                 var regionalId = $(this).val();
@@ -79,4 +93,3 @@
         });
     </script>
 @endsection
-

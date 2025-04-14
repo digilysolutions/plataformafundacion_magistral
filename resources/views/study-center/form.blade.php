@@ -49,13 +49,13 @@
         <div class="help-block with-errors"></div>
     </div>
     <div class="form-group col-md-6">
-        <label for="mail" class="form-label">{{ __('Correo') }}</label>
+        <label for="mail" class="form-label">{{ __('Correo') }} *</label>
         <input type="text" id="mail" name="mail" class="form-control @error('mail') is-invalid @enderror"
-            value="{{ old('mail', $studyCenter?->mail) }}" id="mail" placeholder="Correo">
+            value="{{ old('mail', $studyCenter?->mail) }}" id="mail" placeholder="Correo" required>
         <div class="help-block with-errors"></div>
     </div>
-    
-    
+
+
     <div class="form-group col-md-12">
         <label for="address" class="form-label">{{ __('Dirección') }}</label>
         <textarea name="address" class="form-control @error('address') is-invalid @enderror" id="address"

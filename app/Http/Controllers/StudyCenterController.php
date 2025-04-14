@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Str;
 use App\Helpers\UserHelper;
 use App\Models\StudyCenter;
@@ -57,19 +58,27 @@ class StudyCenterController extends Controller
 
         DB::beginTransaction();
 
+
         try {
+
+            $studyCenter = $this->getStudyCenterByEmail($request->input('mail'));
+            if (!$studyCenter) {
+                DB::rollback();
+                return back()->withErrors(['error' => 'No se ha encontrado un centro de estudio asociado a la solicitud de registro con el correo: ' . $request->input('mail') . '. Por favor, verifica si el correo electrónico es correcto o contáctanos para obtener asistencia.']);
+            }
 
             $user = $this->getUserByEmail($request->input('mail'));
             $password = Str::random(10);
             $user->password = $password;
             $user->save();
-            
-            $studyCenter = $this->getStudyCenterByEmail($request->input('mail'));
+
+
 
             // Verificar el estado del centro de estudio
             if ($studyCenter->state === "Completada") {
+                DB::rollback();
                 return Redirect::route('study-centers.index')
-                    ->with('error', 'El centro de estudio ya está completado.');
+                    ->with('error', 'El centro de estudio ya está registrado y ha accedido a la plataforma al menos una vez. No es posible realizar el registro nuevamente.');
             }
 
             // Crear persona y centro de estudio
@@ -82,7 +91,7 @@ class StudyCenterController extends Controller
             $studyCenter->save();
 
             // Enviar correo de confirmación
-            Mail::to($user->email)->send(new SendEmailToStudyCenter($user, $studyCenter,$password));
+            Mail::to($user->email)->send(new SendEmailToStudyCenter($user, $studyCenter, $password));
 
             DB::commit();
             return Redirect::route('study-centers.index')->with('success', 'Centro de estudio creado satisfactoriamente');
@@ -90,18 +99,23 @@ class StudyCenterController extends Controller
 
             DB::rollback();
             Log::error('Error al crear el centro de estudio: ' . $e->getMessage());
-            return Redirect::route('study-centers.index')->withErrors(['error' => 'Error. No se pudo insertar el Centro de estudio ']);
+            return Redirect::route('study-centers.index')->withErrors(['error' => 'Error. No se pudo insertar el Centro de estudio. ' . $e->getMessage()]);
         }
     }
 
-    private function getUserByEmail(string $email): User
+    private function getUserByEmail(string $email)
     {
-        return User::where('email', $email)->firstOrFail();
+        $user = User::where('email', $email)->firstOrFail();
+        if (!$user) {
+            return Redirect::route('study-centers.index')
+                ->with('error', 'No se ha encontrado un centro de estudio asociado a la solicitud de registro con el correo: ' . $email . '. <br> Por favor, verifica si el correo electrónico es correcto o contáctanos para obtener asistencia.');
+        }
+        return $user;
     }
 
-    private function getStudyCenterByEmail(string $email): RegisterStudyCenter
+    private function getStudyCenterByEmail(string $email)
     {
-        return RegisterStudyCenter::where('mail', $email)->firstOrFail();
+        return RegisterStudyCenter::where('mail', $email)->first();
     }
 
     private function createPerson(Request $request, string $userId): Person
