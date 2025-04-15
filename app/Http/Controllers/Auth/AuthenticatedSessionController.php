@@ -111,6 +111,14 @@ class AuthenticatedSessionController extends Controller
 
                     return redirect()->route('student.dashboard');
                 case 3:
+                    if ($user->first_login) {
+                        // Establecer el mensaje de sesión flash
+                        session()->flash('first_login', true);
+                        
+                        // Actualizar el campo para indicar que ya no es su primer inicio
+                        $user->first_login = false;
+                        $user->save();
+                    }
                     return redirect()->route('tutor.dashboard');
                 case 4:
                     return redirect()->route('validator.dashboard');

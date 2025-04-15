@@ -27,7 +27,7 @@ return new class extends Migration
             $table->boolean('activated')->default(true);
             $table->uuid('membership_id')->nullable(); // Asegúrate de que sea UUID
             $table->foreign('membership_id')->references('id')->on('memberships')->onDelete('cascade'); // Cambia `id` por `tracking_code` si es necesario
-
+            $table->boolean('first_login')->default(true);
 
             $table->timestamps();
         });

@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-12">
             <div class="floating-label form-group position-relative">  <!-- Agregar position-relative -->
-                <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="current-password" />
+                <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" "  autocomplete="current-password" />
                 <label>Contraseña</label>
 
                 <!-- Ojo para mostrar/ocultar contraseña -->

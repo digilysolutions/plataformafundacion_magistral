@@ -13,60 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/line-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/remixicon.css') }}">
-    <style>
-        .separador {
-            border: none;
-            /* Eliminar el borde predeterminado */
-            height: 2px;
-            /* Altura de la línea */
-            background-color: rgb(228, 228, 228);
-            /* Color de la línea */
-            margin-top: 20px;
-            margin-bottom: 40px;
-            /* Espacio arriba y abajo de la línea */
-        }
-
-        .divider {
-            position: relative;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 80%;
-            height: 1px;
-            background: #ccc;
-            z-index: 0;
-        }
-
-        .divider::before {
-            right: 10%;
-            margin-right: 10px;
-        }
-
-        .divider::after {
-            left: 2%;
-            margin-left: 10px;
-        }
-
-        .divider span {
-            position: relative;
-            z-index: 1;
-            background: #fff;
-            /* Color de fondo para ocultar la línea */
-            padding: 0 5px;
-            /* Espaciado alrededor del texto */
-        }
-
-        .register-prompt {
-            text-align: center;
-            margin-top: 15px;
-        }
-    </style>
+   
 </head>
 
 <body>

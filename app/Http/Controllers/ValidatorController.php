@@ -56,7 +56,7 @@ class ValidatorController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-
+'password' => ['required',  Rules\Password::defaults()]
         ], [
             'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
         ]);
@@ -143,7 +143,7 @@ class ValidatorController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
-
+'password' => ['required',  Rules\Password::defaults()],
         'email' => [
             'required',
             'string',

@@ -14,9 +14,9 @@
         <div class="help-block with-errors"></div>
     </div>
     <div class="form-group col-md-6">
-        <label for="email" class="form-label">{{ __('Correo') }}</label>
+        <label for="email" class="form-label">{{ __('Correo') }} *</label>
         <input type="text" id="mail" name="email" class="form-control @error('email') is-invalid @enderror"
-            value="{{ old('email', $validator?->person?->email) }}" id="email" placeholder="Correo">
+            value="{{ old('email', $validator?->person?->email) }}" id="email" required placeholder="Correo">
         <div class="help-block with-errors"></div>
     </div>
     <div class="form-group col-md-6">
@@ -49,11 +49,12 @@
 
     <div class="col-md-12">
         <div class="floating-label form-group position-relative">  <!-- Agregar position-relative -->
-            <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" " required autocomplete="current-password" />
             <label>Contraseña</label>
+            <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" " autocomplete="current-password" />
+           
 
             <!-- Ojo para mostrar/ocultar contraseña -->
-            <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 25%; transform: translateY(-50%); z-index: 1;">
+            <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 70%; transform: translateY(-50%); z-index: 1;">
                 <!-- Ojo Cerrado por defecto -->
                 <svg class="svg-icon eye-icon" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M1 12c0 0 3.1 7 11 7s11-7 11-7-3.1-7-11-7-11 7-11 7z"></path>

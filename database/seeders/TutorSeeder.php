@@ -68,6 +68,7 @@ class TutorSeeder extends Seeder
                 'verification_code' => random_int(100000, 999999),
                 'membership_id' => 'BA0001',
                 'role' => 'Tutor',
+                'first_login' => true,
                 'roleid' => 3,
             ]);
 
