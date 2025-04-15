@@ -27,7 +27,8 @@ class TutorRequest extends FormRequest
             'lastname' => 'nullable|string',
             'email' => 'nullable|string',
             'phone' => 'nullable|string',
-            'specialty_id' => 'required'
+          'specialty_id' => 'required',
+
         ];
     }
 }

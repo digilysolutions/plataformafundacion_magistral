@@ -78,30 +78,30 @@
 
                     <div class="col-lg-7 ">
                         <div class="card auth-card text-center">
-                            @if (session('status'))                                
+                            @if (session('status'))
                                 <div class="alert alert-success mt-2">
                                     {{ session('status') }}
                                 </div>
                             @endif
                             @if (session('error'))
-                               
+
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
                                 </div>
                             @endif
                             @if (session('errors'))
-                              
+
                                 <div class="alert alert-danger">
                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
                             @endif
                             @if ($errors->has('error'))
-                               
+
                                 <div class="alert alert-danger mt-2">
                                     {{ $errors->first('error') }} <!-- Cambia "email" por el campo correcto -->
                                 </div>
                             @endif
-                           
+
 
 
                             <div class="card-body p-0">

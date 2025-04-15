@@ -44,3 +44,8 @@
         </div>
     </section>
 @endsection
+@section('js')
+<script src="{{ asset('js/icon-eyes-password.js') }}">
+
+</script>
+@endsection

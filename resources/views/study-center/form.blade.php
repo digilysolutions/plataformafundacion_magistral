@@ -76,11 +76,13 @@
 <div class="row padding-1 p-1">
     <div class="form-group col-md-6">
         <label for="fname">Nombre:</label>
-        <input type="text" class="form-control" name="name_people" id="name_people" placeholder="Nombre" value="{{ old('name_people', $studyCenter?->person?->name) }}">
+        <input type="text" class="form-control" name="name_people" id="name_people" placeholder="Nombre"
+            value="{{ old('name_people', $studyCenter?->person?->name) }}">
     </div>
     <div class="form-group col-md-6">
         <label for="lname">Apellidos:</label>
-        <input type="text" class="form-control"  name="lastname" id="lastname" placeholder="Apellidos" value="{{ old('lastname', $studyCenter?->person?->lastname) }}">
+        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos"
+            value="{{ old('lastname', $studyCenter?->person?->lastname) }}">
     </div>
 </div>
 

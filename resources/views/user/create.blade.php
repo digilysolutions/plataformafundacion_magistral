@@ -46,4 +46,5 @@
 
 <!-- Validated Mail JavaScript -->
 <script src="{{ asset('js/mail-validate.js') }}"></script>
+<script src="{{ asset('js/icon-eyes-password.js') }}"></script>
 @endsection

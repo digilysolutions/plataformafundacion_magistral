@@ -72,9 +72,9 @@
                                  <tr>
                                  <th>No</th>
 
-									<th >Name</th>
-									<th >Mail</th>
-									<th >State</th>
+                                 <th >{{__('Name')}}</th>
+                                 <th >{{__('Email')}}</th>
+                                 <th >{{__('State')}}</th>
 
                                    <th></th>
                                  </tr>

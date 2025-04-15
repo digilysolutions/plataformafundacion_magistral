@@ -51,7 +51,7 @@ class ValidatorController extends Controller
     public function store(ValidatorRequest $request): RedirectResponse
     {
         // Validación
-        $validator = ValidatorFacades::make($request->all(), [
+        $validatorFacades = ValidatorFacades::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
@@ -62,12 +62,8 @@ class ValidatorController extends Controller
         ]);
 
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-        // Si la validación falla, redirigir de vuelta con errores
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+        if ($validatorFacades->fails()) {
+            return back()->withErrors($validatorFacades)->withInput();
         }
         $data['username'] = !empty($request->username) ? $request->username : $request->name;
         if (!empty($request->password)) {
@@ -84,10 +80,7 @@ class ValidatorController extends Controller
                 'name' => $data['username'],
                 'email' => $request->email,
                 'activated' => true,
-                'password' => Hash::make($data['password']),
-                'verification_token' => Str::random(40),
-                'verification_code' => random_int(100000, 999999),
-                'membership_id' => 'BA0001',
+                'password' =>   $data['password'],
                 'role' => 'Validador',
                 'roleid' => 4,
 
@@ -109,7 +102,7 @@ class ValidatorController extends Controller
                 'specialty_id' => $request->specialty_id
             ]);
             event(new Registered($validator));
-            Mail::to($user->email)->send(new VerificationEmailValidator($user,$request->password));
+            Mail::to($user->email)->send(new VerificationEmailValidator($user, $request->password));
             DB::commit();
             return Redirect::route('validators.index')
                 ->with('success', 'Validador creado satisfactoriamente. Esperando su confirmación de correo');
@@ -136,8 +129,8 @@ class ValidatorController extends Controller
     {
         $validator = Validator::find($id);
 
-  $specialties = Specialty::allActivated();
-        return view('validator.edit', compact('validator','specialties'));
+        $specialties = Specialty::allActivated();
+        return view('validator.edit', compact('validator', 'specialties'));
     }
 
     /**
@@ -145,12 +138,70 @@ class ValidatorController extends Controller
      */
     public function update(ValidatorRequest $request, Validator $validator): RedirectResponse
     {
-        $data = $request->all();
-        $data["activated"] =  $request->input('activated') === 'on' ? 1 : 0;
-        $validator->update($data);
+        // Validación
+        $validatorFacades = ValidatorFacades::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
 
-        return Redirect::route('validators.index')
-            ->with('success', 'Validador actualizado satisfactoriamente');
+        'email' => [
+            'required',
+            'string',
+            'lowercase',
+            'email',
+            'max:255',
+            // Aquí se agrega la excepción del usuario actual
+            'unique:users,email,' . $validator->person->user_id,
+        ],
+
+        ], [
+            'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
+        ]);
+
+
+        if ($validatorFacades->fails()) {
+            return back()->withErrors($validatorFacades)->withInput();
+        }
+        // Preparar los datos para la actualización
+        $data = [
+            'username' => !empty($request->username) ? $request->username : $request->name,
+            'email' => $request->email,
+            'activated' =>  $request->input('activated') === 'on' ? 1 : 0
+        ];
+
+        if (!empty($request->password)) {
+            $data['password'] = Hash::make($request->password);
+        } else {
+            unset($data['password']); // Si no hay contraseña nueva, removemos la clave
+        }
+        DB::beginTransaction();
+        try {
+            $user = User::find($validator->person->user_id);
+            if ($user) {
+                $user->update($data); // Actualizar datos del usuario
+
+                // Actualizar la información de la persona asociada al usuario
+                $user->person->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'lastname' => $request->lastname,
+                    'phone' => $request->phone,
+                    'activated' =>  $request->input('activated') === 'on' ? 1 : 0
+                ]);
+                $validator->update([
+                    'name' => $request->name,
+                    'activated' =>  $request->input('activated') === 'on' ? 1 : 0,
+                    'specialty_id' => $request->specialty_id
+                ]);
+            }
+
+            DB::commit();
+            return Redirect::route('validators.index')
+            ->with('success', 'Validador actualizado satisfactoriamente.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar la actualización. '.$e->getMessage()]);
+        }
     }
 
     public function destroy($id): RedirectResponse
