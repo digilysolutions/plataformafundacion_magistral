@@ -11,6 +11,7 @@ use App\Mail\VerificationEmailValidator;
 use App\Models\Person;
 use App\Models\Specialty;
 use App\Models\User;
+use App\Validators\PasswordValidator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -66,10 +67,10 @@ class ValidatorController extends Controller
             return back()->withErrors($validatorFacades)->withInput();
         }
         $data['username'] = !empty($request->username) ? $request->username : $request->name;
-        if (!empty($request->password)) {
-            $data['password'] = Hash::make($request->password);
-        } else {
-            unset($data['password']); // Si no hay contraseña nueva, removemos la clave
+        $data['password']=$request->password;
+        $validatorPass = PasswordValidator::validate($data);
+        if ($validatorPass->fails()) {
+            return back()->withErrors($validatorPass)->withInput();
         }
         DB::beginTransaction();
 
