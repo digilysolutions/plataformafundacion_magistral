@@ -1,4 +1,4 @@
-<div class="iq-sidebar  sidebar-default ">
+<div class="iq-sidebar  sidebar-default " style="width: 300px">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="/" class="header-logo">
             <img src="{{ asset('img/23.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
