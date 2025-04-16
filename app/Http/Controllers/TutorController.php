@@ -11,6 +11,7 @@ use App\Models\Person;
 use App\Models\Specialty;
 use App\Models\StudyCenter;
 use App\Models\User;
+use App\Validators\PasswordValidator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
@@ -93,7 +94,6 @@ class TutorController extends Controller
             'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
         ]);
 
-
         if ($tutor->fails()) {
             return back()->withErrors($tutor)->withInput();
         }
@@ -103,10 +103,10 @@ class TutorController extends Controller
         }
 
         $data['username'] = !empty($request->username) ? $request->username : $request->name;
-        if (!empty($request->password)) {
-            $data['password'] = Hash::make($request->password);
-        } else {
-            unset($data['password']); // Si no hay contraseña nueva, removemos la clave
+        $data['password']=$request->password;
+        $validator = PasswordValidator::validate($data);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
         DB::beginTransaction();
         try {
