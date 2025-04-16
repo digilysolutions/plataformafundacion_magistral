@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-       
+
         $user = User::factory()->create([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
@@ -109,15 +109,7 @@ class DatabaseSeeder extends Seeder
                 'user_id' =>  $user->id,
             ]
         );
-        $student = Student::create(
-            [
-                'name' =>  $person->name,
-                'people_id' => $person->id,
-                'course' => 'Curso 1',
-                'membership_id' => 'BA0001'
 
-            ]
-        );
 
         $this->call(CountrySeeder::class);
         $this->call(RegionalsSeeder::class);
