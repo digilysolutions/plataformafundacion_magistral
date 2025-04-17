@@ -1,4 +1,4 @@
-<div class="iq-sidebar  sidebar-default ">
+<div class="iq-sidebar  sidebar-default " style="width: 300px">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="/" class="header-logo">
             <img src="{{ asset('img/23.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
@@ -27,13 +27,17 @@
                         <span class="ml-4">Escritorio</span>
                     </a>
                 </li>
-                <li class=" ">
-                    <a href="#membresia" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                <li class="">
+                    <a href="#items" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <svg class="svg-icon" id="p-dash14" width="20" height="20"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
                         </svg>
-                        <span class="ml-4">Membresía</span>
+                        <span class="ml-4">Reportes</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -41,63 +45,79 @@
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    @php
-                        // Obtener las características de membresía que tienen acceso
-                        // Comprobar si el usuario tiene una membresía
-                        if ($user && $user->membership) {
-                            // Obtener las características de membresía que tienen acceso
-                            $features = $user->membership->membershipFeatures()->where('has_access', true)->get();
+                    <ul id="items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
-                            // Crear un array de URLs a las que el usuario tiene acceso
-                            $accessibleUrls = $features->pluck('url')->toArray();
-                        } else {
-                            // Si no hay membresía, inicializa accessibleUrls como un array vacío
-                            $accessibleUrls = [];
-                        }
-
-                    @endphp
-
-                    <ul id="membresia" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-
-@if ($user && $user->membership)
-                        <li class="{{ request()->is('memberships*') ? 'active' : '' }}">
-                            <a href="{{ route('memberships.show', $user->membership_id) }}">
-                                <i class="las la-minus"></i><span>Detalles de Membresía</span>
+                        <li>
+                            <a href="#items_noresueltos" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                <svg class="svg-icon" id="p-dash07" width="20" height="20"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                                <span class="ml-4">ITEMS Validados</span>
+                                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="10 15 15 20 20 15"></polyline>
+                                    <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                                </svg>
                             </a>
-
+                            <ul id="items_noresueltos" class="iq-submenu collapse" data-parent="#items">
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Prueba PISA</span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Pruebas Nacionales </span>
+                                    </a>
+                                </li>
+                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                                    <a href="{{ route('study-centers.index') }}">
+                                        <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-@endif
-                        <li class="{{ request()->is('study-centers/*') ? 'active' : '' }}">
-                            <a href="">
-                                <i class="las la-minus"></i><span>Renovar Membresía</span>
-
+                                               <li class="">
+                            <a href="{{ route('admin.dashboard') }}" class="svg-icon">
+                                <svg class="svg-icon" id="p-dash07" width="20" height="20"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                                <span class="ml-4">ITEMS por Validar</span>
                             </a>
                         </li>
-
-                        @if (collect($accessibleUrls)->contains(fn($url) => str_contains($url, '/membership-histories')))
-                            <li class="{{ request()->is('membership-histories*') ? 'active' : '' }}">
-                                <a href="{{ route('membership_histories_user', $user->id) }}">
-                                    <i class="las la-minus"></i><span>Histórico de membresía</span>
-                                </a>
-                            </li>
-                        @endif
-
+                        <li class="">
+                            <a href="{{ route('admin.dashboard') }}" class="svg-icon">
+                                <svg class="svg-icon" id="p-dash07" width="20" height="20"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                                <span class="ml-4">ITEMS Rechazados</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                
-                
-                <li class="{{ request()->is('') ? 'active' : '' }}">
-                    <a href="https://fundacionmagistral.org/ayuda" target="_blank">
-                        <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M9 9c0-1.5 1-2.5 2-2.5s2 1 2 2c0 1-1 1.5-1 2h-1"></path>
-                            <line x1="12" y1="16" x2="12" y2="16"></line>
-                        </svg>
-                        <span class="ml-4">Solicitar Ayuda</span>
-                    </a>
-                </li>
-
             </ul>
         </nav>
         <div id="sidebar-bottom" class="position-relative sidebar-bottom">
