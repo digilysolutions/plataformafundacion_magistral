@@ -66,7 +66,7 @@
         <div class="floating-label form-group position-relative">  <!-- Agregar position-relative -->
             <label>Contraseña</label>
             <input class="floating-input form-control" id="password" name="password" type="password" placeholder=" " autocomplete="current-password" />
-           
+
 
             <!-- Ojo para mostrar/ocultar contraseña -->
             <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 70%; transform: translateY(-50%); z-index: 1;">

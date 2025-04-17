@@ -221,9 +221,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);
     Route::resource('validators', ValidatorController::class);
+
+
     Route::get('/validator/dashboard', function () {
         return view('validator.dashboard'); // Vista para el dashboard del usuario
     })->name('validator.dashboard');
+
+    Route::get('/validator/items', function () {
+        return view('validator.items'); // Vista para el dashboard del usuario
+    })->name('validator.items');
 
     Route::get('/tutor/dashboard', function () {
         return view('tutor.dashboard'); // Vista para el dashboard del usuario
