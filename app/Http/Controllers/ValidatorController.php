@@ -57,7 +57,7 @@ class ValidatorController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-'password' => ['required',  Rules\Password::defaults()]
+            'password' => ['required',  Rules\Password::defaults()]
         ], [
             'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
         ]);
@@ -67,7 +67,7 @@ class ValidatorController extends Controller
             return back()->withErrors($validatorFacades)->withInput();
         }
         $data['username'] = !empty($request->username) ? $request->username : $request->name;
-        $data['password']=$request->password;
+        $data['password'] = $request->password;
         $validatorPass = PasswordValidator::validate($data);
         if ($validatorPass->fails()) {
             return back()->withErrors($validatorPass)->withInput();
@@ -82,7 +82,10 @@ class ValidatorController extends Controller
                 'email' => $request->email,
                 'activated' => true,
                 'password' =>   $data['password'],
+                'verification_token' => Str::random(40),
+                'verification_code' => random_int(100000, 999999),
                 'role' => 'Validador',
+                'first_login' => true,
                 'roleid' => 4,
 
             ]);
@@ -144,16 +147,16 @@ class ValidatorController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
-'password' => ['required',  Rules\Password::defaults()],
-        'email' => [
-            'required',
-            'string',
-            'lowercase',
-            'email',
-            'max:255',
-            // Aquí se agrega la excepción del usuario actual
-            'unique:users,email,' . $validator->person->user_id,
-        ],
+            'password' => ['required',  Rules\Password::defaults()],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                // Aquí se agrega la excepción del usuario actual
+                'unique:users,email,' . $validator->person->user_id,
+            ],
 
         ], [
             'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
@@ -198,10 +201,10 @@ class ValidatorController extends Controller
 
             DB::commit();
             return Redirect::route('validators.index')
-            ->with('success', 'Validador actualizado satisfactoriamente.');
+                ->with('success', 'Validador actualizado satisfactoriamente.');
         } catch (\Exception $e) {
             DB::rollback();
-            return back()->withErrors(['error' => 'Ocurrió un error al procesar la actualización. '.$e->getMessage()]);
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar la actualización. ' . $e->getMessage()]);
         }
     }
 

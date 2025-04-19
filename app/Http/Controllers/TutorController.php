@@ -119,8 +119,8 @@ class TutorController extends Controller
                 'password' =>  $data['password'],
                 'verification_token' => Str::random(40),
                 'verification_code' => random_int(100000, 999999),
-                'membership_id' => 'BA0001',
                 'role' => 'Tutor',
+                'first_login' => true,
                 'roleid' => 3,
 
             ]);

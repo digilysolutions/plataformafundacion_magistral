@@ -56,6 +56,7 @@ class ValidatorSeeder extends Seeder
                 'verification_code' => random_int(100000, 999999),
                 'membership_id' => 'BA0001',
                 'role' => 'Validador',
+                'first_login' => true,
                 'roleid' => 4,
             ]);
 
