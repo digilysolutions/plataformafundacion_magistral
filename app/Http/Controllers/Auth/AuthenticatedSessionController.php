@@ -83,6 +83,7 @@ class AuthenticatedSessionController extends Controller
                 }
             }
             if ($user->first_login) {
+                dd('Entre');
                 // Establecer el mensaje de sesión flash
                 session()->flash('first_login', true);
 
@@ -119,6 +120,8 @@ class AuthenticatedSessionController extends Controller
                 case 3:
                     return redirect()->route('tutor.dashboard');
                 case 4:
+                    $user->person->validator->activated = false;
+                    $user->person->validator->save();
                     return redirect()->route('validator.dashboard');
                 case 5:
                     return redirect()->route('admin.dashboard');
