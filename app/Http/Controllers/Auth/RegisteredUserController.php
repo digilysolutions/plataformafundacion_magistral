@@ -161,13 +161,8 @@ class RegisteredUserController extends Controller
         // Manejo de roles
         switch ($user->roleid) {
             case 4:
-                if ($first_login) {
-                    $user->person->validator->activated = false;
-                    $user->person->validator->save();
-                }
-
                 return $this->activateValidator($user);
-            case 3:
+            case 3:              
                 return $this->activateTutor($user);
             case 1:
                 return $this->handleStudyCenterRegistration($user);
