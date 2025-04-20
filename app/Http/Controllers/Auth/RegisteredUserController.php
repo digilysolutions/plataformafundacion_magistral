@@ -149,9 +149,23 @@ class RegisteredUserController extends Controller
     {
 
         $user = $this->verifyToken($request);
+        $first_login = $user->first_login;
+        if ($first_login) {
+
+            // Establecer el mensaje de sesión flash
+            session()->flash('first_login', true);
+            // Actualizar el campo para indicar que ya no es su primer inicio
+            $user->first_login = false;
+            $user->save();
+        }
         // Manejo de roles
         switch ($user->roleid) {
             case 4:
+                if ($first_login) {
+                    $user->person->validator->activated = false;
+                    $user->person->validator->save();
+                }
+
                 return $this->activateValidator($user);
             case 3:
                 return $this->activateTutor($user);
@@ -164,7 +178,8 @@ class RegisteredUserController extends Controller
                 return redirect('/login')->with('error', 'Rol no reconocido.');
         }
     }
-    public function verifyToCode(Request $request) {
+    public function verifyToCode(Request $request)
+    {
         // Verifica el token y obtiene el usuario
         $user = $this->verifyToken($request);
 
