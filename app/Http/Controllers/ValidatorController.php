@@ -105,6 +105,8 @@ class ValidatorController extends Controller
                 'people_id' => $person->id,
                 'specialty_id' => $request->specialty_id
             ]);
+
+          
             event(new Registered($validator));
             Mail::to($user->email)->send(new VerificationEmailValidator($user, $request->password));
             DB::commit();
