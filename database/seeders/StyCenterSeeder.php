@@ -19,28 +19,35 @@ class StyCenterSeeder extends Seeder
     public function run(): void
     {
        $user= User::create([
-            'name' => 'Fundación',
+            'name' => 'Divina',
+            'email' => 'divina.pastora@fundacionmagistral.org',
+            'password' => '1234',
+            'role' => 'Centro Educativo',
+            'roleid' => 1
+        ]);
+        $user1= User::create([
+            'name' => 'Fundacion',
             'email' => 'fundacion@fundacionmagistral.org',
             'password' => '1234',
             'role' => 'Centro Educativo',
             'roleid' => 1
         ]);
 
-
         $person = Person::create(
             [
-                'name' => 'Responsable',
+                'name' => 'RESPONSABLE',
                 'lastname' => 'Centro DIVINA PASTORA',
-                'email' => 'divina.pastora@fundacionmagistral.org',
-                'user_id' => 1
-            ],
-            [
-                'name' => 'Fundacion',
-                'lastname' => 'Magistral',
-                'email' => 'fundacion@fundacionmagistral.org',
+                'email' => '',
                 'user_id' => $user->id
             ]
         );
+
+        $person1 = Person::create(   [
+                'name' => 'Fundacion',
+                'lastname' => 'Magistral',
+                'email' => 'fundacion@fundacionmagistral.org',
+                'user_id' => $user1->id
+        ]);
         $studiesCenter = [
             [
                 'name' => 'DIVINA PASTORA',
@@ -58,7 +65,7 @@ class StyCenterSeeder extends Seeder
                 'regional_id' => 'BA0001',
                 'district_id' => 'BA0001',
                 'mail'=>'fundacion@fundacionmagistral.org',
-                'people_id' => $person->id,
+                'people_id' => $person1->id,
                 'activated' => true,
                 'membership_id'=>'BA0001'
             ],
