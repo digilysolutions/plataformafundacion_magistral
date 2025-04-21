@@ -70,6 +70,7 @@ class AuthenticatedSessionController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+
             // Autenticación exitosa: el usuario existe y las credenciales son correctas
             // **********************************************************************
             // Obtener el rol del usuario
@@ -83,7 +84,6 @@ class AuthenticatedSessionController extends Controller
                 }
             }
             if ($user->first_login) {
-                dd('Entre');
                 // Establecer el mensaje de sesión flash
                 session()->flash('first_login', true);
 
@@ -94,6 +94,7 @@ class AuthenticatedSessionController extends Controller
             // Redirigir al dashboard correspondiente
             switch ($roleid) {
                 case 1:
+                            ;
                     if (
                         !$user->person ||
                         !$user->person->studyCenter
@@ -109,7 +110,7 @@ class AuthenticatedSessionController extends Controller
                     }
 
                     $segisterStudyCenter  =   RegisterStudyCenter::where('mail', $studyCenter->mail)->first();
-                    if ($segisterStudyCenter->state != "Completada") {
+                    if (  !$segisterStudyCenter && $segisterStudyCenter->state != "Completada") {
                         $segisterStudyCenter->state = "Completada";
                         $segisterStudyCenter->update();
                     }
