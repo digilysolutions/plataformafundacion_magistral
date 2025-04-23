@@ -73,6 +73,11 @@
                                 <span>Especialidades</span>
                             </a>
                         </li>
+                        <li class="{{ request()->is('questions*') ? 'active' : '' }}">
+                            <a href="{{ route('questions.index') }}">
+                                <i class="las la-minus"></i><span>Items</span>
+                            </a>
+                        </li>
                         <li class="{{ request()->is('countries*') ? 'active' : '' }}">
                             <a href="{{ route('countries.index') }}">
                                 <i class="las la-minus"></i>
@@ -118,6 +123,7 @@
                                 <i class="las la-minus"></i><span>Certificado</span>
                             </a>
                         </li>
+
                     </ul>
                 </li>
                 <li class=" ">

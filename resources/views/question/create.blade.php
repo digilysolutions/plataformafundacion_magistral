@@ -8,6 +8,20 @@
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
+                @if (session('error'))
+                <div class="alert alert-danger m-4">
+                    {!! session('error') !!}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <div class="card card-default">
                     <div class="card-header">
                         <span class="card-title">{{ __('Crear') }} {{ __('Question') }}</span>
@@ -35,7 +49,7 @@
                                         <label class="form-label" for="specialty_id">{{ __('Selecciona una especialidad *') }}</label>
                                         <select id="specialty_id" class="form-control" name="specialty_id" required>
                                             @foreach ($specialties as $specialty)
-                                                <option value="{{ $specialty->id }}">{{ $specialty->name }}</option>
+                                                <option value="{{ $specialty->id }}" @if (old('specialty_id') == $specialty->id) selected @endif>{{ $specialty->name }}</option>
                                             @endforeach
                                         </select>
                                         <div class="help-block with-errors"></div>
@@ -45,7 +59,7 @@
                                         <label class="form-label" for="level_id">{{ __('Selecciona un Nivel *') }}</label>
                                         <select id="level_id" class="form-control" name="level_id" required>
                                             @foreach ($levels as $level)
-                                                <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                                <option value="{{ $level->id }}" @if (old('level_id') == $level->id) selected @endif>{{ $level->name }}</option>
                                             @endforeach
                                         </select>
                                         <div class="help-block with-errors"></div>
@@ -58,7 +72,7 @@
 
                                     <hr />
                                     <h5>{{ __('Respuestas') }}</h5>
-                                    <h6>{{ __('Por favor, añade las respuestas correspondientes a la pregunta. Asegúrate de marcar solo la respuesta como correcta.') }}</h6>
+                                    <p>{{ __('Por favor, añade las respuestas correspondientes a la pregunta. Asegúrate de marcar solo una respuesta como correcta.') }}</p>
 
                                     <div class="row mb-3">
                                         <div class="col-lg-12">
@@ -67,7 +81,24 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="new-answer"></div>
+                                    <div class="new-answer">
+                                        @if (old('answers'))
+                                            @foreach (old('answers') as $index => $answer)
+                                                <div class="form-group answer-item col-md-12" id="answer-item-{{ $index }}">
+                                                    <div class="input-group mb-2">
+                                                        <input type="text" name="answers[{{ $index }}][answer]" class="form-control" placeholder="{{ __('Respuesta') }}" value="{{ $answer['answer'] }}">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-danger remove-answer" type="button">Eliminar</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" name="correct_answer" value="{{ $index }}" id="correctAnswer{{ $index }}" @if (old('correct_answer') == $index) checked @endif>
+                                                        <label for="correctAnswer{{ $index }}" class="form-check-label">{{ __('Correcta') }}</label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
 
                                     <div class="col-md-12 mt-3">
                                         <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
