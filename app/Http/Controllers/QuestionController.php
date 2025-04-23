@@ -59,10 +59,10 @@ class QuestionController extends Controller
         DB::beginTransaction();
         try {
             $id = Str::uuid();
-         
+
             // Crear la Pregunta
             $question = Question::create([
-                'id' => $id, // Generar y asignar un UUID
+                'id' => (string) Str::uuid(),  // Generar y asignar un UUID
                 'question' => $request->question,
                 'specialty_id' => $request->specialty_id,
                 'level_id' => $request->level_id,

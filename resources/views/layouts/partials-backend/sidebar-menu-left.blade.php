@@ -119,7 +119,7 @@
                         </li>
 
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Certificado</span>
                             </a>
                         </li>
@@ -139,55 +139,55 @@
                     </a>
                     <ul id="reportes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte General
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte Centro Educativo
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte Regional
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte Distrito Educativo
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte Tutores
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte Validadores
                                 </span>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="{{ route('under.construction') }}">
                             <a href="">
                                 <i class="las la-minus"></i><span>Reporte ITEMS
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte Exámenes
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Reporte Usuario general
                                 </span>
                             </a>
@@ -207,14 +207,14 @@
                         </svg>
                     </a>
                     <ul id="certificados" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="">
+                        <li class="{{ route('under.construction') }}">
                             <a href="">
                                 <i class="las la-minus"></i><span>Emitir Certificado
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{{ route('under.construction') }}">
                                 <i class="las la-minus"></i><span>Certificados Emitidos
                                 </span>
                             </a>

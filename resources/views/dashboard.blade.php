@@ -10,11 +10,17 @@
                 <div class="card-body p-0 mt-lg-2 mt-0">
                     <h3 class="mb-3">¡Bienvenido al Dashboard de Administración!</h3>
                     <p class="mb-0 mr-4">Aquí podrás visualizar el rendimiento clave de nuestros procesos y tomar decisiones. ¡Explora y optimiza!</p>
+                    <div class="alert alert-danger text-center">
+                        <h4>Sección en Desarrollo: </h4>
+                        <br>
+                        <p> Actualmente estamos trabajando en esta área para mejorar su experiencia. Gracias por su paciencia.</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-12">
             <div class="row">
+
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-lg-12 col-md-4 mb-3">

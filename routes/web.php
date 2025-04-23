@@ -241,6 +241,13 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
+
+    //-----Esto es para las paginas que estan en construccion
+    Route::get('/under/construction', function () {
+        return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
+    })->name('under.construction');
+
+
     ///-------End nuevas rutass
 });
 
