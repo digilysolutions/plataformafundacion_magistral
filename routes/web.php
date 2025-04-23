@@ -36,6 +36,11 @@ Route::get('/', function () {
     return view('auth.login');
 });*/
 
+Route::get('/', function () {
+
+return view('home');
+});
+
 //Inicio de sesión
 /*Route::get('/login', function () {
     return view('auth.login');
@@ -67,7 +72,7 @@ Route::get('reset-password/{token}', function () {
 // Rutas de inicio de sesión
 /*Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');*/
-Route::get('/', [AuthenticatedSessionController::class, 'create']);
+
 //Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 // Rutas de registro
@@ -246,6 +251,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/under/construction', function () {
         return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
     })->name('under.construction');
+
+    Route::get('/under/construction', function () {
+        return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
+    })->name('under.construction');
+
+   // Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 
     ///-------End nuevas rutass
