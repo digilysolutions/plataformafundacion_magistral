@@ -272,5 +272,7 @@
     "You're logged in!": "You're logged in!",
     "Your email address is unverified.": "Your email address is unverified.",
     "Activated":"Activated",
-    "State":"State"
+    "State":"State",
+    "Questions":"Questions"
+
 }

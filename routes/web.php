@@ -28,6 +28,8 @@ use App\Http\Middleware\RoleMiddleware;
 use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
 use App\Exports\StudentsExport;
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\QuestionController;
 use Maatwebsite\Excel\Facades\Excel;
 /*
 Route::get('/', function () {
@@ -236,6 +238,9 @@ Route::middleware('auth')->group(function () {
     })->name('tutor.dashboard');
     //Para centros de estudios que solicitan el registro en la plataforma
     Route::resource('register-study-centers', RegisterStudyCenterController::class);
+
+    Route::resource('questions', QuestionController::class);
+    Route::resource('answers', AnswerController::class);
     ///-------End nuevas rutass
 });
 

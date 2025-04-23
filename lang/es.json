@@ -275,5 +275,10 @@
     "Code":"Código",
     "Specialty":"Especialidad",
     "Validators":"Validadores",
-    "State":"Estado"
+    "State":"Estado",
+    "Questions":"Preguntas",
+    "Question":"Pregunta",
+    "Level":"Nivel",
+     "Levels":"Niveles"
+
 }
