@@ -104,7 +104,7 @@
                         <ul id="tutores" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Solicitar Tutor</span>
                                 </a>
                             </li>
@@ -141,17 +141,17 @@
                         </a>
                         <ul id="items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Pruebas PISA</span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                                 </a>
                             </li>
@@ -180,17 +180,17 @@
                         </a>
                         <ul id="examenes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Prueba PISA</span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                                 </a>
                             </li>
@@ -393,7 +393,7 @@
 
 
                     <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                        <a href="{{ route('study-centers.index') }}">
+                        <a href="{{ route('under.construction') }}">
                             <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -423,7 +423,7 @@
 
 
                     <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                        <a href="{{ route('study-centers.index') }}">
+                        <a href="{{ route('under.construction') }}">
                             <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">

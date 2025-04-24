@@ -45,7 +45,7 @@ class ExcelController extends Controller
         $headers =  $import->getRowValidationRules();
         $file = $request->file('import_file');
         $reader = Excel::toArray(new StudentsImport(), $file);
-        $headers = array_keys($reader[0][0]);
+        $headers = array_keys($reader[2][7]);
 
         // Verifica los encabezados
         $import->checkHeaders($headers);

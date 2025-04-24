@@ -36,7 +36,7 @@ class Student extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name','activated', 'people_id', 'course', 'studycenters_id','membership_id'];
+    protected $fillable = ['name','activated','course_id', 'people_id', 'course', 'studycenters_id','membership_id'];
 
 
     /**
@@ -58,6 +58,10 @@ class Student extends ModelMain
     public function studyCenter()
     {
         return $this->belongsTo(\App\Models\StudyCenter::class, 'studycenters_id', 'id');
+    }
+    public function course()
+    {
+        return $this->belongsTo(\App\Models\Course::class, 'course_id', 'id');
     }
     public function person()
     {

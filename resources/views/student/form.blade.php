@@ -21,16 +21,15 @@
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group col-md-12">
-            <label for="address" class="form-label">{{ __('Curso') }}</label>
-            <select id="course" name="course" class="form-control">
-
-                <option value="Curso 1"> Curso 1</option>
-                <option value="Curso 2"> Curso 2</option>
-                <option value="Curso 3"> Curso 3</option>
-                <option value="Curso 4"> Curso 4</option>
-
+            <label class="form-label" for="terms">Selecciona un Curso *</label>
+            <select id="course_id" class="form-control" name="course_id" required>
+                @foreach ($courses as $course)
+                    <option value="{{ $course->id }}" @if ($student->course_id== $course->id) selected @endif>
+                        {{ $course->name }}
+                    </option>
+                @endforeach
             </select>
-
+            <div class="help-block with-errors"></div>
         </div>
 
         @if (isset($idStudyCenter))

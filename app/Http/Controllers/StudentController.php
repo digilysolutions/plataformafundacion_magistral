@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Mail\StudentConfirmationMail;
+use App\Models\Course;
 use App\Models\Membership;
 use App\Models\Person;
 use App\Models\StudyCenter;
@@ -257,7 +258,9 @@ class StudentController extends Controller
     {
         $student = Student::with('person')->findOrFail($id);
         $studyCenters = StudyCenter::allActivated();
-        return view('student.edit', compact('student', 'studyCenters'));
+        $memberships = Membership::allActivated();
+        $courses = Course::allActivated();
+        return view('student.edit', compact('student', 'studyCenters', 'memberships','courses'));
     }
     public function show($id): View
     {
@@ -275,6 +278,7 @@ class StudentController extends Controller
         $student = new Student();
         $studyCenters = StudyCenter::allActivated();
         $memberships = Membership::allActivated();
+        $courses = Course::allActivated();
         if (count($studyCenters) == 0) {
             $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
                 . 'Si quieres crear un centro de estudio, puedes hacerlo '
@@ -282,7 +286,7 @@ class StudentController extends Controller
             $students = Student::allActivated();
             return view('student.index', compact('students'))->with('error', $error);
         }
-        return view('student.create', compact('student', 'studyCenters', 'memberships'));
+        return view('student.create', compact('student', 'studyCenters', 'memberships','courses'));
     }
 
 

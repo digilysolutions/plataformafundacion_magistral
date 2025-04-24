@@ -75,6 +75,11 @@ class AuthenticatedSessionController extends Controller
             // **********************************************************************
             // Obtener el rol del usuario
             $user = Auth::user();
+            if (!$user->activated) {
+                Auth::logout(); // Desloguear al usuario
+                return redirect('/login')->with('error' ,'Tu cuenta no está activada.');
+            }
+
             $roleid = $user->roleid;
             if ($roleid != 1) {
 
@@ -93,8 +98,7 @@ class AuthenticatedSessionController extends Controller
             }
             // Redirigir al dashboard correspondiente
             switch ($roleid) {
-                case 1:
-                            ;
+                case 1:;
                     if (
                         !$user->person ||
                         !$user->person->studyCenter
@@ -110,7 +114,7 @@ class AuthenticatedSessionController extends Controller
                     }
 
                     $segisterStudyCenter  =   RegisterStudyCenter::where('mail', $studyCenter->mail)->first();
-                    if (  !$segisterStudyCenter && $segisterStudyCenter->state != "Completada") {
+                    if (!$segisterStudyCenter && $segisterStudyCenter->state != "Completada") {
                         $segisterStudyCenter->state = "Completada";
                         $segisterStudyCenter->update();
                     }
@@ -121,7 +125,12 @@ class AuthenticatedSessionController extends Controller
                 case 3:
                     return redirect()->route('tutor.dashboard');
                 case 4:
-                    $user->person->validator->activated = false;
+                    // Comprobar si la persona asociada al usuario tiene un validador activado
+                    if (!$user->person || !$user->person->validator || !$user->person->validator->activated) {
+                        Auth::logout(); // Desloguear al usuario
+                        return redirect('/login')->with('error' ,'Tu cuenta no está activada.');
+                    }
+                    $user->person->validator->activated = true;
                     $user->person->validator->save();
                     return redirect()->route('validator.dashboard');
                 case 5:

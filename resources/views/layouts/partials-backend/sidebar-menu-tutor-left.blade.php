@@ -69,17 +69,17 @@
                             </a>
                             <ul id="items_noresueltos" class="iq-submenu collapse" data-parent="#items">
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Prueba PISA</span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>
@@ -109,17 +109,17 @@
                             </a>
                             <ul id="items_resueltos" class="iq-submenu collapse" data-parent="#items">
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Prueba PISA</span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>
@@ -149,17 +149,17 @@
                             </a>
                             <ul id="examen_noresueltos" class="iq-submenu collapse" data-parent="#items">
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Prueba PISA</span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>
@@ -189,17 +189,17 @@
                             </a>
                             <ul id="examen_resueltos" class="iq-submenu collapse" data-parent="#items">
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Prueba PISA</span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                     </a>
                                 </li>
                                 <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('study-centers.index') }}">
+                                    <a href="{{ route('under.construction') }}">
                                         <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
                                     </a>
                                 </li>

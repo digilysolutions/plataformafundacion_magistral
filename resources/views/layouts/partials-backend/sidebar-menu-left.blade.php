@@ -126,7 +126,7 @@
 
                     </ul>
                 </li>
-                <li class=" ">
+                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
                     <a href="#reportes" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <img src="{{ asset('img/icono/fm-reporte.jpg') }}" width="30px">
                         <span class="ml-1">Reportes</span>

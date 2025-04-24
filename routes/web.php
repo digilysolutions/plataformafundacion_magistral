@@ -29,6 +29,7 @@ use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
 use App\Exports\StudentsExport;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\QuestionController;
 use Maatwebsite\Excel\Facades\Excel;
 /*
@@ -38,7 +39,7 @@ Route::get('/', function () {
 
 Route::get('/', function () {
 
-return view('home');
+    return view('home');
 });
 
 //Inicio de sesión
@@ -256,9 +257,9 @@ Route::middleware('auth')->group(function () {
         return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
     })->name('under.construction');
 
-   // Route::get('/', [AuthenticatedSessionController::class, 'create']);
+    // Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
-
+    Route::resource('courses', CourseController::class);
     ///-------End nuevas rutass
 });
 
