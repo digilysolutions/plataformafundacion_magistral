@@ -124,8 +124,9 @@ class QuestionController extends Controller
     public function edit($id): View
     {
         $question = Question::find($id);
-
-        return view('question.edit', compact('question'));
+        $specialties = Specialty::allActivated();
+        $levels = Level::allActivated();
+        return view('question.edit', compact('question','specialties','levels'));
     }
 
     /**
