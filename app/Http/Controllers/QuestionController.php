@@ -11,9 +11,10 @@ use App\Models\Answer;
 use App\Models\Level;
 use App\Models\NotificationsQuestion;
 use App\Models\Specialty;
+use App\Models\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator as ValidatorFacades;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
@@ -46,7 +47,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         // Validación
-        $validator = Validator::make($request->all(), [
+        $validator = ValidatorFacades::make($request->all(), [
             'question' => 'required|string|max:255',
             'specialty_id' => 'required',
             'level_id' => 'required',
@@ -75,12 +76,16 @@ class QuestionController extends Controller
 
             // Guardar Respuestas
             foreach ($request->answers as $key => $answer) {
+
                 Answer::create([
+
+                    'name' =>  $answer['answer'],
                     'question_id' => $question->id,
                     'answer' => $answer['answer'],
                     'is_correct' => $key == $request->correct_answer, // Determina si la respuesta es correcta
                     'activated' => true,
                 ]);
+
             }
             //Buscar el validador que tenga la misma especialidad  y enviar el correo
 
@@ -91,6 +96,7 @@ class QuestionController extends Controller
                 'action' => 'ha sido creada una nueva pregunta para su revisión.',
                 'is_read' => false,
             ]);
+
             // Enviar correo al validador para revisar el items
               Mail::to($validator->person->email)->send(new SentMailToValidatorValidateItem($question, $validator ));
 

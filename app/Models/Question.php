@@ -48,5 +48,10 @@ class Question extends ModelMain
     {
         return $this->belongsTo(\App\Models\Specialty::class, 'specialty_id', 'id');
     }
+    public function answers()
+    {
+        return $this->hasMany(\App\Models\Answer::class, 'id', 'question_id');
+    }
+
 
 }

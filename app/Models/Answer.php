@@ -29,7 +29,7 @@ class Answer extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['question_id', 'answer', 'is_correct','activated'];
+    protected $fillable = ['question_id', 'answer', 'is_correct','activated','name'];
 
 
     /**

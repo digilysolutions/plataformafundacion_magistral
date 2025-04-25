@@ -38,6 +38,7 @@ class AnswerController extends Controller
     {
          $data =$request->validated();
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
+        $data['name'] =$request->answer;
         Answer::create($data);
 
         return Redirect::route('answers.index')
