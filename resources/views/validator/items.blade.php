@@ -43,6 +43,7 @@
                                     <th>Código</th>
                                     <th>ITEMS</th>
                                     <th>Especialidad</th>
+                                    <th>Nivel</th>
                                     <th>Estado</th>
                                 </tr>
 
@@ -53,18 +54,21 @@
                                     <td>ES-147</td>
                                     <td>Nombre Item</td>
                                     <td>Español</td>
+                                    <td>Nivel 2</td>
                                     <td><span class="badge bg-primary">Validado</span></td>
                                 </tr>
                                 <tr>
                                     <td>ES-148</td>
                                     <td>Nombte Item</td>
                                     <td>Matematica</td>
+                                    <td>Nivel 1</td>
                                     <td><span class="badge bg-warning-light">Por Validar</span></td>
                                 </tr>
                                 <tr>
                                     <td>ES-149</td>
                                     <td>Nombte Item</td>
                                     <td>Matematica</td>
+                                    <td>Nivel 3</td>
                                     <td><span class="badge bg-danger-light">Rechazado</span></td>
                                 </tr>
                             </tbody>
@@ -73,6 +77,7 @@
                                     <th>Código</th>
                                     <th>ITEMS</th>
                                     <th>Especialidad</th>
+                                    <th>Nivel</th>
                                     <th>Estado</th>
 
                                 </tr>
