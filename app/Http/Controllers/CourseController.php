@@ -41,7 +41,7 @@ class CourseController extends Controller
         Course::create($data);
 
         return Redirect::route('courses.index')
-            ->with('success', 'Course creado satisfactoriamente.');
+            ->with('success', 'Curso creado satisfactoriamente.');
     }
 
     /**
@@ -74,7 +74,7 @@ class CourseController extends Controller
         $course->update($data);
 
         return Redirect::route('courses.index')
-            ->with('success', 'Course actualizado satisfactoriamente');
+            ->with('success', 'Curso actualizado satisfactoriamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -82,6 +82,6 @@ class CourseController extends Controller
         Course::find($id)->delete();
 
         return Redirect::route('courses.index')
-            ->with('success', 'Course eliminado satisfactoriamente');
+            ->with('success', 'Curso eliminado satisfactoriamente');
     }
 }

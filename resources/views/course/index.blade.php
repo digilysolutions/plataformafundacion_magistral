@@ -35,9 +35,9 @@
                               <thead>
                                  <tr class="ligth">
                                         <th>No</th>
-                                        
-									<th >Name</th>
-									<th >Activated</th>
+
+									<th >{{__('Name')}}</th>
+									<th >{{__('Activated')}}</th>
 
                                         <th></th>
                                     </tr>
@@ -50,9 +50,15 @@
                                     @foreach ($courses as $course)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $course->name }}</td>
-										<td >{{ $course->activated }}</td>
+										<td>
+                                            @if ($course->activated == 1)
+                                                Si
+                                            @else
+                                                No
+                                            @endif
+                                        </td>
 
                                             <td>
                                                 <form action="{{ route('courses.destroy', $course->id) }}" method="POST">
@@ -69,10 +75,9 @@
                                   <tfoot>
                                  <tr>
                                  <th>No</th>
-                                  
-									<th >Name</th>
-									<th >Activated</th>
 
+                                 <th >{{__('Name')}}</th>
+                                 <th >{{__('Activated')}}</th>
                                    <th></th>
                                  </tr>
                               </tfoot>

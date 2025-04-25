@@ -73,6 +73,12 @@
                                 <span>Especialidades</span>
                             </a>
                         </li>
+                        <li class="{{ request()->is('courses*') ? 'active' : '' }}">
+                            <a href="{{ route('courses.index') }}">
+                                <i class="las la-minus"></i>
+                                <span>Cursos</span>
+                            </a>
+                        </li>
                         <li class="{{ request()->is('questions*') ? 'active' : '' }}">
                             <a href="{{ route('questions.index') }}">
                                 <i class="las la-minus"></i><span>Items</span>

@@ -273,6 +273,12 @@
     "Your email address is unverified.": "Your email address is unverified.",
     "Activated":"Activated",
     "State":"State",
-    "Questions":"Questions"
+    "Questions":"Questions",
+    "Question":"Question",
+    "Level":"Level",
+    "Levels":"Levels",
+    "Courses":"Courses",
+    "Course":"Course"
+
 
 }
