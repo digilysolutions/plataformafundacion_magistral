@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ValidatorRequest;
 use App\Mail\VerificationEmail;
 use App\Mail\VerificationEmailValidator;
+use App\Models\NotificationsQuestion;
 use App\Models\Person;
+use App\Models\Question;
 use App\Models\Specialty;
 use App\Models\User;
 use App\Validators\PasswordValidator;
@@ -31,8 +33,8 @@ class ValidatorController extends Controller
      */
     public function index(Request $request): View
     {
+        // Obtener todos los validadores
         $validators = Validator::all();
-
         return view('validator.index', compact('validators'));
     }
 
@@ -106,7 +108,7 @@ class ValidatorController extends Controller
                 'specialty_id' => $request->specialty_id
             ]);
 
-          
+
             event(new Registered($validator));
             Mail::to($user->email)->send(new VerificationEmailValidator($user, $request->password));
             DB::commit();

@@ -14,21 +14,21 @@ class SentMailToValidatorValidateItem extends Mailable
     use Queueable, SerializesModels;
 
     private $question;
-    private $user;
+    private $validator;
     /**
      * Create a new message instance.
      */
-    public function __construct($question,$user)
+    public function __construct($question,$validator)
     {
         $this->question = $question;
-        $this->user = $user;
+        $this->validator = $validator;
     }
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Nuevo Item')
             ->view('emails.new_item')
             ->with('question', $this->question)
-             ->with('user', $this->user);
+             ->with('validator', $this->validator);
     }
     /**
      * Get the message envelope.

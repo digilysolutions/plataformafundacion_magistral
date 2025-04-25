@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 use App\Exports\StudentsExport;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\NotificationsQuestionController;
 use App\Http\Controllers\QuestionController;
 use Maatwebsite\Excel\Facades\Excel;
 /*
@@ -223,17 +224,19 @@ Route::middleware('auth')->group(function () {
     })->name('user.dashboard');
 
     //Route::get('/dashboard', [DashboardController::class, 'index']);
+
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
+    Route::get('/validator/dashboard', [DashboardController::class, 'dashboardValidator'])->name('validator.dashboard');
 
     Route::resource('countries', CountryController::class);
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);
     Route::resource('validators', ValidatorController::class);
 
-
+/*
     Route::get('/validator/dashboard', function () {
         return view('validator.dashboard'); // Vista para el dashboard del usuario
-    })->name('validator.dashboard');
+    })->name('validator.dashboard');*/
 
     Route::get('/validator/items', function () {
         return view('validator.items'); // Vista para el dashboard del usuario
@@ -260,6 +263,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
     Route::resource('courses', CourseController::class);
+    Route::resource('notifications-questions', NotificationsQuestionController::class);
     ///-------End nuevas rutass
 });
 

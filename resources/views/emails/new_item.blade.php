@@ -4,7 +4,7 @@
     <title>Nueva Pregunta: {{$question->question}}</title>
 </head>
 <body>
-    <h4>¡Hola {{$user->person->name}}!</h4>
+    <h4>¡Hola {{$validator->name}}!</h4>
 
     <p>
         Te informamos que ha llegado un nuevo ITEM para su revisión en nuestra plataforma

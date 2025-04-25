@@ -6,15 +6,17 @@ use App\Models\Question;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
+use App\Mail\SentMailToValidatorValidateItem;
 use App\Models\Answer;
 use App\Models\Level;
+use App\Models\NotificationsQuestion;
 use App\Models\Specialty;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Mail;
 class QuestionController extends Controller
 {
     /**
@@ -62,7 +64,7 @@ class QuestionController extends Controller
 
             // Crear la Pregunta
             $question = Question::create([
-                'id' => (string) Str::uuid(),  // Generar y asignar un UUID
+                'name' => $request->question,// Generar y asignar un UUID
                 'question' => $request->question,
                 'specialty_id' => $request->specialty_id,
                 'level_id' => $request->level_id,
@@ -81,9 +83,16 @@ class QuestionController extends Controller
                 ]);
             }
             //Buscar el validador que tenga la misma especialidad  y enviar el correo
+
             $validator = Validator::where('specialty_id', $question->specialty_id)->first();
+            NotificationsQuestion::create([
+                'question_id' => $question->id,
+                'validator_id' =>$validator->id,
+                'action' => 'ha sido creada una nueva pregunta para su revisión.',
+                'is_read' => false,
+            ]);
             // Enviar correo al validador para revisar el items
-              Mail::to($validator->person->email)->send(new SentMailToValidatorValidateItem( $validator ));
+              Mail::to($validator->person->email)->send(new SentMailToValidatorValidateItem($question, $validator ));
 
             DB::commit();
             return redirect()->route('questions.index')->with('success', 'Pregunta creada exitosamente.');
