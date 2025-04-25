@@ -19,7 +19,7 @@ return new class extends Migration
             $table->uuid('level_id');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
             $table->string('question');
-            $table->boolean('activated')->default(true);
+            $table->boolean('activated')->default(false);
             $table->enum('state', [
                 'Pendiente', // está a la espera de ser revisada por el validador.
                 'Aceptada', //La pregunta fue aceptada por el validador

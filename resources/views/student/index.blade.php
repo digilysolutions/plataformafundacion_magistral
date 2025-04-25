@@ -70,7 +70,7 @@
 
                                             <td>{{ $student->id }}</td>
                                             <td>{{ $student->person->name }} {{ $student->person->lastname }}</td>
-                                            <td>{{ $student->course }}</td>
+                                            <td>{{ $student->course->name }}</td>
                                             <td>
                                                 @if ($student->studyCenter)
                                                     {{ $student->studyCenter->name }}

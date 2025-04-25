@@ -6,6 +6,7 @@ use App\Models\Course;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
+use App\Models\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -36,9 +37,8 @@ class CourseController extends Controller
      */
     public function store(CourseRequest $request): RedirectResponse
     {
-         $data =$request->validated();
+        $data =$request->validated();
         $data['activated'] = $request->input('activated') === 'on' ? 1 : 0;
-        Course::create($data);
 
         return Redirect::route('courses.index')
             ->with('success', 'Curso creado satisfactoriamente.');

@@ -46,6 +46,7 @@ class StudentController extends Controller
         $data['name'] = $request->name;
         $data['lastname'] = $request->lastname;
         $data['studycenters_id'] = $request->studycenters_id;
+        $data['course_id'] = $request->course_id;
 
         // Iniciar una transacción para asegurar la consistencia
         $validator = PasswordValidator::validate($data);
@@ -80,10 +81,7 @@ class StudentController extends Controller
 
                 $data['people_id'] = $person->id;
                 // Crear el estudiante
-
-
                 $student = Student::create($data);
-
                 // Enviar correo de confirmación
                 //  Mail::to($person->email)->send(new StudentConfirmationMail($student->id));
             });

@@ -80,6 +80,11 @@ class QuestionController extends Controller
                     'activated' => true,
                 ]);
             }
+            //Buscar el validador que tenga la misma especialidad  y enviar el correo
+            $validator = Validator::where('specialty_id', $question->specialty_id)->first();
+            // Enviar correo al validador para revisar el items
+              Mail::to($validator->person->email)->send(new SentMailToValidatorValidateItem( $validator ));
+
             DB::commit();
             return redirect()->route('questions.index')->with('success', 'Pregunta creada exitosamente.');
         } catch (\Exception $e) {
