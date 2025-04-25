@@ -30,7 +30,7 @@ class Question extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['specialty_id', 'level_id', 'question','activated','name'];
+    protected $fillable = ['specialty_id', 'level_id', 'question','activated','name','activated'];
 
 
     /**

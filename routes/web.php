@@ -227,7 +227,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
     Route::get('/validator/dashboard', [DashboardController::class, 'dashboardValidator'])->name('validator.dashboard');
-
+    Route::get('/tutor/dashboard', [DashboardController::class, 'dashboardTutor'])->name('tutor.dashboard');
     Route::resource('countries', CountryController::class);
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);
@@ -241,10 +241,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/validator/items', function () {
         return view('validator.items'); // Vista para el dashboard del usuario
     })->name('validator.items');
-
-    Route::get('/tutor/dashboard', function () {
-        return view('tutor.dashboard'); // Vista para el dashboard del usuario
-    })->name('tutor.dashboard');
     //Para centros de estudios que solicitan el registro en la plataforma
     Route::resource('register-study-centers', RegisterStudyCenterController::class);
 

@@ -145,7 +145,10 @@ class QuestionController extends Controller
     public function destroy($id): RedirectResponse
     {
         Question::find($id)->delete();
-
+        $question = Question::find($id);
+        $question->state="Cancelada";
+        $question->activated=false;
+        $question->update;
         return Redirect::route('questions.index')
             ->with('success', 'Question eliminado satisfactoriamente');
     }
