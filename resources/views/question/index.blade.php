@@ -40,7 +40,7 @@
                                         <th>Pregunta</th>
                                         <th>Especialidad</th>
                                         <th>Nivel</th>
-
+                                        <th>Estado</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -53,8 +53,10 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $question->id }}</td>
+                                            <td>{{ $question->question }}</td>
                                             <td>{{ $question->specialty->name }}</td>
                                             <td>{{ $question->level->name }}</td>
+                                            <td>{{ $question->state }}</td>
                                             <td>
                                                 <form action="{{ route('questions.destroy', $question->id) }}"
                                                     method="POST">
@@ -81,6 +83,7 @@
                                         <th>Pregunta</th>
                                         <th>Especialidad</th>
                                         <th>Nivel</th>
+                                        <th>Estado</th>
 
                                         <th></th>
                                     </tr>
