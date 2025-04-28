@@ -3,10 +3,11 @@
     PLataforma Fundación Magistral
 @endsection
 @section('content-admin')
-    Validador
+
     @php
         $user = Auth::user();
     @endphp
+   <h3>  {{$user->person->name}}</h3>
     @if (session('first_login'))
         <div class="iq-alert-text">
             <p>Usuario: {{ $user->email }}</p>
