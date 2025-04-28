@@ -71,36 +71,26 @@ class DashboardController extends Controller
             [
                 'student_name' => 'Juan Pérez',
                 'exam_title' => 'Prueba PISA',
-                'specialty' => 'Español',
-                'level' => rand(1, 3),
                 'time_taken' => rand(20, 60), // Tiempo tomado aleatorio entre 20 y 60 minutos
             ],
             [
                 'student_name' => 'María Gómez',
                 'exam_title' => 'Prueba Nacional',
-                'specialty' => 'Matemática',
-                'level' => rand(1, 3),
                 'time_taken' => rand(20, 60),
             ],
             [
                 'student_name' => 'Carlos Ruiz',
                 'exam_title' => 'Examen Diagnóstico',
-                'specialty' => 'Español',
-                'level' => rand(1, 3),
                 'time_taken' => rand(20, 60),
             ],
             [
                 'student_name' => 'Ana Torres',
                 'exam_title' => 'Prueba PISA',
-                'specialty' => 'Matemática',
-                'level' => rand(1, 3),
                 'time_taken' => rand(20, 60),
             ],
             [
                 'student_name' => 'Luis Martínez',
                 'exam_title' => 'Prueba Nacional',
-                'specialty' => 'Español',
-                'level' => rand(1, 3),
                 'time_taken' => rand(20, 60),
             ],
         ];

@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 @section('title-header-admin')
-    PLataforma Fundación Magistral
+    Panel Tutor - Plataforma Fundación Magistral
 @endsection
 @section('content-admin')
 
@@ -33,8 +33,7 @@
                                 <div class="notification-item border p-3 bg-light rounded">
                                     <strong>Estudiante:</strong> {{ $notification['student_name'] }}<br>
                                     <strong>Resolvió:</strong> {{ $notification['exam_title'] }}<br>
-                                    <strong>Especialidad:</strong> {{ $notification['specialty'] }}<br>
-                                    <strong>Nivel:</strong> {{ $notification['level'] }}<br>
+
                                     <em>Tiempo: {{ $notification['time_taken'] }} minutos</em>
                                 </div>
                             </div>
@@ -55,8 +54,6 @@
                             <tr>
                                 <th>Estudiante</th>
                                 <th>Exámenes</th>
-                                <th>Especialidad</th>
-                                <th>Nivel</th>
                                 <th>Total Preguntas</th>
                                 <th>Correctas</th>
                                 <th>Incorrectas</th>
@@ -68,8 +65,6 @@
                                 <tr>
                                     <td>{{ $result['student_name'] }}</td>
                                     <td>{{ $result['exam_title'] }}</td>
-                                    <td>{{ $result['specialty'] }}</td>
-                                    <td>{{ $result['level'] }}</td>
                                     <td>{{ $result['total_questions'] }}</td>
                                     <td>{{ $result['correct_answers'] }}</td>
                                     <td>{{ $result['incorrect_answers'] }}</td>

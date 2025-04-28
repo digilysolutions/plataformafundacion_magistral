@@ -1,7 +1,7 @@
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="/" class="header-logo">
-            <img src="{{ asset('img/icono/fm-plataforma.jpg') }}" class="img-fluid rounded-normal light-logo" alt="logo">
+            <img src="{{ asset('img/icono/fm-plataforma.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
             <h5 class="logo-title light-logo ml-3">Plataforma</h5>
 
         </a>

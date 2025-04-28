@@ -1,7 +1,7 @@
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="/" class="header-logo">
-            <img src="{{ asset('img/23.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
+            <img src="{{ asset('img/icono/fm-plataforma.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
             <h5 class="logo-title light-logo ml-3">Plataforma</h5>
 
         </a>
@@ -368,7 +368,7 @@
                 <div class="card-body p-0">
                     <div class="sidebarbottom-content">
                         <div class="image"><a href="https://fundacionmagistral.org/"> <img
-                                    src="{{ asset('admin/images/page-img/42.png') }}" class="img-fluid"
+                                    src="{{ asset('img/icono/fm-plataforma.png') }}" class="img-fluid"
                                     alt="side-bkg"></a></div>
                         <h6 class="mt-4 px-4 body-title">Educación de calidad para un futuro brillante</h6>
                         <a href="https://fundacionmagistral.org/" type="button"

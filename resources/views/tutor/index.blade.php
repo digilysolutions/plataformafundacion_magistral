@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    Tutors
+Panel Tutor
 @endsection
 
 @section('content-admin')
