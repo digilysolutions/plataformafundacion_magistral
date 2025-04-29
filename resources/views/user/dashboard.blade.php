@@ -122,9 +122,52 @@
                 </div>
             </div>
             <div class="row">
-                <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de
-                    ITEMS PISA</button>
-                @include('pisa_test.test')
+                <div class="col-lg-8">
+                    <h3>Notificaciones</h3>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            @if (count($notifications) === 0)
+                                <p>No tienes nuevas notificaciones.</p>
+                            @else
+                                <div class="row">
+                                    @foreach ($notifications as $notification)
+                                        <div class="col-12 col-md-6 mb-3"> <!-- 12 para móviles, 4 para escritorio -->
+                                            <div class="notification-item border p-3  rounded">
+
+                                                <strong>Resolviste:</strong> {{ $notification['exam_title'] }}<br>
+
+                                                <em>Tiempo: {{ $notification['time_taken'] }} minutos</em>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-3 text-center">
+                    <button type="button" class="btn btn-primary mt-2" data-toggle="modal"
+                        data-target=".practica_ITEMS_PISA">Práctica de
+                        ITEMS PISA</button>
+                    @include('pisa_test.test')
+                </div>
+            </div>
+            <div class="row">
+                @foreach ($other_notifications as $notification)
+                <div class="col-12 col-md-12 mb-3 alert alert-primary" role="alert"> <!-- Cambié a una alerta-->
+                    <div class="d-flex align-items-start"> <!-- Flexbox para alinear el contenido -->
+                        <div class="iq-alert-icon me-3" style="font-size: 24px;">
+                            <i class="ri-information-line"></i>
+                        </div>
+                        <div class="iq-alert-text"> <!-- Aquí va el texto de la notificación -->
+                            <strong>{{ $notification['title'] }}</strong><br>
+                            <em>Tiempo: {{ $notification['time_taken'] }} minutos</em><br>
+                            {{ $notification['message'] }} <!-- Mensaje adicional -->
+                        </div>
+                    </div>
+                </div>
+            @endforeach
             </div>
         </div>
     </div>
