@@ -132,4 +132,61 @@ class DashboardController extends Controller
 
         return view('tutor.dashboard', compact('notifications', 'examResults'));
     }
+
+    public function dashboardUser()
+    {
+        // Datos de notificaciones
+        $notifications = [
+            [
+
+                'exam_title' => 'Prueba PISA',
+                'time_taken' => rand(20, 60), // Tiempo tomado aleatorio entre 20 y 60 minutos
+            ],
+            [
+
+                'exam_title' => 'Prueba Nacional',
+                'time_taken' => rand(20, 60),
+            ],
+            [
+                'exam_title' => 'Examen Diagnóstico',
+                'time_taken' => rand(20, 60),
+            ],
+            [
+
+                'exam_title' => 'Prueba PISA',
+                'time_taken' => rand(20, 60),
+            ]
+        ];
+
+        $other_notifications = [
+            [
+                'title' => 'Nueva Prueba: Matemáticas - Álgebra',
+                'time_taken' => 45, // minutos
+                'message' => 'Se ha asignado una nueva prueba de Matemáticas sobre Álgebra. ¡Prepárate y empieza a practicar!',
+            ],
+            [
+                'title' => 'Actualización del Sistema',
+                'time_taken' => 0, // No aplica para este caso
+                'message' => 'Hemos identificado un error en el sistema y estamos trabajando para resolverlo. Agradecemos su paciencia.',
+            ],
+            [
+                'title' => 'Mensaje del Tutor: Sugerencias de Estudio',
+                'time_taken' => 0,
+                'message' => 'Tu tutor ha dejado un mensaje: "Recuerda repasar tus notas y practicar con ejercicios previos para mejorar tus resultados."',
+            ],
+            [
+                'title' => 'Comunicado del Administrador',
+                'time_taken' => 0,
+                'message' => 'Se realizarán mantenimientos programados en la plataforma el próximo sábado de 2 AM a 4 AM. Asegúrate de terminar cualquier actividad antes de ese tiempo.',
+            ],
+            [
+                'title' => 'Nueva Prueba: Ciencias - Biología',
+                'time_taken' => 30,
+                'message' => 'Una nueva prueba de Ciencias sobre Biología ha sido añadida a tu perfil. ¡No te la pierdas!',
+            ],
+        ];
+
+
+        return view('user.dashboard', compact('notifications','other_notifications'));
+    }
 }
