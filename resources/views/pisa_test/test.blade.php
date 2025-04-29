@@ -9,9 +9,7 @@
             </div>
             <div class="modal-body">
 
-                @section('css')
-                    <link rel="stylesheet" href="{{ asset('css/style/style.css') }}">
-                @endsection
+
 
                 <!-- ============================ -->
                 <!-- Pantalla 1: Configuración    -->
