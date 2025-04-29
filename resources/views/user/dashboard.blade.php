@@ -155,7 +155,7 @@
                     <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="">Pruebas Pisa</button>
                     </div>
-
+                    @include('test.items_time')
                     @include('pisa_test.test')
                 </div>
 

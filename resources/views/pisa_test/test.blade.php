@@ -1,3 +1,6 @@
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/style/style.css') }}">
+@endsection
 <div class="modal fade practica_ITEMS_PISA" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
