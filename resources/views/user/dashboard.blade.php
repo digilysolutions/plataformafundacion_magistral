@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 @section('title-header-admin')
-    PLataforma Fundación Magistral
+    Plataforma Fundación Magistral
 @endsection
 @section('content-admin')
     <div class="col-lg-12">
@@ -121,9 +121,12 @@
                     </a>
                 </div>
             </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de
+                    ITEMS PISA</button>
+                @include('pisa_test.test')
+            </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de
-        ITEMS PISA</button>
-    @include('pisa_test.test')
+
 @endsection
