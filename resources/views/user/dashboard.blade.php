@@ -150,9 +150,26 @@
                     <div class="d-flex justify-content-center"> <!-- Flexbox para centrado -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de ITEMS PISA</button>
                     </div>
-                    @include('pisa_test.test')
+
                     <div class="d-flex justify-content-center"> <!-- Flexbox para centrado -->
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de ITEMS PISA</button>
+                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Resolver ITEMS
+                        </button>
+                    </div>
+
+                    <div class="d-flex justify-content-center"> <!-- Flexbox para centrado -->
+                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Resolver ITEMS
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-center"> <!-- Flexbox para centrado -->
+                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Resolver Exámenes
+
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-center"> <!-- Flexbox para centrado -->
+                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Resolver Exámenes Diagnóstico
+
+
+                        </button>
                     </div>
                     @include('pisa_test.test')
                 </div>
