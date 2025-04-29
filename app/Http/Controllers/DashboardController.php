@@ -159,11 +159,7 @@ class DashboardController extends Controller
         ];
 
         $other_notifications = [
-            [
-                'title' => 'Nueva Prueba: Matemáticas - Álgebra',
-                'time_taken' => 45, // minutos
-                'message' => 'Se ha asignado una nueva prueba de Matemáticas sobre Álgebra. ¡Prepárate y empieza a practicar!',
-            ],
+
             [
                 'title' => 'Actualización del Sistema',
                 'time_taken' => 0, // No aplica para este caso
@@ -178,12 +174,7 @@ class DashboardController extends Controller
                 'title' => 'Comunicado del Administrador',
                 'time_taken' => 0,
                 'message' => 'Se realizarán mantenimientos programados en la plataforma el próximo sábado de 2 AM a 4 AM. Asegúrate de terminar cualquier actividad antes de ese tiempo.',
-            ],
-            [
-                'title' => 'Nueva Prueba: Ciencias - Biología',
-                'time_taken' => 30,
-                'message' => 'Una nueva prueba de Ciencias sobre Biología ha sido añadida a tu perfil. ¡No te la pierdas!',
-            ],
+            ]
         ];
 
 
