@@ -228,6 +228,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboardAmdin'])->name('admin.dashboard');
     Route::get('/validator/dashboard', [DashboardController::class, 'dashboardValidator'])->name('validator.dashboard');
     Route::get('/tutor/dashboard', [DashboardController::class, 'dashboardTutor'])->name('tutor.dashboard');
+    Route::get('/user/dashboard', [DashboardController::class, 'dashboardUser'])->name('user.dashboard');
     Route::resource('countries', CountryController::class);
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);
@@ -261,9 +262,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('courses', CourseController::class);
     Route::resource('notifications-questions', NotificationsQuestionController::class);
 
-    Route::get('/pisa/test', function () {
-        return view('pisa_test.test'); // Vista para el dashboard del admin
-    })->name('pisa.test');
     ///-------End nuevas rutass
 });
 
