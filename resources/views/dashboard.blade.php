@@ -13,7 +13,7 @@
                     <div class="alert alert-danger text-center">
                         <h4>Sección en Desarrollo: </h4>
                         <br>
-                        <p> Actualmente estamos trabajando en esta área para mejorar su experiencia. Gracias por su paciencia.</p>
+                        <p>     Actualmente estamos trabajando en esta área para mejorar su experiencia. Gracias por su paciencia.</p>
                     </div>
                 </div>
             </div>

@@ -16,6 +16,8 @@
                     $user = Auth::user();
                 @endphp
 
+                <h3> {{ $user->person->name }}</h3>
+
                 <div class="alert text-white bg-info col-lg-12" role="alert">
                     <div class="iq-alert-icon">
                         <i class="ri-information-line"></i>
@@ -23,8 +25,9 @@
                     <div class="iq-alert-text">
                         <p>Usuario: {{ $user->email }}</p>
                         <p>Código de Seguimimiento: {{ $user?->person?->id }}</p>
-                        @if ($user->google_id!=null)
-                        <p>Contraseña: Password1234. <i>Debes cambiarla haciendo click en el <a href="/profile">perfil</a> de usuario en la esquina superior derecha</i></p>
+                        @if ($user->google_id != null)
+                            <p>Contraseña: Password1234. <i>Debes cambiarla haciendo click en el <a
+                                        href="/profile">perfil</a> de usuario en la esquina superior derecha</i></p>
                         @endif
                     </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -120,4 +123,7 @@
             </div>
         </div>
     </div>
+    <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de
+        ITEMS PISA</button>
+    @include('pisa_test.test')
 @endsection

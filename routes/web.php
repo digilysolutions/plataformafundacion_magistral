@@ -260,6 +260,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('courses', CourseController::class);
     Route::resource('notifications-questions', NotificationsQuestionController::class);
+
+    Route::get('/pisa/test', function () {
+        return view('pisa_test.test'); // Vista para el dashboard del admin
+    })->name('pisa.test');
     ///-------End nuevas rutass
 });
 

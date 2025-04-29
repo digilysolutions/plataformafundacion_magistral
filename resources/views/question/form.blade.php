@@ -41,10 +41,12 @@
 
     <hr />
     <div class="row">
+        <div class="col-lg-12">
         <span class="add-answer float-right mb-3 mr-2">
             <button type="button" class="btn btn-sm bg-primary"><i class="ri-add-fill"><span class="pl-1">Adicionar Respuesta</span></i>
             </button>
         </span>
+    </div>
     </div>
     <div class="new-answer row">
 
