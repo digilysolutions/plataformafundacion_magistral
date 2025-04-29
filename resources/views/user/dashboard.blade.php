@@ -146,13 +146,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mb-3 text-center">
-                    <button type="button" class="btn btn-primary mt-2" data-toggle="modal"
-                        data-target=".practica_ITEMS_PISA">Práctica de
-                        ITEMS PISA</button>
+                <div class="col-lg-3 ml-5">
+                    <div class="d-flex justify-content-center"> <!-- Flexbox para centrado -->
+                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de ITEMS PISA</button>
+                    </div>
+                    @include('pisa_test.test')
+                    <div class="d-flex justify-content-center"> <!-- Flexbox para centrado -->
+                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de ITEMS PISA</button>
+                    </div>
                     @include('pisa_test.test')
                 </div>
-            </div>
             <div class="row">
                 @foreach ($other_notifications as $notification)
                 <div class="col-12 col-md-12 mb-3 alert alert-primary" role="alert"> <!-- Cambié a una alerta-->
@@ -169,6 +172,8 @@
                 </div>
             @endforeach
             </div>
+
+
         </div>
     </div>
 
