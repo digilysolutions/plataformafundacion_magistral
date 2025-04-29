@@ -2,10 +2,7 @@
 @section('title-header-admin')
     Plataforma Fundación Magistral
 @endsection
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/items/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style/style.css') }}">
-@endsection
+
 @section('content-admin')
     <div class="col-lg-12">
         <div class="card card-transparent card-block card-stretch card-height border-none">
