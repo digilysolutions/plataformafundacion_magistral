@@ -3,9 +3,8 @@
     Plataforma Fundación Magistral
 @endsection
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/items/style.css') }}">
-<link rel="stylesheet" href="{{ asset('css/style/style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/items/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style/style.css') }}">
 @endsection
 @section('content-admin')
     <div class="col-lg-12">
@@ -31,8 +30,8 @@
                         <p>Usuario: {{ $user->email }}</p>
                         <p>Código de Seguimimiento: {{ $user?->person?->id }}</p>
                         @if ($user->google_id != null)
-                            <p>Contraseña: Password1234. <i>Debes cambiarla haciendo click en el <a
-                                        href="/profile">perfil</a> de usuario en la esquina superior derecha</i></p>
+                            <p>Contraseña: 1234 <i>Debes cambiarla haciendo click en el <a href="/profile">perfil</a> de
+                                    usuario en la esquina superior derecha</i></p>
                         @endif
                     </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -40,25 +39,7 @@
                     </button>
                 </div>
             </div>
-            <div class="row">
-                @foreach ($other_notifications as $notification)
-                <div class="col-12 col-md-12 mb-3 alert alert-primary" role="alert"> <!-- Cambié a una alerta-->
-                    <div class="d-flex align-items-start"> <!-- Flexbox para alinear el contenido -->
-                        <div class="iq-alert-icon me-3" style="font-size: 24px;">
-                            <i class="ri-information-line"></i>
-                        </div>
-                        <div class="iq-alert-text"> <!-- Aquí va el texto de la notificación -->
-                            <strong>{{ $notification['title'] }}</strong><br>
-                            <em>Tiempo: {{ $notification['time_taken'] }} minutos</em>
-                            {{ $notification['message'] }} <!-- Mensaje adicional -->
-                        </div>
-                        <button type="button" class="close text-primary" data-dismiss="alert" aria-label="Close">
-                            <i class="ri-close-line"></i>
-                            </button>
-                    </div>
-                </div>
-            @endforeach
-            </div>
+
             <div class="row">
                 <div class="col-lg-3 col-md-4">
                     <a href="{{ route('items.index', ['name' => 'Resueltos']) }}">
@@ -127,7 +108,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <h3>Notificaciones</h3>
+                    <h3>Notificaciones Usuario</h3>
                     <div class="card mb-4">
                         <div class="card-body">
                             @if (count($notifications) === 0)
@@ -151,34 +132,56 @@
                     </div>
                 </div>
                 <div class="col-lg-3 ml-5">
-                    <div class="d-flex justify-content-end"> <!-- Flexbox para alinear a la derecha -->
+                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".items_time">Resolver ITEMS Tiempo</button>
                     </div>
-                    <div class="d-flex justify-content-end"> <!-- Flexbox para alinear a la derecha -->
+
+                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de ITEMS PISA</button>
                     </div>
-                    <div class="d-flex justify-content-end"> <!-- Flexbox para alinear a la derecha -->
+
+                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="">Exámenes Diagnóstico</button>
                     </div>
 
-                    <div class="d-flex justify-content-end"> <!-- Flexbox para alinear a la derecha -->
+                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="">Exámenes Nacionales</button>
                     </div>
-                    <div class="d-flex justify-content-end"> <!-- Flexbox para alinear a la derecha -->
+
+                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Resolver ITEMS</button>
                     </div>
 
-                    <div class="d-flex justify-content-end"> <!-- Flexbox para alinear a la derecha -->
+                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
                         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="">Pruebas Pisa</button>
                     </div>
-                    @include('test.items_time')
-                    @include('pisa_test.test')
 
+                    @include('pisa_test.test')
                 </div>
 
 
 
+            </div>
+            <div class="row">
+                <h3>Notificaciones Sistema</h3>
+                @foreach ($other_notifications as $notification)
+                    <div class="col-12 col-md-12 mb-3 alert alert-primary" role="alert"> <!-- Cambié a una alerta-->
+                        <div class="d-flex align-items-start"> <!-- Flexbox para alinear el contenido -->
+                            <div class="iq-alert-icon me-3" style="font-size: 24px;">
+                                <i class="ri-information-line"></i>
+                            </div>
+                            <div class="iq-alert-text"> <!-- Aquí va el texto de la notificación -->
+                                <strong>{{ $notification['title'] }}</strong><br>
+                                <em>Tiempo: {{ $notification['time_taken'] }} minutos</em>
+                                {{ $notification['message'] }} <!-- Mensaje adicional -->
+                            </div>
+                            <button type="button" class="close text-primary" data-dismiss="alert" aria-label="Close">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-    </div>
 
-@endsection
+    @endsection
