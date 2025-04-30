@@ -34,7 +34,7 @@
                         <td>Solicitado</td>
                     </tr>
                     <tr>
-                        <td>Historia</td>
+                        <td>Ciencias Sociales</td>
                         <td>Carlos López</td>
                         <td>Asignado</td>
                         <td>Confirmado</td>
