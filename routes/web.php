@@ -53,7 +53,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->midd
 Route::get('/error404', function () {
     return view('error404'); // Asegúrate de tener este view creado
 });
-Route::get('/notaccess', function () {
+Route::get('/not-access', function () {
     return view('not-access')->name('access.denied'); // Asegúrate de tener este view creado
 });
 //Registro (register):
@@ -133,10 +133,24 @@ Route::middleware('auth')->group(function () {
 
     //memberships
     Route::patch('memberships/{membershipId}', [MembershipController::class, 'update'])->middleware('role:Administrador');
-    Route::resource('memberships', MembershipController::class)->middleware('role:Administrador');
-    Route::post('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'renew'])->name('study_centers.renew_membership')->middleware('role:Administrador,Centro Educativo');
-    Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
+    //Route::resource('memberships', MembershipController::class)->middleware('role:Administrador');
+
+
+    Route::post('/study-centers/{id}/renew-membership', [MembershipController::class, 'renew_studyCenter'])->name('study_centers.renew_membership')->middleware('role:Centro Educativo');
+    Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership_studyCenter'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
+
+    Route::post('/user/{id}/renew-membership', [MembershipController::class, 'renew_user'])->name('user.renew_membership')->middleware('role:Usuario');
+    Route::get('/user/{user_id}/renew-membership', [MembershipController::class, 'remembership_user'])->name('user.remembership')->middleware('role:Usuario');
+
     Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
+
+        Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador');
+        Route::get('/memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador');
+        Route::post('/memberships', [MembershipController::class, 'store'])->name('memberships.store')->middleware('role:Administrador');
+        Route::get('/memberships/{id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Usuario');
+        Route::get('/memberships/{id}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');
+        Route::patch('memberships/{id}', [MembershipController::class, 'update'])->name('memberships.update')->middleware('role:Administrador');
+        Route::delete('/memberships/{id}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');
 
 
     //memberships History
@@ -234,7 +248,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('districts', DistrictController::class);
     Route::resource('validators', ValidatorController::class);
 
-/*
+    /*
     Route::get('/validator/dashboard', function () {
         return view('validator.dashboard'); // Vista para el dashboard del usuario
     })->name('validator.dashboard');*/

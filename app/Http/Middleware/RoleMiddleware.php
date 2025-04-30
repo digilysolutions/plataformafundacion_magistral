@@ -15,6 +15,7 @@ class RoleMiddleware
 
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
+
         if (!Auth::check()) {
             Log::info('Usuario no autenticado, redirigiendo a /login');
             return redirect('/login')->with('error', 'Debes iniciar sesión para acceder a esta página.');
@@ -31,7 +32,7 @@ class RoleMiddleware
         if (!in_array($userRole, $roles)) {
 
             Log::info('Acceso denegado para el rol: ' . $userRole);
-            return redirect('/notaccess');
+            return redirect('/not-access');
         }
 
         return $next($request);

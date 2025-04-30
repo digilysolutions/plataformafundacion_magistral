@@ -12,7 +12,7 @@
                     <h3 class="mb-0">Renovar Membresía</h3>
                 </div>
                 <div class="card-body">
-                    <form id="renewMembershipForm" method="POST" action="{{ route('study_centers.renew_membership', ['id' => $user->id]) }}">
+                    <form id="renewMembershipForm" method="POST" action="{{ route('user.renew_membership', ['id' => $user->id]) }}">
                         @csrf
 
                         <div class="form-group mb-3">

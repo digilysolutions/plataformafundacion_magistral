@@ -11,6 +11,7 @@ use App\Models\MembershipFeaturesMembership;
 use App\Models\MembershipHistory;
 use App\Models\MembershipStatus;
 use App\Models\StudyCenter;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Carbon\Carbon;
@@ -351,73 +352,91 @@ class MembershipController extends Controller
         return view('membership.pricing', compact('memberships', 'features', 'membershipMemberShipFeature'));
     }
 
-    public function remembership($studyCenterId): View
+    public function remembership_studyCenter($studyCenterId): View
     {
         $memberships = Membership::allActivated();
-        $studyCenter = StudyCenter::find($studyCenterId);
-        return view('membership.renew_membership', compact('memberships', 'studyCenter'));
+        $user = StudyCenter::find($studyCenterId);
+        return view('membership.renew_membership', compact('memberships', 'user'));
     }
-
-    //renovar membresia
-    public function renew(Request $request, $studyCenterId)
+    public function remembership_user($userId): View
     {
-
+        $memberships = Membership::allActivated();
+        $user = User::find($userId);
+        return view('membership.renew_membership_user', compact('memberships', 'user'));
+    }
+    function renew_studyCenter(Request $request, $studyCenterId)
+    {
 
         // Validar el request
         $request->validate([
             'membership_id' => 'required|exists:memberships,id',
             'payment_method' => 'required|string', // Por ejemplo: 'credit_card', 'paypal', etc.
         ]);
-
-
         // Encontrar el centro de estudio
         $studyCenter = StudyCenter::findOrFail($studyCenterId);
+        return $this->renew($studyCenter, $request->membership_id);
+    }
+    function renew_user(Request $request, $id)
+    {
 
-        // Encontrar la membresía seleccionada
-        $membership = Membership::findOrFail($request->membership_id);
+        // Validar el request
+        $request->validate([
+            'membership_id' => 'required|exists:memberships,id',
+            'payment_method' => 'required|string', // Por ejemplo: 'credit_card', 'paypal', etc.
+        ]);
+        // Encontrar el centro de estudio
+        $user = User::findOrFail($id);
+
+        return $this->renew($user, $request->membership_id);
+    }
+
+    //renovar membresia
+    private function renew($user_change_membership, $membership_id)
+    {
         $now = now();
-        $features = MembershipFeature::allActivated();
-
+        $membership = Membership::findOrFail($membership_id);
         // Obtener la membresía actual del centro de estudio
-        $currentMembership = $studyCenter->membership;
+        $currentMembership = $user_change_membership->membership;
+        $membershipMemberShipFeature = MembershipFeaturesMembership::where('membership_id', $membership->id)->get();
+        $features=MembershipFeaturesMembership::all();
 
         // Si el centro de estudio ya tiene una membresía
-        if ($currentMembership && $studyCenter->membership_id !== $membership->id) {
+        if ($currentMembership && $user_change_membership->membership_id !== $membership->id) {
             // La nueva membresía es diferente a la actual, actualizamos el ID y creamos un nuevo historial
             $estadoPendienteId = MembershipStatus::where('name', 'Pendiente')->value('id');
 
             // Crear un nuevo historial de membresía
             $ultimoHistorial = MembershipHistory::create([
                 'id' => Str::uuid(), // No necesitas esto si usas HasUuids en el modelo MembershipHistory
-                'user_id' => $studyCenter->person->user->id,
+                'user_id' => $user_change_membership->person->user->id,
                 'membership_id' => $membership->id,
                 'start_date' => $now, // Usar la fecha actual
                 'membership_statuses_id' => $estadoPendienteId,
             ]);
 
             // Actualizar el ID de la membresía en el centro de estudio
-            $studyCenter->membership_id = $membership->id;
-            $studyCenter->update(); // Guardar los cambios en el centro de estudio
+            $user_change_membership->membership_id = $membership->id;
+            $user_change_membership->update(); // Guardar los cambios en el centro de estudio
 
             // Mensaje de activación
-            $messageActivate = $ultimoHistorial->membershipStatus->description;
-            return view('membership.show', compact('membership', 'messageActivate', 'features'));
-        } elseif ($currentMembership && $studyCenter->membership_id === $membership->id) {
+            $messageActivate = $ultimoHistorial->membershipStatus?->description;
+            return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
+        } elseif ($currentMembership && $user_change_membership->membership_id === $membership->id) {
             // Si la membresía es igual, retornar el mensaje correspondiente
-            $ultimoHistorial = MembershipHistory::where('membership_id', $request->membership_id)
+            $ultimoHistorial = MembershipHistory::where('membership_id', $membership->id)
                 ->latest('created_at')
                 ->first();
 
             if ($ultimoHistorial) {
-                $messageActivate = $ultimoHistorial->membershipStatus->description;
+                $messageActivate = $ultimoHistorial->membershipStatus?->description;
             } else {
                 $messageActivate = 'No hay historial de membresía. Acción no requerida.';
             }
 
-            return view('membership.show', compact('membership', 'messageActivate', 'features'));
+            return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
         } else {
             $messageActivate = 'Centro de estudio no tiene una membresía activa.';
-            return view('membership.show', compact('membership', 'messageActivate', 'features'));
+            return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
         }
     }
 }

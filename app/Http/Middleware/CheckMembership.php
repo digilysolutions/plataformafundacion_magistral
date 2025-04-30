@@ -16,6 +16,7 @@ class CheckMembership
      */
     public function handle(Request $request, Closure $next): Response
     {
+
         $user = Auth::user();
 
         // Obtener la membresía activa del usuario
