@@ -136,8 +136,8 @@
                             </svg>
                         </a>
                         <ul id="items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                            <li class="{{ request()->is('items/pisa') ? 'active' : '' }}">
+                                <a href="{{ route('items.items_pisa') }}">
                                     <i class="las la-minus"></i><span>Pruebas PISA</span>
                                 </a>
                             </li>
