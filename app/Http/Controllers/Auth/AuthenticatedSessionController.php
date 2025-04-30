@@ -200,22 +200,22 @@ class AuthenticatedSessionController extends Controller
             ->first();
 
 
-        if ($ultimoHistorial->membership_statuses_id == $estadoActualId) {
-            return false;
-        }
         // Determinar si se necesita crear un nuevo registro
         $debeCrearRegistro = false;
 
         if (!$ultimoHistorial) {
             // Si no hay historial, se crea el primero
             $debeCrearRegistro = true;
+
         } else {
             // Comparar el estado actual con el último estado registrado
             if ($ultimoHistorial->membership_statuses_id != $estadoActualId) {
                 $debeCrearRegistro = true;
             }
         }
-
+      /*  if ($ultimoHistorial->membership_statuses_id == $estadoActualId) {
+            return false;
+        }*/
         // Crear el nuevo registro si es necesario
         if ($debeCrearRegistro) {
             MembershipHistory::create([
