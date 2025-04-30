@@ -255,6 +255,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/under/construction', function () {
         return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
     })->name('under.construction');
+    Route::get('/test/items-pisa/time', function () {
+        return view('test.items_time'); // Vista para el dashboard del usuario (en construcción)
+    })->name('test.items_time');
+    Route::get('/test/pisa', function () {
+        return view('pisa_test.test'); // Vista para el dashboard del usuario (en construcción)
+    })->name('pisa_test.test');
     Route::get('/items/pisa', function () {
         return view('items.items_pisa'); // Vista para el dashboard del usuario (en construcción)
     })->name('items.items_pisa');
@@ -282,7 +288,7 @@ Route::middleware('auth')->group(function () {
                 'estado_solicitud' => 'Pendiente'
             ],
         ];
-    
+
         return view('tutor.request_tutoring', compact('especialidades'));
     })->name('tutor.request_tutoring');
 

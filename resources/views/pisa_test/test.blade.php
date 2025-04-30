@@ -1,17 +1,14 @@
+
+
+@extends('layouts.app-admin')
+
+@section('title-header-admin')
+    Items  Pisa Práctica
+@endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/style/style.css') }}">
 @endsection
-<div class="modal fade practica_ITEMS_PISA" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Práctica de ITEMS PISA</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
+@section('content-admin')
 
 
                 <!-- ============================ -->
@@ -143,16 +140,8 @@
                     </div>
                 </div>
 
-                @section('js')
-                    <script src="{{ asset('js/questions.js') }}"></script>
-                    <script src="{{ asset('js/script.js') }}"></script>
-                @endsection
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
-            </div>
-        </div>
-    </div>
-</div>
+@endsection
+@section('js')
+<script src="{{ asset('js/questions.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
+@endsection

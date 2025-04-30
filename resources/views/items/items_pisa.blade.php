@@ -76,14 +76,16 @@
 @endsection
 @section('js')
 <script>
+     itemsTimeUrl = "{{ route('test.items_time') }}";
+     itemsPisaTest = "{{ route('pisa_test.test') }}";
     document.getElementById('btnPractica').addEventListener('click', () => {
-        alert('Has seleccionado ITEMS PISA Práctica. Aquí podrás practicar con preguntas similares a las del examen real.');
-        // Aquí puedes agregar lógica adicional, como redireccionar o mostrar contenido
-    });
+        alert('Has seleccionado ITEMS PISA Práctica. Aquí podrás practicar con preguntas similares a las del examen real.');        
+        window.location.href = itemsPisaTest;
+    });  
 
     document.getElementById('btnPrueba').addEventListener('click', () => {
         alert('Has seleccionado ITEMS PISA Prueba. Aquí podrás realizar una simulación oficial del examen.');
-        // Aquí puedes agregar lógica adicional, como redireccionar o mostrar contenido
+        window.location.href = itemsTimeUrl;
     });
 </script>
 @endsection
