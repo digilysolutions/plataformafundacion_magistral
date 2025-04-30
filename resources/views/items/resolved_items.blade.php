@@ -56,12 +56,12 @@
     .ficha.summary li {
         background-color: #ffffff;
         border: 1px solid #bbdefb;
-        border-left: 5px solid #1976d2;
+        border-left: 5px solid #FF7E41 !important;
         padding: 8px 12px;
         margin-bottom: 8px;
         border-radius: 4px;
     }
-    .ficha.summary li strong { color: #1565c0; float: right; }
+    .ficha.summary li strong { color: #FF7E41 !important; float: right; }
 
     /* --- Estilos para Fichas de Detalle (Detail) --- */
     .ficha.detail .detail-content { /* Contenedor interno para scroll */
@@ -93,12 +93,12 @@
         flex-grow: 1; /* Permitir que ocupe espacio vertical */
     }
     .ficha.legend .legend-content h3 {
-        color: #1565c0; margin-top: 0; margin-bottom: 8px; /* Ajustado margen superior */
+        color: #FF7E41 !important; margin-top: 0; margin-bottom: 8px; /* Ajustado margen superior */
         border-bottom: 1px dotted #90caf9; padding-bottom: 5px;
         font-size: 1.1em; /* Ligeramente más pequeño que h2 */
     }
      .ficha.legend .legend-content h4 {
-        color: #1976d2; margin-top: 10px; margin-bottom: 5px;
+        color: #FF7E41 !important; margin-top: 10px; margin-bottom: 5px;
         font-size: 1em; font-weight: bold;
      }
     .ficha.legend .legend-content ul { list-style: disc; padding-left: 25px; margin: 0 0 15px 0; }
@@ -136,6 +136,7 @@
     </div>
 
     <!-- Detalle Resueltos PISA -->
+
     <div class="ficha detail">
         <h2>Items Resueltos - PISA (Nivel) (25)</h2>
         <ul class="detail-content"> <!-- Contenedor para scroll -->
