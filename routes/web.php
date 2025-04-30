@@ -40,7 +40,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-->name('login');
+    ->name('login');
 
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
@@ -133,13 +133,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
 
-        Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador');
-        Route::get('/memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador');
-        Route::post('/memberships', [MembershipController::class, 'store'])->name('memberships.store')->middleware('role:Administrador');
-        Route::get('/memberships/{id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Usuario');
-        Route::get('/memberships/{id}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');
-        Route::patch('memberships/{id}', [MembershipController::class, 'update'])->name('memberships.update')->middleware('role:Administrador');
-        Route::delete('/memberships/{id}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');
+    Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador');
+    Route::get('/memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador');
+    Route::post('/memberships', [MembershipController::class, 'store'])->name('memberships.store')->middleware('role:Administrador');
+    Route::get('/memberships/{id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Usuario');
+    Route::get('/memberships/{id}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');
+    Route::patch('memberships/{id}', [MembershipController::class, 'update'])->name('memberships.update')->middleware('role:Administrador');
+    Route::delete('/memberships/{id}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');
 
 
     //memberships History
@@ -263,7 +263,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/tutor/assigned', function () {
         return view('tutor.assigned_tutors');
     })->name('tutor.assigned');
+    Route::get('/items/unresolved', function () {
+        return view('items.unresolved_items');
+    })->name('items.unresolved');
 
+    Route::get('/items/resolved', function () {
+        return view('items.resolved_items');
+    })->name('items.resolved');
 
     // Route::get('/', [AuthenticatedSessionController::class, 'create']);
 

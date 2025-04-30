@@ -217,31 +217,27 @@
                             </svg>
                         </a>
                         <ul id="progreso" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li>
-                                <a href="" class="collapsed" data-toggle="collapse"
-                                    aria-expanded="false">
+
+                            <li class="{{ request()->is('items/resolved') ? 'active' : '' }}">
+                                <a href="{{route('items.resolved')}}" class="svg-icon">
                                     <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
                                     <span class="ml-4">ITEMS Resueltos</span>
-
                                 </a>
-
                             </li>
-                            <li>
-                                <a href="" class="collapsed" data-toggle="collapse"
-                                    aria-expanded="false">
+                            <li class="{{ request()->is('items/unresolved') ? 'active' : '' }}">
+                                <a href="{{route('items.unresolved')}}" class="svg-icon">
                                     <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
                                     <span class="ml-4">ITEMS No Resueltos</span>
                                 </a>
-
                             </li>
                             <li class="">
                                 <a href="{{ route('under.construction') }}" class="svg-icon">
