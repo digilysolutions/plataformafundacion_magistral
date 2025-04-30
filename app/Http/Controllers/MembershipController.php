@@ -143,7 +143,7 @@ class MembershipController extends Controller
     {
 
         $membership = Membership::findOrFail($id);
-
+       
         $now = now();
         $messageActivate = "Esta membresía no está activa.";
         $startDate = \Carbon\Carbon::parse($membership->start_date);
@@ -202,6 +202,7 @@ class MembershipController extends Controller
                 'membership_statuses_id' => $estadoActualId,
             ]);
         }
+
         $membershipMemberShipFeature = MembershipFeaturesMembership::where('membership_id', $membership->id)->get();
 
         $features = MembershipFeature::allActivated();
