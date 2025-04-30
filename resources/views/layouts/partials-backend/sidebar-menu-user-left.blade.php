@@ -180,17 +180,17 @@
                         </a>
                         <ul id="examenes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Prueba PISA</span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                                 </a>
                             </li>
@@ -218,7 +218,7 @@
                         </a>
                         <ul id="progreso" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li>
-                                <a href="#items_resueltos" class="collapsed" data-toggle="collapse"
+                                <a href="" class="collapsed" data-toggle="collapse"
                                     aria-expanded="false">
                                     <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -226,36 +226,12 @@
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                     <span class="ml-4">ITEMS Resueltos</span>
-                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="10 15 15 20 20 15"></polyline>
-                                        <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                    </svg>
+
                                 </a>
-                                <ul id="items_resueltos" class="iq-submenu collapse" data-parent="#progreso">
-                                    <li class="{{ request()->is('items*') ? 'active' : '' }}">
-                                        <a href="{{ route('items.index', ['name' => 'Resueltos: Prueba PISa']) }}">
-                                            <i class="las la-minus"></i><span>Prueba PISA</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('items*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('items.index', ['name' => 'Resueltos: Prueba Nacionales']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Nacionales </span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('items*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('items.index', ['name' => 'Resueltos: Pruebas Diagnóstico']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </li>
                             <li>
-                                <a href="#items_noresueltos" class="collapsed" data-toggle="collapse"
+                                <a href="" class="collapsed" data-toggle="collapse"
                                     aria-expanded="false">
                                     <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -264,79 +240,24 @@
                                         <line x1="6" y1="6" x2="18" y2="18"></line>
                                     </svg>
                                     <span class="ml-4">ITEMS No Resueltos</span>
-                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="10 15 15 20 20 15"></polyline>
-                                        <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                    </svg>
                                 </a>
-                                <ul id="items_noresueltos" class="iq-submenu collapse" data-parent="#progreso">
-                                    <li class="{{ request()->is('items/No*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('items.index', ['name' => 'No Resueltos: Prueba PISA']) }}}">
-                                            <i class="las la-minus"></i><span>Pruebas PISA</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('items/No*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('items.index', ['name' => 'No Resueltos: Pruebas Nacionales']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Nacionales</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('items/No*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('items.index', ['name' => 'No Resueltos: Prueba Diagnóstico']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Diagnóstico</span>
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </li>
-                            <li>
-                                <a href="#examenes_resueltos" class="collapsed" data-toggle="collapse"
-                                    aria-expanded="false">
+                            <li class="">
+                                <a href="{{ route('under.construction') }}" class="svg-icon">
                                     <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="3" y="4" width="18" height="18" rx="2"
-                                            ry="2">
-                                        </rect>
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2"
+                                        ry="2">
+                                    </rect>
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
                                     <span class="ml-4">Exámenes Resueltos</span>
-                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="10 15 15 20 20 15"></polyline>
-                                        <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                    </svg>
                                 </a>
-                                <ul id="examenes_resueltos" class="iq-submenu collapse" data-parent="#items">
-                                    <li class="{{ request()->is('examens*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('examens.index', ['name' => 'Examenes Resueltos: Pruebas PISA']) }}">
-                                            <i class="las la-minus"></i><span>Prueba PISA</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('examens*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('examens.index', ['name' => 'Examenes Resueltos: Pruebas Nacionales']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Nacionales </span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('examens*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('examens.index', ['name' => 'Examenes Resueltos: Pruebas Diagnóstico']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li>
-                                <a href="#examenes_noresueltos" class="collapsed" data-toggle="collapse"
-                                    aria-expanded="false">
+                            <li class="">
+                                <a href="{{ route('under.construction') }}" class="svg-icon">
                                     <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -347,35 +268,9 @@
                                         <line x1="9" y1="9" x2="15" y2="15"></line>
                                     </svg>
                                     <span class="ml-4">Exámenes No Resueltos</span>
-                                    <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="10 15 15 20 20 15"></polyline>
-                                        <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                    </svg>
                                 </a>
-                                <ul id="examenes_noresueltos" class="iq-submenu collapse" data-parent="#progreso">
-                                    <li class="{{ request()->is('examens*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('examens.index', ['name' => 'Examenes No Resueltos: Pruebas PISA']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas PISA</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('examens*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('examens.index', ['name' => 'Examenes No Resueltos: Pruebas Nacionales']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Nacionales</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->is('examens*') ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('examens.index', ['name' => 'Examenes No Resueltos: Pruebas Diagnóstico']) }}">
-                                            <i class="las la-minus"></i><span>Pruebas Diagnóstico</span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
+
                             <li class="{{ request()->is('user*') ? 'active' : '' }}">
                                 <a href="{{ route('user.time') }}">
                                     <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
