@@ -146,12 +146,12 @@
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                                <a href="{{ route('under.construction') }}">
                                     <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                                 </a>
                             </li>
