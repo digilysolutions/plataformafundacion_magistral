@@ -25,33 +25,50 @@
 @endif
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        let horas = 0;
-        let minutos = 0;
-        let segundos = 0;
+        // Obtener el tiempo desde la sesión
+        const tiempoEnSegundos = {{ session('tiempo_en_plataforma', 0) }};
 
         const spanTiempo = document.getElementById('tiempoEnPlataforma');
 
-        // Función para actualizar el contador
+        // Función para actualizar display y sesión
         function actualizarTiempo() {
-            segundos++;
-            if (segundos >= 60) {
-                segundos = 0;
-                minutos++;
-            }
-            if (minutos >= 60) {
-                minutos = 0;
-                horas++;
-            }
+            // Incrementar en 1 segundo
+            totalSegundos++;
+            // Convertir a HH:MM:SS
+            const horas = Math.floor(totalSegundos / 3600);
+            const minutos = Math.floor((totalSegundos % 3600) / 60);
+            const segundos = totalSegundos % 60;
 
-            // Formatear en HH:MM:SS
-            const hh = horas.toString().padStart(2, '0');
-            const mm = minutos.toString().padStart(2, '0');
-            const ss = segundos.toString().padStart(2, '0');
+            // Mostrar en la interfaz
+            spanTiempo.textContent =
+                `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
 
-            spanTiempo.textContent = `${hh}:${mm}:${ss}`;
+            // Guardar en sesión via AJAX
+            fetch('/actualizar-tiempo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ tiempo: totalSegundos })
+            });
         }
 
-        // Iniciar el contador
-        setInterval(actualizarTiempo, 1000);
+        // Mostrar el tiempo inicial
+        let totalSegundos = {{ session('tiempo_en_plataforma', 0) }};
+
+        // Mostrar en la interfaz en formato HH:MM:SS
+        const initHoras = Math.floor(totalSegundos / 3600);
+        const initMinutos = Math.floor((totalSegundos % 3600) / 60);
+        const initSegs = totalSegundos % 60;
+
+        spanTiempo.textContent =
+            `${initHoras.toString().padStart(2, '0')}:${initMinutos.toString().padStart(2, '0')}:${initSegs.toString().padStart(2, '0')}`;
+
+        // Iniciar el conteo
+        setInterval(() => {
+            totalSegundos++;
+            actualizarTiempo();
+        }, 1000);
     });
 </script>

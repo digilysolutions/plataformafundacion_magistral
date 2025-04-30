@@ -264,6 +264,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/pisa', function () {
         return view('items.items_pisa'); // Vista para el dashboard del usuario (en construcción)
     })->name('items.items_pisa');
+    Route::post('/actualizar-tiempo', function (Illuminate\Http\Request $request) {
+        $tiempo = $request->input('tiempo');
+        session(['tiempo_en_plataforma' => $tiempo]);
+        return response()->json(['status' => 'ok']);
+    });
 
     Route::get('/tutor/request', function () {
         $especialidades = [
