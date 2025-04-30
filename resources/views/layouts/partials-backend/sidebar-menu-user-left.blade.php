@@ -108,11 +108,7 @@
                                     <i class="las la-minus"></i><span>Solicitar Tutor</span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
-                                <a href="{{route('tutor.assigned')}}">
-                                    <i class="las la-minus"></i><span>Tutores Asignados </span>
-                                </a>
-                            </li>
+                          
 
 
                         </ul>
