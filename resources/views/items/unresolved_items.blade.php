@@ -70,14 +70,14 @@
         .ficha.summary li {
             background-color: #ffffff;
             border: 1px solid #bbdefb;
-            border-left: 5px solid #1976d2;
+            border-left: 5px solid #FF7E41;
             padding: 8px 12px;
             margin-bottom: 8px;
             border-radius: 4px;
         }
 
         .ficha.summary li strong {
-            color: #1565c0;
+            color: #FF7E41;
             float: right;
         }
 
@@ -124,7 +124,7 @@
         }
 
         .ficha.legend .legend-content h3 {
-            color: #1565c0;
+            color: #FF7E41;
             margin-top: 0;
             margin-bottom: 8px;
             /* Ajustado margen superior */
@@ -135,7 +135,7 @@
         }
 
         .ficha.legend .legend-content h4 {
-            color: #1976d2;
+            color: #FF7E41;
             margin-top: 10px;
             margin-bottom: 5px;
             font-size: 1em;
