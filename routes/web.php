@@ -139,8 +139,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/study-centers/{id}/renew-membership', [MembershipController::class, 'renew_studyCenter'])->name('study_centers.renew_membership')->middleware('role:Centro Educativo');
     Route::get('/study-centers/{studyCenterId}/renew-membership', [MembershipController::class, 'remembership_studyCenter'])->name('study_centers.remembership')->middleware('role:Administrador,Centro Educativo');
 
-    Route::post('/user/{id}/renew-membership', [MembershipController::class, 'renew_user'])->name('user.renew_membership')->middleware('role:Usuario');
-    Route::get('/user/{user_id}/renew-membership', [MembershipController::class, 'remembership_user'])->name('user.remembership')->middleware('role:Usuario');
+    Route::post('/memberships/{id}//user/renew-membership', [MembershipController::class, 'renew_user'])->name('user.renew_membership')->middleware('role:Usuario');
+    Route::get('/memberships/{user_id}/user/renew-membership', [MembershipController::class, 'remembership_user'])->name('user.remembership')->middleware('role:Usuario');
 
     Route::get('/pricing', [MembershipController::class, 'pricing'])->name('membership.pricing');
 
