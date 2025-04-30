@@ -104,7 +104,7 @@
 
             </div>
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <h3>Notificaciones Usuario</h3>
                     <div class="card mb-4">
                         <div class="card-body">
@@ -128,33 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 ml-5">
-                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".items_time">Resolver ITEMS Tiempo</button>
-                    </div>
 
-                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Práctica de ITEMS PISA</button>
-                    </div>
-
-                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="">Exámenes Diagnóstico</button>
-                    </div>
-
-                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="">Exámenes Nacionales</button>
-                    </div>
-
-                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".practica_ITEMS_PISA">Resolver ITEMS</button>
-                    </div>
-
-                    <div class="d-flex justify-content-start"> <!-- Flexbox para alinear a la izquierda -->
-                        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="">Pruebas Pisa</button>
-                    </div>
-                    @include('test.items_time')
-                    @include('pisa_test.test')
-                </div>
 
 
 
