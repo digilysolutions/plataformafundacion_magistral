@@ -40,7 +40,7 @@
                         <td>Confirmado</td>
                     </tr>
                     <tr>
-                        <td>Ciencias</td>
+                        <td>Ciencias Naturales</td>
                         <td>Laura Ramírez</td>
                         <td>No asignado</td>
                         <td>Pendiente</td>
