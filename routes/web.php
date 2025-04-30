@@ -255,6 +255,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/under/construction', function () {
         return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
     })->name('under.construction');
+    Route::get('/items/pisa', function () {
+        return view('items.items_pisa'); // Vista para el dashboard del usuario (en construcción)
+    })->name('items.items_pisa');
 
     Route::get('/tutor/request', function () {
         $especialidades = [
