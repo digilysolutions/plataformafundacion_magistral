@@ -103,13 +103,13 @@
                         </a>
                         <ul id="tutores" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
-                            <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('study-centers.index') }}">
+                            <li class="{{ request()->is('tutor*') ? 'active' : '' }}">
+                                <a href="{{ route('tutor.request_tutoring') }}">
                                     <i class="las la-minus"></i><span>Solicitar Tutor</span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
-                                <a href="">
+                                <a href="{{route('tutor.assigned')}}">
                                     <i class="las la-minus"></i><span>Tutores Asignados </span>
                                 </a>
                             </li>

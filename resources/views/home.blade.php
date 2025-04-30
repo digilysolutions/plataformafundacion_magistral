@@ -57,35 +57,36 @@
 
     <!-- ****** NUEVO SCRIPT: Ocultar al hacer clic y redirigir ****** -->
     <script>
-        // Espera a que el HTML esté listo
         document.addEventListener('DOMContentLoaded', () => {
             const splash = document.querySelector('.splash-screen');
-
             if (splash) {
-                // Función para ocultar el splash y redirigir
+                let redirected = false; // bandera para evitar múltiples redirecciones
+                let timerId = null;
+
                 function hideSplashScreen() {
-                    // Aplica estilos para iniciar la transición CSS de fade-out
+                    if (redirected) return; // ya fue redirigido
+                    redirected = true;
+                    // Cancela el timeout si aún no se ha ejecutado
+                    if (timerId) clearTimeout(timerId);
+
+                    // Aplica fade-out
                     splash.style.opacity = '0';
                     splash.style.visibility = 'hidden';
 
-                    // Opcional: Elimina el elemento del DOM después de que termine la transición
-                    // La duración (600ms) debe coincidir con la transición en el CSS
+                    // Redirige después de 600ms
                     setTimeout(() => {
                         window.location.href = '/login';
                     }, 600);
-
-                    // Importante: Remueve el event listener para que no se pueda volver a activar
-                    splash.removeEventListener('click', hideSplashScreen);
                 }
 
-                // Añade el event listener para el clic EN CUALQUIER PARTE del splash screen
+                // Evento clic en todo el splash
                 splash.addEventListener('click', hideSplashScreen);
 
-                // Redirigir después de 600 ms automáticamente
-                setTimeout(hideSplashScreen, 15000);
+                // Redirige automáticamente después de 15 segundos
+                timerId = setTimeout(hideSplashScreen, 15000);
             }
         });
-    </script>
+        </script>
     <!-- ****** FIN NUEVO SCRIPT ****** -->
 
 </body>

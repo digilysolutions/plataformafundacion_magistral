@@ -6,7 +6,11 @@
 
 @section('content-admin')
     <section class="content container-fluid">
+        @if(isset($not_membership) && $not_membership==false)
+        <h3>{{$messageActivate}}</h3>
+@else
         <div class="row">
+
             <div class="col-lg-4 col-sm-6">
                 <div class="card card-block card-stretch card-height blog pricing-details">
                     <div class="card-body text-center rounded">
@@ -91,5 +95,6 @@
                     </div>
                 </div>
             </div>
+            @endif
     </section>
 @endsection

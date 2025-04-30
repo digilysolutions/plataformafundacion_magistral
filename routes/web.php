@@ -33,21 +33,15 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NotificationsQuestionController;
 use App\Http\Controllers\QuestionController;
 use Maatwebsite\Excel\Facades\Excel;
-/*
-Route::get('/', function () {
-    return view('auth.login');
-});*/
+
 
 Route::get('/', function () {
-
     return view('home');
 });
 
-//Inicio de sesión
-/*Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-*/
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+->name('login');
+
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
 Route::get('/error404', function () {
@@ -71,11 +65,6 @@ Route::get('reset-password/{token}', function () {
     return view('auth.reset-password');
 })->name('password.reset');
 
-// Rutas de inicio de sesión
-/*Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-    ->name('login');*/
-
-//Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 // Rutas de registro
 Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -267,9 +256,14 @@ Route::middleware('auth')->group(function () {
         return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
     })->name('under.construction');
 
-    Route::get('/under/construction', function () {
-        return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
-    })->name('under.construction');
+    Route::get('/tutor/request', function () {
+        return view('tutor.request_tutoring');
+    })->name('tutor.request_tutoring');
+
+    Route::get('/tutor/assigned', function () {
+        return view('tutor.assigned_tutors');
+    })->name('tutor.assigned');
+
 
     // Route::get('/', [AuthenticatedSessionController::class, 'create']);
 

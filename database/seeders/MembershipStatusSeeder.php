@@ -14,7 +14,7 @@ class MembershipStatusSeeder extends Seeder
     public function run(): void
     {
         $statuses = [
-            ['name' => 'Activo', 'description' => 'La membresía está vigente y el usuario tiene acceso a todos los beneficios.'],
+            ['name' => 'Activo', 'description' => 'La membresía está vigente  y en período de validez.'],
             ['name' => 'Inactivo', 'description' => 'La membresía ha sido suspendida temporalmente.'],
             ['name' => 'Expirado', 'description' => 'La membresía ha llegado a su fecha de finalización y el usuario ya no tiene acceso a los beneficios.'],
             ['name' => 'Pendiente', 'description' => 'La solicitud de la membresía ha sido recibida pero aún no ha sido procesada.'],
@@ -23,6 +23,8 @@ class MembershipStatusSeeder extends Seeder
             ['name' => 'Suspendido', 'description' => 'La membresía ha sido suspendida, pero puede ser reactivada.'],
             ['name' => 'Renovación Pendiente', 'description' => 'La membresía está a punto de expirar y la renovación está en progreso.'],
             ['name' => 'Rechazado', 'description' => 'La solicitud de la membresía ha sido denegada.'],
+            ['name' => 'Finalizada Reciente', 'description' => 'La membresía finalizó hace menos de una semana.'],
+            ['name' => 'Finalizada Antiguamente', 'description' => 'La membresía finalizó hace más de una semana.'],
         ];
 
         foreach ($statuses as $status) {

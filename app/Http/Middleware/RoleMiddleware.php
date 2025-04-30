@@ -15,7 +15,6 @@ class RoleMiddleware
 
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-
         if (!Auth::check()) {
             Log::info('Usuario no autenticado, redirigiendo a /login');
             return redirect('/login')->with('error', 'Debes iniciar sesión para acceder a esta página.');

@@ -143,7 +143,13 @@ class MembershipController extends Controller
     {
 
         $membership = Membership::findOrFail($id);
-       
+
+        if(auth()->user()->role!="Administrador" && auth()->user()->membership_id !=$id)
+        {
+            $not_membership=false;
+            $messageActivate = 'La membresía no corresponde a la que tien activa';
+            return view('membership.show', compact('membership', 'messageActivate','not_membership'));
+        }
         $now = now();
         $messageActivate = "Esta membresía no está activa.";
         $startDate = \Carbon\Carbon::parse($membership->start_date);
@@ -159,49 +165,27 @@ class MembershipController extends Controller
         // Determinar el estado actual y el mensaje
         $estadoActualId = null; // Inicializar con null
         if ($membership->activated == 1 && $startDate > $now && $endDate > $now) {
-            $messageActivate = "Esta membresía está activada y aún no ha comenzado.";
-            $estadoActualId = $estadoPendienteId;
+            $mebershipStatus = MembershipStatus::where('name', 'Pendiente')->first();
+            $messageActivate =    $mebershipStatus->description;
+            $estadoActualId =$mebershipStatus->id;
+
         } elseif ($membership->activated == 1 && $startDate <= $now && $endDate >= $now) {
-            $messageActivate = "Esta membresía está actualmente activa.";
-            $estadoActualId = $estadoActivoId;
+            $mebershipStatus = MembershipStatus::where('name', 'Activo')->first();
+            $messageActivate =    $mebershipStatus->description;
+            $estadoActualId =$mebershipStatus->id;
+
         } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) <= 7) {
-            $messageActivate = "El tiempo para activar esta membresía ha pasado recientemente. Contacte con soporte.";
-            $estadoActualId = $estadoVencidaRecienteId;
+            $ $mebershipStatus = MembershipStatus::where('name', 'Finalizada Reciente')->first();
+            $messageActivate =    $mebershipStatus->description;
+            $estadoActualId =$mebershipStatus->id;
+
         } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) > 7) {
-            $messageActivate = "Esta membresía está desactivada debido a que el tiempo para activarla ha expirado.";
-            $estadoActualId = $estadoDesactivadaId;
-        } else {
-            $estadoActualId = $estadoInactivaId;
+            $mebershipStatus = MembershipStatus::where('name', 'Finalizada Antiguamente')->first();
+            $messageActivate =    $mebershipStatus->description;
+            $estadoActualId =$mebershipStatus->id;
+
         }
 
-        // Obtener el último historial de la membresía
-        $ultimoHistorial = MembershipHistory::where('membership_id', $membership->id)
-            ->latest('created_at')
-            ->first();
-
-        // Determinar si se necesita crear un nuevo registro
-        $debeCrearRegistro = false;
-
-        if (!$ultimoHistorial) {
-            // Si no hay historial, se crea el primero
-            $debeCrearRegistro = true;
-        } else {
-            // Comparar el estado actual con el último estado registrado
-            if ($ultimoHistorial->membership_statuses_id != $estadoActualId) {
-                $debeCrearRegistro = true;
-            }
-        }
-
-        // Crear el nuevo registro si es necesario
-        if ($debeCrearRegistro) {
-            MembershipHistory::create([
-                'id' => Str::uuid(), // No necesitas esto si usas HasUuids en el modelo MembershipHistory
-                'user_id' => auth()->user()->id, // Asumiendo que tienes autenticación
-                'membership_id' => $membership->id,
-                'start_date' => $now->toDateString(), // Usar la fecha actual
-                'membership_statuses_id' => $estadoActualId,
-            ]);
-        }
 
         $membershipMemberShipFeature = MembershipFeaturesMembership::where('membership_id', $membership->id)->get();
 
@@ -399,7 +383,7 @@ class MembershipController extends Controller
         // Obtener la membresía actual del centro de estudio
         $currentMembership = $user_change_membership->membership;
         $membershipMemberShipFeature = MembershipFeaturesMembership::where('membership_id', $membership->id)->get();
-        $features=MembershipFeaturesMembership::all();
+        $features = MembershipFeature::allActivated();
 
         // Si el centro de estudio ya tiene una membresía
         if ($currentMembership && $user_change_membership->membership_id !== $membership->id) {
@@ -436,7 +420,7 @@ class MembershipController extends Controller
 
             return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
         } else {
-            $messageActivate = 'Centro de estudio no tiene una membresía activa.';
+            $messageActivate = 'No tiene una membresía activa.';
             return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
         }
     }

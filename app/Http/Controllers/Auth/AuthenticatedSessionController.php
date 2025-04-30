@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Membership;
+use App\Models\MembershipHistory;
+use App\Models\MembershipStatus;
 use App\Models\RegisterStudyCenter;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -11,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,10 +23,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        if (!Auth::check())
+        Log::info("Entre al autenticar");
+        if (!Auth::check()) {
             return view('auth.login');
-        else
-            $roleid = Auth::user()->roleid;
+        }
+        $roleid = Auth::user()->roleid;
 
         // Redirigir al dashboard correspondiente
         switch ($roleid) {
@@ -77,7 +82,7 @@ class AuthenticatedSessionController extends Controller
             $user = Auth::user();
             if (!$user->activated) {
                 Auth::logout(); // Desloguear al usuario
-                return redirect('/login')->with('error' ,'Tu cuenta no está activada.');
+                return redirect('/login')->with('error', 'Tu cuenta no está activada.');
             }
 
             $roleid = $user->roleid;
@@ -119,6 +124,9 @@ class AuthenticatedSessionController extends Controller
                         $segisterStudyCenter->update();
                     }
 
+                    $user = auth()->user();
+                    $membership_id = $user->membership_id;
+                    $this->change_membership_status($user, $membership_id);
                     return redirect()->route('study-center.dashboard');
                 case 2:
                     return redirect()->route('student.dashboard');
@@ -128,7 +136,7 @@ class AuthenticatedSessionController extends Controller
                     // Comprobar si la persona asociada al usuario tiene un validador activado
                     if (!$user->person || !$user->person->validator || !$user->person->validator->activated) {
                         Auth::logout(); // Desloguear al usuario
-                        return redirect('/login')->with('error' ,'Tu cuenta no está activada.');
+                        return redirect('/login')->with('error', 'Tu cuenta no está activada.');
                     }
                     $user->person->validator->activated = true;
                     $user->person->validator->save();
@@ -136,6 +144,9 @@ class AuthenticatedSessionController extends Controller
                 case 5:
                     return redirect()->route('admin.dashboard');
                 case 6:
+                    $user = auth()->user();
+                    $membership_id = $user->membership_id;
+                    $this->change_membership_status($user, $membership_id);
                     return redirect()->route('user.dashboard');
                 default:
                     return redirect('/');
@@ -162,6 +173,61 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
+    private function change_membership_status($user, $membership_id)
+    {
+        $membership = Membership::findOrFail($membership_id);
+        $now = now();
+        $startDate = \Carbon\Carbon::parse($membership->start_date);
+        $endDate = \Carbon\Carbon::parse($membership->end_date);
+        if ($membership->activated == 1 && $startDate > $now && $endDate > $now) {
+            $mebershipStatus = MembershipStatus::where('name', 'Pendiente')->first();
+            $estadoActualId = $mebershipStatus->id;
+        } elseif ($membership->activated == 1 && $startDate <= $now && $endDate >= $now) {
+            $mebershipStatus = MembershipStatus::where('name', 'Activo')->first();
+            $estadoActualId = $mebershipStatus->id;
+        } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) <= 7) {
+            $$mebershipStatus = MembershipStatus::where('name', 'Finalizada Reciente')->first();
+            $estadoActualId = $mebershipStatus->id;
+        } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) > 7) {
+            $mebershipStatus = MembershipStatus::where('name', 'Finalizada Antiguamente')->first();
+
+            $estadoActualId = $mebershipStatus->id;
+        }
+        // Obtener el último historial de la membresía
+        $ultimoHistorial = MembershipHistory::where('membership_id', $membership->id)
+            ->where('user_id', $user->id)
+            ->latest('created_at')
+            ->first();
+
+
+        if ($ultimoHistorial->membership_statuses_id == $estadoActualId) {
+            return false;
+        }
+        // Determinar si se necesita crear un nuevo registro
+        $debeCrearRegistro = false;
+
+        if (!$ultimoHistorial) {
+            // Si no hay historial, se crea el primero
+            $debeCrearRegistro = true;
+        } else {
+            // Comparar el estado actual con el último estado registrado
+            if ($ultimoHistorial->membership_statuses_id != $estadoActualId) {
+                $debeCrearRegistro = true;
+            }
+        }
+
+        // Crear el nuevo registro si es necesario
+        if ($debeCrearRegistro) {
+            MembershipHistory::create([
+                'id' => Str::uuid(), // No necesitas esto si usas HasUuids en el modelo MembershipHistory
+                'user_id' => $user->id, // Asumiendo que tienes autenticación
+                'membership_id' => $membership->id,
+                'start_date' => $now->toDateString(), // Usar la fecha actual
+                'membership_statuses_id' => $estadoActualId,
+            ]);
+        }
+        return true;
+    }
     /**
      * Destroy an authenticated session.
      */
