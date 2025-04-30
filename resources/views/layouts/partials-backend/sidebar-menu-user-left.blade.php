@@ -445,7 +445,7 @@
                             <path d="M9 9c0-1.5 1-2.5 2-2.5s2 1 2 2c0 1-1 1.5-1 2h-1"></path>
                             <line x1="12" y1="16" x2="12" y2="16"></line>
                         </svg>
-                        <span class="ml-4">Solicitar Ayuda</span>
+                        <span class="ml-4">Ayuda</span>
                     </a>
                 </li>
 
