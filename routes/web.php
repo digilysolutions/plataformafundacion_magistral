@@ -257,7 +257,30 @@ Route::middleware('auth')->group(function () {
     })->name('under.construction');
 
     Route::get('/tutor/request', function () {
-        return view('tutor.request_tutoring');
+        $especialidades = [
+            [
+                'nombre' => 'Matemática',
+                'estado_asignacion' => 'No asignado',
+                'estado_solicitud' => 'Solicitado'
+            ],
+            [
+                'nombre' => 'Español',
+                'estado_asignacion' => 'Asignado',
+                'estado_solicitud' => 'Confirmado'
+            ],
+            [
+                'nombre' => 'Ciencias Sociales',
+                'estado_asignacion' => 'Asignado',
+                'estado_solicitud' => 'Confirmado'
+            ],
+            [
+                'nombre' => 'Ciencias Naturales',
+                'estado_asignacion' => 'No asignado',
+                'estado_solicitud' => 'Pendiente'
+            ],
+        ];
+    
+        return view('tutor.request_tutoring', compact('especialidades'));
     })->name('tutor.request_tutoring');
 
     Route::get('/tutor/assigned', function () {
