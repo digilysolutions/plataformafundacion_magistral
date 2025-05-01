@@ -164,16 +164,16 @@
                             </a>
                         </li>
                         <li class="{{ request()->is('items/diagnostic/study-center') ? 'active' : '' }}">
-                            <a href="{{route('study-center.items_diagnostic')}}">
+                            <a href="">
                                 <i class="las la-minus"></i><span>Pruebas PISA</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="">
+                        <li class="{{ request()->is('items/nacional/study-center') ? 'active' : '' }}">
+                            <a href="{{route('study-center.items_nacional')}}">
                                 <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('items/diagnostic/study-center') ? 'active' : '' }}">
                             <a href="{{route('study-center.items_diagnostic')}}">
                                 <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                             </a>
