@@ -158,13 +158,13 @@
                         </svg>
                     </a>
                     <ul id="items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="{{ request()->is('items/pisa') ? 'active' : '' }}">
+                        <li class="{{ request()->is('items/general/study-center') ? 'active' : '' }}">
                             <a href="{{route('study-center.items_general')}}">
                                 <i class="las la-minus"></i><span>General</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('items/pisa') ? 'active' : '' }}">
-                            <a href="">
+                        <li class="{{ request()->is('items/diagnostic/study-center') ? 'active' : '' }}">
+                            <a href="{{route('study-center.items_diagnostic')}}">
                                 <i class="las la-minus"></i><span>Pruebas PISA</span>
                             </a>
                         </li>
