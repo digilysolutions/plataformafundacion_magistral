@@ -51,10 +51,10 @@
                                             <td>{{ ++$i }}</td>
 
 										<td >{{ $membershipHistory->user->person?->studyCenter?->name }}</td>
-										<td >{{ $membershipHistory->membership->name }}</td>
+										<td >{{ $membershipHistory->membership?->name }}</td>
 										<td >{{ $membershipHistory->start_date }}</td>
-										<td >{{ $membershipHistory->membershipStatus->name }}</td>
-										<td >{{ $membershipHistory->membershipStatus->description }}</td>
+										<td >{{ $membershipHistory->membershipStatus?->name }}</td>
+										<td >{{ $membershipHistory->membershipStatus?->description }}</td>
 
 
                                         </tr>
