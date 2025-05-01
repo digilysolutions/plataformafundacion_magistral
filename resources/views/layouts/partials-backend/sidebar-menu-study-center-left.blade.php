@@ -163,8 +163,8 @@
                                 <i class="las la-minus"></i><span>General</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('items/diagnostic/study-center') ? 'active' : '' }}">
-                            <a href="">
+                        <li class="{{ request()->is('items/pisa/study-center') ? 'active' : '' }}">
+                            <a href="{{route('study-center.items_pisa')}}">
                                 <i class="las la-minus"></i><span>Pruebas PISA</span>
                             </a>
                         </li>
