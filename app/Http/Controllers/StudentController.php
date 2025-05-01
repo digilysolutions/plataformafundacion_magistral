@@ -319,6 +319,7 @@ class StudentController extends Controller
     {
         $student = new Student();
         $studyCenters = StudyCenter::allActivated();
+        $courses = Course::allActivated();
 
         if (count($studyCenters) == 0) {
             $error = 'NO podemos crear estudiantes, no hay centros de estudios activos o creados. '
@@ -328,6 +329,6 @@ class StudentController extends Controller
             $students = $this->indexToStudyCenter($idStudyCenter);
             return view('student.index', compact('students'))->with('error', $error);
         }
-        return view('student.create', compact('student', 'studyCenters', 'idStudyCenter'));
+        return view('student.create', compact('student', 'studyCenters', 'idStudyCenter','courses'));
     }
 }
