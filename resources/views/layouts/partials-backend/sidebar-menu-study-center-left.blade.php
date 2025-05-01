@@ -122,12 +122,12 @@
                     </a>
                     <ul id="tutores" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('tutors/create') ? 'active' : '' }}">
                             <a href="{{ route('tutors.create') }}">
                                 <i class="las la-minus"></i><span>Registrar Tutores</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('tutors*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('tutors/studyCenter/*') ? 'active' : '' }}">
                             <a href="{{ route('tutors.indexToStudyCenter', $user->person->studyCenter->id) }}">
                                 <i class="las la-minus"></i><span>Tutores registrados </span>
                             </a>
