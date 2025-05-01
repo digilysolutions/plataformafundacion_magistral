@@ -305,7 +305,7 @@
                     </ul>
                 </li>
                 <li class="{{ request()->is('') ? 'active' : '' }}">
-                    <a href="https://fundacionmagistral.org/ayuda">
+                    <a href="{{ route('under.construction') }}">
                         <svg class="svg-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 
                             <!-- Cuño con Lazo -->
@@ -357,7 +357,7 @@
                             <path d="M9 9c0-1.5 1-2.5 2-2.5s2 1 2 2c0 1-1 1.5-1 2h-1"></path>
                             <line x1="12" y1="16" x2="12" y2="16"></line>
                         </svg>
-                        <span class="ml-4">Solicitar Ayuda</span>
+                        <span class="ml-4">Ayuda</span>
                     </a>
                 </li>
 
