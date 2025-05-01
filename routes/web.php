@@ -136,7 +136,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador');
     Route::get('/memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador');
     Route::post('/memberships', [MembershipController::class, 'store'])->name('memberships.store')->middleware('role:Administrador');
-    Route::get('/memberships/{id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Usuario');
+    Route::get('/memberships/{id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Usuario,Centro Educativo');
     Route::get('/memberships/{id}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');
     Route::patch('memberships/{id}', [MembershipController::class, 'update'])->name('memberships.update')->middleware('role:Administrador');
     Route::delete('/memberships/{id}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');
@@ -256,19 +256,19 @@ Route::middleware('auth')->group(function () {
         return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
     })->name('under.construction');
     Route::get('/items/general/study-center', function () {
-        return view('study-center.items_general'); // Vista para el dashboard del usuario (en construcción)
+        return view('study-center.items_general');
     })->name('study-center.items_general');
 
     Route::get('/items/diagnostic/study-center', function () {
-        return view('study-center.items_examens_diagnostic'); // Vista para el dashboard del usuario (en construcción)
+        return view('study-center.items_examens_diagnostic');
     })->name('study-center.items_diagnostic');
 
     Route::get('/items/nacional/study-center', function () {
-        return view('study-center.items_test_nacional'); // Vista para el dashboard del usuario (en construcción)
+        return view('study-center.items_test_nacional');
     })->name('study-center.items_nacional');
 
     Route::get('/items/pisa/study-center', function () {
-        return view('study-center.items_test_pisa'); // Vista para el dashboard del usuario (en construcción)
+        return view('study-center.items_test_pisa');
     })->name('study-center.items_pisa');
 
     Route::get('/test/items-pisa/time', function () {
