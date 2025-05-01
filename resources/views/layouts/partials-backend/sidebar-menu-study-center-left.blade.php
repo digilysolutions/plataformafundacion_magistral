@@ -159,6 +159,11 @@
                     </a>
                     <ul id="items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="{{ request()->is('items/pisa') ? 'active' : '' }}">
+                            <a href="{{route('study-center.items_general')}}">
+                                <i class="las la-minus"></i><span>General</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('items/pisa') ? 'active' : '' }}">
                             <a href="">
                                 <i class="las la-minus"></i><span>Pruebas PISA</span>
                             </a>
