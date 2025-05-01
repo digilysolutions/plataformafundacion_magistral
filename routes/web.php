@@ -258,6 +258,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/general/study-center', function () {
         return view('study-center.items_general'); // Vista para el dashboard del usuario (en construcción)
     })->name('study-center.items_general');
+    Route::get('/items/diagnostic/study-center', function () {
+        return view('study-center.items_examens_diagnostic'); // Vista para el dashboard del usuario (en construcción)
+    })->name('study-center.items_diagnostic');
     Route::get('/test/items-pisa/time', function () {
         return view('test.items_time'); // Vista para el dashboard del usuario (en construcción)
     })->name('test.items_time');
