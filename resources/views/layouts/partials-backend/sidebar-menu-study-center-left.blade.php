@@ -174,7 +174,7 @@
                             </a>
                         </li>
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="">
+                            <a href="{{route('study-center.items_diagnostic')}}">
                                 <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                             </a>
                         </li>
