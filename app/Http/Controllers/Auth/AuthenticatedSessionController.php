@@ -119,13 +119,14 @@ class AuthenticatedSessionController extends Controller
                     }
 
                     $segisterStudyCenter  =   RegisterStudyCenter::where('mail', $studyCenter->mail)->first();
-                    if (!$segisterStudyCenter && $segisterStudyCenter->state != "Completada") {
+                    if ($segisterStudyCenter && $segisterStudyCenter?->state != "Completada") {
                         $segisterStudyCenter->state = "Completada";
                         $segisterStudyCenter->update();
                     }
-
                     $user = auth()->user();
-                    $membership_id = $user->membership_id;
+
+                    $membership_id = $user->person->studyCenter->membership_id;
+
                     $this->change_membership_status($user, $membership_id);
                     return redirect()->route('study-center.dashboard');
                 case 2:
