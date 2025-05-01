@@ -21,7 +21,7 @@ class MembershipStatusSeeder extends Seeder
             ['name' => 'Cancelado', 'description' => 'La membresía ha sido cancelada por el usuario o la plataforma.'],
             ['name' => 'Prueba', 'description' => 'El usuario está en un período de prueba, acceso temporal y limitado.'],
             ['name' => 'Suspendido', 'description' => 'La membresía ha sido suspendida, pero puede ser reactivada.'],
-            ['name' => 'Renovación Pendiente', 'description' => 'La membresía está a punto de expirar y la renovación está en progreso.'],
+            ['name' => 'Renovación Pendiente', 'description' =>     'La membresía está a punto de expirar y la renovación está en progreso.'],
             ['name' => 'Rechazado', 'description' => 'La solicitud de la membresía ha sido denegada.'],
             ['name' => 'Finalizada Reciente', 'description' => 'La membresía finalizó hace menos de una semana.'],
             ['name' => 'Finalizada Antiguamente', 'description' => 'La membresía finalizó hace más de una semana.'],
