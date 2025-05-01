@@ -255,6 +255,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/under/construction', function () {
         return view('under_construction'); // Vista para el dashboard del usuario (en construcción)
     })->name('under.construction');
+    Route::get('/items/general/study-center', function () {
+        return view('study-center.items_general'); // Vista para el dashboard del usuario (en construcción)
+    })->name('study-center.items_general');
     Route::get('/test/items-pisa/time', function () {
         return view('test.items_time'); // Vista para el dashboard del usuario (en construcción)
     })->name('test.items_time');
