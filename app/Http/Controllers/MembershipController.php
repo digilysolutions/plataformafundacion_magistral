@@ -141,14 +141,27 @@ class MembershipController extends Controller
      */
     public function show($id): View
     {
-
         $membership = Membership::findOrFail($id);
+        $user = auth()->user();
+        $membership_id = null;
+        $not_membership = true;
+        if ($user->role != "Administrador") {
 
-        if(auth()->user()->role!="Administrador" && auth()->user()->membership_id !=$id)
-        {
-            $not_membership=false;
-            $messageActivate = 'La membresía no corresponde a la que tien activa';
-            return view('membership.show', compact('membership', 'messageActivate','not_membership'));
+            if ($user->role == "Centro Educativo") {
+
+                if ($membership->id != $user->person->studyCenter->membership_id) {
+                    $not_membership = false;
+                }
+            } else {
+                if ($membership->id != $user->membership_id) {
+                    $not_membership = false;
+                }
+            }
+            if( $not_membership == false)
+            {
+                $messageActivate = 'La membresía no corresponde a la que tien activa';
+                return view('membership.show', compact('membership', 'messageActivate', 'not_membership'));
+            }
         }
         $now = now();
         $messageActivate = "Esta membresía no está activa.";
@@ -167,23 +180,19 @@ class MembershipController extends Controller
         if ($membership->activated == 1 && $startDate > $now && $endDate > $now) {
             $mebershipStatus = MembershipStatus::where('name', 'Pendiente')->first();
             $messageActivate =    $mebershipStatus->description;
-            $estadoActualId =$mebershipStatus->id;
-
+            $estadoActualId = $mebershipStatus->id;
         } elseif ($membership->activated == 1 && $startDate <= $now && $endDate >= $now) {
             $mebershipStatus = MembershipStatus::where('name', 'Activo')->first();
             $messageActivate =    $mebershipStatus->description;
-            $estadoActualId =$mebershipStatus->id;
-
+            $estadoActualId = $mebershipStatus->id;
         } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) <= 7) {
-            $ $mebershipStatus = MembershipStatus::where('name', 'Finalizada Reciente')->first();
+            $$mebershipStatus = MembershipStatus::where('name', 'Finalizada Reciente')->first();
             $messageActivate =    $mebershipStatus->description;
-            $estadoActualId =$mebershipStatus->id;
-
+            $estadoActualId = $mebershipStatus->id;
         } elseif ($membership->activated == 1 && $endDate < $now && $startDate->diffInDays($endDate) > 7) {
             $mebershipStatus = MembershipStatus::where('name', 'Finalizada Antiguamente')->first();
             $messageActivate =    $mebershipStatus->description;
-            $estadoActualId =$mebershipStatus->id;
-
+            $estadoActualId = $mebershipStatus->id;
         }
 
 
@@ -405,7 +414,7 @@ class MembershipController extends Controller
 
             // Mensaje de activación
             $messageActivate = $ultimoHistorial->membershipStatus?->description;
-            return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
+            return view('membership.show', compact('membership', 'messageActivate', 'features', 'membershipMemberShipFeature'));
         } elseif ($currentMembership && $user_change_membership->membership_id === $membership->id) {
             // Si la membresía es igual, retornar el mensaje correspondiente
             $ultimoHistorial = MembershipHistory::where('membership_id', $membership->id)
@@ -418,10 +427,10 @@ class MembershipController extends Controller
                 $messageActivate = 'No hay historial de membresía. Acción no requerida.';
             }
 
-            return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
+            return view('membership.show', compact('membership', 'messageActivate', 'features', 'membershipMemberShipFeature'));
         } else {
             $messageActivate = 'No tiene una membresía activa.';
-            return view('membership.show', compact('membership', 'messageActivate', 'features','membershipMemberShipFeature'));
+            return view('membership.show', compact('membership', 'messageActivate', 'features', 'membershipMemberShipFeature'));
         }
     }
 }
