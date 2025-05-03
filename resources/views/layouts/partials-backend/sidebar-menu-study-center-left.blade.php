@@ -260,7 +260,10 @@
                 </li>
 
                 <li class=" ">
-                    <a href="#certificate" class="collapsed" data-toggle="collapse" aria-expanded="false">
+
+                    <a href="{{ route('study-center.certificates') }}"
+                       class="{{ request()->is('study-center/certificates*') ? 'active' : '' }}" {{-- Marca como activo si la ruta es de certificados --}}
+                       aria-expanded="{{ request()->is('certificates*') ? 'true' : 'false' }}"> {{-- Controla el estado 'aria-expanded' --}}
                         <svg class="svg-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 
                             <!-- Cuño con Lazo -->
@@ -281,34 +284,35 @@
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    <ul id="certificate" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    {{-- Submenú de certificados --}}
+                    {{-- Añade la clase 'show' si la ruta actual es de certificados --}}
+                    <ul id="certificate" class="iq-submenu collapse {{ request()->is('study-center/certificates*') ? 'show' : '' }}" data-parent="#iq-sidebar-toggle">
 
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        {{-- Elementos del submenú que abren modales --}}
+                        <li class="{{ request()->is('certificates*') ? 'active' : '' }}"> {{-- Marca como activo si la ruta es de certificados --}}
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-level-items">
                                 <i class="las la-minus"></i><span>Nivel ITEMS</span>
                             </button>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('certificates*') ? 'active' : '' }}">
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-pisa-diagnostic">
                                 <i class="las la-minus"></i><span>Prueba PISA</span>
                             </button>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('certificates*') ? 'active' : '' }}">
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-examen-nacional">
                                 <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                             </button>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('certificates*') ? 'active' : '' }}">
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-examen-diagnostic">
                                 <i class="las la-minus"></i><span>Exámenes Diagnósticos</span>
                             </button>
                         </li>
-
-
                     </ul>
                 </li>
                 <li class=" ">
-                    <a href="#metricas" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                    <a href="{{ route('study-center.reports') }}" class="{{ request()->is('study-center/reports*') ? 'active' : '' }}" aria-expanded="{{ request()->is('study-center/reports*') ? 'true' : 'false' }}"> {{-- Enlace a la vista principal de reportes --}}
                         <svg class="svg-icon" id="p-dash9" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="9"></rect><rect x="14" y="7" width="3" height="5"></rect>
                         </svg>
@@ -320,30 +324,29 @@
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    <ul id="metricas" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <ul id="metricas" class="iq-submenu collapse {{ request()->is('study-center/reports*') ? 'show' : '' }}" data-parent="#iq-sidebar-toggle"> {{-- Añade la clase 'show' si la ruta es de reportes --}}
 
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        {{-- Estos botones seguirán abriendo los modales --}}
+                        <li class="{{ request()->is('study-center/reports*') ? 'active' : '' }}"> {{-- Mantén la clase activa para los elementos del submenú --}}
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-examen">
                                 <i class="las la-minus"></i><span>Reportes Exámenes</span>
                             </button>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('study-center/reports*') ? 'active' : '' }}">
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-tutors">
                                 <i class="las la-minus"></i><span>Reportes Tutores</span>
                             </button>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('study-center/reports*') ? 'active' : '' }}">
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-centro">
                                 <i class="las la-minus"></i><span>Reporte Centro</span>
                             </button>
                         </li>
-                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                        <li class="{{ request()->is('study-center/reports*') ? 'active' : '' }}">
                             <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-students">
                                 <i class="las la-minus"></i><span>Reportes Estudiantes</span>
                             </button>
                         </li>
-
-
                     </ul>
                 </li>
                 <li class="{{ request()->is('') ? 'active' : '' }}">
@@ -379,5 +382,3 @@
 
 </div>
 
-@include('study-center.reports')
-@include('study-center.certificate')

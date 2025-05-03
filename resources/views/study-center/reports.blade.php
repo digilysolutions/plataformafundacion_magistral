@@ -1,3 +1,58 @@
+@extends('layouts.app-admin')
+
+@section('title-header-admin')
+Reportes
+@endsection
+@section('content-admin')
+<h1>Sección de Reportes</h1>
+
+{{-- Contenido principal de la página de reportes (opcional) --}}
+<p>Aquí puedes tener un resumen de reportes, filtros, etc.</p>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card card-block card-stretch card-height">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Pruebas Nacionales</h4>
+                </div>
+                <div class="card-header-toolbar d-flex align-items-center">
+                    <div class="dropdown">
+                        <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton1"
+                            data-toggle="dropdown">
+                            Este Mes<i class="ri-arrow-down-s-line ml-1"></i>
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right shadow-none"
+                            aria-labelledby="dropdownMenuButton1">
+                            <a class="dropdown-item" href="#">Año</a>
+                            <a class="dropdown-item" href="#">Mes</a>
+                            <a class="dropdown-item" href="#">Semana</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="report-chart1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card card-block card-stretch card-height">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Pruebas por Niveles</h4>
+                </div>
+                <div class="card-header-toolbar d-flex align-items-center">
+                    <div><a href="#" class="btn light-gray view-btn">500</a></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="report-chart3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade reports-examen" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -19,7 +74,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Imprimir</button>
+
             </div>
         </div>
     </div>
@@ -45,7 +100,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Imprimir</button>
+
             </div>
         </div>
     </div>
@@ -72,7 +127,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Imprimir</button>
+
             </div>
         </div>
     </div>
@@ -98,8 +153,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Imprimir</button>
+
             </div>
         </div>
     </div>
 </div>
+
+@endsection
