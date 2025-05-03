@@ -258,8 +258,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ request()->is('') ? 'active' : '' }}">
-                    <a href="{{ route('under.construction') }}">
+
+                <li class=" ">
+                    <a href="#certificate" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 
                             <!-- Cuño con Lazo -->
@@ -273,7 +274,38 @@
                             <path d="M15 16c1 0 1.5 1 1.5 1s-1 1-1.5 1-1.5-1-1.5-1 1-1 1.5-1z" stroke="currentColor"></path>
                         </svg>
                         <span class="ml-4">Certificados</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline>
+                            <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
                     </a>
+                    <ul id="certificate" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-level-items">
+                                <i class="las la-minus"></i><span>Nivel ITEMS</span>
+                            </button>
+                        </li>
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-pisa-diagnostic">
+                                <i class="las la-minus"></i><span>Prueba PISA</span>
+                            </button>
+                        </li>
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-examen-nacional">
+                                <i class="las la-minus"></i><span>Pruebas Nacionales</span>
+                            </button>
+                        </li>
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".certificate-examen-diagnostic">
+                                <i class="las la-minus"></i><span>Exámenes Diagnósticos</span>
+                            </button>
+                        </li>
+
+
+                    </ul>
                 </li>
                 <li class=" ">
                     <a href="#metricas" class="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -291,14 +323,24 @@
                     <ul id="metricas" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
 
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="{{ route('under.construction') }}">
-                                <i class="las la-minus"></i><span>Reporte Centro</span>
-                            </a>
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-examen">
+                                <i class="las la-minus"></i><span>Reportes Exámenes</span>
+                            </button>
                         </li>
                         <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                            <a href="{{ route('under.construction') }}">
-                                <i class="las la-minus"></i><span>Reporte Estudiante</span>
-                            </a>
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-tutors">
+                                <i class="las la-minus"></i><span>Reportes Tutores</span>
+                            </button>
+                        </li>
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-centro">
+                                <i class="las la-minus"></i><span>Reporte Centro</span>
+                            </button>
+                        </li>
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <button type="button" class="btn btn-outline-link rounded-pill ml-4"  data-toggle="modal" data-target=".reports-students">
+                                <i class="las la-minus"></i><span>Reportes Estudiantes</span>
+                            </button>
                         </li>
 
 
@@ -336,3 +378,6 @@
 
 
 </div>
+
+@include('study-center.reports')
+@include('study-center.certificate')
