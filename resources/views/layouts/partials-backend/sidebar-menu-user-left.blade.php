@@ -263,26 +263,12 @@
                                 </a>
                             </li>
 
-                            <li class="{{ request()->is('user*') ? 'active' : '' }}">
-                                <a href="{{ route('user.time') }}">
-                                    <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M12 2 L12 22 M4 12 L20 12" />
-                                        <circle cx="12" cy="12" r="8"></circle>
-                                    </svg>
-                                    <span class="ml-4">Tiempo en Plataforma </span>
-                                </a>
-                            </li>
 
                         </ul>
                     </li>
-
-
-
-
                 <li class="">
-                    <a href="{{ route('under.construction') }}" class="svg-icon">
+
+                    <a href="#reports" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" id="p-dash14" width="20" height="20"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -292,8 +278,39 @@
                         <rect x="3" y="14" width="7" height="7"></rect>
                     </svg>
                         <span class="ml-4">Reportes</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline>
+                            <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
                     </a>
-                </li>
+                    <ul id="reports" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <a href="{{ route('under.construction') }}">
+                                <i class="las la-minus"></i><span> Reporte Items</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <a href="{{ route('under.construction') }}">
+                                <i class="las la-minus"></i><span>Reporte Exámenes </span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
+                            <a href="{{ route('under.construction') }}">
+                                <i class="las la-minus"></i><span>Reporte Usuarios </span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('user*') ? 'active' : '' }}">
+                            <a href="{{ route('user.time') }}">
+
+                                <span class="las la-minus">Tiempo en Plataforma </span>
+                            </a>
+                        </li>
+
+                    </ul>
+            </li>
 
 
 
