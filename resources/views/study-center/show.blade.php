@@ -26,6 +26,7 @@
 
                     <div class="form-group mb-3">
                         <strong>Usuario:</strong>
+
                         {{ $studyCenter->person?->user->email ?? 'No disponible' }}
                     </div>
 
