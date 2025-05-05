@@ -16,12 +16,6 @@
                             {{ __('Items') }}
                         </span>
 
-                        <div class="float-right">
-                            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"
-                                data-placement="left">
-                                {{ __('Nuevo') }}
-                            </a>
-                        </div>
                     </div>
                 </div>
                 @if ($message = Session::get('success'))
