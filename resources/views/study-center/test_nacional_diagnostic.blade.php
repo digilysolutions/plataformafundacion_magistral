@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    Exámenes Resueltos - Pruebas Nacionales por Asignatura
+    Exámenes - Pruebas Nacionales por Asignatura
 @endsection
 @section('css')
 @endsection
@@ -12,7 +12,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                 <span id="card_title">
-                    Exámenes Resueltos - Pruebas Nacionales por Asignatura </span>
+                    Exámenes - Pruebas Nacionales por Asignatura </span>
 
             </div>
         </div>
