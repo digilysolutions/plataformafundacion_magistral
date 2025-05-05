@@ -39,6 +39,7 @@
                                     <th>Especialidad</th>
                                     <th>Nivel</th>
                                     <th>Estado</th>
+                                    <th></th>
                                 </tr>
 
                             </thead>
@@ -50,6 +51,13 @@
                                     <td>Español</td>
                                     <td>Nivel 2</td>
                                     <td><span class="badge bg-primary">Validado</span></td>
+
+                                   <td>
+                                    <a class="btn btn-sm btn-primary "
+                                    href=""><i
+                                        class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                   </td>
+
                                 </tr>
                                 <tr>
                                     <td>ES-148</td>
@@ -57,6 +65,15 @@
                                     <td>Matematica</td>
                                     <td>Nivel 1</td>
                                     <td><span class="badge bg-warning-light">Por Validar</span></td>
+
+                                 <td>
+                                    <a class="btn btn-sm btn-primary "
+                                    href=""><i
+                                        class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                <a class="btn btn-sm btn-success"
+                                    href="#"><i
+                                        class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                 </td>
                                 </tr>
                                 <tr>
                                     <td>ES-149</td>
@@ -64,6 +81,13 @@
                                     <td>Matematica</td>
                                     <td>Nivel 3</td>
                                     <td><span class="badge bg-danger-light">Rechazado</span></td>
+                                    <td>
+                                            <a class="btn btn-sm btn-primary "
+                                                href=""><i
+                                                    class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+
+
+                                    </td>
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -73,7 +97,7 @@
                                     <th>Especialidad</th>
                                     <th>Nivel</th>
                                     <th>Estado</th>
-
+                                    <th></th>
                                 </tr>
                             </tfoot>
                         </table>
