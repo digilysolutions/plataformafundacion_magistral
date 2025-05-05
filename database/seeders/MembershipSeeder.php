@@ -18,10 +18,9 @@ class MembershipSeeder extends Seeder
     {
         $memberships = [
             [
-
                 'activated' => true,
-                'name' => 'Basica',
-                'price' => 0,
+                'name' => 'Basica Usuario General',
+                'price' => 500,
                 'duration_days' => 30,
                 'start_date' => now(),
                 'end_date' => now()->addDays(30),
@@ -33,21 +32,61 @@ class MembershipSeeder extends Seeder
             [
 
                 'activated' => true,
-                'name' => 'Premium',
-                'price' => 49.99,
-                'duration_days' => 180,
+                'name' => 'Membresía Básica Centro',
+                'price' => 1000,
+                'duration_days' => 30,
                 'start_date' => now(),
-                'end_date' => now()->addDays(180),
-                'type' => 'Tipo II',
-                'is_studio_center' => false,
+                'end_date' => now()->addDays(30),
+                'type' => 'Hasta 50 Estudiantes',
+                'is_studio_center' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
 
                 'activated' => true,
-                'name' => 'VIP',
-                'price' => 99.99,
+                'name' => 'Membresía Premium Centro',
+                'price' => 3000,
+                'duration_days' => 30, // Ilimitado
+                'start_date' => now(),
+                'end_date' => now()->addDays(30), // Ilimitado
+                'type' => 'Hasta 50 Estudiantes',
+                'is_studio_center' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+
+                'activated' => true,
+                'name' => 'Membresía Premium Centro',
+                'price' => 5000,
+                'duration_days' => 30, // Ilimitado
+                'start_date' => now(),
+                'end_date' => now()->addDays(30), // Ilimitado
+                'type' => 'Más de 100 Estudiantes',
+                'is_studio_center' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+
+                'activated' => true,
+                'name' => 'Premium Usuario General',
+                'price' => 1500,
+                'duration_days' => 180, // Ilimitado
+                'start_date' => now(),
+                'end_date' => now()->addDays(180), // Ilimitado
+                'type' => 'Tipo II',
+                'is_studio_center' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+
+                'activated' => true,
+                'name' => 'VIP Usuario General',
+                'price' => 5000,
                 'duration_days' => 365, // Ilimitado
                 'start_date' => now(),
                 'end_date' => now()->addDays(365), // Ilimitado
@@ -56,6 +95,7 @@ class MembershipSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
         ];
         foreach ($memberships as $membership) {
             Membership::create($membership);
