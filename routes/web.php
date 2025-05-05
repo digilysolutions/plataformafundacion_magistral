@@ -282,6 +282,11 @@ Route::middleware('auth')->group(function () {
         return view('study-center.test_pisa');
     })->name('study-center.test_pisa');
 
+    Route::get('/study-center/test-nacional', function () {
+        return view('study-center.test_nacional_diagnostic');
+    })->name('study-center.test_nacional_diagnostic');
+
+
     Route::get('/test/items-pisa/time', function () {
         return view('test.items_time'); // Vista para el dashboard del usuario (en construcción)
     })->name('test.items_time');

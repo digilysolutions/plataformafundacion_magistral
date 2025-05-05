@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    Items por Estudiante
+Exámenes Resueltos - Pruebas PISA por Niveles y Tiempo
 @endsection
 @section('css')
 @endsection

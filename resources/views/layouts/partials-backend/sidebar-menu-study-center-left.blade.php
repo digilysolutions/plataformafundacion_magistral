@@ -200,8 +200,8 @@
                                 <i class="las la-minus"></i><span>Pruebas PISA</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('items/nacional/study-center') ? 'active' : '' }}">
-                            <a href="{{route('study-center.items_nacional')}}">
+                        <li class="{{ request()->is('study-center/test-nacional') ? 'active' : '' }}">
+                            <a href="{{route('study-center.test_nacional_diagnostic')}}">
                                 <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                             </a>
                         </li>
