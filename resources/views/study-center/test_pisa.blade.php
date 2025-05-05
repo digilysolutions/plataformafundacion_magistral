@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-Exámenes Resueltos - Pruebas PISA por Niveles y Tiempo
+Exámenes - Pruebas PISA por Niveles y Tiempo
 @endsection
 @section('css')
 @endsection
@@ -12,7 +12,7 @@ Exámenes Resueltos - Pruebas PISA por Niveles y Tiempo
             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                 <span id="card_title">
-                    Exámenes Resueltos - Pruebas PISA por Niveles y Tiempo
+                    Exámeness - Pruebas PISA por Niveles y Tiempo
                 </span>
 
 
