@@ -181,83 +181,38 @@
                     </ul>
                 </li>
                 <li class="">
-                    <a href="#examenes" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash13" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    <a href="#tests" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <svg class="svg-icon" id="p-dash07" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
                         </svg>
                         <span class="ml-4">Exámenes</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline>
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    <ul id="examenes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li>
-                            <a href="#examenes_resueltos" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <svg class="svg-icon" id="p-dash07" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                <span class="ml-4">Exámenes Resueltos</span>
-                                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="10 15 15 20 20 15"></polyline>
-                                    <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                </svg>
+                    <ul id="tests" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li class="{{ request()->is('study-center/test-pisa') ? 'active' : '' }}">
+                            <a href="{{route('study-center.test_pisa')}}">
+                                <i class="las la-minus"></i><span>Pruebas PISA</span>
                             </a>
-                            <ul id="examenes_resueltos" class="iq-submenu collapse" data-parent="#examenes">
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('under.construction') }}">
-                                        <i class="las la-minus"></i><span>Prueba PISA</span>
-                                    </a>
-                                </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('under.construction') }}">
-                                        <i class="las la-minus"></i><span>Pruebas Nacionales </span>
-                                    </a>
-                                </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('under.construction') }}">
-                                        <i class="las la-minus"></i><span>Pruebas Diagnóstico </span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li>
-                            <a href="#examenes_noresueltos" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                                <svg class="svg-icon" id="p-dash18" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
-                                </svg>
-                                <span class="ml-4">Exámenes No Resueltos</span>
-                                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="10 15 15 20 20 15"></polyline>
-                                    <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                                </svg>
+                        <li class="{{ request()->is('items/nacional/study-center') ? 'active' : '' }}">
+                            <a href="{{route('study-center.items_nacional')}}">
+                                <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                             </a>
-                            <ul id="examenes_noresueltos" class="iq-submenu collapse" data-parent="#examenes">
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('under.construction') }}">
-                                        <i class="las la-minus"></i><span>Pruebas PISA</span>
-                                    </a>
-                                </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('under.construction') }}">
-                                        <i class="las la-minus"></i><span>Pruebas Nacionales</span>
-                                    </a>
-                                </li>
-                                <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                    <a href="{{ route('under.construction') }}">
-                                        <i class="las la-minus"></i><span> Pruebas Diagnóstico</span>
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="{{ request()->is('items/diagnostic/study-center') ? 'active' : '' }}">
+                            <a href="{{route('study-center.items_diagnostic')}}">
+                                <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
+                            </a>
                         </li>
                     </ul>
                 </li>
+
 
                 <li class=" ">
 

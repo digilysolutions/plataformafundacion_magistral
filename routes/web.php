@@ -278,6 +278,10 @@ Route::middleware('auth')->group(function () {
         return view('study-center.certificate');
     })->name('study-center.certificates');
 
+    Route::get('/study-center/test-pisa', function () {
+        return view('study-center.test_pisa');
+    })->name('study-center.test_pisa');
+
     Route::get('/test/items-pisa/time', function () {
         return view('test.items_time'); // Vista para el dashboard del usuario (en construcción)
     })->name('test.items_time');
