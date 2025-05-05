@@ -286,6 +286,9 @@ Route::middleware('auth')->group(function () {
         return view('study-center.test_nacional_diagnostic');
     })->name('study-center.test_nacional_diagnostic');
 
+    Route::get('/study-center/test-diagnostic', function () {
+        return view('study-center.test_diagnostic');
+    })->name('study-center.test_diagnostic');
 
     Route::get('/test/items-pisa/time', function () {
         return view('test.items_time'); // Vista para el dashboard del usuario (en construcción)

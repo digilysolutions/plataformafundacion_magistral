@@ -205,8 +205,8 @@
                                 <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('items/diagnostic/study-center') ? 'active' : '' }}">
-                            <a href="{{route('study-center.items_diagnostic')}}">
+                        <li class="{{ request()->is('study-center/test-diagnostic') ? 'active' : '' }}">
+                            <a href="{{route('study-center.test_diagnostic')}}">
                                 <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                             </a>
                         </li>
