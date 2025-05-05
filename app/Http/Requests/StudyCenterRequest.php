@@ -31,6 +31,8 @@ class StudyCenterRequest extends FormRequest
 			'regional_id' => 'required',
 			'district_id' => 'required',
 			'membership_id' => 'required',
+            'username'=>'string',
+            'password'=>'string'
         ];
     }
 }

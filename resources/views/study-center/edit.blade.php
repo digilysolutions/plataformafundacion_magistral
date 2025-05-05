@@ -21,7 +21,7 @@
                         <form method="POST" action="{{ route('study-centers.update', $studyCenter->id) }}"  role="form" enctype="multipart/form-data" data-toggle="validator">
                             @csrf
                             @method('PATCH')
-                            @include('study-center.form')
+                            @include('study-center.form_update')
 
                         </form>
                     </div>
@@ -31,6 +31,10 @@
     </section>
 @endsection
 @section('js')
+
+<!-- Validated Mail JavaScript -->
+<script src="{{ asset('js/mail-validate.js') }}"></script>
+<script src="{{ asset('js/icon-eyes-password.js') }}"></script>
 <!-- Validated Mail JavaScript -->
 <script src="{{ asset('js/mail-validate.js') }}"></script>
     <script>

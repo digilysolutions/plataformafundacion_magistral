@@ -184,6 +184,7 @@ Route::middleware('auth')->group(function () {
 
     //Study Center
     Route::resource('study-centers', StudyCenterController::class)->middleware('role:Administrador');
+
     /* Route::middleware('role:Administrador')->group(function () {
         Route::get('/study-centers', [StudyCenterController::class, 'index'])->name('study-centers.index');
         Route::get('/study-centers/create', [StudyCenterController::class, 'create'])->name('study-centers.create');

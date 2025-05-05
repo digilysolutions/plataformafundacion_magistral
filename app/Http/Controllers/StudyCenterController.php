@@ -109,6 +109,7 @@ class StudyCenterController extends Controller
         }
     }
 
+
     private function getUserByEmail(string $email)
     {
         $user = User::where('email', $email)->firstOrFail();
@@ -183,31 +184,35 @@ class StudyCenterController extends Controller
     {
 
         $data = $request->validated();
+
         $data["activated"] = $request->input('activated') === 'on' ? 1 : 0;
         $data['name_people'] = $request['name_people'];
         $data['lastname'] = $request['lastname'];
 
+
         DB::transaction(function () use ($data, $studyCenter) {
 
-            $baseEmail = strtolower($data['name_people']) . '.' . strtolower($data['lastname']) . '@fundacionmagistral.org';
-            if (!User::where('email', $baseEmail)->exists())
+            $user = User::where('email',  $data['username'])->first();
+
+            if (!$user) {
                 $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
-            else
-                $user = User::where('email', $baseEmail)->first();
+                $data['user_id'] = $user['user']->id;
+                $data['email'] = $user['user']->email;
+                $person = Person::create($data);
+                $data['people_id'] = $person->id;
+                $password = $user['password'];
+                $studyCenter->update($data);
+            } else {
+                $user->password = Hash::make($data['password']);
+                $user->email = $data['username'];
+                $user->name = $data['name_people'];
+                $user->update();
 
-            $data['user_id'] = $user['user']->id;
-            $data['email'] = $user['user']->email;
-            $person = Person::create($data);
-
-            $data['people_id'] = $person->id;
-            // Crear el estudiante
-            $password = $user['password'];
-            $studyCenter->update($data);
-
-            /*   return Redirect::route('study-center.show', compact('studyCenter', 'password'))
-                ->with('success', 'Centro de estudio creado satisfactoriamente.');*/
-            return view('study-center.show', compact('studyCenter'))
-                ->with('password', $password);
+                $user->person->name   = $data['name_people'];
+                $user->person->lastname   = $data['lastname'];
+                $user->person->email   =  $data['username'];
+                $user->person->update();
+            }
         });
         return Redirect::route('study-centers.index')
             ->with('success', 'Centro de estudio actualizado satisfactoriamente');

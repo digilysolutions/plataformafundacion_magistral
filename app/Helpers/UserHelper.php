@@ -5,21 +5,25 @@ namespace App\Helpers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+
 class UserHelper
 {
-    public static function createDefaultUser($name, $lastname,$role,$role_id)
+    public static function createDefaultUser($name, $lastname, $role, $role_id)
     {
         // Inicializar correo electrónico y lastname
-        $baseEmail = strtolower($name) . '.' . strtolower($lastname) . '@fundacionmagistral.org';
+        $cleanedName = str_replace(' ', '_', strtolower($name));
+        $cleanedLastname = str_replace(' ', '_', strtolower($lastname));
+
+        $baseEmail = $cleanedName . '.' . $cleanedLastname . '@fundacionmagistral.org';
         $email = $baseEmail;
         $suffix = 1;
 
         // Comprobar si el correo electrónico ya existe y generar uno único
         while (User::where('email', $email)->exists()) {
-            $email = strtolower($name) . '.' . strtolower($lastname) . $suffix . '@fundacionmagistral.org';
+            // Generar el nuevo correo con sufijo, usando los nombres limpios
+            $email = $cleanedName . '.' . $cleanedLastname . $suffix . '@fundacionmagistral.org';
             $suffix++;
         }
-
         // Generar contraseña segura
         $password = self::generateSecurePassword();
 
@@ -37,8 +41,8 @@ class UserHelper
         return [
             'message' => 'Usuario creado exitosamente',
             'user' => $user,
-            'email' =>  $email ,
-            
+            'email' =>  $email,
+
             'password' => $password // Puede ser útil para depuración, evita mostrarla en producción.
         ];
     }
