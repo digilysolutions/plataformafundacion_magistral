@@ -4,8 +4,8 @@
     Items  Pisa Prueba
 @endsection
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/items/style.css') }}" > 
-    
+    <link rel="stylesheet" href="{{ asset('css/items/style.css') }}" >
+
 @endsection
 @section('content-admin')
 
@@ -15,7 +15,7 @@
     <!-- Pantalla 1: Configuración    -->
     <!-- ============================ -->
     <div class="setup-screen" id="setupScreen">
-         <h2>Configuración de la Sesión</h2>
+         <h2>Configuración de la Sesión qqq</h2>
          <div class="setup-section setup-timer-duration">
              <p class="setup-section-label">1. Elige duración del temporizador:</p>
              <div class="timer-duration-options" id="timerDurationOptions">
