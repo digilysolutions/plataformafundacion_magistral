@@ -189,7 +189,11 @@ class StudyCenterController extends Controller
 
         DB::transaction(function () use ($data, $studyCenter) {
 
-            $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
+            $baseEmail = strtolower($data['name_people']) . '.' . strtolower($data['lastname']) . '@fundacionmagistral.org';
+            if (!User::where('email', $baseEmail)->exists())
+                $user = UserHelper::createDefaultUser($data['name_people'], $data['lastname'], 'Centro Educativo', 1);
+            else
+                $user = User::where('email', $baseEmail)->first();
 
             $data['user_id'] = $user['user']->id;
             $data['email'] = $user['user']->email;
