@@ -119,3 +119,6 @@ Exámenes - Pruebas PISA por Niveles y Tiempo
             </div>
         </div>
     @endsection
+    @section('js')
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
+@endsection

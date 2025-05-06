@@ -20,7 +20,7 @@
 <!-- Tabla -->
 <div class="card-body">
     <div class="table-responsive">
-        <table id="datatable" class="table data-tables table-striped">
+        <table id="datatable" class="table">
             <thead>
                 <tr class="ligth">
                     <th>Especialidad</th>
@@ -111,11 +111,11 @@
             { nombre: 'Ciencias Sociales', estado: 'Asignado', solicitud: 'Confirmado' },
             { nombre: 'Ciencias Naturales', estado: 'No asignado', solicitud: 'Pendiente' }
         ];
-    
+
         // Función para cargar todas las especialidades en el select
         function cargarEspecialidades() {
             $('#especialidadSelect').empty();
-    
+
             especialidades.forEach(especialidad => {
                 $('#especialidadSelect').append(
                     $('<option></option>')
@@ -123,7 +123,7 @@
                         .text(especialidad.nombre)
                 );
             });
-    
+
             // Habilitar o deshabilitar el select y el botón
             if (tieneEspecialidadesDisponibles()) {
                 $('#especialidadSelect').prop('disabled', false);
@@ -133,17 +133,17 @@
                 $('#btnSolicitar').prop('disabled', true);
             }
         }
-    
+
         // Verifica si hay especialidades con estado "No asignado" y solicitud "Solicitado"
         function tieneEspecialidadesDisponibles() {
             return especialidades.some(e => e.estado === 'No asignado' && e.solicitud === 'Solicitado');
         }
-    
+
         // Actualiza el select y botón en base a la tabla
         function actualizarSelect() {
             // Recalcular disponibles
             cargarEspecialidades();
-    
+
             // Si ya hay una solicitud en la tabla, deshabilitar en el select
             let solicitudes = [];
             $('#datatable tbody tr').each(function() {
@@ -154,7 +154,7 @@
                     solicitudes.push(especialidad);
                 }
             });
-    
+
             // Deshabilitar esas especialidades en el select
             $('#especialidadSelect option').each(function() {
                 const valor = $(this).val();
@@ -165,21 +165,21 @@
                 }
             });
         }
-    
+
         // Inicializa
         cargarEspecialidades();
-    
+
         let especialidadSeleccionada = '';
-    
+
         $('#especialidadSelect').on('change', function() {
             especialidadSeleccionada = $(this).val();
         });
-    
+
         $('#btnSolicitar').on('click', function() {
             especialidadSeleccionada = $('#especialidadSelect').val();
             $('#modalConfirmacion').modal('show');
         });
-    
+
         $('#confirmarSolicitud').on('click', function() {
             // Verificar que no exista ya en la tabla
             let existe = false;
@@ -194,10 +194,10 @@
                 $('#modalConfirmacion').modal('hide');
                 return;
             }
-    
+
             // Agregar fila con datos simulados
             const nombreTutor = 'Nuevo Tutor';
-    
+
             $('#datatable tbody').append(`
                 <tr data-especialidad="${especialidadSeleccionada}" data-asignacion="Asignado" data-solicitud="Solicitado">
                     <td>${especialidadSeleccionada}</td>
@@ -209,16 +209,16 @@
                     </td>
                 </tr>
             `);
-    
+
             // Actualizar select y botones
             actualizarSelect();
-    
+
             $('#modalConfirmacion').modal('hide');
             $('#especialidadSelect').val('');
             especialidadSeleccionada = '';
             $('#btnSolicitar').prop('disabled', true);
         });
-    
+
         // Mostrar botón cancelar solo cuando la solicitud está en estado "Solicitado"
         $('#datatable').on('mouseenter', 'tr', function() {
             const solicitud = $(this).data('solicitud');
@@ -230,7 +230,7 @@
         }).on('mouseleave', 'tr', function() {
             $(this).find('.btnCancelar').hide();
         });
-    
+
         // Alternativamente, puede establecer la visibilidad al agregar la fila
         $('#datatable tbody').on('DOMNodeInserted', 'tr', function() {
             const solicitud = $(this).data('solicitud');
@@ -240,15 +240,15 @@
                 $(this).find('.btnCancelar').hide();
             }
         });
-    
+
         // Cancelar solicitud
         $('#datatable').on('click', '.btnCancelar', function() {
             const fila = $(this).closest('tr');
             const especialidad = fila.data('especialidad');
-    
+
             // Eliminar fila
             fila.remove();
-    
+
             // Actualizar select y botones
             actualizarSelect();
         });

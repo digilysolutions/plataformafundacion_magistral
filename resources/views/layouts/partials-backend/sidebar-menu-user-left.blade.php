@@ -105,7 +105,7 @@
 
                             <li class="{{ request()->is('tutor*') ? 'active' : '' }}">
                                 <a href="{{ route('tutor.request_tutoring') }}">
-                                    <i class="las la-minus"></i><span>Solicitar Tutor</span>
+                                    <i class="las la-minus"></i><span>Solicitud y Asignados</span>
                                 </a>
                             </li>
 

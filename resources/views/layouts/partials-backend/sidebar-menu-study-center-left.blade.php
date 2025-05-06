@@ -157,22 +157,18 @@
                         </svg>
                     </a>
                     <ul id="items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="{{ request()->is('items/general/study-center') ? 'active' : '' }}">
-                            <a href="{{route('study-center.items_general')}}">
-                                <i class="las la-minus"></i><span>General</span>
-                            </a>
-                        </li>
-                        <li class="{{ request()->is('items/pisa/study-center') ? 'active' : '' }}">
-                            <a href="{{route('study-center.items_pisa')}}">
+
+                        <li class="{{ request()->is('study_center/items/pisa') ? 'active' : '' }}">
+                            <a href="{{route('study_center.items_pisa')}}">
                                 <i class="las la-minus"></i><span>Pruebas PISA</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('items/nacional/study-center') ? 'active' : '' }}">
+                        <li class="{{ request()->is('') ? 'active' : '' }}">
                             <a href="{{route('study-center.items_nacional')}}">
                                 <i class="las la-minus"></i><span>Pruebas Nacionales</span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('items/diagnostic/study-center') ? 'active' : '' }}">
+                        <li class="{{ request()->is('') ? 'active' : '' }}">
                             <a href="{{route('study-center.items_diagnostic')}}">
                                 <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                             </a>
@@ -305,7 +301,7 @@
                     </ul>
                 </li>
                 <li class="">
-                    <a href="#items" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                    <a href="#reports_items" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" id="p-dash9" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="9"></rect><rect x="14" y="7" width="3" height="5"></rect>
                         </svg>
@@ -318,7 +314,7 @@
                             <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    <ul id="items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <ul id="reports_items" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="{{ request()->is('items/general/study-center') ? 'active' : '' }}">
                             <a href="{{route('study-center.items_general')}}">
                                 <i class="las la-minus"></i><span>General</span>

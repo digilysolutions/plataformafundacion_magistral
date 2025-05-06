@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 @section('title-header-admin')
-Panel Validador - PLataforma Fundación Magistral
+Panel Validador - Plataforma Fundación Magistral
 @endsection
 @section('content-admin')
 

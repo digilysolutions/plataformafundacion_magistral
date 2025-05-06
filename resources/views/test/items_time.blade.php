@@ -9,13 +9,13 @@
 @endsection
 @section('content-admin')
 
-<div class="app-container">
+<div class="">
 
     <!-- ============================ -->
     <!-- Pantalla 1: Configuración    -->
     <!-- ============================ -->
     <div class="setup-screen" id="setupScreen">
-         <h2>Configuración de la Sesión qqq</h2>
+         <h2>Configuración de la Sesión </h2>
          <div class="setup-section setup-timer-duration">
              <p class="setup-section-label">1. Elige duración del temporizador:</p>
              <div class="timer-duration-options" id="timerDurationOptions">

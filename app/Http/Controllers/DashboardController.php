@@ -95,6 +95,45 @@ class DashboardController extends Controller
             ],
         ];
 
+        $students_assigned = [
+            [
+                'student_name' => 'Juan Pérez',
+                'state_assign' => 'Asignado',
+                'study_center' => 'Divina Pastora',
+                'date' => "2/05/2025",
+            ],
+            [
+                'student_name' => 'María Suárez',
+                'state_assign' => 'Asignado',
+                'study_center' => 'COMENDADOR',
+                'date' => "1/05/2025",
+            ],
+            [
+                'student_name' => 'Carlos Ortiz',
+                'state_assign' => 'Asignado',
+                'study_center' => 'Divina Pastora',
+                'date' => "2/05/2025",
+            ],
+            [
+                'student_name' => 'Anay Torres',
+                'state_assign' => 'Asignado',
+                'study_center' => 'COMENDADOR',
+                'date' => "5/05/2025",
+            ],
+            [
+                'student_name' => 'Carlos Luis Martínez',
+                'state_assign' => 'Asignado',
+                'study_center' => 'Divina Pastora',
+                'date' => "6/05/2025",
+            ],
+            [
+                'student_name' => 'Luis Ernesto Martínez',
+                'state_assign' => 'Asignado',
+                'study_center' => 'COMENDADOR',
+                'date' => "6/05/2025",
+            ],
+        ];
+
         // Datos de resultados de exámenes
         $examResults = [
             [
@@ -130,7 +169,9 @@ class DashboardController extends Controller
             // Agrega más resultados si es necesario...
         ];
 
-        return view('tutor.dashboard', compact('notifications', 'examResults'));
+
+
+        return view('tutor.dashboard', compact('notifications', 'examResults','students_assigned'));
     }
 
     public function dashboardUser()

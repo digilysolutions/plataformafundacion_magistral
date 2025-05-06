@@ -291,6 +291,7 @@ Route::middleware('auth')->group(function () {
         return view('study-center.test_diagnostic');
     })->name('study-center.test_diagnostic');
 
+
     Route::get('/test/items-pisa/time', function () {
         return view('test.items_time'); // Vista para el dashboard del usuario (en construcción)
     })->name('test.items_time');
@@ -332,6 +333,14 @@ Route::middleware('auth')->group(function () {
 
         return view('tutor.request_tutoring', compact('especialidades'));
     })->name('tutor.request_tutoring');
+
+    Route::get('/tutor/assigned/student', function () {
+        return view('tutor.assigned_students');
+    })->name('tutor.assigned_students');
+
+    Route::get('/study_center/items/pisa', function () {
+        return view('study-center.items_pisa');
+    })->name('study_center.items_pisa');
 
     Route::get('/tutor/assigned', function () {
         return view('tutor.assigned_tutors');

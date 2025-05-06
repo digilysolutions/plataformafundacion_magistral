@@ -43,6 +43,32 @@
             </div>
         </div>
 
+        <h3>Nuevos estudiantes asignados</h3></h3>
+        <div class="card mb-4">
+            <div class="card-body">
+                @if (count($students_assigned) === 0)
+                    <p>No tienes estudiantes asignados.</p>
+                @else
+                    <div class="row">
+                        @foreach ($students_assigned as $students)
+                            <div class="col-12 col-md-4 mb-3"> <!-- 12 para móviles, 4 para escritorio -->
+                                <div class="notification-item border p-3 rounded">
+                                    <strong>Estudiante:</strong> {{ $students['student_name'] }}<br>
+                                    <strong>Estado:</strong> {{ $students['state_assign'] }}<br>
+                                    <strong>Centro de estudio:</strong> {{ $students['study_center'] }}<br>
+
+                                    <em>Fecha: {{ $students['date'] }} minutos</em>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </div>
+
+
+
+
         <h3>Resultados de Exámenes</h3>
         <div class="card mb-4">
             <div class="card-body">
@@ -76,5 +102,44 @@
                 @endif
             </div>
         </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Estudiantes Asignados
+            </div>
+            <div class="card-body">                {{-- Define tus datos ficticios aquí si no vienen de un controlador --}}
+
+
+                {{-- Comprobar si hay datos para mostrar --}}
+                @if (count($students_assigned) === 0)
+                    <p>No hay estudiantes asignados.</p>
+                @else
+                    <div class="table-responsive"> {{-- Para mejor manejo en pantallas pequeñas --}}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Estudiante</th>
+                                    <th>Estado de Asignación</th>
+                                    <th>Centro de Estudio</th>
+                                    <th>Fecha de Asignación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{-- Iterar sobre los datos de estudiantes asignados --}}
+                                @foreach ($students_assigned as $student)
+                                    <tr>
+                                        <td>{{ $student['student_name'] }}</td>
+                                        <td>{{ $student['state_assign'] }}</td>
+                                        <td>{{ $student['study_center'] }}</td>
+                                        <td>{{ $student['date'] }}</td> {{-- La fecha ya está en formato string --}}
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
+            </div>
+        </div>
+
     </div>
 @endsection
