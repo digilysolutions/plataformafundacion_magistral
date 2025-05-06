@@ -57,7 +57,7 @@
                                     <strong>Estado:</strong> {{ $students['state_assign'] }}<br>
                                     <strong>Centro de estudio:</strong> {{ $students['study_center'] }}<br>
 
-                                    <em>Fecha: {{ $students['date'] }} minutos</em>
+                                    <em>Fecha: {{ $students['date'] }}</em>
                                 </div>
                             </div>
                         @endforeach
