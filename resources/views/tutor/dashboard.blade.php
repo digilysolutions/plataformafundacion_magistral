@@ -78,24 +78,55 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Estudiante</th>
                                 <th>Exámenes</th>
                                 <th>Total Preguntas</th>
                                 <th>Correctas</th>
                                 <th>Incorrectas</th>
                                 <th>Puntaje</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $i=0;
+                            @endphp
                             @foreach ($examResults as $result)
                                 <tr>
+                                    <td>{{ ++$i }}</td>
                                     <td>{{ $result['student_name'] }}</td>
                                     <td>{{ $result['exam_title'] }}</td>
                                     <td>{{ $result['total_questions'] }}</td>
                                     <td>{{ $result['correct_answers'] }}</td>
                                     <td>{{ $result['incorrect_answers'] }}</td>
                                     <td>{{ $result['score'] }}</td>
+                                    <td><button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".bd-students_{{$i}}">ver</button></td>
                                 </tr>
+                                <div class="modal fade bd-students_{{$i}}" tabindex="-1" role="dialog"  aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                       <div class="modal-content">
+                                          <div class="modal-header">
+                                             <h5 class="modal-title">Ver Examen: {{ $result['exam_title'] }}</h5>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                             </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            Estudiante: {{ $result['student_name'] }} <br>
+                                            Total Preguntas:{{ $result['total_questions'] }}<br>
+                                            Correctas:{{ $result['correct_answers'] }}<br>
+                                            Incorrectas:{{ $result['incorrect_answers'] }}<br>
+                                            Puntuación Final:{{ $result['score'] }}<br>
+                                          </div>
+                                          <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+
+
                             @endforeach
                         </tbody>
                     </table>
