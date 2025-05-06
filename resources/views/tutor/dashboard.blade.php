@@ -103,43 +103,7 @@
             </div>
         </div>
 
-        <div class="card mb-4">
-            <div class="card-header">
-                Estudiantes Asignados
-            </div>
-            <div class="card-body">                {{-- Define tus datos ficticios aquí si no vienen de un controlador --}}
 
-
-                {{-- Comprobar si hay datos para mostrar --}}
-                @if (count($students_assigned) === 0)
-                    <p>No hay estudiantes asignados.</p>
-                @else
-                    <div class="table-responsive"> {{-- Para mejor manejo en pantallas pequeñas --}}
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Estudiante</th>
-                                    <th>Estado de Asignación</th>
-                                    <th>Centro de Estudio</th>
-                                    <th>Fecha de Asignación</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- Iterar sobre los datos de estudiantes asignados --}}
-                                @foreach ($students_assigned as $student)
-                                    <tr>
-                                        <td>{{ $student['student_name'] }}</td>
-                                        <td>{{ $student['state_assign'] }}</td>
-                                        <td>{{ $student['study_center'] }}</td>
-                                        <td>{{ $student['date'] }}</td> {{-- La fecha ya está en formato string --}}
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
-            </div>
-        </div>
 
     </div>
 @endsection
