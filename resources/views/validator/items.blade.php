@@ -37,7 +37,7 @@
                                     <th>Código</th>
                                     <th>ITEMS</th>
                                     <th>Especialidad</th>
-                                    <th>Nivel</th>
+                                    <th>Competencia</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
@@ -46,10 +46,10 @@
                             <tbody>
 
                                 <tr>
-                                    <td>ES-147</td>
-                                    <td>Nombre Item</td>
-                                    <td>Español</td>
-                                    <td>Nivel 2</td>
+                                    <td>MA-CMR-NUM-3RO-002 </td>
+                                    <td>¿Qué número completa correctamente la secuencia?</td>
+                                    <td>Matemática</td>
+                                    <td>CMR-NUM </td>
                                     <td><span class="badge bg-primary">Validado</span></td>
 
                                    <td>
@@ -60,10 +60,10 @@
 
                                 </tr>
                                 <tr>
-                                    <td>ES-148</td>
-                                    <td>Nombte Item</td>
+                                    <td> MA-CMR-NUM-3RO-011</td>
+                                    <td>¿Cuál es la forma correcta de escribir el número "cuatrocientos setenta y dos" usando cifras?</td>
                                     <td>Matematica</td>
-                                    <td>Nivel 1</td>
+                                    <td>CMR-NUM</td>
                                     <td><span class="badge bg-warning-light">Por Validar</span></td>
 
                                  <td>
@@ -76,10 +76,11 @@
                                  </td>
                                 </tr>
                                 <tr>
-                                    <td>ES-149</td>
-                                    <td>Nombte Item</td>
+                                    <td>MA-CMR-NUM-3RO-012 </td>
+                                    <td>¿Qué valor representa el dígito 5 en el número 853?
+                                    </td>
                                     <td>Matematica</td>
-                                    <td>Nivel 3</td>
+                                    <td> CMR-NUM </td>
                                     <td><span class="badge bg-danger-light">Rechazado</span></td>
                                     <td>
                                             <a class="btn btn-sm btn-primary "
