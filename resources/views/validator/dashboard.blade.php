@@ -28,7 +28,27 @@ Panel Validador - Plataforma Fundación Magistral
                 @endforeach
             </ul>
         @else
-            <p>No hay nuevas notificaciones.</p>
+        <h4>Nuevos items por validar</h4>
+        <div class="card mb-12">
+            <div class="card-body">
+
+
+                    <div class="row">
+                            <div class="col-12 col-md-12 mb-12"> <!-- 12 para móviles, 4 para escritorio -->
+                                <div class="notification-item border p-3 rounded">
+                                    <strong>Código:</strong>MA-CMR-NUM-3RO-011<br>
+                                    <strong>Items:</strong> ¿Cuál es la forma correcta de escribir el número "cuatrocientos setenta y dos" usando cifras?<br>
+                                    <strong>Especialidad:</strong>Matematica<br>
+                                    <strong>Competencia:</strong>CMR-NUM<br>
+
+                                    <em>Fecha: 08/05/2025</em>
+                                </div>
+                            </div>
+                    </div>
+
+            </div>
+        </div>
+
         @endif
     </div>
 
