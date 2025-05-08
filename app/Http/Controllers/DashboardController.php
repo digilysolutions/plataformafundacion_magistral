@@ -9,10 +9,12 @@ use App\Models\Regional;
 use App\Models\Specialty;
 use App\Models\Student;
 use App\Models\StudyCenter;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 
 class DashboardController extends Controller
 {
@@ -179,25 +181,24 @@ class DashboardController extends Controller
         // Datos de notificaciones
         $notifications = [
             [
-
                 'exam_title' => 'Prueba PISA',
-                'time_taken' => rand(20, 60), // Tiempo tomado aleatorio entre 20 y 60 minutos
+                'date' => '8/5/205'
             ],
             [
-
                 'exam_title' => 'Prueba Nacional',
-                'time_taken' => rand(20, 60),
+                'date' => '3/5/205'
             ],
             [
                 'exam_title' => 'Examen Diagnóstico',
-                'time_taken' => rand(20, 60),
+                'date' => '1/5/205'
             ],
             [
-
                 'exam_title' => 'Prueba PISA',
-                'time_taken' => rand(20, 60),
-            ]
+                'date' => '29/4/205'
+            ],
         ];
+        
+       
 
         $other_notifications = [
 
