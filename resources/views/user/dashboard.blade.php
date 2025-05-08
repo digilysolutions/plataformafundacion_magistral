@@ -136,7 +136,7 @@
                                 <div class="row">
                                     @foreach ($notifications as $notification)
                                         <div class="col-12 col-md-6 mb-3"> <!-- 12 para móviles, 4 para escritorio -->
-                                            <div class="notification-item border p-3  rounded "  style="background-color:#e3e5e6 ;">
+                                            <div class="notification-item border p-3  rounded "  style="background-color:#f0f8ff ;">
 
                                                 <strong>Resolviste:</strong> {{ $notification['exam_title'] }}<br>
 
@@ -158,7 +158,7 @@
             <div class="row">
                 <h3>Notificaciones Sistema</h3>
                 @foreach ($other_notifications as $notification)
-                    <div class="col-12 col-md-12 mb-3 alert" style="background-color: #f0f8ff;" role="alert"> <!-- Cambié a una alerta-->
+                    <div class="col-12 col-md-12 mb-3 alert" style="background-color: #e3e5e6;" role="alert"> <!-- Cambié a una alerta-->
                         <div class="d-flex align-items-start"> <!-- Flexbox para alinear el contenido -->
                             <div class="iq-alert-icon me-3" style="font-size: 24px;">
                                 <i class="ri-information-line"></i>
