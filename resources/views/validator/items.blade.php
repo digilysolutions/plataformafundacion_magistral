@@ -215,7 +215,7 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">Validación de Items -</h4>
+                                    <h4 class="card-title">Validación de Items -  Diagnóstico</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -316,7 +316,7 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">Validación de Items </h4>
+                                    <h4 class="card-title">Validación de Items - PISA</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -419,7 +419,7 @@
                     <div class="contenedor-fichas">
                         <!-- Leyenda -->
                         <div class="ficha legend">
-                            <h2>Leyenda de Abreviaturas</h2>
+                            <h2>Leyenda de Abreviaturas - PISA </h2>
                             <div class="legend-content mr-5">
                                 <h3>Especialidades (1er Código):</h3>
                                 <ul>
