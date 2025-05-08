@@ -48,7 +48,7 @@
                                     </div>
                                     <div>
                                         <p class="mb-2">Items Resueltos</p>
-                                        <h4>4</h4>
+                                        <h4>0</h4>
                                     </div>
                                 </div>
                                 <div class="iq-progress-bar mt-2">
@@ -90,7 +90,7 @@
                                     </div>
                                     <div>
                                         <p class="mb-2">Exámenes Resueltos</p>
-                                        <h4>0</h4>
+                                        <h4>4</h4>
                                     </div>
                                 </div>
                                 <div class="iq-progress-bar mt-2">
@@ -139,8 +139,8 @@
                                             <div class="notification-item border p-3  rounded "  style="background-color:#f0f8ff ;">
 
                                                 <strong>Resolviste:</strong> {{ $notification['exam_title'] }}<br>
-
-                                                <em>Tiempo: {{ $notification['time_taken'] }} minutos</em>
+                                               
+                                                <em>Fecha: {{ $notification['date'] }} </em>
                                             </div>
                                         </div>
                                     @endforeach
