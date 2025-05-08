@@ -52,7 +52,7 @@
                     <div class="row">
                         @foreach ($students_assigned as $students)
                             <div class="col-12 col-md-4 mb-3"> <!-- 12 para móviles, 4 para escritorio -->
-                                <div class="notification-item border p-3 rounded bg-light">
+                                <div class="notification-item border p-3 rounded bg-primary">
                                     <strong>Estudiante:</strong> {{ $students['student_name'] }}<br>
                                     <strong>Estado:</strong> {{ $students['state_assign'] }}<br>
                                     <strong>Centro de estudio:</strong> {{ $students['study_center'] }}<br>
