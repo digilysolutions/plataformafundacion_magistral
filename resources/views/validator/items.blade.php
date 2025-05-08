@@ -340,7 +340,7 @@
                                                     <tbody>
 
                                                         <tr>
-                                                            <td>MA-FOR-N3-105 </td>
+                                                            <td>MA-RAZ-N3-105</td>
                                                             <td>Una compañía de telefonía móvil ofrece un plan llamado...
                                                             </td>
                                                             <td>Matemática</td>
@@ -355,7 +355,7 @@
 
                                                         </tr>
                                                         <tr>
-                                                            <td> SC-DAT-N5-072</td>
+                                                            <td> SC-SOC-N5-072</td>
                                                             <td>Se realizó un estudio para comparar la efectividad y los
                                                                 efectos secundarios de....</td>
                                                             <td>Matematica</td>
