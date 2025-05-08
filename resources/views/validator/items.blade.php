@@ -66,7 +66,7 @@
                                     <th>Código</th>
                                     <th>ITEMS</th>
                                     <th>Especialidad</th>
-                                    <th>Competencia</th>
+                                    <th>Nivel PISA</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
@@ -75,10 +75,10 @@
                             <tbody>
 
                                 <tr>
-                                    <td>MA-CMR-NUM-3RO-002 </td>
-                                    <td>¿Qué número completa correctamente la secuencia?</td>
+                                    <td>MA-FOR-N3-105 </td>
+                                    <td>Una compañía de telefonía móvil ofrece un plan llamado...</td>
                                     <td>Matemática</td>
-                                    <td>CMR-NUM </td>
+                                    <td>3</td>
                                     <td><span class="badge bg-primary">Validado</span></td>
 
                                    <td>
@@ -89,10 +89,10 @@
 
                                 </tr>
                                 <tr>
-                                    <td> MA-CMR-NUM-3RO-011</td>
-                                    <td>¿Cuál es la forma correcta de escribir el número "cuatrocientos setenta y dos" usando cifras?</td>
+                                    <td> SC-DAT-N5-072</td>
+                                    <td>Se realizó un estudio para comparar la efectividad y los efectos secundarios de....</td>
                                     <td>Matematica</td>
-                                    <td>CMR-NUM</td>
+                                    <td>5</td>
                                     <td><span class="badge bg-warning-light">Por Validar</span></td>
 
                                  <td>
@@ -105,11 +105,11 @@
                                  </td>
                                 </tr>
                                 <tr>
-                                    <td>MA-CMR-NUM-3RO-012 </td>
-                                    <td>¿Qué valor representa el dígito 5 en el número 853?
+                                    <td>RD-EVA-N4-211</td>
+                                    <td>A continuación se presentan dos textos sobre el impacto de las redes sociales en los jóvenes:...
                                     </td>
-                                    <td>Matematica</td>
-                                    <td> CMR-NUM </td>
+                                    <td>Lectura</td>
+                                    <td> 4 </td>
                                     <td><span class="badge bg-danger-light">Rechazado</span></td>
                                     <td>
                                             <a class="btn btn-sm btn-primary "
