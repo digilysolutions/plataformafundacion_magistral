@@ -58,7 +58,7 @@ $students_assigned = [
                     <p>No hay estudiantes asignados.</p>
                 @else
                     <div class="table-responsive"> {{-- Para mejor manejo en pantallas pequeñas --}}
-                        <table class="table table-striped">
+                        <table class="table" style="background-color: #f0f8ff;">
                             <thead>
                                 <tr>
                                     <th>Estudiante</th>
