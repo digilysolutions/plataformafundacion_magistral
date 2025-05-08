@@ -27,7 +27,7 @@
                     <th>Nombre</th>
                     <th>Estado de Asignación</th>
                     <th>Estado de Solicitud</th>
-                    <th>Acciones</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -37,32 +37,27 @@
                     <td>Juan Pérez</td>
                     <td>Asignado</td>
                     <td>Confirmado</td>
-                    <td></td>
+                   
                 </tr>
                 <tr data-especialidad="Español" data-asignacion="No asignado" data-solicitud="Solicitado">
                     <td>Español</td>
                     <td></td>
                     <td>No asignado</td>
                     <td>Solicitado</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btnCancelar">Cancelar</button>
-                    </td>
+                   
                 </tr>
                 <tr data-especialidad="Ciencias Sociales" data-asignacion="Asignado" data-solicitud="Confirmado">
                     <td>Ciencias Sociales</td>
                     <td>Carlos López</td>
                     <td>Asignado</td>
                     <td>Confirmado</td>
-                    <td></td>
+                  
                 </tr>
                 <tr data-especialidad="Ciencias Naturales" data-asignacion="No asignado" data-solicitud="Pendiente">
                     <td>Ciencias Naturales</td>
                     <td></td>
                     <td>No asignado</td>
-                    <td>Pendiente</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btnCancelar">Cancelar</button>
-                    </td>
+                    <td>Pendiente</td>                  
                 </tr>
             </tbody>
             <tfoot>
@@ -71,7 +66,7 @@
                     <th>Nombre</th>
                     <th>Estado de Asignación</th>
                     <th>Estado de Solicitud</th>
-                    <th></th>
+                    
                 </tr>
             </tfoot>
         </table>

@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    {{ __('Actualizar') }} Student
+    {{ __('Actualizar') }} Usuario
 @endsection
 
 @section('content-admin')

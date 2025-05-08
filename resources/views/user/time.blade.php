@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    Tiempo en Plataforma
+    Usuario General -Tiempo en Plataforma
 @endsection
 @section('content-admin')
 

@@ -19,7 +19,7 @@
                 <div class="col-lg-6 col-md-6">
                     <a href="{{ route('items.index', ['name' => 'Resueltos']) }}">
                         <div class="card card-block card-stretch card-height">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:#f0f8ff ;">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
                                     <div class="icon iq-icon-box-2 bg-info-light">
                                         <img src="{{ asset('img/47.jpg') }}" class="img-fluid" alt="image">
@@ -40,7 +40,7 @@
                 <div class="col-lg-6 col-md-6">
                     <a href="{{ route('items.index', ['name' => 'No Resueltos']) }}">
                         <div class="card card-block card-stretch card-height">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:#f0f8ff ;">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
                                     <div class="icon iq-icon-box-2 bg-danger-light">
                                         <img src="{{ asset('img/a4.png') }}" class="img-fluid" alt="image">
@@ -63,7 +63,7 @@
                 <div class="col-lg-6 col-md-6">
                     <a href="{{ route('examens.index', ['name' => 'Examenes Resueltos']) }}">
                         <div class="card card-block card-stretch card-height">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:#f0f8ff ;">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
                                     <div class="icon iq-icon-box-2 bg-success-light">
                                         <img src="{{ asset('img/3.png') }}" class="img-fluid" alt="image">
@@ -84,7 +84,7 @@
                 <div class="col-lg-6 col-md-6">
                     <a href="{{ route('examens.index', ['name' => 'Examenes no Resueltos']) }}">
                         <div class="card card-block card-stretch card-height">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:#f0f8ff ;">
                                 <div class="d-flex align-items-center mb-4 card-total-sale">
                                     <div class="icon iq-icon-box-2 bg-info">
                                         <img src="{{ asset('img/02.png') }}" class="img-fluid" alt="image">
