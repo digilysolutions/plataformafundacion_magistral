@@ -30,7 +30,7 @@
                     <div class="row">
                         @foreach ($notifications as $notification)
                             <div class="col-12 col-md-4 mb-3"> <!-- 12 para móviles, 4 para escritorio -->
-                                <div class="notification-item border p-3 bg-light rounded">
+                                <div class="notification-item border p-3 rounded" style="background-color: #f0f8ff;">
                                     <strong>Estudiante:</strong> {{ $notification['student_name'] }}<br>
                                     <strong>Resolvió:</strong> {{ $notification['exam_title'] }}<br>
 
@@ -52,7 +52,7 @@
                     <div class="row">
                         @foreach ($students_assigned as $students)
                             <div class="col-12 col-md-4 mb-3"> <!-- 12 para móviles, 4 para escritorio -->
-                                <div class="notification-item border p-3 rounded bg-primary">
+                                <div class="notification-item border p-3 rounded" style="background-color: #f0f8ff;">
                                     <strong>Estudiante:</strong> {{ $students['student_name'] }}<br>
                                     <strong>Estado:</strong> {{ $students['state_assign'] }}<br>
                                     <strong>Centro de estudio:</strong> {{ $students['study_center'] }}<br>
@@ -75,7 +75,7 @@
                 @if (count($examResults) === 0)
                     <p>No hay resultados de exámenes recientes.</p>
                 @else
-                    <table class="table">
+                    <table class="table" style="background-color: #f0f8ff;">
                         <thead>
                             <tr>
                                 <th>No</th>
