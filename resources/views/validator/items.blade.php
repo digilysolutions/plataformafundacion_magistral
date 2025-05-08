@@ -215,95 +215,95 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">Validación de Items -  Diagnóstico</h4>
+                                    <h4 class="card-title">Validación de Items - Diagnóstico</h4>
                                 </div>
                             </div>
                             <div class="card-body">
 
                                 <div class="table-responsive">
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <table id="datatable" class="table data-tables table-striped">
-                                                    <thead>
-                                                        <tr class="ligth">
-                                                            <th>Código</th>
-                                                            <th>ITEMS</th>
-                                                            <th>Especialidad</th>
-                                                            <th>Grado</th>
-                                                            <th>Competencia</th>
-                                                            <th>Estado</th>
-                                                            <th></th>
-                                                        </tr>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="datatable" class="table data-tables table-striped">
+                                                <thead>
+                                                    <tr class="ligth">
+                                                        <th>Código</th>
+                                                        <th>ITEMS</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Grado</th>
+                                                        <th>Competencia</th>
+                                                        <th>Estado</th>
+                                                        <th></th>
+                                                    </tr>
 
-                                                    </thead>
-                                                    <tbody>
+                                                </thead>
+                                                <tbody>
 
-                                                        <tr>
-                                                            <td>MA-CMR-NUM-3RO-002 </td>
-                                                            <td>¿Qué número completa correctamente la secuencia?</td>
-                                                            <td>Matemática</td>
-                                                            <td>3ro</td>
-                                                            <td>CMR-NUM </td>
-                                                            <td><span class="badge bg-primary">Validado</span></td>
+                                                    <tr>
+                                                        <td>MA-CMR-NUM-3RO-002 </td>
+                                                        <td>¿Qué número completa correctamente la secuencia?</td>
+                                                        <td>Matemática</td>
+                                                        <td>3ro</td>
+                                                        <td>CMR-NUM </td>
+                                                        <td><span class="badge bg-primary">Validado</span></td>
 
-                                                            <td>
-                                                                <a class="btn btn-sm btn-primary " href=""><i
-                                                                        class="fa fa-fw fa-eye"></i>
-                                                                    {{ __('Mostrar') }}</a>
-                                                            </td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary " href=""><i
+                                                                    class="fa fa-fw fa-eye"></i>
+                                                                {{ __('Mostrar') }}</a>
+                                                        </td>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <td> MA-CMR-NUM-3RO-011</td>
-                                                            <td>¿Cuál es la forma correcta de escribir el número
-                                                                "cuatrocientos setenta y dos"
-                                                                usando cifras?</td>
-                                                            <td>Matematica</td>
-                                                            <td>3ro</td>
-                                                            <td>CMR-NUM</td>
-                                                            <td><span class="badge bg-warning-light">Por Validar</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> MA-CMR-NUM-3RO-011</td>
+                                                        <td>¿Cuál es la forma correcta de escribir el número
+                                                            "cuatrocientos setenta y dos"
+                                                            usando cifras?</td>
+                                                        <td>Matematica</td>
+                                                        <td>3ro</td>
+                                                        <td>CMR-NUM</td>
+                                                        <td><span class="badge bg-warning-light">Por Validar</span></td>
 
-                                                            <td>
-                                                                <a class="btn btn-sm btn-primary " href=""><i
-                                                                        class="fa fa-fw fa-eye"></i>
-                                                                    {{ __('Mostrar') }}</a>
-                                                                <a class="btn btn-sm btn-success" href="#"><i
-                                                                        class="fa fa-fw fa-edit"></i>
-                                                                    {{ __('Editar') }}</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>MA-CMR-NUM-3RO-012 </td>
-                                                            <td>¿Qué valor representa el dígito 5 en el número 853?
-                                                            </td>
-                                                            <td>Matematica</td>
-                                                            <td>3ro</td>
-                                                            <td> CMR-NUM </td>
-                                                            <td><span class="badge bg-danger-light">Rechazado</span></td>
-                                                            <td>
-                                                                <a class="btn btn-sm btn-primary " href=""><i
-                                                                        class="fa fa-fw fa-eye"></i>
-                                                                    {{ __('Mostrar') }}</a>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary " href=""><i
+                                                                    class="fa fa-fw fa-eye"></i>
+                                                                {{ __('Mostrar') }}</a>
+                                                            <a class="btn btn-sm btn-success" href="#"><i
+                                                                    class="fa fa-fw fa-edit"></i>
+                                                                {{ __('Editar') }}</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MA-CMR-NUM-3RO-012 </td>
+                                                        <td>¿Qué valor representa el dígito 5 en el número 853?
+                                                        </td>
+                                                        <td>Matematica</td>
+                                                        <td>3ro</td>
+                                                        <td> CMR-NUM </td>
+                                                        <td><span class="badge bg-danger-light">Rechazado</span></td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary " href=""><i
+                                                                    class="fa fa-fw fa-eye"></i>
+                                                                {{ __('Mostrar') }}</a>
 
 
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código</th>
-                                                            <th>ITEMS</th>
-                                                            <th>Especialidad</th>
-                                                            <th>Grado</th>
-                                                            <th>Competencia</th>
-                                                            <th>Estado</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Código</th>
+                                                        <th>ITEMS</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Grado</th>
+                                                        <th>Competencia</th>
+                                                        <th>Estado</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
                                         </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -323,85 +323,85 @@
 
                                 <div class="table-responsive">
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <table id="datatable" class="table ">
-                                                    <thead>
-                                                        <tr class="ligth">
-                                                            <th>Código</th>
-                                                            <th>ITEMS</th>
-                                                            <th>Especialidad</th>
-                                                            <th>Nivel PISA</th>
-                                                            <th>Estado</th>
-                                                            <th></th>
-                                                        </tr>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="datatable" class="table ">
+                                                <thead>
+                                                    <tr class="ligth">
+                                                        <th>Código</th>
+                                                        <th>ITEMS</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Nivel PISA</th>
+                                                        <th>Estado</th>
+                                                        <th></th>
+                                                    </tr>
 
-                                                    </thead>
-                                                    <tbody>
+                                                </thead>
+                                                <tbody>
 
-                                                        <tr>
-                                                            <td>MA-RAZ-N3-105</td>
-                                                            <td>Una compañía de telefonía móvil ofrece un plan llamado...
-                                                            </td>
-                                                            <td>Matemática</td>
-                                                            <td>3</td>
-                                                            <td><span class="badge bg-primary">Validado</span></td>
+                                                    <tr>
+                                                        <td>MA-RAZ-N3-105</td>
+                                                        <td>Una compañía de telefonía móvil ofrece un plan llamado...
+                                                        </td>
+                                                        <td>Matemática</td>
+                                                        <td>3</td>
+                                                        <td><span class="badge bg-primary">Validado</span></td>
 
-                                                            <td>
-                                                                <a class="btn btn-sm btn-primary " href=""><i
-                                                                        class="fa fa-fw fa-eye"></i>
-                                                                    {{ __('Mostrar') }}</a>
-                                                            </td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary " href=""><i
+                                                                    class="fa fa-fw fa-eye"></i>
+                                                                {{ __('Mostrar') }}</a>
+                                                        </td>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <td> SC-SOC-N5-072</td>
-                                                            <td>Se realizó un estudio para comparar la efectividad y los
-                                                                efectos secundarios de....</td>
-                                                            <td>Matematica</td>
-                                                            <td>5</td>
-                                                            <td><span class="badge bg-warning-light">Por Validar</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> SC-SOC-N5-072</td>
+                                                        <td>Se realizó un estudio para comparar la efectividad y los
+                                                            efectos secundarios de....</td>
+                                                        <td>Matematica</td>
+                                                        <td>5</td>
+                                                        <td><span class="badge bg-warning-light">Por Validar</span></td>
 
-                                                            <td>
-                                                                <a class="btn btn-sm btn-primary " href=""><i
-                                                                        class="fa fa-fw fa-eye"></i>
-                                                                    {{ __('Mostrar') }}</a>
-                                                                <a class="btn btn-sm btn-success" href="#"><i
-                                                                        class="fa fa-fw fa-edit"></i>
-                                                                    {{ __('Editar') }}</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>RD-EVA-N4-211</td>
-                                                            <td>A continuación se presentan dos textos sobre el impacto de
-                                                                las redes sociales en los
-                                                                jóvenes:...
-                                                            </td>
-                                                            <td>Lectura</td>
-                                                            <td> 4 </td>
-                                                            <td><span class="badge bg-danger-light">Rechazado</span></td>
-                                                            <td>
-                                                                <a class="btn btn-sm btn-primary " href=""><i
-                                                                        class="fa fa-fw fa-eye"></i>
-                                                                    {{ __('Mostrar') }}</a>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary " href=""><i
+                                                                    class="fa fa-fw fa-eye"></i>
+                                                                {{ __('Mostrar') }}</a>
+                                                            <a class="btn btn-sm btn-success" href="#"><i
+                                                                    class="fa fa-fw fa-edit"></i>
+                                                                {{ __('Editar') }}</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>RD-EVA-N4-211</td>
+                                                        <td>A continuación se presentan dos textos sobre el impacto de
+                                                            las redes sociales en los
+                                                            jóvenes:...
+                                                        </td>
+                                                        <td>Lectura</td>
+                                                        <td> 4 </td>
+                                                        <td><span class="badge bg-danger-light">Rechazado</span></td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary " href=""><i
+                                                                    class="fa fa-fw fa-eye"></i>
+                                                                {{ __('Mostrar') }}</a>
 
 
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código</th>
-                                                            <th>ITEMS</th>
-                                                            <th>Especialidad</th>
-                                                            <th>Nivel</th>
-                                                            <th>Estado</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Código</th>
+                                                        <th>ITEMS</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Nivel</th>
+                                                        <th>Estado</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
                                         </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -522,7 +522,58 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="ficha legend">
+                            <h2>Leyenda de Códigos de Ítems Exámenes Diagnóstico</h2>
+                            <div class="legend-content">
+
+                                <h3>Estructura del Código</h3>
+                                <div class="structure-explanation">
+                                    Los códigos de los ítems siguen la estructura:
+                                    <code>ESPECIALIDAD</code>-<code>COMPETENCIA</code>-<code>GRADO</code>-<code>NÚMERO</code>.<br>
+                                    Ejemplo: <strong>MA-RP-GM-3RO-401</strong>
+                                </div>
+
+                                <h3>Detalle de Códigos</h3>
+
+                                <h4>Especialidad (1er Código)</h4>
+                                <ul>
+                                    <li><strong>CS:</strong> Ciencias Sociales</li>
+                                    <li><strong>MA:</strong> Matemáticas</li>
+                                    <li><strong>ES:</strong> Español (Lengua y Literatura)</li>
+                                    <li><strong>CN:</strong> Ciencias Naturales</li>
+                                </ul>
+
+                                <h4>Competencia (2º Código)</h4>
+                                <ul>
+                                    <li><strong>CMR-NUM:</strong> Comunicación, Modelación y Representación - Eje Numérico</li>
+                                    <li><strong>CMR-GM:</strong> Comunicación, Modelación y Representación - Eje
+                                        Geométrico-Métrico</li>
+                                    <li><strong>CMR-EST:</strong> Comunicación, Modelación y Representación - Eje Estadístico
+                                    </li>
+                                    <li><strong>RP-NUM:</strong> Resolución de Problemas - Eje Numérico</li>
+                                    <li><strong>RP-GM:</strong> Resolución de Problemas - Eje Geométrico-Métrico</li>
+                                    <li><strong>RP-EST:</strong> Resolución de Problemas - Eje Estadístico</li>
+                                    <li><strong>RM-NUM:</strong> Razonamiento Matemático - Eje Numérico</li>
+                                    <li><strong>RM-GM:</strong> Razonamiento Matemático - Eje Geométrico-Métrico</li>
+                                    <li><strong>RM-EST:</strong> Razonamiento Matemático - Eje Estadístico</li>
+                                </ul>
+
+                                <h4>Grado (3er Código)</h4>
+                                <ul>
+                                    <li>Indica el grado escolar al que pertenece el ítem (ej: <strong>3RO</strong> para Tercer
+                                        Grado).</li>
+                                </ul>
+
+                                <h4>Número (4º Código)</h4>
+                                <ul>
+                                    <li>Es un identificador único para cada ítem dentro de su categoría (ej:
+                                        <strong>001</strong>, <strong>450</strong>).</li>
+                                </ul>
+
+                            </div>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
