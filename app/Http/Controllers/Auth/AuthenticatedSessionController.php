@@ -74,8 +74,9 @@ class AuthenticatedSessionController extends Controller
             'codigo_seguimiento' => 'required|string', // Agrega la validación del código
         ]);
 
+       
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-
+            dd( $request->password);
             // Autenticación exitosa: el usuario existe y las credenciales son correctas
             // **********************************************************************
             // Obtener el rol del usuario
@@ -123,13 +124,14 @@ class AuthenticatedSessionController extends Controller
                         $segisterStudyCenter->state = "Completada";
                         $segisterStudyCenter->update();
                     }
-                    $user = auth()->user();
+                   // $user = auth()->user();
 
                     $membership_id = $user->person->studyCenter->membership_id;
 
                     $this->change_membership_status($user, $membership_id);
                     return redirect()->route('study-center.dashboard');
                 case 2:
+
                     return redirect()->route('student.dashboard');
                 case 3:
                     return redirect()->route('tutor.dashboard');

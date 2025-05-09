@@ -75,7 +75,7 @@ class StudentController extends Controller
                     'roleid' => 2
                 ]);*/
                 $user = UserHelper::createDefaultUser($data['username'], $data['lastname'], 'Estudiante', 2);
-
+                $data['email'] = $user['email'];
                 $data['user_id'] = $user['user']->id;
                 $person = Person::create($data);
 
@@ -202,7 +202,7 @@ class StudentController extends Controller
 
     private function destroyStudent($student)
     {
-        $studyCenter_id=$student->studyCenter->id;
+        $studyCenter_id = $student->studyCenter->id;
         $role = Auth::user()->role;
         try {
 
@@ -238,7 +238,7 @@ class StudentController extends Controller
                 ->with('success', 'Estudiante eliminado satisfactoriamente');
         }
         if ($role == "Centro Educativo") {
-            return Redirect::route('students.indexToStudyCenter', [ $studyCenter_id])
+            return Redirect::route('students.indexToStudyCenter', [$studyCenter_id])
                 ->with('success', 'Estudiante eliminado satisfactoriamente');
         }
     }
@@ -258,7 +258,7 @@ class StudentController extends Controller
         $studyCenters = StudyCenter::allActivated();
         $memberships = Membership::allActivated();
         $courses = Course::allActivated();
-        return view('student.edit', compact('student', 'studyCenters', 'memberships','courses'));
+        return view('student.edit', compact('student', 'studyCenters', 'memberships', 'courses'));
     }
     public function show($id): View
     {
@@ -284,7 +284,7 @@ class StudentController extends Controller
             $students = Student::allActivated();
             return view('student.index', compact('students'))->with('error', $error);
         }
-        return view('student.create', compact('student', 'studyCenters', 'memberships','courses'));
+        return view('student.create', compact('student', 'studyCenters', 'memberships', 'courses'));
     }
 
 
@@ -329,6 +329,6 @@ class StudentController extends Controller
             $students = $this->indexToStudyCenter($idStudyCenter);
             return view('student.index', compact('students'))->with('error', $error);
         }
-        return view('student.create', compact('student', 'studyCenters', 'idStudyCenter','courses'));
+        return view('student.create', compact('student', 'studyCenters', 'idStudyCenter', 'courses'));
     }
 }
