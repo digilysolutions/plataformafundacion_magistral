@@ -1,6 +1,6 @@
 @extends('layouts.app-admin')
 @section('title-header-admin')
-    Plataforma Fundación Magistral
+    Usuario  - Plataforma Fundación Magistral
 @endsection
 
 @section('content-admin')

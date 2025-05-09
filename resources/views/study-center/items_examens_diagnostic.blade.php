@@ -53,7 +53,7 @@ Reporte Exámenes Diagnósticos - Centro Educativo Divina Pastora
 <!-- === DETALLE DIAGNÓSTICO === -->
 <!-- =========================== -->
  <h2 class="section-title">Detalle Items Diagnósticos (9no) por Estudiante</h2>
-<div class="contenedor-fichas">
+div class="contenedor-fichas"><
 
     <!-- Resueltos Diagnósticos -->
     <div class="ficha">

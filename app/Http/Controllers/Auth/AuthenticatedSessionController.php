@@ -76,7 +76,7 @@ class AuthenticatedSessionController extends Controller
 
        
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            dd( $request->password);
+           
             // Autenticación exitosa: el usuario existe y las credenciales son correctas
             // **********************************************************************
             // Obtener el rol del usuario
