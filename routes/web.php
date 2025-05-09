@@ -233,6 +233,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/validator/dashboard', [DashboardController::class, 'dashboardValidator'])->name('validator.dashboard');
     Route::get('/tutor/dashboard', [DashboardController::class, 'dashboardTutor'])->name('tutor.dashboard');
     Route::get('/user/dashboard', [DashboardController::class, 'dashboardUser'])->name('user.dashboard');
+    Route::get('/student/dashboard', [DashboardController::class, 'dashboardStudent'])->name('student.dashboard');
     Route::resource('countries', CountryController::class);
     Route::resource('regionals', RegionalController::class);
     Route::resource('districts', DistrictController::class);

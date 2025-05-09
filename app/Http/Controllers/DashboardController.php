@@ -141,8 +141,8 @@ class DashboardController extends Controller
             [
                 'student_name' => 'Juan Pérez',
                 'exam_title' => 'Prueba PISA',
-                'specialty'=>'Matemática',
-                'level'=>'2',
+                'specialty' => 'Matemática',
+                'level' => '2',
                 'total_questions' => 20,
                 'correct_answers' => 17,
                 'incorrect_answers' => 3,
@@ -151,8 +151,8 @@ class DashboardController extends Controller
             [
                 'student_name' => 'María Gómez',
                 'exam_title' => 'Prueba Nacional',
-                'level'=>'1',
-                'specialty'=>'Español',
+                'level' => '1',
+                'specialty' => 'Español',
                 'total_questions' => 20,
                 'correct_answers' => 18,
                 'incorrect_answers' => 2,
@@ -161,8 +161,8 @@ class DashboardController extends Controller
             [
                 'student_name' => 'Carlos Reyes',
                 'exam_title' => 'Examen Diagnóstico',
-                'level'=>'1',
-                'specialty'=>'Ciencias',
+                'level' => '1',
+                'specialty' => 'Ciencias',
                 'total_questions' => 20,
                 'correct_answers' => 13,
                 'incorrect_answers' => 7,
@@ -173,7 +173,7 @@ class DashboardController extends Controller
 
 
 
-        return view('tutor.dashboard', compact('notifications', 'examResults','students_assigned'));
+        return view('tutor.dashboard', compact('notifications', 'examResults', 'students_assigned'));
     }
 
     public function dashboardUser()
@@ -197,8 +197,8 @@ class DashboardController extends Controller
                 'date' => '29/4/205'
             ],
         ];
-        
-       
+
+
 
         $other_notifications = [
 
@@ -220,6 +220,11 @@ class DashboardController extends Controller
         ];
 
 
-        return view('user.dashboard', compact('notifications','other_notifications'));
+        return view('user.dashboard', compact('notifications', 'other_notifications'));
+    }
+
+    public function dashboardStudent()
+    {
+        return view('student.dashboard');
     }
 }
