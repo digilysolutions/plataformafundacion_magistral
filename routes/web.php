@@ -136,7 +136,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index')->middleware('role:Administrador');
     Route::get('/memberships/create', [MembershipController::class, 'create'])->name('memberships.create')->middleware('role:Administrador');
     Route::post('/memberships', [MembershipController::class, 'store'])->name('memberships.store')->middleware('role:Administrador');
-    Route::get('/memberships/{id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Usuario,Centro Educativo');
+    Route::get('/memberships/{id}', [MembershipController::class, 'show'])->name('memberships.show')->middleware('role:Administrador,Usuario,Centro Educativo,Estudiante');
     Route::get('/memberships/{id}/edit', [MembershipController::class, 'edit'])->name('memberships.edit')->middleware('role:Administrador');
     Route::patch('memberships/{id}', [MembershipController::class, 'update'])->name('memberships.update')->middleware('role:Administrador');
     Route::delete('/memberships/{id}', [MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('role:Administrador');

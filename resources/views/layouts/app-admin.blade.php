@@ -30,10 +30,12 @@
             @include('layouts.partials-backend.sidebar-menu-study-center-left')
         @elseif ($user->role == 'Usuario')
             @include('layouts.partials-backend.sidebar-menu-user-left')
-            @elseif ($user->role == 'Tutor')
+        @elseif ($user->role == 'Tutor')
             @include('layouts.partials-backend.sidebar-menu-tutor-left')
         @elseif ($user->role == 'Validador')
             @include('layouts.partials-backend.sidebar-menu-validator-left')
+        @elseif ($user->role == 'Estudiante')
+            @include('layouts.partials-backend.sidebar-menu-students-left')
         @else
             @include('layouts.partials-backend.sidebar-menu-left')
         @endif
