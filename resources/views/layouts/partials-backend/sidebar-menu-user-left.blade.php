@@ -147,7 +147,7 @@
                                 </a>
                             </li>
                             <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('under.construction') }}">
+                                <a href="{{ route('user.examen_diagnostic') }}">
                                     <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                                 </a>
                             </li>
@@ -185,8 +185,8 @@
                                     <i class="las la-minus"></i><span>Pruebas Nacionales </span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('study-centers*') ? 'active' : '' }}">
-                                <a href="{{ route('under.construction') }}">
+                            <li class="{{ request()->is('user/examen*') ? 'active' : '' }}">
+                                <a href="{{route('under.construction')}}">
                                     <i class="las la-minus"></i><span>Exámenes Diagnóstico </span>
                                 </a>
                             </li>

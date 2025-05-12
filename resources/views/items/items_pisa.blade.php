@@ -114,7 +114,7 @@
         });
 
         document.getElementById('btnPrueba').addEventListener('click', () => {
-            alert('Has seleccionado ITEMS PISA Prueba. Aquí podrás realizar una simulación oficial del examen.');
+            alert('Aquí podrás resolver items en un tiempo determinado');
             window.location.href = itemsTimeUrl;
         });
     </script>

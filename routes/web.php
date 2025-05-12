@@ -302,6 +302,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/pisa', function () {
         return view('items.items_pisa'); // Vista para el dashboard del usuario (en construcción)
     })->name('items.items_pisa');
+
+    Route::get('/examen/diagnostic', function () {
+        return view('examens.examen_practic_diagnostic'); 
+    })->name('examens.examen_practic_diagnostic');
+
+    Route::get('/examen/diagnostic/time', function () {
+        return view('examens.examen_time_diagnostic'); 
+    })->name('examens.examen_time_diagnostic');
+
+    Route::get('/user/examen', function () {
+        return view('user.examen_diagnostic'); 
+    })->name('user.examen_diagnostic');
+
+
+    
     Route::post('/actualizar-tiempo', function (Illuminate\Http\Request $request) {
         $tiempo = $request->input('tiempo');
         session(['tiempo_en_plataforma' => $tiempo]);
