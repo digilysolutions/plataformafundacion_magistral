@@ -74,9 +74,9 @@ class AuthenticatedSessionController extends Controller
             'codigo_seguimiento' => 'required|string', // Agrega la validación del código
         ]);
 
-       
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-           
+
             // Autenticación exitosa: el usuario existe y las credenciales son correctas
             // **********************************************************************
             // Obtener el rol del usuario
@@ -87,11 +87,23 @@ class AuthenticatedSessionController extends Controller
             }
 
             $roleid = $user->roleid;
-            if ($roleid != 1) {
+            // Obtener el código de seguimiento del request
+            $codigoSeguimiento = $request->input('codigo_seguimiento');
 
-                if (!$user->person->where('id', $request->codigo_seguimiento)->first()) {
+            // Validar el formato del código
+            if (!preg_match('/^[A-Z]{2}\d+$/', $codigoSeguimiento)) {
+                // Si no cumple el formato, redirige con error
+                Auth::logout();
+                return redirect('/login')->with('error', 'El código de seguimiento no cumple con el formato requerido (ejemplo: AD0001).');
+            }
+
+            // Si pasa la validación de formato, verificar en la base de datos
+            if ($roleid != 1) {
+                $usuarioEncontrado = $user->person->where('id', $codigoSeguimiento)->first();
+
+                if (!$usuarioEncontrado) {
                     Auth::logout();
-                    return redirect('/login')->with('error', 'Este usuario no tiene los permisos necesarios.Error de código');
+                    return redirect('/login')->with('error', 'Este usuario no tiene los permisos necesarios. Error de código.');
                 }
             }
             if ($user->first_login) {
@@ -124,7 +136,7 @@ class AuthenticatedSessionController extends Controller
                         $segisterStudyCenter->state = "Completada";
                         $segisterStudyCenter->update();
                     }
-                   // $user = auth()->user();
+                    // $user = auth()->user();
 
                     $membership_id = $user->person->studyCenter->membership_id;
 
@@ -209,14 +221,13 @@ class AuthenticatedSessionController extends Controller
         if (!$ultimoHistorial) {
             // Si no hay historial, se crea el primero
             $debeCrearRegistro = true;
-
         } else {
             // Comparar el estado actual con el último estado registrado
             if ($ultimoHistorial->membership_statuses_id != $estadoActualId) {
                 $debeCrearRegistro = true;
             }
         }
-      /*  if ($ultimoHistorial->membership_statuses_id == $estadoActualId) {
+        /*  if ($ultimoHistorial->membership_statuses_id == $estadoActualId) {
             return false;
         }*/
         // Crear el nuevo registro si es necesario
