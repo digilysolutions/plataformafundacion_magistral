@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma ITEMS - Cargando...</title>
+    <link rel="shortcut icon" href="{{ asset('img/icono/fm-plataforma.jpg') }}" />
     <link rel="stylesheet" href="{{asset('css/splash-style-video-final.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +51,7 @@
 
         <!-- Contenido Central (Texto y Loader) -->
         <div class="center-content">
-            <h1>Plataforma ITEMS</h1>
+            <h1>RD CALIFICA</h1>
             <div class="loader"></div>
         </div>
     </div>

@@ -4,7 +4,7 @@
 <title>@yield('title-header-admin')</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="{{ asset('img/icono/fm-plataforma.png') }}" />
+<link rel="shortcut icon" href="{{ asset('img/icono/fm-plataforma.jpg') }}" />
 <link rel="stylesheet" href="{{ asset('admin/css/backend-plugin.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/backend.css?v=1.0.0') }}">
 <link rel="stylesheet" href="{{ asset('admin/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}">
