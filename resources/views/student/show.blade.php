@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Curso:</strong>
-                            {{ $student->course }}
+                            {{ $student->course->name }}
                         </div>
                         <div class="form-group mb-2 mb20">
                             <strong>Centro de estudio:</strong>
