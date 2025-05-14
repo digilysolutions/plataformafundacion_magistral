@@ -66,15 +66,21 @@ class StudentController extends Controller
 
 
                 // Crear el usuario
-                 $user = User::create([
+                /*  $user = User::create([
                     'name' => $data['username'],
-                    'email' => $data['email'],
+                    'email' => $data['username'],
                     'password' => Hash::make($data['password']), // Contraseña inicial
                     'activated' => true,
                     'role' => 'Estudiante',
                     'roleid' => 2
-                ]);
-               // $user = UserHelper::createDefaultUser($data['username'], $data['lastname'], 'Estudiante', 2);
+                ]);*/
+                $user = UserHelper::createDefaultUser($data['username'], $data['lastname'], 'Estudiante', 2);
+
+                $userCreate = User::where('email', $user['email'])->first();
+
+                $userCreate->password =  Hash::make($data['password']);
+                $userCreate->update();
+
                 $data['email'] = $user['email'];
                 $data['user_id'] = $user['user']->id;
                 $person = Person::create($data);
@@ -137,7 +143,7 @@ class StudentController extends Controller
      */
     public function update(StudentUpdateRequest $request, Student $student)
     {
-        
+
         $role = Auth::user()->role;
         // Validamos los datos del request
         $data = $request->validated();
@@ -148,7 +154,7 @@ class StudentController extends Controller
 
         // Solo asignar la nueva contraseña si se proporciona
         if (!empty($request->password)) {
-           
+
             $data['password'] = Hash::make($request->password);
         } else {
             unset($data['password']); // Si no hay contraseña nueva, removemos la clave
@@ -163,15 +169,15 @@ class StudentController extends Controller
         } else {
             return back()->withErrors(['studycenters_id' => 'El centro de estudio no es válido.'])->withInput();
         }
-        
+
         DB::beginTransaction();
         // Iniciar una transacción para asegurar la consistencia
 
         // Actualizamos el usuario relacionado con el estudiante
         $studentUser = User::find($student->person->user_id);
         if ($studentUser) {
-            
-            
+
+
             $studentUser->update([
                 'name' => $data['username'],
                 'password' => $data['password'] ?? $studentUser->password, // Solo actualiza si hay una nueva contraseña
@@ -183,13 +189,13 @@ class StudentController extends Controller
 
         // Actualizar datos de la persona
 
-        $student->person->update($data);   
-        
-     
+        $student->person->update($data);
+
+
         DB::commit();
-       
+
         if ($role == "Administrador") {
-           
+
             return Redirect::route('students.index')
                 ->with('error', 'No se pudo actualizar el estudiante.');
         }
