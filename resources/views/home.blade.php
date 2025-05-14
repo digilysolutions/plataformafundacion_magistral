@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma ITEMS - Cargando...</title>
-    <link rel="shortcut icon" href="{{ asset('img/icono/fm-plataforma.jpg') }}" />
+    <link rel="shortcut icon" href="{{ asset('img/icono/fm-plataforma.png') }}" />
     <link rel="stylesheet" href="{{asset('css/splash-style-video-final.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
