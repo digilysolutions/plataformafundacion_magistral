@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-      <div class="splash-screen">
+<div class="splash-screen">
         <!-- Tarjetas Móviles -->
         <div class="moving-card card-1 color-pisa"> <div class="card-content"><span>Pruebas PISA</span></div> </div>
         <div class="moving-card card-2 color-nacionales"> <div class="card-content"><span>Pruebas Nacionales</span></div> </div>
@@ -61,85 +60,39 @@
         </div>
     </div>
 
-    <!-- SCRIPT: Barra de Progreso y Redirección -->
+    <!-- ****** NUEVO SCRIPT: Ocultar al hacer clic y redirigir ****** -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const splash = document.querySelector('.splash-screen');
-            const progressBarFill = document.querySelector('.progress-bar-fill'); // REFERENCIA A LA BARRA
-            const redirectUrl = '/login'; // URL de destino ACTUALIZADA
-            const totalDuration = 30000; // Duración total en milisegundos (30 segundos) - ACTUALIZADA
-            let startTime = null;
-            let animationFrameId = null;
-            let hasClicked = false; // Flag para saber si el usuario hizo clic
+            if (splash) {
+                let redirected = false; // bandera para evitar múltiples redirecciones
+                let timerId = null;
 
-            // Verifica que ambos elementos existan
-            if (splash && progressBarFill) {
-                // Función para ocultar el splash (llamada por clic)
-                function hideSplashScreenOnClick() {
-                    if (hasClicked) return; // Evita múltiples clics
-                    hasClicked = true; // Marca que se hizo clic
+                function hideSplashScreen() {
+                    if (redirected) return; // ya fue redirigido
+                    redirected = true;
+                    // Cancela el timeout si aún no se ha ejecutado
+                    if (timerId) clearTimeout(timerId);
 
-                    // Cancela la animación de la barra y la redirección programada
-                    if (animationFrameId) {
-                        cancelAnimationFrame(animationFrameId);
-                    }
-
-                    // Aplica estilos para iniciar la transición CSS de fade-out
+                    // Aplica fade-out
                     splash.style.opacity = '0';
                     splash.style.visibility = 'hidden';
 
-                    // Opcional: Elimina el elemento del DOM después de la transición
+                    // Redirige después de 600ms
                     setTimeout(() => {
-                        if (splash.parentNode) { // Verifica si todavía existe
-                           splash.remove();
-                        }
-                    }, 600); // Coincide con la duración de la transición CSS
-
-                    // Remueve el listener para evitar más clics
-                    splash.removeEventListener('click', hideSplashScreenOnClick);
+                        window.location.href = '/login';
+                    }, 600);
                 }
 
-                // Función para actualizar la barra de progreso
-                function updateProgress(timestamp) {
-                    if (hasClicked) return; // Si ya se hizo clic, no hace nada
+                // Evento clic en todo el splash
+                splash.addEventListener('click', hideSplashScreen);
 
-                    if (!startTime) {
-                        startTime = timestamp;
-                    }
-
-                    const elapsedTime = timestamp - startTime;
-                    const progress = Math.min((elapsedTime / totalDuration) * 100, 100);
-
-                    // Actualiza el ancho de la barra de relleno
-                    progressBarFill.style.width = progress + '%';
-
-                    if (progress < 100) {
-                        // Continúa la animación si no ha terminado
-                        animationFrameId = requestAnimationFrame(updateProgress);
-                    } else {
-                        // Progreso completado: inicia la redirección
-                        // Opcional: Pequeña pausa antes de redirigir
-                        setTimeout(() => {
-                            if (!hasClicked) { // Verifica de nuevo por si se hizo clic justo al final
-                                window.location.replace(redirectUrl); // Usamos replace para mejor UX
-                            }
-                        }, 100); // Pausa de 100ms
-                    }
-                }
-
-                // Añade el event listener para el clic en el splash screen
-                splash.addEventListener('click', hideSplashScreenOnClick);
-
-                // Inicia la animación de la barra de progreso
-                animationFrameId = requestAnimationFrame(updateProgress);
-
-            } else {
-                // Mensaje de error si no se encuentran los elementos necesarios
-                console.error("Error: No se encontró el splash screen o la barra de progreso.");
-                // Fallback: si algo falla, redirige inmediatamente o tras un corto tiempo
-                // setTimeout(() => { if(!hasClicked) window.location.replace(redirectUrl); }, 500); // Actualizado para usar replace también
+                // Redirige automáticamente después de 15 segundos
+                timerId = setTimeout(hideSplashScreen, 15000);
             }
         });
-    </script>
+        </script>
+    <!-- ****** FIN NUEVO SCRIPT ****** -->
+
 </body>
 </html>
