@@ -50,7 +50,7 @@
                                             <h2 class="mb-2">Solicitar Registro</h2>
                                             <p>Solicitar el registro como Tutor.</p>
                                             <form method="POST"
-                                                action="{{ route('register-study-centers.processStore') }}">
+                                                action="{{ route('tutor_register') }}">
                                                 @csrf
 
                                                 <div class="row">
@@ -58,50 +58,48 @@
                                                         <div class="floating-label form-group">
                                                             <input name="name"
                                                                 class="floating-input form-control @error('name') is-invalid @enderror"
-                                                                type="text" placeholder=" "
-                                                                value="{{ old('name') }}" required autofocus
+                                                                type="text" placeholder=" " required autofocus
                                                                 autocomplete="name">
                                                             <label>Nombre *</label>
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="lastname"
-                                                            class="form-label">{{ __('Apellidos') }}</label>
-                                                        <input type="text" name="lastname"
-                                                            class="form-control @error('lastname') is-invalid @enderror"
-                                                            value="{{ old('lastname', $tutor?->person?->lastname) }}"
-                                                            id="lastname" placeholder="Apellidos">
-                                                        <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="floating-label form-group">
+                                                            <input name="lastname"
+                                                                class="floating-input form-control @error('lastname') is-invalid @enderror"
+                                                                type="text" placeholder=" " required autofocus
+                                                                autocomplete="lastname">
+                                                            <label>Apellidos *</label>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="email" class="form-label">{{ __('Correo') }}
-                                                            *</label>
-                                                        <input type="text" id="mail" name="email"
-                                                            class="form-control @error('email') is-invalid @enderror"
-                                                            value="{{ old('email', $tutor?->person?->email) }}"
-                                                            id="email" placeholder="Correo" required>
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="phone"
-                                                            class="form-label">{{ __('Teléfono') }}</label>
-                                                        <input type="text" name="phone"
-                                                            class="form-control @error('phone') is-invalid @enderror"
-                                                            value="{{ old('phone', $tutor?->person?->phone) }}"
-                                                            id="phone" placeholder="Teléfono">
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="floating-label form-group">
                                                             <input name="mail"
                                                                 class="floating-input form-control @error('mail') is-invalid @enderror"
-                                                                type="email" placeholder=" " required>
+                                                                type="text" placeholder=" " required autofocus
+                                                                autocomplete="mail">
                                                             <label>Correo *</label>
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
-
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="floating-label form-group">
+                                                            <input name="phone"
+                                                                class="floating-input form-control @error('phone') is-invalid @enderror"
+                                                                type="text" placeholder=" " autofocus
+                                                                autocomplete="phone">
+                                                            <label>Teléfono </label>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Enviar</button>
                                                 <p class="mt-3">

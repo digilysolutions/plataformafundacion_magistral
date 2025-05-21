@@ -146,7 +146,7 @@
                             <a href="{{ route('user-study-centers.create') }}">Centro
                                 Educativo</a>
                                 |
-                            <a href="{{ route('tutor.register') }}">Tutor</a>
+                            <a href="{{ route('tutor.form_register') }}">Tutor</a>
                             |
                             <a href="{{ route('user-study-centers.create') }}">Validador</a>
                         </div>

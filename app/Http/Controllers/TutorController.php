@@ -6,11 +6,13 @@ use App\Models\Tutor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\TutorRequest;
+use App\Http\Requests\TutorValidatorRegisterRequest;
 use App\Mail\VerificationEmailRegisterTutor;
 use App\Mail\VerificationEmailTutor;
 use App\Models\Person;
 use App\Models\Specialty;
 use App\Models\StudyCenter;
+use App\Models\TutorValidatorRegister;
 use App\Models\User;
 use App\Validators\PasswordValidator;
 use Illuminate\Support\Facades\Redirect;
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Validator as ValidatorFacades;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
@@ -225,27 +228,26 @@ class TutorController extends Controller
         return Redirect::route('tutors.index')
             ->with('success', 'Tutor eliminado satisfactoriamente');
     }
-    public function register(TutorRequest $request)
+    public function registerTutor(TutorValidatorRegisterRequest $request)
     {
-        dd('entre');
+
         $data = $request->validated();
         DB::beginTransaction();
         try {
 
-            $verificationCode = random_int(100000, 999999);
-            $verification_token = Str::random(40);
-            $url =  URL::signedRoute('verify_tutor', [
-                'token' => $verification_token,
-                'code' => $verificationCode,
-            ]);
+            $data['verification_token'] = Str::random(40);
+            $data['verification_code'] = random_int(100000, 999999);
+            $data['type'] = 'Tutor';
 
-            Mail::to($data['email'])->send(new VerificationEmailRegisterTutor($data['name'], $verificationCode, $verification_token, $verification_token, $url));
+            $user_register = TutorValidatorRegister::create($data);
+
+            DB::commit();
+            Mail::to($data['mail'])->send(new VerificationEmailRegisterTutor($user_register));
 
             return redirect()->route('thankYouTutorRegister');
-            DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            return back()->withErrors(['error' => 'Ocurrió un error al procesar el registro.']);
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar el registro.' . $e->getMessage()]);
         }
     }
 
@@ -263,7 +265,7 @@ class TutorController extends Controller
 
         // Por ejemplo, en tu vista, puedes mostrar el código y solicitar que lo ingrese:
 
-          return view('tutor.verify', compact('token','code'));
+        return view('tutor.verify', compact('token', 'code'));
     }
 
     public function verifyCodeTutor(Request $request)
@@ -288,7 +290,7 @@ class TutorController extends Controller
             return back()->withErrors('El código de verificación es incorrecto.');
         }
     }
-     public function thankYou()
+    public function thankYou()
     {
         return view('tutor.thankyouRegisterTutor');
     }

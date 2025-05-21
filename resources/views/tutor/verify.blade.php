@@ -36,7 +36,7 @@
 
                                             <h2 class="mb-2">Verifica tu Correo</h2>
                                             <p>Ingresa el código de verificación:</p>
-                                            <form action="{{ route('') }}" method="POST">
+                                            <form action="{{ route('verifyCode_tutor') }}" method="POST">
                                                 @csrf
 
 

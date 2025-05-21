@@ -13,28 +13,24 @@ class VerificationEmailRegisterTutor extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $name;
-    private $verificationCode;
-    private  $verification_token;
-    private $url;
+    private $user_register;
+
     /**
      * Create a new message instance.
      */
-    public function __construct($name, $verificationCode, $verification_token, $url)
+    public function __construct($user_register)
     {
-        $this->name = $name;
-        $this->verificationCode = $verificationCode;
-        $this->verification_token = $verification_token;
-         $this->url = $url;
+        $this->user_register = $user_register;
+
     }
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Verifica tu correo')
             ->view('emails.verification_register_tutor')
             ->with([
-                'url' => route('verify', $this->url),
-                'verificationCode' => $this->verificationCode,
-                'name' => $this->name
+                'url' => route('verify', $this->user_register->verification_token),
+                'verificationCode' => $this->user_register->verification_code,
+                'user' => $this->user_register
             ]);
     }
     /**

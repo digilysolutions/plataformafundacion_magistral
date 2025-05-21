@@ -46,36 +46,36 @@ class RegisterStudyCenterController extends Controller
         return $this->processStore($request);
     }
     public function processStore(RegisterStudyCenterRequest $request): RedirectResponse
-{
-    $data = $request->validated();
+    {
+        $data = $request->validated();
 
-    DB::beginTransaction();
-    try {
-        $password = Str::random(10); // Genera una contraseña aleatoria de 10 caracteres
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->mail,
-            'activated' => true,
-            'password' => Hash::make($password),
-            'verification_token' => Str::random(40),
-            'verification_code' => random_int(100000, 999999),
-            'membership_id' => 'BA0001',
-            'role' => 'Centro Educativo',
-            'roleid' => 1,
-        ]);
+        DB::beginTransaction();
+        try {
+            $password = Str::random(10); // Genera una contraseña aleatoria de 10 caracteres
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->mail,
+                'activated' => true,
+                'password' => Hash::make($password),
+                'verification_token' => Str::random(40),
+                'verification_code' => random_int(100000, 999999),
+                'membership_id' => 'BA0001',
+                'role' => 'Centro Educativo',
+                'roleid' => 1,
+            ]);
 
-        $studyCenter = RegisterStudyCenter::create($data);
-        event(new Registered($user));
+            $studyCenter = RegisterStudyCenter::create($data);
+            event(new Registered($user));
 
-        Mail::to($user->email)->send(new VerificationEmailStudyCenter($user, $studyCenter));
+            Mail::to($user->email)->send(new VerificationEmailStudyCenter($user, $studyCenter));
 
-        DB::commit();
-        return redirect()->route('thankYouStudyCenter');
-    } catch (\Exception $e) {
-        DB::rollback();
-        return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]);
+            DB::commit();
+            return redirect()->route('thankYouStudyCenter');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar la solicitud: ' . $e->getMessage()]);
+        }
     }
-}
     public function thankYou()
     {
         return view('register-study-center.thankyouStudyCenter');
