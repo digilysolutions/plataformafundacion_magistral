@@ -6,6 +6,7 @@ use App\Models\Tutor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\TutorRequest;
+use App\Mail\VerificationEmailRegisterTutor;
 use App\Mail\VerificationEmailTutor;
 use App\Models\Person;
 use App\Models\Specialty;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class TutorController extends Controller
 {
@@ -89,7 +91,7 @@ class TutorController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             // Aquí estamos usando 'unique:users,email' para verificar que el correo sea único en la tabla 'users'
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-'password' => ['required',  Rules\Password::defaults()]
+            'password' => ['required',  Rules\Password::defaults()]
         ], [
             'email.unique' => 'El correo electrónico ya está en uso. Por favor, elija otro.', // Mensaje personalizado
         ]);
@@ -103,7 +105,7 @@ class TutorController extends Controller
         }
 
         $data['username'] = !empty($request->username) ? $request->username : $request->name;
-        $data['password']=$request->password;
+        $data['password'] = $request->password;
         $validator = PasswordValidator::validate($data);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -111,7 +113,7 @@ class TutorController extends Controller
         DB::beginTransaction();
         try {
 
-           // Genera una contraseña aleatoria de 10 caracteres
+            // Genera una contraseña aleatoria de 10 caracteres
             $user = User::create([
                 'name' => $data['username'],
                 'email' => $request->email,
@@ -148,7 +150,7 @@ class TutorController extends Controller
 
             $studyCenter = StudyCenter::find($request->studycenters_id);
             event(new Registered($tutor));
-            Session::flash('password',$request->password);
+            Session::flash('password', $request->password);
             Mail::to($user->email)->send(new VerificationEmailTutor($user, $studyCenter));
             DB::commit();
             return Redirect::route('tutors.index')
@@ -222,5 +224,72 @@ class TutorController extends Controller
 
         return Redirect::route('tutors.index')
             ->with('success', 'Tutor eliminado satisfactoriamente');
+    }
+    public function register(TutorRequest $request)
+    {
+        dd('entre');
+        $data = $request->validated();
+        DB::beginTransaction();
+        try {
+
+            $verificationCode = random_int(100000, 999999);
+            $verification_token = Str::random(40);
+            $url =  URL::signedRoute('verify_tutor', [
+                'token' => $verification_token,
+                'code' => $verificationCode,
+            ]);
+
+            Mail::to($data['email'])->send(new VerificationEmailRegisterTutor($data['name'], $verificationCode, $verification_token, $verification_token, $url));
+
+            return redirect()->route('thankYouTutorRegister');
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(['error' => 'Ocurrió un error al procesar el registro.']);
+        }
+    }
+
+    public function verify(Request $request)
+    {
+        if (!$request->hasValidSignature()) {
+            return redirect()->route('some-error')->withErrors('Enlace inválido o expirado.');
+        }
+
+        $token = $request->query('token');
+        $code = $request->query('code');
+
+        // Aquí, asumiendo que no guardas en BD, simplemente aceptas que el enlace es válido.
+        // Puedes mostrar un formulario para que el usuario ingrese el código y verificarlo contra el código en la URL, si quieres.
+
+        // Por ejemplo, en tu vista, puedes mostrar el código y solicitar que lo ingrese:
+
+          return view('tutor.verify', compact('token','code'));
+    }
+
+    public function verifyCodeTutor(Request $request)
+    {
+        $request->validate([
+            'verification_code' => 'required|numeric',
+            'token' => 'required|string',
+            'code' => 'required|numeric',
+        ]);
+
+        $inputCode = $request->input('verification_code');
+        $token = $request->input('token');
+        $originalCode = $request->input('code');
+
+        // Comparar el código ingresado con el código enviado en la URL
+        if ($inputCode == $originalCode) {
+            // La verificación es correcta
+            // Aquí puedes marcar la cuenta como verificada, etc.
+            return redirect()->route('some-success-route')->with('message', 'Cuenta verificada exitosamente.');
+        } else {
+            // Código incorrecto
+            return back()->withErrors('El código de verificación es incorrecto.');
+        }
+    }
+     public function thankYou()
+    {
+        return view('tutor.thankyouRegisterTutor');
     }
 }
