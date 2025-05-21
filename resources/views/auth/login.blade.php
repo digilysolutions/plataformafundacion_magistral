@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/line-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/remixicon.css') }}">
-   
+
 </head>
 
 <body>
@@ -145,6 +145,10 @@
                             <a href="{{ route('register') }}">Usuario</a> |
                             <a href="{{ route('user-study-centers.create') }}">Centro
                                 Educativo</a>
+                                |
+                            <a href="{{ route('tutor.register') }}">Tutor</a>
+                            |
+                            <a href="{{ route('user-study-centers.create') }}">Validador</a>
                         </div>
                     </div>
 

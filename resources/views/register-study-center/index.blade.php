@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title-header-admin')
-    Register Study Centers
+   Registro Centro de Estudio
 @endsection
 
 @section('content-admin')

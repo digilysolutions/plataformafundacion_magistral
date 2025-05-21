@@ -149,6 +149,11 @@ Route::middleware('auth')->group(function () {
 
     //Tutors
     Route::resource('tutors', TutorController::class)->middleware('role:Administrador,Centro Educativo');
+    Route::get('/tutor/register/', [TutorController::class, 'register'])->name('tutor.register');
+    Route::get('/verify', [TutorController::class, 'verify'])->name('verify_tutor');
+    Route::get('/thank-you-tutor', [TutorController::class, 'thankYou'])->name('thankYouTutorRegister');
+    Route::post('/verify-tutor', [TutorController::class, 'verifyCodeTutor'])->name('verifyCode_tutor');
+
     Route::get('tutors/studyCenter/{idstudyCenter}', [TutorController::class, 'indexToStudyCenter'])->name('tutors.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
 
     //Students
@@ -304,19 +309,19 @@ Route::middleware('auth')->group(function () {
     })->name('items.items_pisa');
 
     Route::get('/examen/diagnostic', function () {
-        return view('examens.examen_practic_diagnostic'); 
+        return view('examens.examen_practic_diagnostic');
     })->name('examens.examen_practic_diagnostic');
 
     Route::get('/examen/diagnostic/time', function () {
-        return view('examens.examen_time_diagnostic'); 
+        return view('examens.examen_time_diagnostic');
     })->name('examens.examen_time_diagnostic');
 
     Route::get('/user/examen', function () {
-        return view('user.examen_diagnostic'); 
+        return view('user.examen_diagnostic');
     })->name('user.examen_diagnostic');
 
 
-    
+
     Route::post('/actualizar-tiempo', function (Illuminate\Http\Request $request) {
         $tiempo = $request->input('tiempo');
         session(['tiempo_en_plataforma' => $tiempo]);
