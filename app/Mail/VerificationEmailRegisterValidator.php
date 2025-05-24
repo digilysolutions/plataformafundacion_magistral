@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VerificationEmailRegisterTutor extends Mailable
+class VerificationEmailRegisterValidator extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,7 +26,7 @@ class VerificationEmailRegisterTutor extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Verifica tu correo')
-            ->view('emails.verification_register_tutor')
+            ->view('emails.verification_register_validator')
             ->with([
                 'url' => route('verify_tutor', $this->user_register->verification_token),
                 'verificationCode' => $this->user_register->verification_code,
@@ -49,7 +49,7 @@ class VerificationEmailRegisterTutor extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.verification_register_tutor',
+            view: 'emails.verification_register_validator',
         );
     }
 

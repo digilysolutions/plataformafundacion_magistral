@@ -33,6 +33,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NotificationsQuestionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TutorValidatorRegisterController;
+use App\Models\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -110,7 +111,11 @@ Route::get('/verify/code/{token}', [RegisteredUserController::class, 'verifyToke
 Route::post('/verify-code', [RegisteredUserController::class, 'verifyToCode'])->name('verify.code');
 Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->name('thankYou');
 Route::post('/tutor/request/register', [TutorController::class, 'registerTutor'])->name('tutor_register');
+Route::get('/verify/{token}', [TutorController::class, 'verify'])->name('verify_tutor');
+ Route::post('/verify-tutor', [TutorController::class, 'verifyCodeTutor'])->name('verifyCode_tutor');
+ Route::post('/verify-validator', [ValidatorController::class, 'verifyCodeValidator'])->name('verifyCode_Validator');
 
+ Route::post('/validator/request/register', [ValidatorController::class, 'registerValidator'])->name('validator_register');
 
 
 // Ruta para procesar el código de verificación
@@ -153,9 +158,9 @@ Route::middleware('auth')->group(function () {
     //Tutors
     Route::resource('tutors', TutorController::class)->middleware('role:Administrador,Centro Educativo');
 
-    Route::get('/verify', [TutorController::class, 'verify'])->name('verify_tutor');
 
-    Route::post('/verify-tutor', [TutorController::class, 'verifyCodeTutor'])->name('verifyCode_tutor');
+
+
 
     Route::get('tutors/studyCenter/{idstudyCenter}', [TutorController::class, 'indexToStudyCenter'])->name('tutors.indexToStudyCenter')->middleware('role:Administrador,Centro Educativo'); // Para listar todos los estudiantes
 
@@ -390,7 +395,11 @@ Route::resource('tutor-validator-registers', TutorValidatorRegisterController::c
 Route::get('/tutor/register', function () {
     return view('tutor.register');
 })->name('tutor.form_register');
+Route::get('/validator/register', function () {
+    return view('validator.register');
+})->name('validator.form_register');
 Route::get('/thank-you-tutor', [TutorController::class, 'thankYou'])->name('thankYouTutorRegister');
+Route::get('/thank-you-tutor', [ValidatorController::class, 'thankYou'])->name('thankYouTutorRegisterValidator');
 Route::post('register-study-centers/store', [RegisterStudyCenterController::class, 'processStore'])->name('register-study-centers.processStore');
 Route::get('/thank-you-studycenter', [RegisterStudyCenterController::class, 'thankYou'])->name('thankYouStudyCenter');
 Route::get('/user/register-study-centers/', [RegisterStudyCenterController::class, 'create'])->name('user-study-centers.create');

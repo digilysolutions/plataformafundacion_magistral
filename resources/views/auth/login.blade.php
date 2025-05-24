@@ -148,7 +148,7 @@
                                 |
                             <a href="{{ route('tutor.form_register') }}">Tutor</a>
                             |
-                            <a href="{{ route('user-study-centers.create') }}">Validador</a>
+                            <a href="{{ route('validator.form_register') }}">Validador</a>
                         </div>
                     </div>
 

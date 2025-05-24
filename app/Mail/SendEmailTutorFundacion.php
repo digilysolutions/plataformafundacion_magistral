@@ -9,29 +9,30 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VerificationEmailRegisterTutor extends Mailable
+class SendEmailTutorFundacion extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user_register;
 
+
+    private $user;
     /**
      * Create a new message instance.
      */
-    public function __construct($user_register)
+    public function __construct($user)
     {
-        $this->user_register = $user_register;
+        $this->user = $user;
 
     }
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Verifica tu correo')
-            ->view('emails.verification_register_tutor')
+        return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Solicitud de Tutor')
+            ->view('emails.send_tutor_register')
             ->with([
-                'url' => route('verify_tutor', $this->user_register->verification_token),
-                'verificationCode' => $this->user_register->verification_code,
-                'user' => $this->user_register
+                'user' => $this->user
             ]);
+
+
     }
     /**
      * Get the message envelope.
@@ -39,7 +40,7 @@ class VerificationEmailRegisterTutor extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verificación de Correo',
+            subject: 'Solicitud de Tutor',
         );
     }
 
@@ -49,7 +50,7 @@ class VerificationEmailRegisterTutor extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.verification_register_tutor',
+            view: 'emails.send_tutor_register',
         );
     }
 

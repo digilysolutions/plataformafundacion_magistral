@@ -114,6 +114,8 @@ class RegisteredUserController extends Controller
     }
     public function verify($token)
     {
+
+
         // Verifica que el token existe
         $user = User::where('verification_token', $token)->first();
 
@@ -162,7 +164,7 @@ class RegisteredUserController extends Controller
         switch ($user->roleid) {
             case 4:
                 return $this->activateValidator($user);
-            case 3:              
+            case 3:
                 return $this->activateTutor($user);
             case 1:
                 return $this->handleStudyCenterRegistration($user);

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\TutorRequest;
 use App\Http\Requests\TutorValidatorRegisterRequest;
+use App\Mail\SendEmailTutorFundacion;
 use App\Mail\VerificationEmailRegisterTutor;
 use App\Mail\VerificationEmailTutor;
 use App\Models\Person;
@@ -251,47 +252,52 @@ class TutorController extends Controller
         }
     }
 
-    public function verify(Request $request)
+    public function verify($token)
     {
-        if (!$request->hasValidSignature()) {
-            return redirect()->route('some-error')->withErrors('Enlace inválido o expirado.');
-        }
 
-        $token = $request->query('token');
-        $code = $request->query('code');
+         // Verifica que el token existe
+        $user = TutorValidatorRegister::where('verification_token', $token)->first();
 
-        // Aquí, asumiendo que no guardas en BD, simplemente aceptas que el enlace es válido.
-        // Puedes mostrar un formulario para que el usuario ingrese el código y verificarlo contra el código en la URL, si quieres.
+        if (!$user) {
+            return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');        }
 
-        // Por ejemplo, en tu vista, puedes mostrar el código y solicitar que lo ingrese:
-
-        return view('tutor.verify', compact('token', 'code'));
+        return view('tutor.verify', compact('user'));
     }
 
     public function verifyCodeTutor(Request $request)
     {
+
+        // Validación de la solicitud
         $request->validate([
-            'verification_code' => 'required|numeric',
-            'token' => 'required|string',
-            'code' => 'required|numeric',
+            'email' => 'string|email',
+            'verification_code' => 'required|integer',
+            'verification_token' => 'required|string',
         ]);
 
-        $inputCode = $request->input('verification_code');
-        $token = $request->input('token');
-        $originalCode = $request->input('code');
+        // Buscar usuario por correo y token de verificación
+        $user = TutorValidatorRegister::where('mail', $request->mail)
+            ->where('verification_token', $request->verification_token)
+            ->first();
 
-        // Comparar el código ingresado con el código enviado en la URL
-        if ($inputCode == $originalCode) {
-            // La verificación es correcta
-            // Aquí puedes marcar la cuenta como verificada, etc.
-            return redirect()->route('some-success-route')->with('message', 'Cuenta verificada exitosamente.');
-        } else {
-            // Código incorrecto
-            return back()->withErrors('El código de verificación es incorrecto.');
+        if (!$user || $user->verification_code !== (int)$request->verification_code) {
+              return back()->withErrors(['error' => 'Código de verificación inválido']);
         }
+        // Marca el usuario como verificado
+        $this->markUserAsVerified($user);
+          Mail::to('registro@plataforma.fundacionmagistral.org')->send(new SendEmailTutorFundacion($user));
+     return view('tutor.registerTutorValid');
     }
-    public function thankYou()
+
+        public function thankYou()
+        {
+            return view('tutor.thankyouRegisterTutor');
+        }
+    private function markUserAsVerified(TutorValidatorRegister $user)
     {
-        return view('tutor.thankyouRegisterTutor');
+        $user->is_verified = true;
+        $user->email_verified_at = now();
+        $user->verification_code = null;
+        $user->verification_token = null;
+        $user->save();
     }
 }

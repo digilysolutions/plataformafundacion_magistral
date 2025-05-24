@@ -49,7 +49,7 @@
                                             @endif
                                             <h2 class="mb-2">Verifica tu Correo</h2>
                                             <p>Ingresa el código de verificación:</p>
-                                            <form action="{{ route('verifyCode_tutor', $user->verification_token) }}"
+                                            <form action="{{ route('verifyCode_Validator', $user->verification_token) }}"
                                                 method="POST">
                                                 @csrf
                                                 <div class="row">
