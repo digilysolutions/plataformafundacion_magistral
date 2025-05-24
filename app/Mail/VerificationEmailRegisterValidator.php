@@ -28,7 +28,7 @@ class VerificationEmailRegisterValidator extends Mailable
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Verifica tu correo')
             ->view('emails.verification_register_validator')
             ->with([
-                'url' => route('verify_tutor', $this->user_register->verification_token),
+                'url' => route('verify_validator', $this->user_register->verification_token),
                 'verificationCode' => $this->user_register->verification_code,
                 'user' => $this->user_register
             ]);

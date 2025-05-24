@@ -114,6 +114,7 @@ Route::post('/tutor/request/register', [TutorController::class, 'registerTutor']
 Route::get('/verify/{token}', [TutorController::class, 'verify'])->name('verify_tutor');
  Route::post('/verify-tutor', [TutorController::class, 'verifyCodeTutor'])->name('verifyCode_tutor');
  Route::post('/verify-validator', [ValidatorController::class, 'verifyCodeValidator'])->name('verifyCode_Validator');
+ Route::get('/verify-validator/{token}', [ValidatorController::class, 'verify'])->name('verify_validator');
 
  Route::post('/validator/request/register', [ValidatorController::class, 'registerValidator'])->name('validator_register');
 

@@ -306,7 +306,7 @@ class ValidatorController extends Controller
         // Marca el usuario como verificado
         $this->markUserAsVerified($user);
         Mail::to('registro@plataforma.fundacionmagistral.org')->send(new SendEmailValidatorFundacion($user));
-        return view('tutor.registerTutorValid');
+        return view('validator.registerValidatorValid.blade');
     }
     private function markUserAsVerified(TutorValidatorRegister $user)
     {
