@@ -19,24 +19,28 @@ class SpecialtiesSeeder extends Seeder
             [
 
                 'name' => 'Matemáticas',
+                'shortname' => 'MA',
                 'activated' => true,
 
-            ], [
+            ],
+            [
 
                 'name' => 'Español',
+                'shortname' => 'ES',
                 'activated' => true,
 
             ],
             [
 
                 'name' => 'Ciencias Sociales',
+                'shortname' => 'CS',
                 'activated' => true,
 
-            ]
-            ,
+            ],
             [
 
                 'name' => 'Ciencias Naturales',
+                'shortname' => 'CN',
                 'activated' => true,
 
             ]
@@ -44,6 +48,5 @@ class SpecialtiesSeeder extends Seeder
         foreach ($specialties as $specialty) {
             Specialty::create($specialty);
         }
-
     }
 }

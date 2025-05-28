@@ -1,25 +1,23 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
- * Class Specialty
+ * Class Content
  *
  * @property $id
- * @property $activated
- * @property $name
  * @property $created_at
  * @property $updated_at
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Specialty extends ModelMain
+class Content extends ModelMain
 {
-
+    
     protected $perPage = 20;
 
     /**
@@ -27,12 +25,7 @@ class Specialty extends ModelMain
      *
      * @var array<int, string>
      */
-    protected $fillable = ['activated', 'name','shortname'];
+    protected $fillable = [];
 
 
-
-    public function validators()
-    {
-        return $this->hasMany(Validator::class, 'specialty_id', 'id');
-    }
 }

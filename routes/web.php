@@ -29,9 +29,12 @@ use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
 use App\Exports\StudentsExport;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ItemsPisaController;
 use App\Http\Controllers\NotificationsQuestionController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SublevelController;
 use App\Http\Controllers\TutorValidatorRegisterController;
 use App\Models\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -112,17 +115,22 @@ Route::post('/verify-code', [RegisteredUserController::class, 'verifyToCode'])->
 Route::get('/user/register', [RegisteredUserController::class, 'thankYou'])->name('thankYou');
 Route::post('/tutor/request/register', [TutorController::class, 'registerTutor'])->name('tutor_register');
 Route::get('/verify/{token}', [TutorController::class, 'verify'])->name('verify_tutor');
- Route::post('/verify-tutor', [TutorController::class, 'verifyCodeTutor'])->name('verifyCode_tutor');
- Route::post('/verify-validator', [ValidatorController::class, 'verifyCodeValidator'])->name('verifyCode_Validator');
- Route::get('/verify-validator/{token}', [ValidatorController::class, 'verify'])->name('verify_validator');
+Route::post('/verify-tutor', [TutorController::class, 'verifyCodeTutor'])->name('verifyCode_tutor');
+Route::post('/verify-validator', [ValidatorController::class, 'verifyCodeValidator'])->name('verifyCode_Validator');
+Route::get('/verify-validator/{token}', [ValidatorController::class, 'verify'])->name('verify_validator');
 
- Route::post('/validator/request/register', [ValidatorController::class, 'registerValidator'])->name('validator_register');
+Route::post('/validator/request/register', [ValidatorController::class, 'registerValidator'])->name('validator_register');
 
 
 // Ruta para procesar el código de verificación
 Route::post('/verify-email', [RegisteredUserController::class, 'verifyEmail'])->name('verifyEmail');
 Route::middleware('auth')->group(function () {
 
+    //sbulevel (subnivel)
+    Route::resource('sublevels', SublevelController::class);
+    Route::resource('items-pisas', ItemsPisaController::class);
+    Route::resource('contents', ContentController::class);
+    Route::resource('answers-pisas', AnswersPisaController::class);
     //Carga inicial con excel
     Route::get('/import', [ExcelController::class, 'importView'])->name('import.view')->middleware('role:Administrador');
     Route::post('/import', [ExcelController::class, 'import'])->name('import')->middleware('role:Administrador');

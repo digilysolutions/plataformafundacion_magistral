@@ -5,6 +5,11 @@
             <input type="text" name="name" class="form-control " value="{{ old('name', $specialty?->name) }}" id="name" placeholder="Nombre" required>
             <div class="help-block with-errors"></div>
         </div>
+         <div class="form-group mb-2 mb20">
+            <label for="name" class="form-label">{{ __('Abreviatura') }}</label>
+            <input type="text" name="name" class="form-control " value="{{ old('shortname', $specialty?->name) }}" id="shortname" placeholder="Abreviatura" required>
+            <div class="help-block with-errors"></div>
+        </div>
         <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
             <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-1" name="activated"
                 checked="">

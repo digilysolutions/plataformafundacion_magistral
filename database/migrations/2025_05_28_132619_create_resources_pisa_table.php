@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('specialties', function (Blueprint $table) {
+        Schema::create('resources_pisa', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->boolean('activated')->default(false);
-            $table->string('name');
-             $table->string('shortname');
+            $table->string('name')->nullable();
+            $table->string('type', 50); // 'image', 'video', 'graphic'
+            $table->text('url')->nullable(); // url
+              $table->text('descripción')->nullable(); // descripción
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('specialties');
+        Schema::dropIfExists('resources');
     }
 };
