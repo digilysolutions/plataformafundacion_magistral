@@ -29,6 +29,7 @@ use App\Models\MembershipHistory;
 use Illuminate\Support\Facades\Route;
 use App\Exports\StudentsExport;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\AnswersPisaController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ItemsPisaController;
@@ -128,7 +129,7 @@ Route::middleware('auth')->group(function () {
 
     //sbulevel (subnivel)
     Route::resource('sublevels', SublevelController::class);
-    Route::resource('items-pisas', ItemsPisaController::class);
+    Route::resource('items-pisas', ItemsPisaController::class)->middleware('role:Administrador');
     Route::resource('contents', ContentController::class);
     Route::resource('answers-pisas', AnswersPisaController::class);
     //Carga inicial con excel

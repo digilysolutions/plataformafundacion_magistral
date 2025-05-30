@@ -33,9 +33,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ItemsPisa extends ModelMain
 {
-    
-    protected $perPage = 20;
 
+    protected $perPage = 20;
+ protected $table = "items_pisa";
     /**
      * The attributes that are mass assignable.
      *
@@ -51,7 +51,7 @@ class ItemsPisa extends ModelMain
     {
         return $this->belongsTo(\App\Models\Content::class, 'content_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -59,7 +59,7 @@ class ItemsPisa extends ModelMain
     {
         return $this->belongsTo(\App\Models\Level::class, 'level_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -67,7 +67,7 @@ class ItemsPisa extends ModelMain
     {
         return $this->belongsTo(\App\Models\Specialty::class, 'specialty_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -75,5 +75,5 @@ class ItemsPisa extends ModelMain
     {
         return $this->belongsTo(\App\Models\Sublevel::class, 'sublevel_id', 'id');
     }
-    
+
 }
